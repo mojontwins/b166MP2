@@ -1,0 +1,648 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ReplicateResourcesE",
+				"ReplicateResourceElsewhereCommand\tabc"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "vanilla/src/minecraft/net/minecraft/src/BlockDetectorRail.java",
+			"settings":
+			{
+				"buffer_size": 2299,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "vanilla/src/minecraft/net/minecraft/src/ChunkProviderGenerate.java",
+			"settings":
+			{
+				"buffer_size": 19147,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"xml",
+				"Indent XML"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"installk",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 125.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Lair/cosas/mc/1.6.6"
+	],
+	"file_history":
+	[
+		"/C/Lair/cosas/mc/1.6.6/vanilla/src/minecraft/net/minecraft/src/WorldChunkManager.java",
+		"/C/Lair/cosas/mc/1.6.6/fiddle/org/mojontwins/retroterrain/ChunkProviderGenerateRetro.java",
+		"/C/Lair/cosas/mc/1.6.6/vanilla/src/minecraft/net/minecraft/src/BlockGrass.java",
+		"/C/Lair/cosas/mc/1.6.6/vanilla/src/minecraft/net/minecraft/src/BiomeGenSky.java",
+		"/C/Lair/cosas/mc/1.6.6/main/retroMCP.bat",
+		"/C/Lair/cosas/mc/1.6.6/main/conf/start/Start.java",
+		"/C/Lair/cosas/mc/1.6.6/main/src/minecraft/net/minecraft/client/model/ModelPig.java",
+		"/C/Users/jcastano/AppData/Local/Temp/7zOC5BCB427/ACPages.java",
+		"/C/Users/jcastano/AppData/Local/Temp/7zOC5BB3B37/ACPage.java",
+		"/C/Users/jcastano/AppData/Local/Temp/7zOC5B63FC6/xd.java",
+		"/C/Users/jcastano/AppData/Local/Temp/7zOC5BE02B6/README.txt",
+		"/D/Speccy/MK2/Key To Time/diario.txt",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/tpl/Reservation/participation.tpl",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Web/scripts/date-helper.js",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Web/scripts/recurrence.js",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/tpl/Admin/server_settings.tpl",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Web/css/jda.css",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Web/scripts/admin/blackouts.js",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/tpl/Admin/Blackouts/manage_blackouts.tpl",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/tpl/contact.tpl",
+		"/C/Proyectos/remote/desowncl02/sftp-config.json",
+		"/C/Users/jcastano/Desktop/alta_proxyclave.md",
+		"/C/Cosas/Sublime Text 3/Data/Packages/smarty.tmLanguage",
+		"/C/Proyectos/2022/20220405a - Ficheros v1.8.0.0 - clamav, uidshort, tags, misc/instrucciones.md",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Reservation/NewReservationInitializer.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Reservation/ReservationInitializerBase.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Reservation/ReservationComponentBinder.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Reservation/ReservationInitializerFactory.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Pages/ReservationPage.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Pages/Admin/ManageBlackoutsPage.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Web/reservation.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Pages/ExistingReservationPage.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Presenters/Reservation/ReservationPresenter.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Reservation/ReservationPreconditionService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Common/ErrorMessages.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Pages/SchedulePage.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Presenters/Admin/ManageBlackoutsPresenter.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Reservation/ManageBlackoutsService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Domain/Access/BlackoutRepository.php",
+		"/C/Proyectos/entregas/Entrega-FicherosJunta_1.11.0.0/instrucciones.md",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Sync/Sync.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Domain/Access/ResourceRepository.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/ResourceService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lang/es.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Reservation/IReservationPreconditionService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Domain/Access/ReservationViewRepository.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Pages/SecurePage.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Presenters/Admin/ManageUsersPresenter.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/User/ManageUsersService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Authentication/Registration.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Authentication/PasswordEncryption.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/passcalc.php",
+		"/C/Proyectos/remote/corres04/diario.md",
+		"/C/Proyectos/2025/20250610 - Webmail 3.19.0.0 -  Corrección fallo de seguridad CVE-2025-49113/instrucciones.txt",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/database_schema/acl.sql",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/ReservationListingFactory.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Authorization/ResourcePermissionStore.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Web/scripts/schedule.js",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/tpl/Schedule/schedule.tpl",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Pages/Page.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/WebService/WebServiceSecurity.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Server/UserSession.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Domain/Access/ScheduleUserRepository.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Presenters/SchedulePresenter.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/ScheduleResourceFilter.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Authorization/PermissionService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Reservation/ResourcePermissionFilter.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Domain/Access/UserSessionRepository.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Authorization/ACL.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Domain/User.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Authentication/Authentication.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/config/config.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/database_schema/create-admin.sql",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/plugins/Authentication/Ldap/Ldap2Wrapper.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Presenters/Dashboard/ResourceAvailabilityControlPresenter.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/IReservationSlot.php",
+		"/C/Users/jcastano/Desktop/pikapika.txt",
+		"/C/Proyectos/2025/20250612 - Admdir 1.60.0.0 - Renombrado de edificios con comunicación a Reservas/instrucciones.txt",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Web/Services/index.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Web/admin/manage_users.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Pages/Admin/AdminPage.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Server/Server.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/WebService/Slim/SlimWebServiceRegistryCategory.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/WebService/Slim/SlimServiceRegistration.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/ReservationService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/ReservationListing.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/ReservationListItem.php",
+		"/C/Users/jcastano/AppData/Local/Temp/pid-17260/userfilter.txt",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/BlackoutSlot.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Database/Commands/Commands.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/external/Slim/Slim.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/SedesWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/tpl/login.tpl",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/tpl/Admin/manage_users.tpl",
+		"/C/Proyectos/copias producción/p3s-20250425/config/unix.properties",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/WebService/RestResponse.php",
+		"/C/Users/jcastano/Desktop/angulos.md",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Database/Commands/ParameterNames.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/WebService/WebServices.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Requests/SedesRenameRequest.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Database/Commands/Queries.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/GroupsWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/AccessoriesWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/AttributesWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/AttributesWriteWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Requests/ReservationRequest.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/ReservationsWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/ResourcesWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Requests/SignOutRequest.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/ReservationWriteWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Controllers/ReservationSaveController.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/ResourcesWriteWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/SchedulesWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/UsersWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/UsersWriteWebService.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Requests/CreateUserRequest.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Requests/UserRequestBase.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Responses/ReservationResponse.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Responses/GroupResponse.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Requests/ReservationAccessoryRequest.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Responses/GroupsResponse.php",
+		"/C/Users/jcastano/Downloads/style.cfg",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Domain/BookableResource.php",
+		"/C/Proyectos/2025/20250513 - Reservas 1.46.0.0 - Mejoras sedes asociadas, rendimiento en el manejo de clones, CSS/instrucciones.txt",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Database/MySQL/MySqlConnection.php",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Presenters/Admin/ManageResourcesPresenter.php",
+		"/C/Proyectos/2025/20250505 - Consigna v2.21.0.0 - Subidas robustas en momentos de degradación del servicio/instrucciones.txt",
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/config/log4php.config.xml"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 115.0,
+		"where_history":
+		[
+			"C:\\Lair\\cosas\\mc\\1.6.6\\vanilla\\src",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\Web\\css",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\Web\\scripts",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\tpl",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\Web\\scripts\\admin",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es",
+			"C:\\Proyectos\\remote\\corres04",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\Domain",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es",
+			"C:\\Proyectos\\remote\\corres04",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\Domain",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\WebServices",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\WebServices",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\WebServices",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\Web\\Services",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\WebServices",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es",
+			"C:\\Proyectos\\remote\\corres04\\reserva.juntadeandalucia.es\\Domain"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"desert",
+			"biomeGenBase5",
+			"i4",
+			"worldChunkManager3",
+			"i2",
+			"i1",
+			"j9",
+			"j7",
+			"biomeCacheBlock6",
+			"i5",
+			"j3",
+			"j1",
+			"biomeCacheBlock5",
+			"j3",
+			"i2",
+			"i1",
+			"worldChunkManager1",
+			"i3",
+			"i2",
+			"biomeCache1",
+			"field_6502_q",
+			"chunkPosition13",
+			"i17",
+			"i16",
+			"i15",
+			"i14",
+			"i12",
+			"i11",
+			"i10",
+			"i9",
+			"i8",
+			"i7",
+			"i6",
+			"random5",
+			"list4",
+			"i3",
+			"i2",
+			"i1",
+			"x1",
+			"x0",
+			"i9",
+			"i8",
+			"i7",
+			"i6",
+			"i5",
+			"i3",
+			"i2",
+			"i1",
+			"i5",
+			"i4",
+			"i3",
+			"i2",
+			"biomeGenBase1",
+			"i8",
+			"i7",
+			"z6",
+			"i5",
+			"i4",
+			"i3",
+			"i2",
+			"biomeGenBase1",
+			"i5",
+			"i4",
+			"i3",
+			"i2",
+			"biomeGenBase1",
+			"f8",
+			"i7",
+			"i6",
+			"f8",
+			"i7",
+			"i6",
+			"i5",
+			"i4",
+			"i3",
+			"i2",
+			"f1",
+			"i3",
+			"i2",
+			"i5",
+			"i4",
+			"f1",
+			"restricted",
+			"executing",
+			"GetResourceMirroredResourcesCommand",
+			"AddBlackout",
+			"dateHelper",
+			"Recurrence",
+			"repeat",
+			"recur",
+			"repeat",
+			"colorbox",
+			"cbox",
+			"status",
+			"update",
+			"UpdateBlackout",
+			"perfilId",
+			"log",
+			"INSUFFICIENT_PERMISSIONS",
+			"InsufficientPermissionsError",
+			"No tienes permiso para acceder a este Recurso",
+			"new ReservationResourceBinder",
+			"IReservationComponentBinder",
+			"ReservationResourceBinder",
+			"ReservationInitializerFactory",
+			"ReservationResourceBinder",
+			"INSUFFICIENT_PERMISSIONS",
+			"click",
+			"clickres",
+			"setresources",
+			"Resources",
+			"schedule.tpl",
+			"->IsHidden",
+			"invisible",
+			"IsResourceAdmin",
+			"perfilId",
+			"->perfilId =",
+			"IsAdmin",
+			"class UserSession",
+			"SCHEDULE_SHOW_INACCESSIBLE_RESOURCES",
+			"_resourceService",
+			"ResourceService",
+			"isOrganismoAdmin",
+			"isadmin =",
+			"isadmin",
+			"class UserSession",
+			"UserSession",
+			"IsLimitedToAdmin"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"biome",
+			"biomeID",
+			"chunkManager",
+			"z",
+			"x",
+			"hash",
+			"elapsedB",
+			"block",
+			"i",
+			"elapsed",
+			"now",
+			"block",
+			"hash",
+			"z",
+			"x",
+			"worldChunkManager",
+			"chunkZ",
+			"chunkX",
+			"cache",
+			"pos",
+			"rz",
+			"rx",
+			"i",
+			"attempts",
+			"biomeIDs",
+			"l",
+			"w",
+			"z2",
+			"x2",
+			"z1",
+			"x1",
+			"rand",
+			"goodBiomes",
+			"r",
+			"z",
+			"x",
+			"biomeIDs",
+			"l",
+			"w",
+			"z2",
+			"x2",
+			"z1",
+			"x1",
+			"r",
+			"z",
+			"x",
+			"hy",
+			"w",
+			"y",
+			"x",
+			"biomes",
+			"i",
+			"biomeIDs",
+			"isChunk",
+			"h",
+			"w",
+			"y",
+			"x",
+			"biomes",
+			"h",
+			"w",
+			"y",
+			"x",
+			"biomes",
+			"rainfall",
+			"i",
+			"biomeIDs",
+			"t",
+			"i",
+			"biomeIDs",
+			"h",
+			"w",
+			"y",
+			"x",
+			"temperatures",
+			"y",
+			"x",
+			"h",
+			"w",
+			"rainfall"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "vanilla/src/minecraft/net/minecraft/src/BlockDetectorRail.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2299,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "vanilla/src/minecraft/net/minecraft/src/ChunkProviderGenerate.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19147,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18460,
+								18481
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 6782.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 39.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SFTP":
+	{
+		"height": 104.0
+	},
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "166.sublime-project",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 394.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
