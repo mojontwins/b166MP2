@@ -97,6 +97,7 @@ import net.minecraft.world.level.colorizer.ColorizerFog;
 import net.minecraft.world.level.colorizer.ColorizerFoliage;
 import net.minecraft.world.level.colorizer.ColorizerGrass;
 import net.minecraft.world.level.colorizer.ColorizerWater;
+import net.minecraft.world.level.dimension.Teleporter;
 import net.minecraft.world.level.dimension.WorldProvider;
 import net.minecraft.world.level.tile.Block;
 import net.minecraft.world.level.tile.BlockLeaves;
@@ -544,6 +545,7 @@ public abstract class Minecraft implements Runnable {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	private void runGameLoop() {
 		if(this.mcApplet != null && !this.mcApplet.isActive()) {
 			this.running = false;
@@ -1200,18 +1202,7 @@ public abstract class Minecraft implements Runnable {
 
 		World newWorld;
 		
-		Teleporter teleporter = null;
-		
-		// Are we in a Twilight Forest portal?
-		boolean inTwilightPortal = this.theWorld.isAABBInBlockID(this.thePlayer.boundingBox, Block.tfportal.blockID);
-		
-		// Are we in a Desert Dimension portal?
-		boolean inDesertDimensionPortal = this.theWorld.isAABBInBlockID(this.thePlayer.boundingBox, Block.ddPortal.blockID);
-		
-		// Are we in a Freezer portal?
-		boolean inFreezerPortal = this.theWorld.isAABBInBlockID(this.thePlayer.boundingBox, Block.portalfreezer.blockID);
-		
-		teleporter = new Teleporter();
+		Teleporter teleporter = new Teleporter();
 		
 		if(this.thePlayer.dimension == -1) {
 			// Player goes to the nether.

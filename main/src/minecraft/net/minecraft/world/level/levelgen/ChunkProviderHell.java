@@ -262,7 +262,7 @@ public class ChunkProviderHell implements IChunkProvider {
 		
 		Chunk chunk4 = new Chunk(this.worldObj, b3, i1, i2);
 		
-		this.featureProvider.getNearestFeatures(i2, i3, chunk4);
+		this.featureProvider.getNearestFeatures(i1, i2, chunk4);
 		
 		BiomeGenBase[] biomeGenBase5 = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[]) null, i1 * 16, i2 * 16, 16, 16);
 		byte[] b6 = chunk4.getBiomeArray();
@@ -469,7 +469,7 @@ public class ChunkProviderHell implements IChunkProvider {
 			(new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.hellRNG, x, y, z);
 		}
 
-		biomeGen.decorate(this.worldObj, this.hellRNG, x0, z0, false);
+		biomeGen.decorate(this.worldObj, this.hellRNG, x0, z0, hadCustomFeat);
 
 		BlockSand.fallInstantly = false;
 	}

@@ -133,8 +133,10 @@ public class Item implements ITextureProvider {
 	public static Item chickenRaw = (new ItemFood(109, 2, 0.3F, true)).setIconCoord(9, 7).setItemName("chickenRaw");
 	public static Item chickenCooked = (new ItemFood(110, 6, 0.6F, true)).setIconCoord(10, 7).setItemName("chickenCooked");
 	public static Item rottenFlesh = (new ItemFood(111, 4, 0.1F, true)).setIconCoord(11, 5).setItemName("rottenFlesh");
-
+	public static Item blazeRod = (new Item(113)).setIconCoord(12, 6).setItemName("blazeRod").setCreativeTab(CreativeTabs.tabMaterials);
+	public static Item ghastTear = (new Item(114)).setIconCoord(11, 7).setItemName("ghastTear").setCreativeTab(CreativeTabs.tabBrewing);
 	public static Item goldNugget = (new ItemGolden(115)).setIconCoord(12, 7).setItemName("goldNugget").setCreativeTab(CreativeTabs.tabMaterials);
+	public static Item netherStalkSeeds = (new ItemSeeds(116, Block.netherStalk.blockID, Block.slowSand.blockID)).setIconCoord(13, 7).setItemName("netherStalkSeeds").setPotionEffect("+4");
 	public static Item glassBottle = (new Item(118)).setIconCoord(12, 8).setItemName("glassBottle");
 	public static Item monsterPlacer = (new ItemMonsterPlacer(127)).setIconCoord(9, 9).setItemName("monsterPlacer");
 
