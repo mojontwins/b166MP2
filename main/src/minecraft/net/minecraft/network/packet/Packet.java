@@ -51,7 +51,7 @@ public abstract class Packet {
 	public static Packet getNewPacket(int i0) {
 		try {
 			Class<?> class1 = (Class<?>)packetIdToClassMap.lookup(i0);
-			return class1 == null ? null : (Packet)class1.newInstance();
+			return class1 == null ? null : (Packet)class1.getConstructor().newInstance();
 		} catch (Exception exception2) {
 			exception2.printStackTrace();
 			System.out.println("Skipping packet with id " + i0);

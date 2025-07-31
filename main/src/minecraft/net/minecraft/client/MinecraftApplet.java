@@ -4,6 +4,7 @@ import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 
+@SuppressWarnings("deprecation")
 public class MinecraftApplet extends Applet {
 	/**
 	 * 

@@ -92,45 +92,7 @@ public class BiomeGenBase {
 
 	public static BiomeGenBase getBiome(float f0, float f1) {
 		f1 *= f0;
-		return f0 < 0.1F ? 
-				tundra 
-			: 
-				(
-						f1 < 0.2F ? 
-								(
-										f0 < 0.5F ? 
-												tundra 
-											: 
-												(
-														f0 < 0.95F ? 
-																savanna 
-															: 
-																desert
-												)
-								) 
-							: 
-								(f1 > 0.5F && f0 < 0.7F ? 
-										swampland 
-									: 
-										(
-												f0 < 0.5F ? 
-														taiga 
-													: 
-														(
-																f0 < 0.97F ? 
-																		(
-																				f1 < 0.35F ? 
-																						shrubland 
-																					: 
-																						forest
-																		) 
-																	: 
-																		(
-																				f1 < 0.45F ? 
-																						plains 
-																					: 
-																						(
-																								f1 < 0.9F ? seasonalForest : rainforest))))));
+		return f0 < 0.1F ? tundra : (f1 < 0.2F ? (f0 < 0.5F ? tundra : (f0 < 0.95F ? savanna : desert)) : (f1 > 0.5F && f0 < 0.7F ? swampland : (f0 < 0.5F ? taiga : (f0 < 0.97F ? (f1 < 0.35F ? shrubland : forest) : (f1 < 0.45F ? plains : (f1 < 0.9F ? seasonalForest : rainforest))))));
 	}
 
 	public int getSkyColorByTemp(float f1) {

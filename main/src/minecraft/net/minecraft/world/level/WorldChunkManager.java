@@ -11,15 +11,15 @@ import net.minecraft.world.level.levelgen.genlayer.GenLayer;
 
 public class WorldChunkManager {
 	// GenBiomes is used for instance by the release noise calculator. It is 1/4 the size of the world.
-	private GenLayer genBiomes;
+	protected GenLayer genBiomes;
 	
 	// biomeIndexLayer contains which biome is each block in the world.
-	private GenLayer biomeIndexLayer;
+	protected GenLayer biomeIndexLayer;
 	
-	public BiomeCache biomeCache;
-	private List<BiomeGenBase> biomesToSpawnIn;
+	protected BiomeCache biomeCache;
+	protected List<BiomeGenBase> biomesToSpawnIn;
 
-	protected WorldChunkManager() {
+	public WorldChunkManager() {
 		this.biomeCache = new BiomeCache(this);
 		
 		this.biomesToSpawnIn = new ArrayList<BiomeGenBase>();
@@ -43,8 +43,8 @@ public class WorldChunkManager {
 		this.biomeIndexLayer = genLayerArray[1];
 	}
 
-	public WorldChunkManager(World world1) {
-		this(world1.getSeed(), world1.getWorldInfo().getTerrainType());
+	public WorldChunkManager(World world) {
+		this(world.getSeed(), world.getWorldInfo().getTerrainType());
 	}
 
 	public List<BiomeGenBase> getBiomesToSpawnIn() {

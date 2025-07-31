@@ -41,8 +41,9 @@ public class WorldType {
 		// This is not used in this build but I'll leave it just in case.
 		switch(i1) {
 		case 4:
+			// This is hell. Add hell biomes here! They will be picked up at random by teh Genlayer
 			this.biomesForWorldType = new BiomeGenBase[] {
-					BiomeGenBase.alpha
+					BiomeGenBase.hell
 			};
 			break;
 		case 6:

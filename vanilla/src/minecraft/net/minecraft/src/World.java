@@ -1609,40 +1609,46 @@ public class World implements IBlockAccess {
 			++field_9429_y;
 
 			try {
-				if(field_9429_y != 50) {
-					int i9 = (i5 + i2) / 2;
-					int i10 = (i7 + i4) / 2;
-					if(this.blockExists(i9, 64, i10)) {
-						if(!this.getChunkFromBlockCoords(i9, i10).func_21167_h()) {
-							int i11 = this.lightingToUpdate.size();
-							int i12;
-							if(z8) {
-								i12 = 5;
-								if(i12 > i11) {
-									i12 = i11;
-								}
+				if(field_9429_y == 50) {
+					return;
+				}
 
-								for(int i13 = 0; i13 < i12; ++i13) {
-									MetadataChunkBlock metadataChunkBlock14 = (MetadataChunkBlock)this.lightingToUpdate.get(this.lightingToUpdate.size() - i13 - 1);
-									if(metadataChunkBlock14.field_1299_a == enumSkyBlock1 && metadataChunkBlock14.func_866_a(i2, i3, i4, i5, i6, i7)) {
-										return;
-									}
-								}
-							}
+				int i9 = (i5 + i2) / 2;
+				int i10 = (i7 + i4) / 2;
+				if(!this.blockExists(i9, 64, i10)) {
+					return;
+				}
 
-							this.lightingToUpdate.add(new MetadataChunkBlock(enumSkyBlock1, i2, i3, i4, i5, i6, i7));
-							i12 = 1000000;
-							if(this.lightingToUpdate.size() > 1000000) {
-								System.out.println("More than " + i12 + " updates, aborting lighting updates");
-								this.lightingToUpdate.clear();
-							}
+				if(this.getChunkFromBlockCoords(i9, i10).func_21167_h()) {
+					return;
+				}
 
+				int i11 = this.lightingToUpdate.size();
+				int i12;
+				if(z8) {
+					i12 = 5;
+					if(i12 > i11) {
+						i12 = i11;
+					}
+
+					for(int i13 = 0; i13 < i12; ++i13) {
+						MetadataChunkBlock metadataChunkBlock14 = (MetadataChunkBlock)this.lightingToUpdate.get(this.lightingToUpdate.size() - i13 - 1);
+						if(metadataChunkBlock14.field_1299_a == enumSkyBlock1 && metadataChunkBlock14.func_866_a(i2, i3, i4, i5, i6, i7)) {
+							return;
 						}
 					}
+				}
+
+				this.lightingToUpdate.add(new MetadataChunkBlock(enumSkyBlock1, i2, i3, i4, i5, i6, i7));
+				i12 = 1000000;
+				if(this.lightingToUpdate.size() > 1000000) {
+					System.out.println("More than " + i12 + " updates, aborting lighting updates");
+					this.lightingToUpdate.clear();
 				}
 			} finally {
 				--field_9429_y;
 			}
+
 		}
 	}
 

@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
   <component name="EclipseModuleManager">
-    <libelement value="jar://D:/Cosas/b166/vanilla/lib/client/jinput.jar!/" />
-    <libelement value="jar://D:/Cosas/b166/vanilla/lib/client/lwjgl_util.jar!/" />
-    <libelement value="jar://D:/Cosas/b166/vanilla/lib/client/lwjgl.jar!/" />
-    <libelement value="jar://D:/Cosas/b166/vanilla/lib/client/minecraft.jar!/" />
-    <varelement var="file://D:/Cosas/b166/vanilla/src/minecraft" value="linksrc:src" />
-    <varelement var="file://D:/Cosas/b166/vanilla/conf/start" value="linksrc:start" />
-    <varelement var="jar://D:/Cosas/b166/vanilla/lib/client/jinput.jar!/" value="link:lib/client/jinput.jar" />
-    <varelement var="jar://D:/Cosas/b166/vanilla/lib/client/lwjgl_util.jar!/" value="link:lib/client/lwjgl_util.jar" />
-    <varelement var="jar://D:/Cosas/b166/vanilla/lib/client/lwjgl.jar!/" value="link:lib/client/lwjgl.jar" />
-    <varelement var="jar://D:/Cosas/b166/vanilla/lib/client/minecraft.jar!/" value="link:lib/client/minecraft.jar" />
+    <libelement value="jar://D:/Cosas/b166MP2/main/lib/client/jinput.jar!/" />
+    <libelement value="jar://D:/Cosas/b166MP2/main/lib/client/lwjgl_util.jar!/" />
+    <libelement value="jar://D:/Cosas/b166MP2/main/lib/client/lwjgl.jar!/" />
+    <libelement value="jar://D:/Cosas/b166MP2/main/lib/client/minecraft.jar!/" />
+    <varelement var="file://D:/Cosas/b166MP2/main/src/minecraft" value="linksrc:src" />
+    <varelement var="file://D:/Cosas/b166MP2/main/conf/start" value="linksrc:start" />
+    <varelement var="jar://D:/Cosas/b166MP2/main/lib/client/jinput.jar!/" value="link:lib/client/jinput.jar" />
+    <varelement var="jar://D:/Cosas/b166MP2/main/lib/client/lwjgl_util.jar!/" value="link:lib/client/lwjgl_util.jar" />
+    <varelement var="jar://D:/Cosas/b166MP2/main/lib/client/lwjgl.jar!/" value="link:lib/client/lwjgl.jar" />
+    <varelement var="jar://D:/Cosas/b166MP2/main/lib/client/minecraft.jar!/" value="link:lib/client/minecraft.jar" />
     <src_description expected_position="0">
-      <src_folder value="file://D:/Cosas/b166/vanilla/src/minecraft" expected_position="0" />
-      <src_folder value="file://D:/Cosas/b166/vanilla/conf/start" expected_position="1" />
+      <src_folder value="file://D:/Cosas/b166MP2/main/src/minecraft" expected_position="0" />
+      <src_folder value="file://D:/Cosas/b166MP2/main/conf/start" expected_position="1" />
     </src_description>
   </component>
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/bin" />
     <exclude-output />
-    <content url="file://D:/Cosas/b166/vanilla/conf/start">
-      <sourceFolder url="file://D:/Cosas/b166/vanilla/conf/start" isTestSource="false" />
+    <content url="file://D:/Cosas/b166MP2/main/conf/start">
+      <sourceFolder url="file://D:/Cosas/b166MP2/main/conf/start" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$" />
-    <content url="file://D:/Cosas/b166/vanilla/src/minecraft">
-      <sourceFolder url="file://D:/Cosas/b166/vanilla/src/minecraft" isTestSource="false" />
+    <content url="file://D:/Cosas/b166MP2/main/src/minecraft">
+      <sourceFolder url="file://D:/Cosas/b166MP2/main/src/minecraft" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="JavaSE-1.6" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="jinput.jar">
         <CLASSES>
-          <root url="jar://D:/Cosas/b166/vanilla/lib/client/jinput.jar!/" />
+          <root url="jar://D:/Cosas/b166MP2/main/lib/client/jinput.jar!/" />
         </CLASSES>
         <JAVADOC />
         <NATIVE>
@@ -43,7 +43,7 @@
     <orderEntry type="module-library">
       <library name="lwjgl_util.jar">
         <CLASSES>
-          <root url="jar://D:/Cosas/b166/vanilla/lib/client/lwjgl_util.jar!/" />
+          <root url="jar://D:/Cosas/b166MP2/main/lib/client/lwjgl_util.jar!/" />
         </CLASSES>
         <JAVADOC />
         <NATIVE>
@@ -55,7 +55,7 @@
     <orderEntry type="module-library">
       <library name="lwjgl.jar">
         <CLASSES>
-          <root url="jar://D:/Cosas/b166/vanilla/lib/client/lwjgl.jar!/" />
+          <root url="jar://D:/Cosas/b166MP2/main/lib/client/lwjgl.jar!/" />
         </CLASSES>
         <JAVADOC />
         <NATIVE>
@@ -67,7 +67,7 @@
     <orderEntry type="module-library">
       <library name="minecraft.jar">
         <CLASSES>
-          <root url="jar://D:/Cosas/b166/vanilla/lib/client/minecraft.jar!/" />
+          <root url="jar://D:/Cosas/b166MP2/main/lib/client/minecraft.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -1,7 +1,9 @@
 package net.minecraft.world.level.dimension;
 
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.WorldChunkManagerHellWithBiomes;
 import net.minecraft.world.level.chunk.IChunkProvider;
+import net.minecraft.world.level.levelgen.ChunkProviderHell;
 import net.minecraft.world.phys.Vec3D;
 
 public class WorldProviderHell extends WorldProvider {

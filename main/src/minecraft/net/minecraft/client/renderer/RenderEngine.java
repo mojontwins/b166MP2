@@ -665,11 +665,11 @@ public class RenderEngine {
 
 	}
 	private void setTextureDimension(int id, Dimension dim) {
-		this.textureDimensionsMap.put(new Integer(id), dim);
+		this.textureDimensionsMap.put(Integer.valueOf(id), dim);
 	}
 	
 	private Dimension getTextureDimensions(int id) {
-		return (Dimension)this.textureDimensionsMap.get(new Integer(id));
+		return (Dimension)this.textureDimensionsMap.get(Integer.valueOf(id));
 	}
 	
 	private void checkImageDataSize(int width, int height) {

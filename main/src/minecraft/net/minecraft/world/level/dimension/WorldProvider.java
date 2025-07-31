@@ -288,10 +288,9 @@ public abstract class WorldProvider {
 	}
 	
 	public static WorldProvider getProviderForDimension(int i0, WorldType terrainType) {
-		switch(i0) {
-		default: 
+		switch(i0) { 
 			case -1: return new WorldProviderHell();
-			return getProviderForTerrainType(terrainType);
+			default: return getProviderForTerrainType(terrainType);
 		}
 	}
 

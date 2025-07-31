@@ -103,7 +103,7 @@ public class EntitySheep extends EntityAnimal implements IDyeableEntity {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(16, new Byte((byte)0));
+		this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
 	}
 
 	protected void dropFewItems(boolean z1, int i2) {

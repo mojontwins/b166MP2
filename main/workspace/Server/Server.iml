@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
   <component name="EclipseModuleManager">
-    <libelement value="jar://D:/Cosas/b166/vanilla/jars/minecraft_server.jar!/" />
-    <varelement var="file://D:/Cosas/b166/vanilla/src/minecraft_server" kind="linksrc:" value="src" />
-    <varelement var="jar://D:/Cosas/b166/vanilla/jars/minecraft_server.jar!/" kind="link:" value="jars/minecraft_server.jar" />
+    <libelement value="jar://D:/Cosas/b166MP2/main/jars/minecraft_server.jar!/" />
+    <varelement var="file://D:/Cosas/b166MP2/main/src/minecraft_server" kind="linksrc:" value="src" />
+    <varelement var="jar://D:/Cosas/b166MP2/main/jars/minecraft_server.jar!/" kind="link:" value="jars/minecraft_server.jar" />
     <src_description expected_position="0">
-      <src_folder value="file://D:/Cosas/b166/vanilla/src/minecraft_server" expected_position="0" />
+      <src_folder value="file://D:/Cosas/b166MP2/main/src/minecraft_server" expected_position="0" />
     </src_description>
   </component>
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/bin" />
     <exclude-output />
     <content url="file://$MODULE_DIR$" />
-    <content url="file://D:/Cosas/b166/vanilla/src/minecraft_server">
-      <sourceFolder url="file://D:/Cosas/b166/vanilla/src/minecraft_server" isTestSource="false" />
+    <content url="file://D:/Cosas/b166MP2/main/src/minecraft_server">
+      <sourceFolder url="file://D:/Cosas/b166MP2/main/src/minecraft_server" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="JavaSE-1.6" jdkType="JavaSDK" />
     <orderEntry type="module-library">
       <library name="minecraft_server.jar">
         <CLASSES>
-          <root url="jar://D:/Cosas/b166/vanilla/jars/minecraft_server.jar!/" />
+          <root url="jar://D:/Cosas/b166MP2/main/jars/minecraft_server.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
