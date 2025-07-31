@@ -16,7 +16,7 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet201PlayerInfo;
 import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.network.packet.Packet4UpdateTime;
-import net.minecraft.network.packet.Packet70Bed;
+import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.network.packet.Packet9Respawn;
 import net.minecraft.server.network.NetLoginHandler;
 import net.minecraft.server.player.EntityPlayerMP;
@@ -211,7 +211,7 @@ public class ServerConfigurationManager implements IServerConfigManager {
 		entityPlayerMP5.itemInWorldManager.setGameMode(worldServer6.getWorldInfo().getGameType());
 		
 		if(chunkCoordinates4 != null) {
-			entityPlayerMP5.playerNetServerHandler.sendPacket(new Packet70Bed(0, 0));
+			entityPlayerMP5.playerNetServerHandler.sendPacket(new Packet70GameEvent(0, 0));
 			
 		}
 
@@ -662,10 +662,10 @@ System.out.println ("Attempt " + dimensionFrom + " to " + dimensionTo);
 
 	public void updateTimeAndWeather(EntityPlayerMP thePlayer, WorldServer world) {
 		thePlayer.playerNetServerHandler.sendPacket(new Packet4UpdateTime(world.getWorldTime()));
-		thePlayer.playerNetServerHandler.sendPacket(new Packet70Bed(world.isRaining(), world.isSnowing(), world.isThundering()));
+		thePlayer.playerNetServerHandler.sendPacket(new Packet70GameEvent(world.isRaining(), world.isSnowing(), world.isThundering()));
 		/*
 		if(worldServer2.isRaining()) {
-			entityPlayerMP1.playerNetServerHandler.sendPacket(new Packet70Bed(1, 0));
+			entityPlayerMP1.playerNetServerHandler.sendPacket(new Packet70GameEvent(1, 0));
 		}
 		 */
 	}

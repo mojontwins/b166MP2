@@ -54,7 +54,7 @@ import net.minecraft.network.packet.Packet5PlayerInventory;
 import net.minecraft.network.packet.Packet60Explosion;
 import net.minecraft.network.packet.Packet61DoorChange;
 import net.minecraft.network.packet.Packet6SpawnPosition;
-import net.minecraft.network.packet.Packet70Bed;
+import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.network.packet.Packet71Weather;
 import net.minecraft.network.packet.Packet7UseEntity;
 import net.minecraft.network.packet.Packet89SetArmor;
@@ -256,8 +256,8 @@ public abstract class NetHandler {
 		this.registerPacket(packet17Sleep1);
 	}
 
-	public void handleBed(Packet70Bed packet70Bed1) {
-		this.registerPacket(packet70Bed1);
+	public void handleBed(Packet70GameEvent Packet70GameEvent1) {
+		this.registerPacket(Packet70GameEvent1);
 	}
 
 	public void handleWeather(Packet71Weather packet71Weather1) {

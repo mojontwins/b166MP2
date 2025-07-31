@@ -6,7 +6,7 @@ import java.util.List;
 import net.minecraft.network.packet.Packet38EntityStatus;
 import net.minecraft.network.packet.Packet54PlayNoteBlock;
 import net.minecraft.network.packet.Packet60Explosion;
-import net.minecraft.network.packet.Packet70Bed;
+import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.network.packet.Packet71Weather;
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.IntHashMap;
@@ -165,7 +165,7 @@ public class WorldServer extends World {
 		super.updateWeather();
 
 		if (snowing != this.worldInfo.isSnowing() || raining != this.worldInfo.isRaining() || thundering != this.worldInfo.isThundering()) {
-			this.mcServer.configManager.sendPacketToAllPlayers(new Packet70Bed(this.worldInfo.isRaining(), this.worldInfo.isSnowing(), this.worldInfo.isThundering()));
+			this.mcServer.configManager.sendPacketToAllPlayers(new Packet70GameEvent(this.worldInfo.isRaining(), this.worldInfo.isSnowing(), this.worldInfo.isThundering()));
 		}
 
 	}

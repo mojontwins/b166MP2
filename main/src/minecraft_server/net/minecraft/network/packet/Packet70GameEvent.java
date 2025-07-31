@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import net.minecraft.network.NetHandler;
 
-public class Packet70Bed extends Packet {
+public class Packet70GameEvent extends Packet {
 	public static final String[] bedChat = new String[]{"tile.bed.notValid", null, null, "gameMode.changed"};
 	public int bedState;
 	public int gameMode;
@@ -15,15 +15,15 @@ public class Packet70Bed extends Packet {
 	public boolean snowing;
 	public boolean thundering;
 
-	public Packet70Bed() {
+	public Packet70GameEvent() {
 	}
 
-	public Packet70Bed(int state, int gameMode) {
+	public Packet70GameEvent(int state, int gameMode) {
 		this.bedState = state;
 		this.gameMode = gameMode;
 	}
 	
-	public Packet70Bed(boolean raining, boolean snowing, boolean thundering) {
+	public Packet70GameEvent(boolean raining, boolean snowing, boolean thundering) {
 		this.raining = raining;
 		this.snowing = snowing;
 		this.thundering = thundering;

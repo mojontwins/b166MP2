@@ -32,7 +32,7 @@ public class GameRule {
 	}
 	
 	public GameRule withValue(boolean value) {
-		this.setValue(value);
+		this.value = value;
 		return this;
 	}
 	

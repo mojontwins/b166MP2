@@ -44,7 +44,6 @@ public abstract class BiomeGenBase {
 	public static final BiomeGenBase alpha = (new BiomeGenAlpha(23)).setBiomeType(BiomeType.forest).setColor(2250012).setBiomeName("Alpha").setEnableSnow().setMinMaxHeight(0.0F,2.0F).setTemperatureRainfall(0.5F,0.5F);
 	public static final BiomeGenBase alphaCold = (new BiomeGenAlphaCold(24)).setBiomeType(BiomeType.veryCold).setColor(2250012).setBiomeName("Alpha Winter").setEnableSnow().setMinMaxHeight(0.0F,2.0F).setTemperatureRainfall(0.1F,0.5F);
 	
-	// Beta biomes TODO :: ADD PROPER DECORATORS!
 	public static final BiomeGenBase rainforest = (new BiomeGenRainforest(1)).setColor(588342).setBiomeName("Rainforest").setGrassColor(2094168);
 	public static final BiomeGenBase swampland = (new BiomeGenSwamp(2)).setColor(522674).setBiomeName("Swampland").setGrassColor(9154376);
 	public static final BiomeGenBase seasonalForest = (new BiomeGenSeasonalForest(3)).setColor(10215459).setBiomeName("Seasonal Forest");

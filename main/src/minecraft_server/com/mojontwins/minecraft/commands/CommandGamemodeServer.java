@@ -1,5 +1,7 @@
 package com.mojontwins.minecraft.commands;
 
+import net.minecraft.network.packet.Packet70GameEvent;
+import net.minecraft.server.player.EntityPlayerMP;
 import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.chunk.ChunkCoordinates;
@@ -25,13 +27,15 @@ public class CommandGamemodeServer extends CommandBase {
 		int res = thePlayer.capabilities.isCreativeMode ? 1 : 0;
 		
 		if ("0".equals(gameMode) || "survival".equals(gameMode)) {
-			if (thePlayer.capabilities.isCreativeMode) this.theCommandSender.printMessage(theWorld, "Game mode changed to survival");
-			thePlayer.capabilities.isCreativeMode = false;
-			thePlayer.capabilities.isFlying = false;
+			if (thePlayer.capabilities.isCreativeMode) this.theCommandSender.printMessage(theWorld, "Game mode changed to survival for " + thePlayer.username);
+			((EntityPlayerMP)thePlayer).itemInWorldManager.toggleGameType(0);
+			((EntityPlayerMP)thePlayer).playerNetServerHandler.sendPacket(new Packet70GameEvent(3, 0));
+			
 			res = 0;
 		} else if ("1".equals(gameMode) || "creative".equals(gameMode)) {
-			if (!thePlayer.capabilities.isCreativeMode) this.theCommandSender.printMessage(theWorld, "Game mode changed to creative");
-			thePlayer.capabilities.isCreativeMode = true;
+			if (!thePlayer.capabilities.isCreativeMode) this.theCommandSender.printMessage(theWorld, "Game mode changed to creative for " + thePlayer.username);
+			((EntityPlayerMP)thePlayer).itemInWorldManager.toggleGameType(1);
+			((EntityPlayerMP)thePlayer).playerNetServerHandler.sendPacket(new Packet70GameEvent(3, 1));
 			res = 1;
 		}
 		

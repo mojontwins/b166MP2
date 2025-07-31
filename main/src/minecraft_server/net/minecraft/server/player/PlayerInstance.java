@@ -14,12 +14,21 @@ import net.minecraft.world.level.tile.entity.TileEntity;
 
 class PlayerInstance {
 	private List<EntityPlayerMP> players;
+	
+	// Churrent chunk coordinates
 	private int chunkX;
 	private int chunkZ;
 	private ChunkCoordIntPair currentChunk;
+	
+	// Array of encoded block coordinates.
 	private short[] blocksToUpdate;
+	
+	// Count of number of blocks needing to be sent over to the client
 	private int numBlocksToUpdate;
+	
+	// updateHash is a bitfield, with 1 bit per chunk subsection which must be updated.
 	private int updateHash;
+
 	final PlayerManager playerManager;
 
 	public PlayerInstance(PlayerManager playerManager1, int i2, int i3) {
@@ -65,22 +74,23 @@ class PlayerInstance {
 		}
 	}
 
-	public void markBlockNeedsUpdate(int i1, int i2, int i3) {
+	public void markBlockNeedsUpdate(int x, int y, int z) {
 		if(this.numBlocksToUpdate == 0) {
 			PlayerManager.getPlayerInstancesToUpdate(this.playerManager).add(this);
 		}
 
-		this.updateHash |= 1 << (i2 >> 4);
+		// updateHash is a bitfield, with 1 bit per chunk subsection which must be updated.
+		this.updateHash |= 1 << (y >> 4);
 		if(this.numBlocksToUpdate < 64) {
-			short s4 = (short)(i1 << 12 | i3 << 8 | i2);
+			short eCoord = (short)(x << 12 | z << 8 | y);
 
-			for(int i5 = 0; i5 < this.numBlocksToUpdate; ++i5) {
-				if(this.blocksToUpdate[i5] == s4) {
+			for(int i = 0; i < this.numBlocksToUpdate; ++i) {
+				if(this.blocksToUpdate[i] == eCoord) {
 					return;
 				}
 			}
 
-			this.blocksToUpdate[this.numBlocksToUpdate++] = s4;
+			this.blocksToUpdate[this.numBlocksToUpdate++] = eCoord;
 		}
 
 	}
@@ -96,45 +106,52 @@ class PlayerInstance {
 	}
 
 	public void onUpdate() {
-		WorldServer worldServer1 = this.playerManager.getMinecraftServer();
+		WorldServer world = this.playerManager.getMinecraftServer();
 		if(this.numBlocksToUpdate != 0) {
-			int i2;
-			int i3;
-			int i4;
+			int x;
+			int y;
+			int z;
+
 			if(this.numBlocksToUpdate == 1) {
-				i2 = this.chunkX * 16 + (this.blocksToUpdate[0] >> 12 & 15);
-				i3 = this.blocksToUpdate[0] & 255;
-				i4 = this.chunkZ * 16 + (this.blocksToUpdate[0] >> 8 & 15);
-				this.sendPacketToPlayersInInstance(new Packet53BlockChange(i2, i3, i4, worldServer1));
-				if(worldServer1.hasTileEntity(i2, i3, i4)) {
-					this.updateTileEntity(worldServer1.getBlockTileEntity(i2, i3, i4));
+				// Only one block, use Packet 53.
+				
+				x = this.chunkX * 16 + (this.blocksToUpdate[0] >> 12 & 15);
+				y = this.blocksToUpdate[0] & 255;
+				z = this.chunkZ * 16 + (this.blocksToUpdate[0] >> 8 & 15);
+				
+				this.sendPacketToPlayersInInstance(new Packet53BlockChange(x, y, z, world));
+				if(world.hasTileEntity(x, y, z)) {
+					this.updateTileEntity(world.getBlockTileEntity(x, y, z));
 				}
 			} else {
-				int i5;
 				if(this.numBlocksToUpdate == 64) {
-					i2 = this.chunkX * 16;
-					i3 = this.chunkZ * 16;
-					this.sendPacketToPlayersInInstance(new Packet51MapChunk(worldServer1.getChunkFromChunkCoords(this.chunkX, this.chunkZ), false, this.updateHash));
+					// 64: Send the whole chunk, Packet 51.
 
-					for(i4 = 0; i4 < 16; ++i4) {
-						if((this.updateHash & 1 << i4) != 0) {
-							i5 = i4 << 4;
-							List<?> list6 = worldServer1.getTileEntityList(i2, i5, i3, i2 + 16, i5 + 16, i3 + 16);
+					x = this.chunkX * 16;
+					z = this.chunkZ * 16;
+					this.sendPacketToPlayersInInstance(new Packet51MapChunk(world.getChunkFromChunkCoords(this.chunkX, this.chunkZ), false, this.updateHash));
 
-							for(int i7 = 0; i7 < list6.size(); ++i7) {
-								this.updateTileEntity((TileEntity)list6.get(i7));
+					for(int i = 0; i < 16; ++i) {
+						if((this.updateHash & 1 << i) != 0) {
+							y = i << 4;
+							List<?> tel = world.getTileEntityList(x, y, z, x + 16, y + 16, z + 16);
+
+							for(int j = 0; j < tel.size(); ++j) {
+								this.updateTileEntity((TileEntity)tel.get(j));
 							}
 						}
 					}
 				} else {
-					this.sendPacketToPlayersInInstance(new Packet52MultiBlockChange(this.chunkX, this.chunkZ, this.blocksToUpdate, this.numBlocksToUpdate, worldServer1));
+					// Less than 64, use an encoded block changes list, Packet 52.
 
-					for(i2 = 0; i2 < this.numBlocksToUpdate; ++i2) {
-						i3 = this.chunkX * 16 + (this.blocksToUpdate[i2] >> 12 & 15);
-						i4 = this.blocksToUpdate[i2] & 255;
-						i5 = this.chunkZ * 16 + (this.blocksToUpdate[i2] >> 8 & 15);
-						if(worldServer1.hasTileEntity(i3, i4, i5)) {
-							this.updateTileEntity(worldServer1.getBlockTileEntity(i3, i4, i5));
+					this.sendPacketToPlayersInInstance(new Packet52MultiBlockChange(this.chunkX, this.chunkZ, this.blocksToUpdate, this.numBlocksToUpdate, world));
+
+					for(int i = 0; i < this.numBlocksToUpdate; ++i) {
+						x = this.chunkX * 16 + (this.blocksToUpdate[i] >> 12 & 15);
+						y = this.blocksToUpdate[i] & 255;
+						z = this.chunkZ * 16 + (this.blocksToUpdate[i] >> 8 & 15);
+						if(world.hasTileEntity(x, y, z)) {
+							this.updateTileEntity(world.getBlockTileEntity(x, y, z));
 						}
 					}
 				}

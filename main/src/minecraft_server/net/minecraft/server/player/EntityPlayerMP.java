@@ -22,7 +22,7 @@ import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.network.packet.Packet43Experience;
 import net.minecraft.network.packet.Packet51MapChunk;
 import net.minecraft.network.packet.Packet5PlayerInventory;
-import net.minecraft.network.packet.Packet70Bed;
+import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.network.packet.Packet8UpdateHealth;
 import net.minecraft.server.ItemInWorldManager;
 import net.minecraft.server.MinecraftServer;
@@ -298,7 +298,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting {
 		if(this.dimension == 1 && i1 == 1) {
 			this.worldObj.setEntityDead(this);
 			this.gameOver = true;
-			this.playerNetServerHandler.sendPacket(new Packet70Bed(4, 0));
+			this.playerNetServerHandler.sendPacket(new Packet70GameEvent(4, 0));
 		} else {
 			ChunkCoordinates chunkCoordinates2 = this.mcServer.getWorldManager(i1).getEntrancePortalLocation();
 			if(chunkCoordinates2 != null) {

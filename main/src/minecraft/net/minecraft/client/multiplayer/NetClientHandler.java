@@ -73,7 +73,7 @@ import net.minecraft.network.packet.Packet5PlayerInventory;
 import net.minecraft.network.packet.Packet60Explosion;
 import net.minecraft.network.packet.Packet61DoorChange;
 import net.minecraft.network.packet.Packet6SpawnPosition;
-import net.minecraft.network.packet.Packet70Bed;
+import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.network.packet.Packet71Weather;
 import net.minecraft.network.packet.Packet89SetArmor;
 import net.minecraft.network.packet.Packet8UpdateHealth;
@@ -873,21 +873,27 @@ public class NetClientHandler extends NetHandler {
 		this.mc.theWorld.playNoteAt(packet54PlayNoteBlock1.xLocation, packet54PlayNoteBlock1.yLocation, packet54PlayNoteBlock1.zLocation, packet54PlayNoteBlock1.instrumentType, packet54PlayNoteBlock1.pitch);
 	}
 
-	public void handleBed(Packet70Bed packet70Bed1) {
-		EntityPlayerSP entityPlayerSP2 = this.mc.thePlayer;
-		int i3 = packet70Bed1.bedState;
-		if(i3 >= 0 && i3 < Packet70Bed.bedChat.length && Packet70Bed.bedChat[i3] != null) {
-			entityPlayerSP2.addChatMessage(Packet70Bed.bedChat[i3]);
+	public void handleBed(Packet70GameEvent packet) {
+		EntityPlayerSP thePlayer = this.mc.thePlayer;
+		int statusID = packet.bedState;
+		
+		if(statusID >= 0 && statusID < Packet70GameEvent.bedChat.length && Packet70GameEvent.bedChat[statusID] != null) {
+			thePlayer.addChatMessage(Packet70GameEvent.bedChat[statusID]);
 		}
 
 		// This is encoded differently to vanilla
-		if (i3 == 1) {
-			this.worldClient.getWorldInfo().setRaining(packet70Bed1.raining);
-			this.worldClient.setRainStrength(packet70Bed1.raining ? 1.0F : 0.0F);
-			this.worldClient.getWorldInfo().setSnowing(packet70Bed1.snowing);
-			this.worldClient.setSnowingStrength(packet70Bed1.snowing ? 1.0F : 0.0F);
-			this.worldClient.getWorldInfo().setThundering(packet70Bed1.thundering);
-			this.worldClient.setThunderingStrength(packet70Bed1.thundering ? 1.0F : 0.0F);
+		if (statusID == 1) {
+			this.worldClient.getWorldInfo().setRaining(packet.raining);
+			this.worldClient.setRainStrength(packet.raining ? 1.0F : 0.0F);
+			this.worldClient.getWorldInfo().setSnowing(packet.snowing);
+			this.worldClient.setSnowingStrength(packet.snowing ? 1.0F : 0.0F);
+			this.worldClient.getWorldInfo().setThundering(packet.thundering);
+			this.worldClient.setThunderingStrength(packet.thundering ? 1.0F : 0.0F);
+		}
+		
+		// Game mode
+		if (statusID == 3) {
+			((PlayerControllerMP)this.mc.playerController).setCreative(packet.gameMode == 1);
 		}
 	}
 

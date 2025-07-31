@@ -230,7 +230,7 @@ public class ConsoleCommandHandler implements ICommandSender {
 						if(thePlayerMP.itemInWorldManager.getGameType() != i20) {
 							this.sendNoticeToOps(username, "Setting " + thePlayerMP.username + " to game mode " + i20);
 							thePlayerMP.itemInWorldManager.toggleGameType(i20);
-							thePlayerMP.playerNetServerHandler.sendPacket(new Packet70Bed(3, i20));
+							thePlayerMP.playerNetServerHandler.sendPacket(new Packet70GameEvent(3, i20));
 						} else {
 							this.sendNoticeToOps(username, thePlayerMP.username + " already has game mode " + i20);
 						}

@@ -379,7 +379,7 @@ public class Item implements ITextureProvider {
 		return true;
 	}
 
-	public boolean func_46056_k() {
+	public boolean hasMetadata() {
 		return false;
 	}
 

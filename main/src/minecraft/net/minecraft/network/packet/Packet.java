@@ -129,7 +129,7 @@ public abstract class Packet {
 		}
 	}
 
-	public abstract void readPacketData(DataInputStream dataInputStream1) throws IOException;
+	public abstract void readPacketData(DataInputStream dis) throws IOException;
 
 	public abstract void writePacketData(DataOutputStream dataOutputStream1) throws IOException;
 
@@ -137,42 +137,42 @@ public abstract class Packet {
 
 	public abstract int getPacketSize();
 
-	protected ItemStack readItemStack(DataInputStream dataInputStream1) throws IOException {
-		ItemStack itemStack2 = null;
-		short s3 = dataInputStream1.readShort();
-		if(s3 >= 0) {
-			byte b4 = dataInputStream1.readByte();
-			short s5 = dataInputStream1.readShort();
-			itemStack2 = new ItemStack(s3, b4, s5);
-			if(Item.itemsList[s3].isDamageable() || Item.itemsList[s3].func_46056_k()) {
-				itemStack2.stackTagCompound = this.readNBTTagCompound(dataInputStream1);
+	protected ItemStack readItemStack(DataInputStream dis) throws IOException {
+		ItemStack theStack = null;
+		short itemID = dis.readShort();
+		if(itemID >= 0) {
+			byte size = dis.readByte();
+			short damage = dis.readShort();
+			theStack = new ItemStack(itemID, size, damage);
+			if(Item.itemsList[itemID].isDamageable() || Item.itemsList[itemID].hasMetadata()) {
+				theStack.stackTagCompound = this.readNBTTagCompound(dis);
 			}
 		}
 
-		return itemStack2;
+		return theStack;
 	}
 
-	protected void writeItemStack(ItemStack itemStack1, DataOutputStream dataOutputStream2) throws IOException {
-		if(itemStack1 == null) {
-			dataOutputStream2.writeShort(-1);
+	protected void writeItemStack(ItemStack theStack, DataOutputStream dos) throws IOException {
+		if(theStack == null) {
+			dos.writeShort(-1);
 		} else {
-			dataOutputStream2.writeShort(itemStack1.itemID);
-			dataOutputStream2.writeByte(itemStack1.stackSize);
-			dataOutputStream2.writeShort(itemStack1.getItemDamage());
-			if(itemStack1.getItem().isDamageable() || itemStack1.getItem().func_46056_k()) {
-				this.writeNBTTagCompound(itemStack1.stackTagCompound, dataOutputStream2);
+			dos.writeShort(theStack.itemID);
+			dos.writeByte(theStack.stackSize);
+			dos.writeShort(theStack.getItemDamage());
+			if(theStack.getItem().isDamageable() || theStack.getItem().hasMetadata()) {
+				this.writeNBTTagCompound(theStack.stackTagCompound, dos);
 			}
 		}
 
 	}
 
-	protected NBTTagCompound readNBTTagCompound(DataInputStream dataInputStream1) throws IOException {
-		short s2 = dataInputStream1.readShort();
+	protected NBTTagCompound readNBTTagCompound(DataInputStream dis) throws IOException {
+		short s2 = dis.readShort();
 		if(s2 < 0) {
 			return null;
 		} else {
 			byte[] b3 = new byte[s2];
-			dataInputStream1.readFully(b3);
+			dis.readFully(b3);
 			return CompressedStreamTools.decompress(b3);
 		}
 	}
@@ -234,7 +234,7 @@ public abstract class Packet {
 		addIdClassMapping(54, true, false, Packet54PlayNoteBlock.class);
 		addIdClassMapping(60, true, false, Packet60Explosion.class);
 		addIdClassMapping(61, true, false, Packet61DoorChange.class);
-		addIdClassMapping(70, true, false, Packet70Bed.class);
+		addIdClassMapping(70, true, false, Packet70GameEvent.class);
 		addIdClassMapping(71, true, false, Packet71Weather.class);
 		addIdClassMapping(89, true, false, Packet89SetArmor.class);
 		addIdClassMapping(90, true, false, Packet90ArmoredMobSpawn.class);
