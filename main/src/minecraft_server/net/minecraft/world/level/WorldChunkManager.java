@@ -10,16 +10,23 @@ import net.minecraft.world.level.biome.BiomeGenBase;
 import net.minecraft.world.level.levelgen.genlayer.GenLayer;
 
 public class WorldChunkManager {
-	private GenLayer genBiomes;
-	private GenLayer biomeIndexLayer;
-	private BiomeCache biomeCache;
-	private List<BiomeGenBase> biomesToSpawnIn;
+	// GenBiomes is used for instance by the release noise calculator. It is 1/4 the size of the world.
+	protected GenLayer genBiomes;
+	
+	// biomeIndexLayer contains which biome is each block in the world.
+	protected GenLayer biomeIndexLayer;
+	
+	protected BiomeCache biomeCache;
+	protected List<BiomeGenBase> biomesToSpawnIn;
 
-	protected WorldChunkManager() {
+	public WorldChunkManager() {
 		this.biomeCache = new BiomeCache(this);
 		
 		this.biomesToSpawnIn = new ArrayList<BiomeGenBase>();
-		this.biomesToSpawnIn.add(BiomeGenBase.alpha);
+		this.biomesToSpawnIn.add(BiomeGenBase.plains);
+		this.biomesToSpawnIn.add(BiomeGenBase.forest);
+		this.biomesToSpawnIn.add(BiomeGenBase.rainforest);
+		this.biomesToSpawnIn.add(BiomeGenBase.seasonalForest);
 
 	}
 
@@ -36,114 +43,124 @@ public class WorldChunkManager {
 		this.biomeIndexLayer = genLayerArray[1];
 	}
 
-	public WorldChunkManager(World world1) {
-		this(world1.getSeed(), world1.getWorldInfo().getTerrainType());
+	public WorldChunkManager(World world) {
+		this(world.getSeed(), world.getWorldInfo().getTerrainType());
 	}
 
 	public List<BiomeGenBase> getBiomesToSpawnIn() {
 		return this.biomesToSpawnIn;
 	}
 
-	public BiomeGenBase getBiomeGenAt(int i1, int i2) {
-		return this.biomeCache.getBiomeGenAt(i1, i2);
+	public BiomeGenBase getBiomeGenAt(int x, int z) {
+		return this.biomeCache.getBiomeGenAt(x, z);
+	}
+	
+	public float getTemperatureAt(int x, int z) {
+		return this.biomeCache.getTemperatureAt(x, z);
+	}
+	
+	public float getRainfallAt(int x, int z) {
+		return this.biomeCache.getRainfallAt(x, z);
 	}
 
-	public float[] getRainfall(float[] f1, int i2, int i3, int i4, int i5) {
+	public float[] getRainfall(float[] rainfalls, int x, int y, int w, int h) {
 		IntCache.resetIntCache();
-		if(f1 == null || f1.length < i4 * i5) {
-			f1 = new float[i4 * i5];
+		if(rainfalls == null || rainfalls.length < w * h) {
+			rainfalls = new float[w * h];
 		}
 
-		int[] i6 = this.biomeIndexLayer.getInts(i2, i3, i4, i5);
+		int[] biomeIDs = this.biomeIndexLayer.getInts(x, y, w, h);
 
-		for(int i7 = 0; i7 < i4 * i5; ++i7) {
-			float f8 = (float)BiomeGenBase.biomeList[i6[i7]].getIntRainfall() / 65536.0F;
-			if(f8 > 1.0F) {
-				f8 = 1.0F;
+		for(int i = 0; i < w * h; ++i) {
+			float rainfall = (float)BiomeGenBase.biomeList[biomeIDs[i]].getIntRainfall() / 65536.0F;
+			if(rainfall > 1.0F) {
+				rainfall = 1.0F;
 			}
 
-			f1[i7] = f8;
+			rainfalls[i] = rainfall;
 		}
 
-		return f1;
+		return rainfalls;
 	}
 
-	public float getTemperatureAtHeight(float f1, int i2) {
-		return f1;
+	public float getTemperatureAtHeight(float t, int h) {
+		return t;
 	}
 
-	public float[] getTemperatures(float[] f1, int i2, int i3, int i4, int i5) {
+	public float[] getTemperatures(float[] temperatures, int x, int y, int w, int h) {
 		IntCache.resetIntCache();
-		if(f1 == null || f1.length < i4 * i5) {
-			f1 = new float[i4 * i5];
+		if(temperatures == null || temperatures.length < w * h) {
+			temperatures = new float[w * h];
 		}
 
-		int[] i6 = this.biomeIndexLayer.getInts(i2, i3, i4, i5);
+		int[] biomeIDs = this.biomeIndexLayer.getInts(x, y, w, h);
 
-		for(int i7 = 0; i7 < i4 * i5; ++i7) {
-			float f8 = (float)BiomeGenBase.biomeList[i6[i7]].getIntTemperature() / 65536.0F;
-			if(f8 > 1.0F) {
-				f8 = 1.0F;
+		for(int i = 0; i < w * h; ++i) {
+			float t = (float)BiomeGenBase.biomeList[biomeIDs[i]].getIntTemperature() / 65536.0F;
+			if(t > 1.0F) {
+				t = 1.0F;
 			}
 
-			f1[i7] = f8;
+			temperatures[i] = t;
 		}
 
-		return f1;
+		return temperatures;
 	}
 
-	public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase[] biomeGenBase1, int i2, int i3, int i4, int i5) {
+	public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase[] biomes, int x, int y, int w, int h) {
 		IntCache.resetIntCache();
-		if(biomeGenBase1 == null || biomeGenBase1.length < i4 * i5) {
-			biomeGenBase1 = new BiomeGenBase[i4 * i5];
+		if(biomes == null || biomes.length < w * h) {
+			biomes = new BiomeGenBase[w * h];
 		}
 
-		int[] i6 = this.genBiomes.getInts(i2, i3, i4, i5);
+		int[] i6 = this.genBiomes.getInts(x, y, w, h);
 
-		for(int i7 = 0; i7 < i4 * i5; ++i7) {
-			biomeGenBase1[i7] = BiomeGenBase.biomeList[i6[i7]];
+		for(int i7 = 0; i7 < w * h; ++i7) {
+			biomes[i7] = BiomeGenBase.biomeList[i6[i7]];
 		}
 
-		return biomeGenBase1;
+		return biomes;
 	}
 
-	public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] biomeGenBase1, int i2, int i3, int i4, int i5) {
-		return this.getBiomeGenAt(biomeGenBase1, i2, i3, i4, i5, true);
+	// i.e. get biome array for chunk
+	public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] biomes, int x, int y, int w, int hy) {
+		return this.getBiomeGenAt(biomes, x, y, w, hy, true);
 	}
 
-	public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] biomeGenBase1, int i2, int i3, int i4, int i5, boolean z6) {
+	public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] biomes, int x, int y, int w, int h, boolean isChunk) {
 		IntCache.resetIntCache();
-		if(biomeGenBase1 == null || biomeGenBase1.length < i4 * i5) {
-			biomeGenBase1 = new BiomeGenBase[i4 * i5];
+		if(biomes == null || biomes.length < w * h) {
+			biomes = new BiomeGenBase[w * h];
 		}
 
-		if(z6 && i4 == 16 && i5 == 16 && (i2 & 15) == 0 && (i3 & 15) == 0) {
-			BiomeGenBase[] biomeGenBase9 = this.biomeCache.getCachedBiomes(i2, i3);
-			System.arraycopy(biomeGenBase9, 0, biomeGenBase1, 0, i4 * i5);
-			return biomeGenBase1;
+		if(isChunk && w == 16 && h == 16 && (x & 15) == 0 && (y & 15) == 0) {
+			BiomeGenBase[] biomeGenBase9 = this.biomeCache.getCachedBiomes(x, y);
+			System.arraycopy(biomeGenBase9, 0, biomes, 0, w * h);
+			return biomes;
 		} else {
-			int[] i7 = this.biomeIndexLayer.getInts(i2, i3, i4, i5);
+			int[] biomeIDs = this.biomeIndexLayer.getInts(x, y, w, h);
 
-			for(int i8 = 0; i8 < i4 * i5; ++i8) {
-				biomeGenBase1[i8] = BiomeGenBase.biomeList[i7[i8]];
+			for(int i = 0; i < w * h; ++i) {
+				biomes[i] = BiomeGenBase.biomeList[biomeIDs[i]];
 			}
 
-			return biomeGenBase1;
+			return biomes;
 		}
 	}
 
-	public boolean areBiomesViable(int i1, int i2, int i3, List<BiomeGenBase> list4) {
-		int i5 = i1 - i3 >> 2;
-		int i6 = i2 - i3 >> 2;
-		int i7 = i1 + i3 >> 2;
-		int i8 = i2 + i3 >> 2;
-		int i9 = i7 - i5 + 1;
-		int i10 = i8 - i6 + 1;
-		int[] i11 = this.genBiomes.getInts(i5, i6, i9, i10);
+	// Used by the release player spawner
+	public boolean areBiomesViable(int x, int z, int r, List<BiomeGenBase> goodBiomes) {
+		int x1 = x - r >> 2;
+		int z1 = z - r >> 2;
+		int x2 = x + r >> 2;
+		int z2 = z + r >> 2;
+		int w = x2 - x1 + 1;
+		int l = z2 - z1 + 1;
+		int[] biomeIDs = this.genBiomes.getInts(x1, z1, w, l);
 
-		for(int i12 = 0; i12 < i9 * i10; ++i12) {
-			BiomeGenBase biomeGenBase13 = BiomeGenBase.biomeList[i11[i12]];
-			if(!list4.contains(biomeGenBase13)) {
+		for(int i = 0; i < w * l; ++i) {
+			BiomeGenBase biome = BiomeGenBase.biomeList[biomeIDs[i]];
+			if(!goodBiomes.contains(biome)) {
 				return false;
 			}
 		}
@@ -151,28 +168,29 @@ public class WorldChunkManager {
 		return true;
 	}
 
-	public ChunkPosition findBiomePosition(int i1, int i2, int i3, List<BiomeGenBase> list4, Random random5) {
-		int i6 = i1 - i3 >> 2;
-		int i7 = i2 - i3 >> 2;
-		int i8 = i1 + i3 >> 2;
-		int i9 = i2 + i3 >> 2;
-		int i10 = i8 - i6 + 1;
-		int i11 = i9 - i7 + 1;
-		int[] i12 = this.genBiomes.getInts(i6, i7, i10, i11);
-		ChunkPosition chunkPosition13 = null;
-		int i14 = 0;
+	// Used to find a good spot for a structure
+	public ChunkPosition findBiomePosition(int x, int z, int r, List<BiomeGenBase> goodBiomes, Random rand) {
+		int x1 = x - r >> 2;
+		int z1 = z - r >> 2;
+		int x2 = x + r >> 2;
+		int z2 = z + r >> 2;
+		int w = x2 - x1 + 1;
+		int l = z2 - z1 + 1;
+		int[] biomeIDs = this.genBiomes.getInts(x1, z1, w, l);
+		ChunkPosition pos = null;
+		int attempts = 0;
 
-		for(int i15 = 0; i15 < i12.length; ++i15) {
-			int i16 = i6 + i15 % i10 << 2;
-			int i17 = i7 + i15 / i10 << 2;
-			BiomeGenBase biomeGenBase18 = BiomeGenBase.biomeList[i12[i15]];
-			if(list4.contains(biomeGenBase18) && (chunkPosition13 == null || random5.nextInt(i14 + 1) == 0)) {
-				chunkPosition13 = new ChunkPosition(i16, 0, i17);
-				++i14;
+		for(int i = 0; i < biomeIDs.length; ++i) {
+			int rx = x1 + i % w << 2;
+			int rz = z1 + i / w << 2;
+			BiomeGenBase biomeGenBase18 = BiomeGenBase.biomeList[biomeIDs[i]];
+			if(goodBiomes.contains(biomeGenBase18) && (pos == null || rand.nextInt(attempts + 1) == 0)) {
+				pos = new ChunkPosition(rx, 0, rz);
+				++attempts;
 			}
 		}
 
-		return chunkPosition13;
+		return pos;
 	}
 
 	public void cleanupCache() {

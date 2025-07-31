@@ -43,33 +43,19 @@ public class BlockLeaves extends BlockLeavesBase {
 		return (i1 & 3) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((i1 & 3) == 2 ? ColorizerFoliage.getFoliageColorBirch() : 0x5BFB3B);
 	}
 
-	public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z) {
-		/*
-		int i5 = blockAccess.getBlockMetadata(x, y, z);
+	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
+		int i5 = world.getBlockMetadata(x, y, z);
 
 		if((i5 & 3) == 1) {
 			return ColorizerFoliage.getFoliageColorPine();
 		} else if((i5 & 3) == 2) {
 			return ColorizerFoliage.getFoliageColorBirch();
 		} else {
-			int i6 = 0;
-			int i7 = 0;
-			int i8 = 0;
-
-			for(int i9 = -1; i9 <= 1; ++i9) {
-				for(int i10 = -1; i10 <= 1; ++i10) {
-					int i11 = blockAccess.getBiomeGenForCoords(x + i10, z + i9).getBiomeFoliageColor();
-					i6 += (i11 & 16711680) >> 16;
-					i7 += (i11 & 65280) >> 8;
-					i8 += i11 & 255;
-				}
-			}
-
-			return (i6 / 9 & 255) << 16 | (i7 / 9 & 255) << 8 | i8 / 9 & 255;
+			float t = world.getWorldChunkManager().getTemperatureAt(x, z);
+			float h = world.getWorldChunkManager().getRainfallAt(x, z);
+			return ColorizerFoliage.getFoliageColor(t, h);
 		}
-		*/
 		
-		return this.getRenderColor(blockAccess.getBlockMetadata(x, y, z));
 	}
 
 	public void onBlockRemoval(World world, int x, int y, int z) {

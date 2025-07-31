@@ -44,11 +44,25 @@ public abstract class BiomeGenBase {
 	public static final BiomeGenBase alpha = (new BiomeGenAlpha(23)).setBiomeType(BiomeType.forest).setColor(2250012).setBiomeName("Alpha").setEnableSnow().setMinMaxHeight(0.0F,2.0F).setTemperatureRainfall(0.5F,0.5F);
 	public static final BiomeGenBase alphaCold = (new BiomeGenAlphaCold(24)).setBiomeType(BiomeType.veryCold).setColor(2250012).setBiomeName("Alpha Winter").setEnableSnow().setMinMaxHeight(0.0F,2.0F).setTemperatureRainfall(0.1F,0.5F);
 	
+	public static final BiomeGenBase rainforest = (new BiomeGenRainforest(1)).setColor(588342).setBiomeName("Rainforest").setGrassColor(2094168);
+	public static final BiomeGenBase swampland = (new BiomeGenSwamp(2)).setColor(522674).setBiomeName("Swampland").setGrassColor(9154376);
+	public static final BiomeGenBase seasonalForest = (new BiomeGenSeasonalForest(3)).setColor(10215459).setBiomeName("Seasonal Forest");
+	public static final BiomeGenBase forest = (new BiomeGenForest(4)).setColor(353825).setBiomeName("Forest").setGrassColor(5159473);
+	public static final BiomeGenBase savanna = (new BiomeGenSavanna(5)).setColor(14278691).setBiomeName("Savanna");
+	public static final BiomeGenBase shrubland = (new BiomeGenShrubland(6)).setColor(10595616).setBiomeName("Shrubland");
+	public static final BiomeGenBase taiga = (new BiomeGenTaiga(7)).setColor(3060051).setBiomeName("Taiga").setEnableSnow().setGrassColor(8107825);
+	public static final BiomeGenBase desert = (new BiomeGenDesert(8)).setColor(16421912).setBiomeName("Desert").setDisableRain();
+	public static final BiomeGenBase plains = (new BiomeGenPlains(9)).setColor(16767248).setBiomeName("Plains");
+	public static final BiomeGenBase iceDesert = (new BiomeGenDesert(10)).setColor(16772499).setBiomeName("Ice Desert").setEnableSnow().setDisableRain().setGrassColor(12899129);
+	public static final BiomeGenBase tundra = (new BiomeGenTundra(11)).setColor(5762041).setBiomeName("Tundra").setEnableSnow().setGrassColor(12899129);
+	public static final BiomeGenBase hell = (new BiomeGenHell(12)).setColor(16711680).setBiomeName("Hell").setDisableRain();
+	
 	public String biomeName;
 	public int color;
 	public byte topBlock = (byte)Block.grass.blockID;
 	public byte fillerBlock = (byte)Block.dirt.blockID;
 	public int biomeColor = 5169201;
+	public int unusedBetaGrassColor = 5169201;
 	public float minHeight = 0.1F;
 	public float maxHeight = 0.3F;
 	public float temperature = 0.5F;
@@ -142,7 +156,7 @@ public abstract class BiomeGenBase {
 	}
 
 	public WorldGenerator getRandomWorldGenForGrass(Random random1) {
-		return new WorldGenTallGrass(/*Block.tallGrass.blockID*/ 0, 1);
+		return new WorldGenTallGrass(Block.tallGrass.blockID, 1);
 	}
 
 	public BiomeGenBase setEnableSnow() {
@@ -163,6 +177,11 @@ public abstract class BiomeGenBase {
 	public BiomeGenBase setColor(int i1) {
 		this.biomeColor = i1;
 		this.color = i1;
+		return this;
+	}
+	
+	public BiomeGenBase setGrassColor(int color) {
+		this.unusedBetaGrassColor = color;
 		return this;
 	}
 

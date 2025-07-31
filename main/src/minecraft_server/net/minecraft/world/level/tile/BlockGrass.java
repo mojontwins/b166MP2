@@ -19,9 +19,6 @@ public class BlockGrass extends Block implements ISurface, IGround {
 		
 		this.blockIndexInTexture = 3;
 		
-		this.texSide = 14*16+7;
-		this.texTop = 14*16+12;
-		this.needsColorizer = false;
 		this.setTickRandomly(true);	
 		this.displayOnCreativeTab = CreativeTabs.tabBlock;
 	}
@@ -53,23 +50,12 @@ public class BlockGrass extends Block implements ISurface, IGround {
 		return this.getBlockColor();
 	}
 
-	public int colorMultiplier(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
+	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
 		if(!this.needsColorizer) return 0xFFFFFF;
 		
-		int i5 = 0;
-		int i6 = 0;
-		int i7 = 0;
-
-		for(int i8 = -1; i8 <= 1; ++i8) {
-			for(int i9 = -1; i9 <= 1; ++i9) {
-				int i10 = iBlockAccess1.getBiomeGenForCoords(i2 + i9, i4 + i8).getBiomeGrassColor();
-				i5 += (i10 & 16711680) >> 16;
-				i6 += (i10 & 65280) >> 8;
-				i7 += i10 & 255;
-			}
-		}
-
-		return (i5 / 9 & 255) << 16 | (i6 / 9 & 255) << 8 | i7 / 9 & 255;
+		float t = world.getWorldChunkManager().getTemperatureAt(x, z);
+		float h = world.getWorldChunkManager().getRainfallAt(x, z);
+		return ColorizerGrass.getGrassColor(t, h);
 	}
 
 	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {

@@ -1,0 +1,57 @@
+2025-07-31 16:11:29 [INFO] Starting minecraft server version Alpha 1.2.6
+2025-07-31 16:11:29 [INFO] Loading properties
+2025-07-31 16:11:29 [WARNING] server.properties does not exist
+2025-07-31 16:11:29 [INFO] Generating new properties file
+2025-07-31 16:11:29 [INFO] Starting Minecraft server on *:25565
+2025-07-31 16:11:29 [WARNING] Failed to load ban list: java.io.FileNotFoundException: banned-players.txt (El sistema no puede encontrar el archivo especificado)
+2025-07-31 16:11:29 [WARNING] Failed to load ip ban list: java.io.FileNotFoundException: banned-ips.txt (El sistema no puede encontrar el archivo especificado)
+2025-07-31 16:11:29 [WARNING] Failed to load operators list: java.io.FileNotFoundException: ops.txt (El sistema no puede encontrar el archivo especificado)
+2025-07-31 16:11:29 [WARNING] Failed to load white-list: java.io.FileNotFoundException: white-list.txt (El sistema no puede encontrar el archivo especificado)
+2025-07-31 16:11:29 [INFO] Configured level type: DEFAULT
+2025-07-31 16:11:29 [INFO] Preparing level "world"
+2025-07-31 16:11:29 [INFO] Default game type: 0
+2025-07-31 16:11:30 [INFO] Preparing start region for level 0
+2025-07-31 16:11:31 [INFO] Preparing spawn area: 16%
+2025-07-31 16:11:32 [INFO] Preparing spawn area: 40%
+2025-07-31 16:11:33 [INFO] Preparing spawn area: 73%
+2025-07-31 16:11:34 [INFO] Preparing spawn area: 97%
+2025-07-31 16:11:34 [INFO] Done (4,995s)! For help, type "help" or "?"
+2025-07-31 16:11:48 [INFO] /127.0.0.1:64070 lost connection
+2025-07-31 16:11:55 [INFO] Stopping server
+2025-07-31 16:11:55 [INFO] Saving chunks
+2025-07-31 16:11:55 [INFO] Saving chunks
+2025-07-31 16:11:55 [INFO] Saving chunks
+2025-07-31 16:11:55 [INFO] Saving chunks
+2025-07-31 16:11:55 [INFO] Saving chunks
+2025-07-31 16:14:58 [INFO] Starting minecraft server version Alpha 1.2.6
+2025-07-31 16:14:59 [INFO] Loading properties
+2025-07-31 16:14:59 [INFO] Starting Minecraft server on *:25565
+2025-07-31 16:14:59 [INFO] Configured level type: DEFAULT
+2025-07-31 16:14:59 [INFO] Preparing level "world"
+2025-07-31 16:14:59 [INFO] Default game type: 0
+2025-07-31 16:14:59 [INFO] Preparing start region for level 0
+2025-07-31 16:15:00 [INFO] Preparing spawn area: 73%
+2025-07-31 16:15:00 [INFO] Done (1,334s)! For help, type "help" or "?"
+2025-07-31 16:15:31 [INFO] /127.0.0.1:64095 lost connection
+2025-07-31 16:17:26 [INFO] Stopping server
+2025-07-31 16:17:26 [INFO] Saving chunks
+2025-07-31 16:17:26 [INFO] Saving chunks
+2025-07-31 16:17:26 [INFO] Saving chunks
+2025-07-31 16:17:26 [INFO] Saving chunks
+2025-07-31 16:17:26 [INFO] Saving chunks
+2025-07-31 16:25:50 [INFO] Starting minecraft server version Alpha 1.2.6
+2025-07-31 16:25:50 [INFO] Loading properties
+2025-07-31 16:25:50 [INFO] Starting Minecraft server on *:25565
+2025-07-31 16:25:50 [INFO] Configured level type: DEFAULT
+2025-07-31 16:25:50 [INFO] Preparing level "world"
+2025-07-31 16:25:50 [INFO] Default game type: 0
+2025-07-31 16:25:50 [INFO] Preparing start region for level 0
+2025-07-31 16:25:51 [INFO] Preparing spawn area: 77%
+2025-07-31 16:25:52 [INFO] Done (1,356s)! For help, type "help" or "?"
+2025-07-31 16:26:01 [INFO] /127.0.0.1:64226 lost connection
+2025-07-31 16:26:04 [INFO] Stopping server
+2025-07-31 16:26:04 [INFO] Saving chunks
+2025-07-31 16:26:04 [INFO] Saving chunks
+2025-07-31 16:26:04 [INFO] Saving chunks
+2025-07-31 16:26:04 [INFO] Saving chunks
+2025-07-31 16:26:04 [INFO] Saving chunks

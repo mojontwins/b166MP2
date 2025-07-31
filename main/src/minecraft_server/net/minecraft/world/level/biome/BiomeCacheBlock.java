@@ -9,19 +9,27 @@ public class BiomeCacheBlock {
 	public long lastAccessTime;
 	final BiomeCache biomeCache;
 
-	public BiomeCacheBlock(BiomeCache biomeCache1, int i2, int i3) {
-		this.biomeCache = biomeCache1;
+	public BiomeCacheBlock(BiomeCache cache, int chunkX, int chunkZ) {
+		this.biomeCache = cache;
 		this.temperatureValues = new float[256];
 		this.rainfallValues = new float[256];
 		this.biomes = new BiomeGenBase[256];
-		this.xPosition = i2;
-		this.zPosition = i3;
-		BiomeCache.getChunkManager(biomeCache1).getTemperatures(this.temperatureValues, i2 << 4, i3 << 4, 16, 16);
-		BiomeCache.getChunkManager(biomeCache1).getRainfall(this.rainfallValues, i2 << 4, i3 << 4, 16, 16);
-		BiomeCache.getChunkManager(biomeCache1).getBiomeGenAt(this.biomes, i2 << 4, i3 << 4, 16, 16, false);
+		this.xPosition = chunkX;
+		this.zPosition = chunkZ;
+		BiomeCache.getChunkManager(cache).getTemperatures(this.temperatureValues, chunkX << 4, chunkZ << 4, 16, 16);
+		BiomeCache.getChunkManager(cache).getRainfall(this.rainfallValues, chunkX << 4, chunkZ << 4, 16, 16);
+		BiomeCache.getChunkManager(cache).getBiomeGenAt(this.biomes, chunkX << 4, chunkZ << 4, 16, 16, false);
 	}
 
-	public BiomeGenBase getBiomeGenAt(int i1, int i2) {
-		return this.biomes[i1 & 15 | (i2 & 15) << 4];
+	public BiomeGenBase getBiomeGenAt(int x, int z) {
+		return this.biomes[x & 15 | (z & 15) << 4];
+	}
+
+	public float getTemperatureAt(int x, int z) {
+		return this.temperatureValues[x & 15 | (z & 15) << 4];
+	}
+	
+	public float getRainfallAt(int x, int z) {
+		return this.rainfallValues[x & 15 | (z & 15) << 4];
 	}
 }

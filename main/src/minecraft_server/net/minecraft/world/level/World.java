@@ -102,15 +102,15 @@ public class World implements IBlockAccess {
 	
 	public static int notifys = 0;
 
-	public BiomeGenBase getBiomeGenForCoords(int i1, int i2) {
-		if(this.blockExists(i1, 0, i2)) {
-			Chunk chunk3 = this.getChunkFromBlockCoords(i1, i2);
-			if(chunk3 != null) {
-				return chunk3.getBiomeForCoords(i1 & 15, i2 & 15, this.worldProvider.worldChunkMgr);
+	public BiomeGenBase getBiomeGenForCoords(int x, int z) {
+		if(this.blockExists(x, 0, z)) {
+			Chunk chunk = this.getChunkFromBlockCoords(x, z);
+			if(chunk != null) {
+				return chunk.getBiomeForCoords(x & 15, z & 15, this.worldProvider.worldChunkMgr);
 			}
 		}
 
-		return this.worldProvider.worldChunkMgr.getBiomeGenAt(i1, i2);
+		return this.worldProvider.worldChunkMgr.getBiomeGenAt(x, z);
 	}
 
 	public WorldChunkManager getWorldChunkManager() {
@@ -152,6 +152,51 @@ public class World implements IBlockAccess {
 		this.worldProvider = worldProvider3;
 		worldProvider3.registerWorld(this);
 		this.chunkProvider = this.createChunkProvider();
+		this.calculateInitialSkylight();
+		this.calculateInitialWeather();
+		Seasons.seasonsAreOn(this.worldInfo.isEnableSeasons());
+	}
+	
+	// This is the constructor that gets called when changing dimensions.
+	// It should have the correct world provider.
+	public World(World world1, WorldProvider worldProvider2) {
+		this.scheduledUpdatesAreImmediate = false;
+		this.loadedEntityList = new ArrayList<Entity>();
+		this.unloadedEntityList = new ArrayList<Entity>();
+		this.scheduledTickTreeSet = new TreeSet<NextTickListEntry>();
+		this.scheduledTickSet = new HashSet<NextTickListEntry>();
+		this.loadedTileEntityList = new ArrayList<TileEntity>();
+		this.addedTileEntityList = new ArrayList<TileEntity>();
+		this.entityRemoval = new ArrayList<TileEntity>();
+		this.playerEntities = new ArrayList<EntityPlayer>();
+		this.weatherEffects = new ArrayList<Entity>();
+		this.cloudColour = 16777215L;
+		this.skylightSubtracted = 0;
+		this.updateLCG = (new Random()).nextInt();
+		this.DIST_HASH_MAGIC = 1013904223;
+		this.lastLightningBolt = 0;
+		this.lightningFlash = 0;
+		this.editingBlocks = false;
+		this.autosavePeriod = 40;
+		this.rand = new Random();
+		this.isNewWorld = false;
+		this.worldAccesses = new ArrayList<IWorldAccess>();
+		this.collidingBoundingBoxes = new ArrayList<AxisAlignedBB>();
+		this.spawnHostileMobs = true;
+		this.spawnPeacefulMobs = true;
+		this.activeChunkSet = new HashSet<ChunkCoordIntPair>();
+		this.ambientTickCountdown = this.rand.nextInt(12000);
+		this.entitiesWithinAABBExcludingEntity = new ArrayList<Entity>();
+		this.isRemote = false;
+		this.saveHandler = world1.saveHandler;
+		this.worldInfo = new WorldInfo(world1.worldInfo);
+		this.worldProvider = worldProvider2;
+		worldProvider2.registerWorld(this);
+		this.chunkProvider = this.createChunkProvider();
+		
+		Seasons.dayOfTheYear = this.rand.nextInt(4 * Seasons.SEASON_DURATION);
+		Seasons.updateSeasonCounters();
+
 		this.calculateInitialSkylight();
 		this.calculateInitialWeather();
 		Seasons.seasonsAreOn(this.worldInfo.isEnableSeasons());
@@ -235,13 +280,7 @@ public class World implements IBlockAccess {
 
 
 		if(Seasons.dayOfTheYear < 0) {
-			if(!this.worldInfo.isEnableSeasons() && worldSettings.getTerrainType() == WorldType.ALPHA_SNOW) {
-				// Mid winter
-				Seasons.dayOfTheYear = 3;
-			} else {
-				// Start in mid spring to mid summer
-				Seasons.dayOfTheYear = this.rand.nextInt(Seasons.SEASON_DURATION) + Seasons.SEASON_DURATION + (Seasons.SEASON_DURATION >> 1);
-			}
+			Seasons.dayOfTheYear = this.rand.nextInt(Seasons.SEASON_DURATION) + Seasons.SEASON_DURATION + (Seasons.SEASON_DURATION >> 1);
 		}
 		Seasons.updateSeasonCounters();
 		Seasons.seasonsAreOn(this.worldInfo.isEnableSeasons());
@@ -2336,19 +2375,31 @@ public class World implements IBlockAccess {
 		return this.canFreezeWater(i1, i2, i3, true, biomeGen);
 	}
 
-	public boolean ambienceIsHot(BiomeGenBase biomeGen) {
-		if(this.worldInfo.isEnableSeasons()) {
-			return
-					biomeGen.weather == Weather.desert || 
-					biomeGen.weather == Weather.hot ||
-					(biomeGen.weather == Weather.normal && Seasons.currentSeason != Seasons.WINTER) ||
-					(biomeGen.weather == Weather.cold && Seasons.currentSeason == Seasons.SUMMER);
-		} else return (biomeGen.weather != Weather.cold);
+	public boolean ambienceIsHot(int x, int z, BiomeGenBase biomeGen) {
+		float t = this.getWorldChunkManager().getTemperatureAt(x, z);
+		
+		if(GameRules.rampBasedTemperature) { 
+			if(this.worldInfo.isEnableSeasons()) {
+				return t > .6F ||
+						t > .2 && Seasons.currentSeason != Seasons.WINTER ||
+						t > .1 && Seasons.currentSeason == Seasons.SUMMER;
+				
+			} else return t >= .2F;
+		} else {
+			if(this.worldInfo.isEnableSeasons()) {
+				return
+						biomeGen.weather == Weather.desert || 
+						biomeGen.weather == Weather.hot ||
+						(biomeGen.weather == Weather.normal && Seasons.currentSeason != Seasons.WINTER) ||
+						(biomeGen.weather == Weather.cold && Seasons.currentSeason == Seasons.SUMMER);
+
+			} else return biomeGen.weather != Weather.cold;
+		}
 	}
 	
 	public boolean canFreezeWater(int x, int y, int z, boolean z4, BiomeGenBase biomeGen) {
 		// Discard.
-		if(this.ambienceIsHot(biomeGen)) return false;
+		if(this.ambienceIsHot(x, z, biomeGen)) return false;
 		
 		if(y >= 0 && y < 256 && this.getSavedLightValue(EnumSkyBlock.Block, x, y, z) < 10) {
 			int blockID = this.getBlockId(x, y, z);
@@ -2385,7 +2436,7 @@ public class World implements IBlockAccess {
 	}
 
 	public boolean canSnowAt(int x, int y, int z, boolean force, BiomeGenBase biomeGen) {
-		if(this.ambienceIsHot(biomeGen)) return false;
+		if(this.ambienceIsHot(x, z, biomeGen)) return false;
 		if(!force && Weather.particleDecide(biomeGen, this) != Weather.SNOW) return false;
 
 		if(y >= 0 && y < 256 && this.getSavedLightValue(EnumSkyBlock.Block, x, y, z) < 10) {

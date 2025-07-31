@@ -63,7 +63,7 @@ public class ChunkProviderAlpha extends ChunkProviderGenerate {
 	// - it is not affected by t/h,
 	// - scale & depth noise have different scaling.
 	// - minor bugs in NoiseGeneratorPerlin make monoliths.
-
+	@Override
 	public double[] initializeNoiseField(double[] densityMapArray, int x, int y, int z, int xSize, int ySize, int zSize) {
 		if(densityMapArray == null) {
 			densityMapArray = new double[xSize * ySize * zSize];

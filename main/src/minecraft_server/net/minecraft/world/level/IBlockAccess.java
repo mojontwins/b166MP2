@@ -35,4 +35,6 @@ public interface IBlockAccess {
 	boolean getAreChunksEmpty();
 	
 	public boolean doesBlockHaveSolidTopSurface(int par1, int par2, int par3);
+
+	public WorldChunkManager getWorldChunkManager();
 }

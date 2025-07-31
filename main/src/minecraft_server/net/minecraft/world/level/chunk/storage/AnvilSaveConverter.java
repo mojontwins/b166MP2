@@ -107,14 +107,14 @@ public class AnvilSaveConverter extends SaveFormatOld {
 
 		Object chunkManager = null;
 		if(worldInfo.getTerrainType() == WorldType.FLAT) {
-			chunkManager = new WorldChunkManagerHell(BiomeGenBase.alpha, 0.5F, 0.5F);
+			chunkManager = new WorldChunkManagerHell(BiomeGenBase.hell, 0.5F, 0.5F);
 		} else {
 			chunkManager = new WorldChunkManager(worldInfo.getSeed(), worldInfo.getTerrainType());
 		}
 
 		this.convertRegionsDir(new File(baseDir, "region"), regionsSurface, (WorldChunkManager)chunkManager, 0, totalRegions, progress);
-		this.convertRegionsDir(new File(netherDir, "region"), regionsNether, new WorldChunkManagerHell(BiomeGenBase.alpha, 1.0F, 0.0F), regionsSurface.size(), totalRegions, progress);
-		this.convertRegionsDir(new File(theEndDir, "region"), regionsTheEnd, new WorldChunkManagerHell(BiomeGenBase.alpha, 0.5F, 0.0F), regionsSurface.size() + regionsNether.size(), totalRegions, progress);
+		this.convertRegionsDir(new File(netherDir, "region"), regionsNether, new WorldChunkManagerHell(BiomeGenBase.hell, 1.0F, 0.0F), regionsSurface.size(), totalRegions, progress);
+		this.convertRegionsDir(new File(theEndDir, "region"), regionsTheEnd, new WorldChunkManagerHell(BiomeGenBase.plains, 0.5F, 0.0F), regionsSurface.size() + regionsNether.size(), totalRegions, progress);
 		
 		// Change save version to ANVIL
 		worldInfo.setSaveVersion(SaveHandler.anvil);

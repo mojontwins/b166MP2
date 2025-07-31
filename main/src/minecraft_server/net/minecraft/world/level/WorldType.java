@@ -2,11 +2,9 @@ package net.minecraft.world.level;
 
 import net.minecraft.world.level.biome.BiomeGenBase;
 import net.minecraft.world.level.chunk.IChunkProvider;
-import net.minecraft.world.level.levelgen.ChunkProviderAlpha;
 import net.minecraft.world.level.levelgen.ChunkProviderAmplified;
+import net.minecraft.world.level.levelgen.ChunkProviderBeta;
 import net.minecraft.world.level.levelgen.ChunkProviderFlat;
-import net.minecraft.world.level.levelgen.ChunkProviderGenerate;
-import net.minecraft.world.level.levelgen.ChunkProviderInfdev;
 import net.minecraft.world.level.levelgen.ChunkProviderOcean;
 import net.minecraft.world.level.levelgen.ChunkProviderSky;
 
@@ -17,10 +15,6 @@ public class WorldType {
 	public static final WorldType SKY = new WorldType(2, "sky", 1, 0);
 	public static final WorldType AMPLIFIED = new WorldType(3, "amplified", 1, 0);	
 	public static final WorldType HELL = (new WorldType(4, "hell", 1, -1)).setCanBeCreated(false).disableCreatePortalToTheNether();
-	public static final WorldType INFDEV = new WorldType(5, "infdev", 1, 0);
-	public static final WorldType ALPHA = new WorldType(6, "alpha", 1, 0);
-	public static final WorldType ALPHA_SNOW = new WorldType(7, "alpha_snow", 1, 0);
-	public static final WorldType DEFAULT_1_1 = (new WorldType(8, "default_1_1", 0, 0)).setCanBeCreated(false);
 	public static final WorldType DEBUG = new WorldType(9, "debug", 1, 0).setCanBeCreated(false);
 	public static final WorldType OCEAN = new WorldType(10, "ocean", 1, 0);
 	
@@ -44,10 +38,12 @@ public class WorldType {
 		worldTypes[i1] = this;
 		this.defaultDimension = defaultDimension;
 		
+		// This is not used in this build but I'll leave it just in case.
 		switch(i1) {
 		case 4:
+			// This is hell. Add hell biomes here! They will be picked up at random by teh Genlayer
 			this.biomesForWorldType = new BiomeGenBase[] {
-					BiomeGenBase.alpha
+					BiomeGenBase.hell
 			};
 			break;
 		case 6:
@@ -95,7 +91,7 @@ public class WorldType {
 	}
 
 	public WorldType func_48629_a(int i1) {
-		return this == DEFAULT && i1 == 0 ? DEFAULT_1_1 : this;
+		return this;
 	}
 
 	private WorldType setCanBeCreated(boolean z1) {
@@ -133,31 +129,25 @@ public class WorldType {
 	
 	public WorldChunkManager getChunkManager(World world) {
 		return (WorldChunkManager)(this == FLAT ? 
-				new WorldChunkManagerHell(BiomeGenBase.alpha, 0.5F, 0.5F) 
+				new WorldChunkManagerHell(BiomeGenBase.plains, 0.5F, 0.5F) 
 			: 
-				new WorldChunkManager(world));
+				new WorldChunkManagerBeta(world));
 	}
 
 	public IChunkProvider getChunkGenerator(World world) {
 		return (IChunkProvider)(this == FLAT ? 
 				new ChunkProviderFlat(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled())
 			: 	
-					this == INFDEV ?
-							new ChunkProviderInfdev(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled())
+					this == AMPLIFIED ?
+							new ChunkProviderAmplified(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled())
 						:
-							this == ALPHA || this == ALPHA_SNOW ?
-									new ChunkProviderAlpha(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled())
+							this == SKY ? 
+									new ChunkProviderSky(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled())
 								:
-									this == AMPLIFIED ?
-												new ChunkProviderAmplified(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled())
-											:
-												this == SKY ? 
-														new ChunkProviderSky(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled())
-													:
-														this == OCEAN ? 
-																new ChunkProviderOcean(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled())
-															:
-														new ChunkProviderGenerate(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled()));
+									this == OCEAN ? 
+											new ChunkProviderOcean(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled())
+										:
+											new ChunkProviderBeta(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled()));
 	}
 
 	public int getSeaLevel(World world) {

@@ -22,7 +22,7 @@ public class GuiIngameMenu extends GuiScreen {
 		//this.controlList.add(new GuiButton(5, this.width / 2 - 100, this.height / 4 + 48 + b1, 98, 20, Translator.translateToLocal("gui.achievements")));
 		//this.controlList.add(new GuiButton(6, this.width / 2 + 2, this.height / 4 + 48 + b1, 98, 20, Translator.translateToLocal("gui.stats")));
 		
-		this.controlList.add(new GuiButton(100, this.width / 2 - 100, this.height / 4 + 48 + b1, "Important game rules"));
+		//this.controlList.add(new GuiButton(100, this.width / 2 - 100, this.height / 4 + 48 + b1, "Important game rules"));
 	}
 
 	protected void actionPerformed(GuiButton guiButton1) {

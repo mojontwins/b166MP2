@@ -153,10 +153,9 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 		long nowMillis = System.nanoTime();
 		String levelName = this.propertyManagerObj.getStringProperty("level-name", "world");
 		String levelSeed = this.propertyManagerObj.getStringProperty("level-seed", "");
-		String levelType = this.propertyManagerObj.getStringProperty("level-type", "ALPHA");
+		String levelType = this.propertyManagerObj.getStringProperty("level-type", "DEFAULT");
 		
 		logger.info("Configured level type: " + levelType);
-		logger.info("Available level types: ALPHA, INFDEV, SKY");
 		
 		long seed = (new Random()).nextLong();
 		if(levelSeed.length() > 0) {
@@ -172,7 +171,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 
 		WorldType terrainType = WorldType.parseWorldType(levelType);
 		if(terrainType == null) {
-			terrainType = GameRules.defaultWorldType();
+			terrainType = WorldType.DEFAULT;
 		}
 
 		this.buildLimit = this.propertyManagerObj.getIntProperty("max-build-height", 256);

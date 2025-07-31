@@ -1061,15 +1061,15 @@ public class Chunk {
 
 	}
 
-	public BiomeGenBase getBiomeForCoords(int i1, int i2, WorldChunkManager worldChunkManager3) {
-		int i4 = this.blockBiomeArray[i2 << 4 | i1] & 255;
-		if(i4 == 255) {
-			BiomeGenBase biomeGenBase5 = worldChunkManager3.getBiomeGenAt((this.xPosition << 4) + i1, (this.zPosition << 4) + i2);
-			i4 = biomeGenBase5.biomeID;
-			this.blockBiomeArray[i2 << 4 | i1] = (byte)(i4 & 255);
+	public BiomeGenBase getBiomeForCoords(int x, int z, WorldChunkManager chunkManager) {
+		int biomeID = this.blockBiomeArray[z << 4 | x] & 255;
+		if(biomeID == 255) {
+			BiomeGenBase biome = chunkManager.getBiomeGenAt((this.xPosition << 4) + x, (this.zPosition << 4) + z);
+			biomeID = biome.biomeID;
+			this.blockBiomeArray[z << 4 | x] = (byte)(biomeID & 255);
 		}
 
-		return BiomeGenBase.biomeList[i4] == null ? BiomeGenBase.alpha : BiomeGenBase.biomeList[i4];
+		return BiomeGenBase.biomeList[biomeID] == null ? BiomeGenBase.plains : BiomeGenBase.biomeList[biomeID];
 	}
 
 	public byte[] getBiomeArray() {

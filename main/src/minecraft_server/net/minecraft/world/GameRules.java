@@ -30,6 +30,7 @@ public class GameRules {
 	// Fixed (soft locked)
 	public static boolean oldSelectWorldScreen = true;
 	public static boolean genlayerWorldChunkManager = false;
+	public static boolean rampBasedTemperature = true;
 
 	public static final boolean debug = false;
 	
@@ -193,29 +194,13 @@ public class GameRules {
 		}
 	}
 	
-	public static WorldType defaultWorldType() {
-		if(genlayerWorldChunkManager) {
-			return WorldType.DEFAULT;
-		} else {
-			return WorldType.ALPHA;
-		}
-	}
-	
-	public static WorldType defaultWorldType(boolean snowCovered) {
-		if(genlayerWorldChunkManager) {
-			return WorldType.DEFAULT;
-		} else {
-			return snowCovered ? WorldType.ALPHA_SNOW : WorldType.ALPHA;
-		}
-	}
-	
 	public static WorldType defaultWorldType(int worldTypeID) {
 		switch (worldTypeID) {
-		case 1: return WorldType.ALPHA_SNOW;
-		case 2: return WorldType.INFDEV;
-		case 3: return WorldType.SKY;
-		case 4: return WorldType.OCEAN;
-		default: return WorldType.ALPHA;
+		case 1: return WorldType.FLAT;
+		case 2: return WorldType.SKY;
+		case 3: return WorldType.OCEAN;
+		case 4: return WorldType.AMPLIFIED;
+		default: return WorldType.DEFAULT;
 		}
 	}
 

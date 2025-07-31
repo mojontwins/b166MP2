@@ -12,53 +12,61 @@ public class BiomeCache {
 	private LongHashMap cacheMap = new LongHashMap();
 	private List<BiomeCacheBlock> cache = new ArrayList<BiomeCacheBlock>();
 
-	public BiomeCache(WorldChunkManager worldChunkManager1) {
-		this.chunkManager = worldChunkManager1;
+	public BiomeCache(WorldChunkManager worldChunkManager) {
+		this.chunkManager = worldChunkManager;
 	}
 
-	public BiomeCacheBlock getBiomeCacheBlock(int i1, int i2) {
-		i1 >>= 4;
-		i2 >>= 4;
-		long j3 = (long)i1 & 4294967295L | ((long)i2 & 4294967295L) << 32;
-		BiomeCacheBlock biomeCacheBlock5 = (BiomeCacheBlock)this.cacheMap.getValueByKey(j3);
-		if(biomeCacheBlock5 == null) {
-			biomeCacheBlock5 = new BiomeCacheBlock(this, i1, i2);
-			this.cacheMap.add(j3, biomeCacheBlock5);
-			this.cache.add(biomeCacheBlock5);
+	public BiomeCacheBlock getBiomeCacheBlock(int x, int z) {
+		x >>= 4;
+		z >>= 4;
+		long hash = (long)x & 4294967295L | ((long)z & 4294967295L) << 32;
+		BiomeCacheBlock block = (BiomeCacheBlock)this.cacheMap.getValueByKey(hash);
+		if(block == null) {
+			block = new BiomeCacheBlock(this, x, z);
+			this.cacheMap.add(hash, block);
+			this.cache.add(block);
 		}
 
-		biomeCacheBlock5.lastAccessTime = System.currentTimeMillis();
-		return biomeCacheBlock5;
+		block.lastAccessTime = System.currentTimeMillis();
+		return block;
 	}
 
-	public BiomeGenBase getBiomeGenAt(int i1, int i2) {
-		return this.getBiomeCacheBlock(i1, i2).getBiomeGenAt(i1, i2);
+	public BiomeGenBase getBiomeGenAt(int x, int z) {
+		return this.getBiomeCacheBlock(x, z).getBiomeGenAt(x, z);
+	}
+	
+	public float getTemperatureAt(int x, int z) {
+		return this.getBiomeCacheBlock(x, z).getTemperatureAt(x, z);
+	}
+	
+	public float getRainfallAt(int x, int z) {
+		return this.getBiomeCacheBlock(x, z).getRainfallAt(x, z);
 	}
 
 	public void cleanupCache() {
-		long j1 = System.currentTimeMillis();
-		long j3 = j1 - this.lastCleanupTime;
-		if(j3 > 7500L || j3 < 0L) {
-			this.lastCleanupTime = j1;
+		long now = System.currentTimeMillis();
+		long elapsed = now - this.lastCleanupTime;
+		if(elapsed > 7500L || elapsed < 0L) {
+			this.lastCleanupTime = now;
 
-			for(int i5 = 0; i5 < this.cache.size(); ++i5) {
-				BiomeCacheBlock biomeCacheBlock6 = (BiomeCacheBlock)this.cache.get(i5);
-				long j7 = j1 - biomeCacheBlock6.lastAccessTime;
-				if(j7 > 30000L || j7 < 0L) {
-					this.cache.remove(i5--);
-					long j9 = (long)biomeCacheBlock6.xPosition & 4294967295L | ((long)biomeCacheBlock6.zPosition & 4294967295L) << 32;
-					this.cacheMap.remove(j9);
+			for(int i = 0; i < this.cache.size(); ++i) {
+				BiomeCacheBlock block = (BiomeCacheBlock)this.cache.get(i);
+				long elapsedB = now - block.lastAccessTime;
+				if(elapsedB > 30000L || elapsedB < 0L) {
+					this.cache.remove(i--);
+					long hash = (long)block.xPosition & 4294967295L | ((long)block.zPosition & 4294967295L) << 32;
+					this.cacheMap.remove(hash);
 				}
 			}
 		}
 
 	}
 
-	public BiomeGenBase[] getCachedBiomes(int i1, int i2) {
-		return this.getBiomeCacheBlock(i1, i2).biomes;
+	public BiomeGenBase[] getCachedBiomes(int x, int z) {
+		return this.getBiomeCacheBlock(x, z).biomes;
 	}
 
-	static WorldChunkManager getChunkManager(BiomeCache biomeCache0) {
-		return biomeCache0.chunkManager;
+	static WorldChunkManager getChunkManager(BiomeCache cache) {
+		return cache.chunkManager;
 	}
 }

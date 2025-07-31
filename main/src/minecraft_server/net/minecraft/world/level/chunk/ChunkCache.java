@@ -3,6 +3,7 @@ package net.minecraft.world.level.chunk;
 import net.minecraft.world.level.EnumSkyBlock;
 import net.minecraft.world.level.IBlockAccess;
 import net.minecraft.world.level.World;
+import net.minecraft.world.level.WorldChunkManager;
 import net.minecraft.world.level.biome.BiomeGenBase;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.tile.Block;
@@ -282,5 +283,10 @@ public class ChunkCache implements IBlockAccess {
 		if(block instanceof BlockStep) return (meta & 8) == 8;
 		
 		return false;
+	}
+
+	@Override
+	public WorldChunkManager getWorldChunkManager() {
+		return this.worldObj.getWorldChunkManager();
 	}
 }

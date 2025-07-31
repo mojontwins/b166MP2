@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.item.ITextureProvider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemBlock;
+import net.minecraft.world.item.ItemColored;
 import net.minecraft.world.item.ItemDyeable;
 import net.minecraft.world.item.ItemLeaves;
 import net.minecraft.world.item.ItemMetadata;
@@ -85,8 +86,8 @@ public class Block implements ITextureProvider {
 	// 28
 	// 29
 	public static final Block web = (new BlockWeb(30, 11)).setLightOpacity(1).setHardness(4.0F).setBlockName("web");
-	// 31
-	// 32
+	public static final BlockTallGrass tallGrass = (BlockTallGrass)(new BlockTallGrass(31, 39)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("tallgrass");
+	public static final BlockDeadBush deadBush = (BlockDeadBush)(new BlockDeadBush(32, 55)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("deadbush");
 	// 33
 	// 34
 	public static final Block cloth = (new BlockCloth()).setHardness(0.8F).setStepSound(soundClothFootstep).setBlockName("cloth").setRequiresSelfNotify();
@@ -141,10 +142,10 @@ public class Block implements ITextureProvider {
 	public static final Block jukebox = (new BlockJukeBox(84, 74)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep).setBlockName("jukebox").setRequiresSelfNotify();
 	public static final Block fence = (new BlockFence(85, 4)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundWoodFootstep).setBlockName("fence");
 	public static final Block pumpkin = (new BlockPumpkin(86, 102, false)).setHardness(1.0F).setStepSound(soundWoodFootstep).setBlockName("pumpkin").setRequiresSelfNotify();
-	// 87
-	// 88
-	// 89
-	// 90
+	public static final Block netherrack = (new BlockNetherrack(87, 103)).setHardness(0.4F).setStepSound(soundStoneFootstep).setBlockName("hellrock");
+	public static final Block slowSand = (new BlockSoulSand(88, 104)).setHardness(0.5F).setStepSound(soundSandFootstep).setBlockName("hellsand");
+	public static final Block glowStone = (new BlockGlowStone(89, 105, Material.glass)).setHardness(0.3F).setStepSound(soundGlassFootstep).setLightValue(1.0F).setBlockName("lightgem");
+	public static final BlockPortal portal = (BlockPortal)(new BlockPortal(90, 14)).setHardness(-1.0F).setStepSound(soundGlassFootstep).setLightValue(0.75F).setBlockName("portal");
 	public static final Block pumpkinLantern = (new BlockPumpkin(91, 102, true)).setHardness(1.0F).setStepSound(soundWoodFootstep).setLightValue(1.0F).setBlockName("litpumpkin").setRequiresSelfNotify();	
 	// 92
 	public static final Block redstoneRepeaterIdle = (new BlockRedstoneRepeater(93, false)).setHardness(0.0F).setStepSound(soundWoodFootstep).setBlockName("diode").disableStats().setRequiresSelfNotify();
@@ -160,13 +161,17 @@ public class Block implements ITextureProvider {
 	// 103
 	// 104
 	// 105
-	// 106
+	public static final Block vine = (new BlockVine(106)).setHardness(0.2F).setStepSound(soundGrassFootstep).setBlockName("vine").setRequiresSelfNotify();
 	// 107
 	public static final Block stairsBrick = (new BlockStairs(108, brick)).setBlockName("stairsBrick").setRequiresSelfNotify();
 	// 109 
 	// 110
 	public static final Block waterlily = (new BlockLilypad(111, 60)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("waterlily");
-	// 112 - 135
+	// 112
+	// 113
+	// 114
+	public static final Block netherStalk = (new BlockNetherStalk(115)).setBlockName("netherStalk").setRequiresSelfNotify();
+	// 1166 - 135
 	public static final Block mobSpawnerOneshot = (new BlockMobSpawner(136, 65, true)).setHardness(5.0F).setStepSound(soundMetalFootstep);
 	public static final Block blockCoal = (new Block(137, 12 * 16 + 10, Material.rock)).setHardness(1.5F).setResistance(10.0F).setStepSound(soundStoneFootstep).setCreativeTab(CreativeTabs.tabBlock).setBlockName("blockCoal");	
 	//
@@ -839,6 +844,8 @@ public class Block implements ITextureProvider {
 		Item.itemsList[stairSingle.blockID] = (new ItemSlab(stairSingle.blockID - 256)).setItemName("stoneSlab");
 		Item.itemsList[sapling.blockID] = (new ItemSapling(sapling.blockID - 256)).setItemName("sapling");
 		Item.itemsList[leaves.blockID] = (new ItemLeaves(leaves.blockID - 256)).setItemName("leaves");
+		Item.itemsList[vine.blockID] = new ItemColored(vine.blockID - 256, false);
+		Item.itemsList[tallGrass.blockID] = (new ItemColored(tallGrass.blockID - 256, true)).setBlockNames(new String[]{"shrub", "grass", "fern"});
 		
 		for(int i0 = 0; i0 < 4096; ++i0) {
 			if(blocksList[i0] != null) {

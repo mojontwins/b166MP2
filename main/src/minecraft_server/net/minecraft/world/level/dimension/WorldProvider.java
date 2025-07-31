@@ -146,13 +146,13 @@ public abstract class WorldProvider {
 			r = 0.7529412F;
 			g = 0.84705883F;
 			b = 1.0F;
-			}
-	
+		}
+
 		r *= sunHeight * 0.94F + 0.06F;
 		g *= sunHeight * 0.94F + 0.06F;
 		b *= sunHeight * 0.91F + 0.09F;
 		return Vec3D.createVector((double)r, (double)g, (double)b);
-	
+
 	}
 	
 	public Vec3D getSkyColor(Entity thePlayer, float renderPartialTick) { 
@@ -193,7 +193,7 @@ public abstract class WorldProvider {
 			r = r * skyColorAtenuation + skyColorComponent * (1.0F - skyColorAtenuation);
 			g = g * skyColorAtenuation + skyColorComponent * (1.0F - skyColorAtenuation);
 			b = b * skyColorAtenuation + skyColorComponent * (1.0F - skyColorAtenuation);
-		}
+		}		
 
 		if(this.worldObj.lightningFlash > 0) {
 			float lightning = (float)this.worldObj.lightningFlash - renderPartialTick;
@@ -283,17 +283,14 @@ public abstract class WorldProvider {
 	}
 
 	public static WorldProvider getProviderForTerrainType(WorldType terrainType) {
-		if(terrainType == WorldType.ALPHA || terrainType == WorldType.ALPHA_SNOW || terrainType == WorldType.INFDEV || terrainType == WorldType.OCEAN) return new WorldProviderSurfaceClassic();
-		if(terrainType == WorldType.SKY)return new WorldProviderSkyClassic(); 
-		return new WorldProviderSurface();
+		if(terrainType == WorldType.SKY) return new WorldProviderSkyClassic(); 
+		return new WorldProviderSurfaceClassic();
 	}
 	
 	public static WorldProvider getProviderForDimension(int i0, WorldType terrainType) {
-		// TODO: Hook new dimension logic here.
-		switch(i0) {
-		default: 
-			// Default or dimension = 0!
-			return getProviderForTerrainType(terrainType);
+		switch(i0) { 
+			case -1: return new WorldProviderHell();
+			default: return getProviderForTerrainType(terrainType);
 		}
 	}
 

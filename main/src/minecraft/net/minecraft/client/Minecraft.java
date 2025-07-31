@@ -69,6 +69,7 @@ import net.minecraft.client.renderer.ptexture.TextureCompassFX;
 import net.minecraft.client.renderer.ptexture.TextureFlamesFX;
 import net.minecraft.client.renderer.ptexture.TextureLavaFX;
 import net.minecraft.client.renderer.ptexture.TextureLavaFlowFX;
+import net.minecraft.client.renderer.ptexture.TexturePortalFX;
 import net.minecraft.client.renderer.ptexture.TextureWatchFX;
 import net.minecraft.client.renderer.ptexture.TextureWaterFX;
 import net.minecraft.client.renderer.ptexture.TextureWaterFlowFX;
@@ -305,6 +306,7 @@ public abstract class Minecraft implements Runnable {
 		this.renderEngine.registerTextureFX(new TextureLavaFlowFX());
 		this.renderEngine.registerTextureFX(new TextureFlamesFX(0));
 		this.renderEngine.registerTextureFX(new TextureFlamesFX(1));
+		this.renderEngine.registerTextureFX(new TexturePortalFX());
 		
 		// Custom texture atlas based animated textures
 		this.renderEngine.registerTextureFX(new TextureAnimatedFX(12*16+11, 0, "/animated/block_seaweed.png", 1));

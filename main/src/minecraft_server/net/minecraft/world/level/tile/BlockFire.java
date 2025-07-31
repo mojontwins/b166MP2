@@ -197,13 +197,11 @@ public class BlockFire extends Block {
 
 	public void onBlockAdded(World world1, int i2, int i3, int i4) {
 		// The commented part is what creates the portal.
-		/*
 		if(
 				!world1.worldProvider.canCreatePortalToTheNether() || 
 				world1.getBlockId(i2, i3 - 1, i4) != Block.obsidian.blockID || 
 				!Block.portal.tryToCreatePortal(world1, i2, i3, i4)
-		) */
-		{
+		) {
 			if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.canNeighborBurn(world1, i2, i3, i4)) {
 				world1.setBlockWithNotify(i2, i3, i4, 0);
 			} else {

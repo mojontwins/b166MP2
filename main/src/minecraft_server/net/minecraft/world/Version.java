@@ -3,7 +3,8 @@ package net.minecraft.world;
 public class Version {
 
 	public static String getVersion() {
-		return "a1.1.3";
+		//return "Beta 1.6.6";
+		return "Alpha 1.2.6";
 	}
 
 }

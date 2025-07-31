@@ -8,6 +8,7 @@ import net.minecraft.world.level.dimension.WorldProviderSkyClassic;
 import net.minecraft.world.level.levelgen.feature.WorldGenBigMushroom;
 import net.minecraft.world.level.levelgen.feature.WorldGenCactus;
 import net.minecraft.world.level.levelgen.feature.WorldGenClay;
+import net.minecraft.world.level.levelgen.feature.WorldGenDeadBush;
 import net.minecraft.world.level.levelgen.feature.WorldGenFlowers;
 import net.minecraft.world.level.levelgen.feature.WorldGenLiquids;
 import net.minecraft.world.level.levelgen.feature.WorldGenMinable;
@@ -181,14 +182,12 @@ public class BiomeDecorator {
 			worldGenerator6.generate(this.currentWorld, this.randomGenerator, i3, i4, i7);
 		}
 
-		/*
 		for(i2 = 0; i2 < this.deadBushPerChunk; ++i2) {
 			i3 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
 			i4 = this.randomGenerator.nextInt(this.maxTerrainHeight);
 			i7 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
 			(new WorldGenDeadBush(Block.deadBush.blockID)).generate(this.currentWorld, this.randomGenerator, i3, i4, i7);
 		}
-		*/
 
 		for(i2 = 0; i2 < this.waterlilyPerChunk; ++i2) {
 			i3 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;

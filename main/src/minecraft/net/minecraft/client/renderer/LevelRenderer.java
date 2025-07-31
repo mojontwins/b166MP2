@@ -31,6 +31,7 @@ import net.minecraft.client.particle.EntityHugeExplodeFX;
 import net.minecraft.client.particle.EntityLargeExplodeFX;
 import net.minecraft.client.particle.EntityLavaFX;
 import net.minecraft.client.particle.EntityNoteFX;
+import net.minecraft.client.particle.EntityPortalFX;
 import net.minecraft.client.particle.EntityReddustFX;
 import net.minecraft.client.particle.EntitySmokeFX;
 import net.minecraft.client.particle.EntitySnowShovelFX;
@@ -1454,9 +1455,11 @@ public class LevelRenderer implements IWorldAccess {
 					} else if(string1.equals("instantSpell")) {
 						object21 = new EntitySpellParticleFX(this.worldObj, d2, d4, d6, d8, d10, d12);
 						((EntitySpellParticleFX)object21).func_40110_b(144);
+					} else if(string1.equals("portal")) {
+						object21 = new EntityPortalFX(this.worldObj, d2, d4, d6, d8, d10, d12);
 					} else if(string1.equals("note")) {
 						object21 = new EntityNoteFX(this.worldObj, d2, d4, d6, d8, d10, d12);
-					}else if(string1.equals("enchantmenttable")) {
+					} else if(string1.equals("enchantmenttable")) {
 						object21 = new EntityEnchantmentTableParticleFX(this.worldObj, d2, d4, d6, d8, d10, d12);
 					} else if(string1.equals("explode")) {
 						object21 = new EntityExplodeFX(this.worldObj, d2, d4, d6, d8, d10, d12);

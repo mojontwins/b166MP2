@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.EntityPlayer;
 
 public class WorldInfo {
 	private long randomSeed;
-	private WorldType terrainType = WorldType.ALPHA;
+	private WorldType terrainType = WorldType.DEFAULT;
 	private int spawnX;
 	private int spawnY;
 	private int spawnZ;
@@ -48,7 +48,7 @@ public class WorldInfo {
 			this.terrainType = WorldType.parseWorldType(string2);
 			
 			if(this.terrainType == null) {
-				this.terrainType = WorldType.ALPHA;
+				this.terrainType = WorldType.DEFAULT;
 			} else if(this.terrainType.func_48626_e()) {
 				int i3 = 0;
 				if(nbt.hasKey("generatorVersion")) {
@@ -57,9 +57,7 @@ public class WorldInfo {
 
 				this.terrainType = this.terrainType.func_48629_a(i3);
 			}
-		} else if(this.snowCovered) {
-			this.terrainType = WorldType.ALPHA_SNOW;
-		}
+		} 
 
 		this.gameType = nbt.getInteger("GameType");
 		
