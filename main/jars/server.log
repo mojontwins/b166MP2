@@ -55,3 +55,57 @@
 2025-07-31 16:26:04 [INFO] Saving chunks
 2025-07-31 16:26:04 [INFO] Saving chunks
 2025-07-31 16:26:04 [INFO] Saving chunks
+2025-07-31 16:30:51 [INFO] Starting minecraft server version Alpha 1.2.6
+2025-07-31 16:30:51 [INFO] Loading properties
+2025-07-31 16:30:51 [INFO] Starting Minecraft server on *:25565
+2025-07-31 16:30:51 [INFO] Configured level type: DEFAULT
+2025-07-31 16:30:51 [INFO] Preparing level "world"
+2025-07-31 16:30:51 [INFO] Default game type: 0
+2025-07-31 16:30:51 [INFO] Preparing start region for level 0
+2025-07-31 16:30:52 [INFO] Preparing spawn area: 48%
+2025-07-31 16:30:53 [INFO] Done (1,872s)! For help, type "help" or "?"
+2025-07-31 16:31:29 [INFO] /127.0.0.1:64311 lost connection
+2025-07-31 16:31:31 [INFO] /127.0.0.1:64312 lost connection
+2025-07-31 16:33:47 [INFO] Stopping server
+2025-07-31 16:33:47 [INFO] Saving chunks
+2025-07-31 16:33:47 [INFO] Saving chunks
+2025-07-31 16:33:47 [INFO] Saving chunks
+2025-07-31 16:33:47 [INFO] Saving chunks
+2025-07-31 16:33:47 [INFO] Saving chunks
+2025-07-31 16:33:52 [INFO] Starting minecraft server version Alpha 1.2.6
+2025-07-31 16:33:52 [INFO] Loading properties
+2025-07-31 16:33:52 [INFO] Starting Minecraft server on *:25565
+2025-07-31 16:33:52 [INFO] Configured level type: DEFAULT
+2025-07-31 16:33:52 [INFO] Preparing level "world"
+2025-07-31 16:33:52 [INFO] Default game type: 0
+2025-07-31 16:33:52 [INFO] Preparing start region for level 0
+2025-07-31 16:33:53 [INFO] Preparing spawn area: 89%
+2025-07-31 16:33:53 [INFO] Done (1,221s)! For help, type "help" or "?"
+2025-07-31 16:33:57 [INFO] /127.0.0.1:64333 lost connection
+2025-07-31 16:36:17 [INFO] Stopping server
+2025-07-31 16:36:17 [INFO] Saving chunks
+2025-07-31 16:36:17 [INFO] Saving chunks
+2025-07-31 16:36:17 [INFO] Saving chunks
+2025-07-31 16:36:18 [INFO] Saving chunks
+2025-07-31 16:36:18 [INFO] Saving chunks
+2025-07-31 16:36:22 [INFO] Starting minecraft server version Alpha 1.2.6
+2025-07-31 16:36:23 [INFO] Loading properties
+2025-07-31 16:36:23 [INFO] Starting Minecraft server on *:25565
+2025-07-31 16:36:23 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-07-31 16:36:23 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-07-31 16:36:23 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-07-31 16:36:23 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-07-31 16:36:23 [INFO] Configured level type: DEFAULT
+2025-07-31 16:36:23 [INFO] Preparing level "world"
+2025-07-31 16:36:23 [INFO] Default game type: 0
+2025-07-31 16:36:23 [INFO] Preparing start region for level 0
+2025-07-31 16:36:24 [INFO] Preparing spawn area: 89%
+2025-07-31 16:36:24 [INFO] Done (1,208s)! For help, type "help" or "?"
+2025-07-31 16:36:26 [INFO] Popoch [/127.0.0.1:64392] logged in with entity id 86 at (3.5, 64.62000000476837, -23.5)
+2025-07-31 16:36:51 [INFO] Popoch lost connection: disconnect.genericReason
+2025-07-31 16:36:52 [INFO] Stopping server
+2025-07-31 16:36:52 [INFO] Saving chunks
+2025-07-31 16:36:53 [INFO] Saving chunks
+2025-07-31 16:36:53 [INFO] Saving chunks
+2025-07-31 16:36:53 [INFO] Saving chunks
+2025-07-31 16:36:53 [INFO] Saving chunks
