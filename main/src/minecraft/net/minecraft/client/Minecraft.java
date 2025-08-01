@@ -171,7 +171,6 @@ public abstract class Minecraft implements Runnable {
 	
 	public ZanMinimap zanMinimap;
 
-	@SuppressWarnings("deprecation")
 	public Minecraft(Component component1, Canvas canvas2, MinecraftApplet minecraftApplet3, int i4, int i5, boolean z6) {
 		this.tempDisplayHeight = i5;
 		this.fullscreen = z6;
@@ -548,7 +547,6 @@ public abstract class Minecraft implements Runnable {
 
 	}
 
-	@SuppressWarnings("deprecation")
 	private void runGameLoop() {
 		if(this.mcApplet != null && !this.mcApplet.isActive()) {
 			this.running = false;

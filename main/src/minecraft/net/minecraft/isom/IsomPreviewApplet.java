@@ -3,7 +3,6 @@ package net.minecraft.isom;
 import java.applet.Applet;
 import java.awt.BorderLayout;
 
-@SuppressWarnings("deprecation")
 public class IsomPreviewApplet extends Applet {
 	/**
 	 * 
