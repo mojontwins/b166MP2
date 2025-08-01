@@ -23,3 +23,12 @@
 * Zombie pigmen
 
 ## THE FUCKING NETHER
+
+* But only client-side
+
+# b1.0
+
+## THE FUCKING NETHER
+
+* This time, server side!
+
