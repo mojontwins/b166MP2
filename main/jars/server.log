@@ -339,3 +339,76 @@ java.lang.ArrayIndexOutOfBoundsException: -1
 2025-08-01 12:10:26 [INFO] Popoch issued server command: gamemode 1
 2025-08-01 12:14:38 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
 2025-08-01 12:15:56 [INFO] Popoch lost connection: disconnect.quitting
+2025-08-01 12:21:26 [INFO] Starting minecraft server version Alpha 1.2.6
+2025-08-01 12:21:26 [INFO] Loading properties
+2025-08-01 12:21:26 [INFO] Starting Minecraft server on *:25565
+2025-08-01 12:21:26 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-01 12:21:26 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-01 12:21:26 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-01 12:21:26 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-01 12:21:26 [INFO] Configured level type: DEFAULT
+2025-08-01 12:21:26 [INFO] Preparing level "world"
+2025-08-01 12:21:26 [INFO] Default game type: 0
+2025-08-01 12:21:27 [INFO] Preparing start region for level 0
+2025-08-01 12:21:28 [INFO] Preparing spawn area: 28%
+2025-08-01 12:21:29 [INFO] Preparing spawn area: 73%
+2025-08-01 12:21:29 [INFO] Preparing start region for level 1
+2025-08-01 12:21:30 [INFO] Preparing spawn area: 3%
+2025-08-01 12:21:31 [INFO] Preparing spawn area: 4%
+2025-08-01 12:21:32 [INFO] Preparing spawn area: 32%
+2025-08-01 12:21:33 [INFO] Preparing spawn area: 77%
+2025-08-01 12:21:34 [INFO] Preparing spawn area: 93%
+2025-08-01 12:21:35 [INFO] Preparing spawn area: 97%
+2025-08-01 12:21:35 [INFO] Done (8,612s)! For help, type "help" or "?"
+2025-08-01 12:21:54 [INFO] Popoch [/127.0.0.1:59808] logged in with entity id 311 at (1187.0811432616092, 37.369061863667106, -737.2886420877753)
+2025-08-01 12:22:19 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-01 12:30:57 [INFO] Popoch [/127.0.0.1:59975] logged in with entity id 508 at (1176.33717278415, 37.369061863667106, -711.1096690133012)
+2025-08-01 12:31:01 [INFO] Popoch lost connection: disconnect.quitting
+2025-08-01 12:31:04 [INFO] Stopping server
+2025-08-01 12:31:04 [INFO] Saving chunks
+2025-08-01 12:31:05 [INFO] Saving chunks
+2025-08-01 12:31:05 [INFO] Saving chunks
+2025-08-01 12:31:05 [INFO] Saving chunks
+2025-08-01 12:31:05 [INFO] Saving chunks
+2025-08-01 12:32:27 [INFO] Starting minecraft server version Alpha 1.2.6
+2025-08-01 12:32:27 [INFO] Loading properties
+2025-08-01 12:32:27 [INFO] Starting Minecraft server on *:25565
+2025-08-01 12:32:27 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-01 12:32:27 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-01 12:32:27 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-01 12:32:27 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-01 12:32:27 [INFO] Configured level type: DEFAULT
+2025-08-01 12:32:27 [INFO] Preparing level "world"
+2025-08-01 12:32:27 [INFO] Default game type: 0
+2025-08-01 12:32:27 [INFO] Preparing start region for level 0
+2025-08-01 12:32:28 [INFO] Preparing spawn area: 48%
+2025-08-01 12:32:29 [INFO] Preparing start region for level 1
+2025-08-01 12:32:29 [INFO] Preparing spawn area: 0%
+2025-08-01 12:32:30 [INFO] Preparing spawn area: 4%
+2025-08-01 12:32:32 [INFO] Preparing spawn area: 8%
+2025-08-01 12:32:33 [INFO] Preparing spawn area: 12%
+2025-08-01 12:32:34 [INFO] Preparing spawn area: 16%
+2025-08-01 12:32:35 [INFO] Preparing spawn area: 20%
+2025-08-01 12:32:36 [INFO] Preparing spawn area: 24%
+2025-08-01 12:32:37 [INFO] Preparing spawn area: 28%
+2025-08-01 12:32:38 [INFO] Preparing spawn area: 28%
+2025-08-01 12:32:39 [INFO] Preparing spawn area: 32%
+2025-08-01 12:32:40 [INFO] Preparing spawn area: 36%
+2025-08-01 12:32:41 [INFO] Preparing spawn area: 40%
+2025-08-01 12:32:42 [INFO] Preparing spawn area: 44%
+2025-08-01 12:32:43 [INFO] Preparing spawn area: 48%
+2025-08-01 12:32:44 [INFO] Preparing spawn area: 52%
+2025-08-01 12:32:45 [INFO] Preparing spawn area: 57%
+2025-08-01 12:32:46 [INFO] Preparing spawn area: 65%
+2025-08-01 12:32:47 [INFO] Preparing spawn area: 69%
+2025-08-01 12:32:48 [INFO] Preparing spawn area: 73%
+2025-08-01 12:32:49 [INFO] Preparing spawn area: 73%
+2025-08-01 12:32:51 [INFO] Preparing spawn area: 77%
+2025-08-01 12:32:52 [INFO] Preparing spawn area: 81%
+2025-08-01 12:32:53 [INFO] Preparing spawn area: 89%
+2025-08-01 12:32:54 [INFO] Preparing spawn area: 97%
+2025-08-01 12:32:54 [INFO] Done (27,136s)! For help, type "help" or "?"
+2025-08-01 12:32:55 [INFO] /127.0.0.1:60000 lost connection
+2025-08-01 12:32:55 [INFO] /127.0.0.1:60001 lost connection
+2025-08-01 12:32:58 [INFO] Popoch [/127.0.0.1:60017] logged in with entity id 259 at (1176.33717278415, 37.369061863667106, -711.1096690133012)
+2025-08-01 12:39:48 [INFO] Popoch lost connection: disconnect.genericReason

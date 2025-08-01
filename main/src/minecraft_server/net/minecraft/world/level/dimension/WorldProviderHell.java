@@ -13,6 +13,7 @@ public class WorldProviderHell extends WorldProvider {
 		this.worldChunkMgr = new WorldChunkManagerHellWithBiomes(this.worldObj);
 		this.isHellWorld = true;
 		this.hasNoSky = true;
+		this.isCaveWorld = true;
 		this.worldType = -1;
 	}
 
