@@ -24,6 +24,7 @@ import net.minecraft.server.player.PlayerManager;
 import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.level.chunk.ChunkCoordinates;
 import net.minecraft.world.level.chunk.storage.ISaveHandler;
+import net.minecraft.world.level.dimension.Teleporter;
 import net.minecraft.world.level.tile.entity.TileEntity;
 
 public class ServerConfigurationManager implements IServerConfigManager {
@@ -211,8 +212,17 @@ public class ServerConfigurationManager implements IServerConfigManager {
 		entityPlayerMP5.itemInWorldManager.setGameMode(worldServer6.getWorldInfo().getGameType());
 		
 		if(chunkCoordinates4 != null) {
-			entityPlayerMP5.playerNetServerHandler.sendPacket(new Packet70GameEvent(0, 0));
-			
+			/*
+			ChunkCoordinates chunkCoordinates7 = EntityPlayer.verifyRespawnCoordinates(this.mcServer.getWorldManager(entityPlayerMP1.dimension), chunkCoordinates4);
+			if(chunkCoordinates7 != null) {
+				entityPlayerMP5.setLocationAndAngles((double)((float)chunkCoordinates7.posX + 0.5F), (double)((float)chunkCoordinates7.posY + 0.1F), (double)((float)chunkCoordinates7.posZ + 0.5F), 0.0F, 0.0F);
+				entityPlayerMP5.setSpawnChunk(chunkCoordinates4);
+				
+				// Also set spawn dimension!
+				entityPlayerMP5.setSpawnDimension(spawnDimension);
+			} else*/ {
+				entityPlayerMP5.playerNetServerHandler.sendPacket(new Packet70GameEvent(0, 0));
+			}
 		}
 
 		worldServer6.chunkProviderServer.loadChunk((int)entityPlayerMP5.posX >> 4, (int)entityPlayerMP5.posZ >> 4);
@@ -267,9 +277,9 @@ public class ServerConfigurationManager implements IServerConfigManager {
 		// Remove player from old worldmanager
 		worldFrom.removePlayer(entityPlayerMP1);
 		entityPlayerMP1.isDead = false;
-System.out.println ("Attempt " + dimensionFrom + " to " + dimensionTo);
+
 		// Get current position in old world
-		/*
+
 		double x = entityPlayerMP1.posX;
 		double y = entityPlayerMP1.posY;
 		double z = entityPlayerMP1.posZ;
@@ -317,7 +327,7 @@ System.out.println ("Attempt " + dimensionFrom + " to " + dimensionTo);
 			teleporter.placeInPortal(worldTo, entityPlayerMP1);
 			worldTo.chunkProviderServer.chunkLoadOverride = false;
 		}
-		*/
+
 		this.joinNewPlayerManager(entityPlayerMP1);
 		entityPlayerMP1.playerNetServerHandler.teleportTo(entityPlayerMP1.posX, entityPlayerMP1.posY, entityPlayerMP1.posZ, entityPlayerMP1.rotationYaw, entityPlayerMP1.rotationPitch);
 		entityPlayerMP1.setWorld(worldTo);

@@ -412,3 +412,28 @@ java.lang.ArrayIndexOutOfBoundsException: -1
 2025-08-01 12:32:55 [INFO] /127.0.0.1:60001 lost connection
 2025-08-01 12:32:58 [INFO] Popoch [/127.0.0.1:60017] logged in with entity id 259 at (1176.33717278415, 37.369061863667106, -711.1096690133012)
 2025-08-01 12:39:48 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-01 17:11:59 [INFO] Starting minecraft server version Alpha 1.2.6
+2025-08-01 17:11:59 [INFO] Loading properties
+2025-08-01 17:11:59 [INFO] Starting Minecraft server on *:25565
+2025-08-01 17:11:59 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-01 17:11:59 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-01 17:11:59 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-01 17:11:59 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-01 17:11:59 [INFO] Configured level type: DEFAULT
+2025-08-01 17:11:59 [INFO] Preparing level "world"
+2025-08-01 17:11:59 [INFO] Default game type: 0
+2025-08-01 17:11:59 [INFO] Preparing start region for level 0
+2025-08-01 17:12:00 [INFO] Preparing spawn area: 48%
+2025-08-01 17:12:01 [INFO] Preparing start region for level 1
+2025-08-01 17:12:01 [INFO] Preparing spawn area: 44%
+2025-08-01 17:12:02 [INFO] Done (2,863s)! For help, type "help" or "?"
+2025-08-01 17:12:09 [INFO] /127.0.0.1:64107 lost connection
+2025-08-01 17:12:24 [INFO] Popoch [/127.0.0.1:64141] logged in with entity id 324 at (1157.6123624895315, 39.08079961153159, -803.3356238403998)
+2025-08-01 17:13:44 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2025-08-01 17:14:18 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-01 17:14:18 [INFO] Stopping server
+2025-08-01 17:14:18 [INFO] Saving chunks
+2025-08-01 17:14:19 [INFO] Saving chunks
+2025-08-01 17:14:19 [INFO] Saving chunks
+2025-08-01 17:14:19 [INFO] Saving chunks
+2025-08-01 17:14:19 [INFO] Saving chunks

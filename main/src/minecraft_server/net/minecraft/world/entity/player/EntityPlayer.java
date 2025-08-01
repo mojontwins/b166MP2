@@ -952,7 +952,7 @@ public abstract class EntityPlayer extends EntityLiving {
 		return this.worldObj.getBlockId(this.playerLocation.posX, this.playerLocation.posY, this.playerLocation.posZ) == Block.bed.blockID;
 	}
 	*/
-
+	
 	/*
 	public static ChunkCoordinates verifyRespawnCoordinates(World world0, ChunkCoordinates chunkCoordinates1) {
 		IChunkProvider iChunkProvider2 = world0.getChunkProvider();

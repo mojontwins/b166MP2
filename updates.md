@@ -54,5 +54,5 @@ java.io.IOException: Received string length longer than maximum allowed (17 > 16
 	* Problem is in the string telling the world type, expected 16 bytes, got 17 bytes.
 	* Problem was that for some reason worldtype.toString included "WorldType " prepended.
 
-	* [ ] When being teleported player is not being placed correctly in the portal.
-	Check if this was just a glitch or if it happens always. - There's defintely something terribly wrong with the teleporter or the location you are moved to.
+	* [X] When being teleported player is not being placed correctly in the portal.
+	Check if this was just a glitch or if it happens always. - There's defintely something terribly wrong with the teleporter or the location you are moved to. -- Solved. The teleporter creation code was commented out in `ServerConfigurationManager.java`
