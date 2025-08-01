@@ -80,7 +80,6 @@ public class ShapedRecipes implements IRecipe {
 				}
 			}
 		}
-		
 		return true;
 	}
 

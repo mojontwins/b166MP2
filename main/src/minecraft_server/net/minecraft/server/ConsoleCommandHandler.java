@@ -301,13 +301,16 @@ public class ConsoleCommandHandler implements ICommandSender {
 				this.commandListener.log("Toggling rain and snow, hold on...");
 				
 			} */else {
+				int res = CommandBase.NOT_FOUND;
+				
 				thePlayerMP = serverConfigurationManager.getPlayerEntity(username);
-				worldServer = this.minecraftServer.worldMngr[thePlayerMP.dimension];
-				
-				CommandProcessor.withCommandSender(this);
-				CommandProcessor.withServerConfigManager(serverConfigurationManager);
-				int res = CommandProcessor.executeCommand("/" + commandLine, worldServer, null, thePlayerMP, thePlayerMP.getPlayerCoordinates());
-				
+				if(thePlayerMP != null) {
+					worldServer = this.minecraftServer.getWorldManager(thePlayerMP.dimension);
+					
+					CommandProcessor.withCommandSender(this);
+					CommandProcessor.withServerConfigManager(serverConfigurationManager);
+					res = CommandProcessor.executeCommand("/" + commandLine, worldServer, null, thePlayerMP, thePlayerMP.getPlayerCoordinates());
+				}
 				if(res == CommandBase.NOT_FOUND) this.commandListener.log("Unknown console command. Type \"help\" for help.");
 			}
 		} else {

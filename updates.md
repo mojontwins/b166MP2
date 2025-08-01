@@ -26,9 +26,34 @@
 
 * But only client-side
 
+## Before you go
+
+* Fix textures for iron, gold, diamond blocks.
+* Fix GUI textures i.e. ping for network etc.
+
 # b1.0
 
 ## THE FUCKING NETHER
 
-* This time, server side!
+* This time, server side! 
+	* [X] I'm lighting the portal, but I can't see portal blocks in the portal.
+		Problem was advanced OpenGL ! I'm on mondernest Intel. Check elsewhere.
+	* [X] Crash on teleport
+		* Player was moved 0->-1, but no portal was created or maybe x/z were not changed.
+		* Fails reading data in  `Packet9Respawn`:
+```
+java.io.IOException: Received string length longer than maximum allowed (17 > 16)
+	at net.minecraft.network.packet.Packet.readString(Packet.java:118)
+	at net.minecraft.network.packet.Packet9Respawn.readPacketData(Packet9Respawn.java:37)
+	at net.minecraft.network.packet.Packet.readPacket(Packet.java:85)
+	at net.minecraft.network.NetworkManager.readPacket(NetworkManager.java:146)
+	at net.minecraft.network.NetworkManager.readNetworkPacket(NetworkManager.java:261)
+	at net.minecraft.network.NetworkReaderThread.run(NetworkReaderThread.java:32)
+```
 
+	* Problem is in the string telling the world type, expected 16 bytes, got 17 bytes.
+	* Problem was that for some reason worldtype.toString included "WorldType " prepended.
+
+	* [ ] When being teleported player is not being placed correctly in the portal.
+	Check if this was just a glitch or if it happens always.
+	* [ ] Next attempt - spawned in the middle of LAVA. WTF. Need to compare with MP125

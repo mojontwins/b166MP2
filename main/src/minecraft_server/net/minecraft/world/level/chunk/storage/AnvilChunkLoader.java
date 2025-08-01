@@ -182,7 +182,7 @@ public class AnvilChunkLoader implements IThreadedFileIO, IChunkLoader {
 				nbtSection.setByteArray("Blocks", ebs.getBlockLSBArray());
 				if(ebs.getBlockMSBArray() != null) {
 					nbtSection.setByteArray("Add", ebs.getBlockMSBArray().data);
-			}
+				}
 
 				// Save metadata. TODO: expand to 8 bit
 				nbtSection.setByteArray("Data", ebs.getMetadataArray().data);
@@ -192,7 +192,7 @@ public class AnvilChunkLoader implements IThreadedFileIO, IChunkLoader {
 				nbtSection.setByteArray("BlockLight", ebs.getBlocklightArray().data);
 
 				nbtSections.appendTag(nbtSection);
-		}
+			}
 		}
 
 		nbt.setTag("Sections", nbtSections);

@@ -256,7 +256,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 		short radius = 196;
 		long prevTime = System.currentTimeMillis();
 
-		for(int dimension = 0; dimension < 1; ++dimension) {
+		for(int dimension = 0; dimension < 2; ++dimension) {
 			logger.info("Preparing start region for level " + dimension);
 			WorldServer worldServer = this.worldMngr[dimension];
 			ChunkCoordinates spawnCoords = worldServer.getSpawnPoint();

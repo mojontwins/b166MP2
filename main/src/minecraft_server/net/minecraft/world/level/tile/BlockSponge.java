@@ -22,36 +22,35 @@ public class BlockSponge extends Block {
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
 		super.onBlockAdded(world, x, y, z);
-
+		
 		this.clearRadiusMinusOneSection(world, x, y, z);
-		}
-
+	}
+	
 	@Override
 	public void onBlockRemoval(World world, int x, int y, int z) {
 		this.tryAndRecoverRadiusSection(world, x, y, z);
 	}
-
+	
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		this.clearRadiusMinusOneSection(world, x, y, z);
-		}
-
+	}
+	
 	private void clearRadiusMinusOneSection(World world, int x, int y, int z) {
 		int mincoverage = radius - 1;
-
+		
 		for(int xx = x - mincoverage; xx <= x + mincoverage; ++xx) {
 			for(int yy = y - mincoverage; yy <= y + mincoverage; ++yy) {
 				for(int zz = z - mincoverage; zz <= z + mincoverage; ++zz) {
 					if (world.getBlockId(xx, yy, zz) == Block.waterMoving.blockID || 
 							world.getBlockId(xx, yy, zz) == Block.waterStill.blockID) {
 						world.setBlockAndMetadataWithNotify(xx, yy, zz, 0, 0xf);
-		}
-	}
-		}
-
-	}
+					}
+				}
 			}
-
+		}
+	}
+	
 	private void tryAndRecoverRadiusSection(World world, int x, int y, int z) {
 		for(int xx = x - radius; xx <= x + radius; ++xx) {
 			for(int yy = y + radius; yy > y - radius; --yy) {
@@ -62,13 +61,13 @@ public class BlockSponge extends Block {
 							world.setBlockWithNotify(xx, yy, zz, Block.waterStill.blockID);
 						} else if(meta == 15 && world.getBlockId(xx, yy, zz) == 0) {
 							world.setBlockWithNotify(xx, yy, zz, Block.waterStill.blockID);
-			}
-			}
+						}
 					}
 				}
 			}
 		}
-
+	}
+	
 	private boolean spongeNear(World world, int x, int y, int z) {
 		int mincoverage = radius - 1;
 		for(int x1 = x - mincoverage; x1 <= x + mincoverage; ++x1) {

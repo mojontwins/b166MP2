@@ -11,7 +11,7 @@ public class ItemFood extends Item {
 	private final float saturationModifier;
 	private final boolean isWolfsFavoriteMeat;
 	private boolean alwaysEdible;
-	
+
 	public ItemFood(int i1, int i2, float f3, boolean z4) {
 		super(i1);
 		this.healAmount = i2;

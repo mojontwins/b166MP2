@@ -9,7 +9,7 @@ import net.minecraft.network.NetHandler;
 public class Packet3Chat extends Packet {
 	public static int maxStringLength = 256;
 	public String message;
-	
+
 	public boolean mouseValid;
 	public int mouseX, mouseY, mouseZ;
 
@@ -32,7 +32,7 @@ public class Packet3Chat extends Packet {
 		this.mouseY = mouseY;
 		this.mouseZ = mouseZ;
 	}
-	
+
 	public void readPacketData(DataInputStream dataInputStream1) throws IOException {
 		this.message = readString(dataInputStream1, maxStringLength);
 		

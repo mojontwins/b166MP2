@@ -10,7 +10,7 @@ public class Packet70GameEvent extends Packet {
 	public static final String[] bedChat = new String[]{"tile.bed.notValid", null, null, "gameMode.changed"};
 	public int bedState;
 	public int gameMode;
-	
+
 	public boolean raining;
 	public boolean snowing;
 	public boolean thundering;

@@ -59,7 +59,7 @@ public class WorldGenLakes extends WorldGenerator {
 		// Check if we can set a new pool:
 
 		int x, y, z;
-			boolean z33;
+		boolean z33;
 		for(x = 0; x < 16; ++x) {
 			for(z = 0; z < 16; ++z) {
 				for(y = 0; y < 8; ++y) {
@@ -77,19 +77,19 @@ public class WorldGenLakes extends WorldGenerator {
 						// OR liquid beneath
 						y > 0 && liquid[(x * 16 + z) * 8 + (y - 1)]);
 					
-						if(z33) {
-					Material material12 = world.getBlockMaterial(x0 + x, y0 + y, z0 + z);
-					if(y >= 4 && material12.isLiquid()) {
-								return false;
-							}
+					if(z33) {
+						Material material12 = world.getBlockMaterial(x0 + x, y0 + y, z0 + z);
+						if(y >= 4 && material12.isLiquid()) {
+							return false;
+						}
 
-					if(y < 4 && !material12.isSolid() && world.getBlockId(x0 + x, y0 + y, z0 + z) != this.blockIndex) {
-								return false;
-							}
+						if(y < 4 && !material12.isSolid() && world.getBlockId(x0 + x, y0 + y, z0 + z) != this.blockIndex) {
+							return false;
 						}
 					}
 				}
 			}
+		}
 
 		// Draw pool
 
@@ -98,10 +98,10 @@ public class WorldGenLakes extends WorldGenerator {
 				for(y = 0; y < 8; ++y) {
 					if(liquid[(x * 16 + z) * 8 + y]) {
 						world.setBlock(x0 + x, y0 + y, z0 + z, y >= 4 ? 0 : this.blockIndex);
-						}
 					}
 				}
 			}
+		}
 
 		// Add grass
 
@@ -110,36 +110,36 @@ public class WorldGenLakes extends WorldGenerator {
 				for(y = 4; y < 8; ++y) {
 					if(liquid[(x * 16 + z) * 8 + y] && world.getBlockId(x0 + x, y0 + y - 1, z0 + z) == Block.dirt.blockID && world.getSavedLightValue(EnumSkyBlock.Sky, x0 + x, y0 + y, z0 + z) > 0) {
 						world.setBlock(x0 + x, y0 + y - 1, z0 + z, Block.grass.blockID);
-						}
 					}
 				}
 			}
+		}
 
-			if(Block.blocksList[this.blockIndex].blockMaterial == Material.lava) {
+		if(Block.blocksList[this.blockIndex].blockMaterial == Material.lava) {
 			for(x = 0; x < 16; ++x) {
 				for(z = 0; z < 16; ++z) {
 					for(y = 0; y < 8; ++y) {
 						z33 = !liquid[(x * 16 + z) * 8 + y] && (x < 15 && liquid[((x + 1) * 16 + z) * 8 + y] || x > 0 && liquid[((x - 1) * 16 + z) * 8 + y] || z < 15 && liquid[(x * 16 + z + 1) * 8 + y] || z > 0 && liquid[(x * 16 + (z - 1)) * 8 + y] || y < 7 && liquid[(x * 16 + z) * 8 + y + 1] || y > 0 && liquid[(x * 16 + z) * 8 + (y - 1)]);
 						if(z33 && (y < 4 || rand.nextInt(2) != 0) && world.getBlockMaterial(x0 + x, y0 + y, z0 + z).isSolid()) {
 							world.setBlock(x0 + x, y0 + y, z0 + z, Block.stone.blockID);
-							}
 						}
 					}
 				}
 			}
+		}
 
-			if(Block.blocksList[this.blockIndex].blockMaterial == Material.water) {
+		if(Block.blocksList[this.blockIndex].blockMaterial == Material.water) {
 			for(x = 0; x < 16; ++x) {
 				for(z = 0; z < 16; ++z) {
 					BiomeGenBase biomeGen = world.getBiomeGenForCoords(x, z);
-						byte b35 = 4;
+					byte b35 = 4;
 					if(world.canFreezeWaterDirectly(x0 + x, y0 + b35, z0 + z, biomeGen)) {
 						world.setBlock(x0 + x, y0 + b35, z0 + z, Block.ice.blockID);
-						}
 					}
 				}
 			}
+		}
 
-			return true;
+		return true;
 	}
 }

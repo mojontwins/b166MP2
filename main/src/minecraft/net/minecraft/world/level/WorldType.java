@@ -124,7 +124,7 @@ public class WorldType {
 	}
 	
 	public String toString() {
-		return "WorldType " + this.worldType;
+		return /*"WorldType " + */this.worldType;
 	}
 	
 	public WorldChunkManager getChunkManager(World world) {

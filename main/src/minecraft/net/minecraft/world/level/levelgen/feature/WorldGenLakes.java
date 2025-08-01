@@ -78,12 +78,12 @@ public class WorldGenLakes extends WorldGenerator {
 						y > 0 && liquid[(x * 16 + z) * 8 + (y - 1)]);
 					
 					if(z33) {
-					Material material12 = world.getBlockMaterial(x0 + x, y0 + y, z0 + z);
-					if(y >= 4 && material12.isLiquid()) {
+						Material material12 = world.getBlockMaterial(x0 + x, y0 + y, z0 + z);
+						if(y >= 4 && material12.isLiquid()) {
 							return false;
 						}
 
-					if(y < 4 && !material12.isSolid() && world.getBlockId(x0 + x, y0 + y, z0 + z) != this.blockIndex) {
+						if(y < 4 && !material12.isSolid() && world.getBlockId(x0 + x, y0 + y, z0 + z) != this.blockIndex) {
 							return false;
 						}
 					}
@@ -140,6 +140,6 @@ public class WorldGenLakes extends WorldGenerator {
 			}
 		}
 
-		return true;		
+		return true;
 	}
 }
