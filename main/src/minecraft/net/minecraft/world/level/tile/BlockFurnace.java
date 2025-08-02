@@ -64,7 +64,7 @@ public class BlockFurnace extends BlockContainer {
 
 	public int getBlockTexture(IBlockAccess iBlockAccess1, int i2, int i3, int i4, int i5) {
 		if(i5 < 2) {
-			return 1;
+			return 17;
 		} else {
 			int i6 = iBlockAccess1.getBlockMetadata(i2, i3, i4);
 			return i5 != i6 ? this.blockIndexInTexture : (this.isActive ? this.blockIndexInTexture + 16 : this.blockIndexInTexture - 1);

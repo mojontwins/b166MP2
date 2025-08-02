@@ -166,7 +166,7 @@ public class Block implements ITextureProvider {
 	public static final Block stairsBrick = (new BlockStairs(108, brick)).setBlockName("stairsBrick").setRequiresSelfNotify();
 	// 109 
 	// 110
-	public static final Block waterlily = (new BlockLilypad(111, 60)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("waterlily");
+	public static final Block waterlily = (new BlockLilypad(111, 76)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("waterlily");
 	// 112
 	// 113
 	// 114

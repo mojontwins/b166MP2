@@ -194,9 +194,6 @@ public class World implements IBlockAccess {
 		worldProvider2.registerWorld(this);
 		this.chunkProvider = this.createChunkProvider();
 		
-		Seasons.dayOfTheYear = this.rand.nextInt(4 * Seasons.SEASON_DURATION);
-		Seasons.updateSeasonCounters();
-
 		this.calculateInitialSkylight();
 		this.calculateInitialWeather();
 		Seasons.seasonsAreOn(this.worldInfo.isEnableSeasons());

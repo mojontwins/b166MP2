@@ -27,6 +27,7 @@ import net.minecraft.world.inventory.InventoryPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Seasons;
+import net.minecraft.world.level.biome.BiomeGenBase;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.tile.Block;
 
@@ -373,7 +374,8 @@ public class GuiIngame extends Gui {
 			}
 			
 			if(this.mc.theWorld != null && this.mc.theWorld.blockExists(x, y, z)) {
-				string21 = "Biome: " + this.mc.theWorld.getBiomeGenForCoords(x, z).biomeName;
+				BiomeGenBase biome = this.mc.theWorld.getBiomeGenForCoords(x, z);
+				string21 = "Biome: " + biome.biomeName + " (" + biome.weather.name + ")";
 				this.drawString(fontRenderer8, string21, i6 - fontRenderer8.getStringWidth(string21) - 2, 42, 14737632);
 			}
 			
