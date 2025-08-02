@@ -106,7 +106,7 @@ public class Item implements ITextureProvider {
 	public static Item bucketMilk = (new ItemBucketMilk(79)).setIconCoord(13, 4).setItemName("milk").setContainerItem(bucketEmpty);
 	public static Item brick = (new Item(80)).setIconCoord(6, 1).setItemName("brick").setCreativeTab(CreativeTabs.tabMaterials);
 	public static Item clay = (new Item(81)).setIconCoord(9, 3).setItemName("clay").setCreativeTab(CreativeTabs.tabMaterials);
-	public static Item reed = (new ItemReed(82, Block.reed)).setIconCoord(11, 1).setItemName("reeds").setCreativeTab(CreativeTabs.tabMaterials);
+	public static Item reed = (new ItemPlacesBlock(82, Block.reed)).setIconCoord(11, 1).setItemName("reeds").setCreativeTab(CreativeTabs.tabMaterials);
 	public static Item paper = (new Item(83)).setIconCoord(10, 3).setItemName("paper").setCreativeTab(CreativeTabs.tabMisc);
 	public static Item book = (new Item(84)).setIconCoord(11, 3).setItemName("book").setCreativeTab(CreativeTabs.tabMisc);
 	public static Item slimeBall = (new Item(85)).setIconCoord(14, 1).setItemName("slimeball").setCreativeTab(CreativeTabs.tabMisc);
@@ -124,7 +124,9 @@ public class Item implements ITextureProvider {
 	public static Item dyePowder = (new ItemDye(95)).setIconCoord(14, 4).setItemName("dyePowder");
 	public static Item bone = (new Item(96)).setIconCoord(12, 1).setItemName("bone").setFull3D().setCreativeTab(CreativeTabs.tabMisc);
 	public static Item sugar = (new Item(97)).setIconCoord(13, 0).setItemName("sugar").setCreativeTab(CreativeTabs.tabMaterials);
-	public static Item redstoneRepeater = (new ItemReed(100, Block.redstoneRepeaterIdle)).setIconCoord(6, 5).setItemName("diode").setCreativeTab(CreativeTabs.tabRedstone);
+	public static Item cake = (new ItemPlacesBlock(98, Block.cake)).setMaxStackSize(1).setIconCoord(13, 1).setItemName("cake").setCreativeTab(CreativeTabs.tabFood);
+	
+	public static Item redstoneRepeater = (new ItemPlacesBlock(100, Block.redstoneRepeaterIdle)).setIconCoord(6, 5).setItemName("diode").setCreativeTab(CreativeTabs.tabRedstone);
 	public static Item cookie = (new ItemFood(101, 1, 0.1F, false)).setIconCoord(12, 5).setItemName("cookie");
 	public static ItemShears shears = (ItemShears)(new ItemShears(103)).setIconCoord(13, 5).setItemName("shears");
 	public static Item melon = (new ItemFood(104, 2, 0.3F, false)).setIconCoord(13, 6).setItemName("melon");

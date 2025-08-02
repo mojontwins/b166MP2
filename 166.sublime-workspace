@@ -26,6 +26,15 @@
 				"buffer_size": 19147,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "important.md",
+			"settings":
+			{
+				"buffer_size": 206,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
 		}
 	],
 	"build_system": "",
@@ -76,7 +85,7 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Lair/cosas/mc/1.6.6"
+		"/D/cosas/b166MP2"
 	],
 	"file_history":
 	[
@@ -211,7 +220,7 @@
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 24.0
 	},
 	"find_in_files":
 	{
@@ -473,7 +482,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -505,7 +514,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -537,6 +546,34 @@
 						"translation.y": 6782.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "important.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 206,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								89,
+								89
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 0,
 					"type": "text"
 				}
@@ -550,7 +587,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 22.0
+		"height": 24.0
 	},
 	"input":
 	{
@@ -602,7 +639,7 @@
 	"project": "166.sublime-project",
 	"replace":
 	{
-		"height": 72.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -640,7 +677,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 394.0,
+	"side_bar_width": 177.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

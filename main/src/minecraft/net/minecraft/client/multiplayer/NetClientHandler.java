@@ -113,6 +113,7 @@ import net.minecraft.world.level.chunk.ChunkCoordinates;
 import net.minecraft.world.level.dimension.WorldProviderSurface;
 import net.minecraft.world.level.tile.Block;
 import net.minecraft.world.level.tile.entity.TileEntity;
+import net.minecraft.world.level.tile.entity.TileEntityDispenser;
 import net.minecraft.world.level.tile.entity.TileEntityFurnace;
 import net.minecraft.world.level.tile.entity.TileEntityMobSpawner;
 import net.minecraft.world.level.tile.entity.TileEntitySign;
@@ -766,7 +767,10 @@ public class NetClientHandler extends NetHandler {
 			entityPlayerSP2.displayGUIFurnace(new TileEntityFurnace());
 			entityPlayerSP2.craftingInventory.windowId = packet100OpenWindow1.windowId;
 			break;
-		
+		case 3:
+			entityPlayerSP2.displayGUIDispenser(new TileEntityDispenser());
+			entityPlayerSP2.craftingInventory.windowId = packet100OpenWindow1.windowId;
+			break;
 		}
 
 	}

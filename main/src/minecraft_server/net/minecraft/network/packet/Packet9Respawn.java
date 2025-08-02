@@ -47,7 +47,6 @@ public class Packet9Respawn extends Packet {
 		dataOutputStream1.writeByte(this.difficulty);
 		dataOutputStream1.writeByte(this.creativeMode);
 		dataOutputStream1.writeShort(this.worldHeight);
-		System.out.println ("Writing terraintype [" + this.terrainType.toString() + "] L=" + this.terrainType.toString().length());
 		writeString(this.terrainType.toString(), dataOutputStream1);
 	}
 

@@ -56,3 +56,26 @@ java.io.IOException: Received string length longer than maximum allowed (17 > 16
 
 	* [X] When being teleported player is not being placed correctly in the portal.
 	Check if this was just a glitch or if it happens always. - There's defintely something terribly wrong with the teleporter or the location you are moved to. -- Solved. The teleporter creation code was commented out in `ServerConfigurationManager.java`
+	* [X] Restore the special cactus renderer.
+	* [ ] Restore the pane renderer.
+
+# b1.2
+
+## New blocks / recipes
+
+* Cake block, cake item, cake recipe.
+* Dispensers, GUI, TileEntity, recipe.
+* Lapis lazuli block.
+* Lapis lazuli ore drops lapis lazuli item.
+* Note block,  TileEntity, recipe.
+* Sandstone recipe & gen.
+* Spruce / Birch trunks & recipes to get planks.
+* Spruce / Birch leaves.
+* Wool dying
+* Bones -> Bone meal & making shit grow.
+
+# b16.6.6
+
+* Add a means to get cocoa seeds in a custom tree.
+* Colored sheep spawning.
+* Squids

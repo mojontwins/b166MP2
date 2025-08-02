@@ -6,7 +6,7 @@ import net.minecraft.world.item.ItemStack;
 public class SlotCrafting extends Slot {
 	private final IInventory craftMatrix;
 	private EntityPlayer thePlayer;
-	private int field_48436_g;
+	private int stackSize;
 
 	public SlotCrafting(EntityPlayer entityPlayer1, IInventory iInventory2, IInventory iInventory3, int i4, int i5, int i6) {
 		super(iInventory3, i4, i5, i6);
@@ -20,20 +20,20 @@ public class SlotCrafting extends Slot {
 
 	public ItemStack decrStackSize(int i1) {
 		if(this.getHasStack()) {
-			this.field_48436_g += Math.min(i1, this.getStack().stackSize);
+			this.stackSize += Math.min(i1, this.getStack().stackSize);
 		}
 
 		return super.decrStackSize(i1);
 	}
 
 	protected void onCrafting(ItemStack itemStack1, int i2) {
-		this.field_48436_g += i2;
+		this.stackSize += i2;
 		this.onCrafting(itemStack1);
 	}
 
 	protected void onCrafting(ItemStack itemStack1) {
-		itemStack1.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.field_48436_g);
-		this.field_48436_g = 0;
+		itemStack1.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.stackSize);
+		this.stackSize = 0;
 
 	}
 

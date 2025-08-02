@@ -155,6 +155,7 @@ public class RenderBlocks {
 			case 10: return this.renderBlockStairs(block, x, y, z);
 			case 11: return this.renderBlockFence((BlockFence)block, x, y, z);
 			case 12: return this.renderBlockLever(block, x, y, z);
+			case 13: return this.renderBlockCactus(block, x, y, z); 
 			case 15: return this.renderBlockRepeater(block, x, y, z);
 			case 18: return this.renderBlockPane((BlockPane)block, x, y, z);
 			case 20: return this.renderBlockVine(block, x, y, z);
@@ -2541,14 +2542,6 @@ public class RenderBlocks {
 		this.renderTorchAtAngle(block1, (double)i2 + d15, (double)i3 + d9, (double)i4 + d17, 0.0D, 0.0D);
 		int i19 = block1.getBlockTextureFromSide(1);
 		
-		/*
-		int i20 = (i19 & 15) << 4;
-		int i21 = i19 & 0xff0;
-		double u1 = (double)((float)i20 / 256F);
-		double u2 = (double)(((float)i20 + 15.99F) / 256F);
-		double v1 = (double)((float)i21 / 256F);
-		double v2 = (double)(((float)i21 + 15.99F) / 256F);
-		*/
 		Idx2uvF.calc(i19);
 		double u1 = Idx2uvF.u1;
 		double u2 = Idx2uvF.u2;
@@ -2587,6 +2580,15 @@ public class RenderBlocks {
 		tessellator8.addVertexWithUV(d34, d48, d42, u2, v2);
 		tessellator8.addVertexWithUV(d32, d48, d40, u2, v1);
 		return true;
+	}
+	
+	public boolean renderBlockCactus(Block block1, int i2, int i3, int i4) {
+		int i5 = block1.colorMultiplier(this.blockAccess, i2, i3, i4);
+		float f6 = (float)(i5 >> 16 & 255) / 255.0F;
+		float f7 = (float)(i5 >> 8 & 255) / 255.0F;
+		float f8 = (float)(i5 & 255) / 255.0F;
+	
+		return this.renderBlockCactusImpl(block1, i2, i3, i4, f6, f7, f8);
 	}
 
 	public boolean renderBlockCactusImpl(Block block1, int i2, int i3, int i4, float f5, float f6, float f7) {

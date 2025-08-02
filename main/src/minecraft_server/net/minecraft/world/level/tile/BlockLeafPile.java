@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.world.level.Seasons;
 import net.minecraft.world.level.World;
-import net.minecraft.world.level.creative.CreativeTabs;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.AxisAlignedBB;
 
@@ -14,7 +13,7 @@ public class BlockLeafPile extends Block {
 		super(i1, 13 * 16 + 2, Material.leaves);
 		this.setBlockBounds(0.0F, 0.05F, 0.0F, 1.0F, 0.06F, 1.0F);
 		
-		this.displayOnCreativeTab = CreativeTabs.tabDeco;
+		//this.displayOnCreativeTab = CreativeTabs.tabDeco;
 	}
 
 	@Override

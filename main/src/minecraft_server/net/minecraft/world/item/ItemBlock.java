@@ -69,6 +69,7 @@ public class ItemBlock extends Item {
 			return false;
 		} else if(world.canBlockBePlacedAt(this.blockID, x, y, z, false, side, itemStack)) {
 			block = Block.blocksList[this.blockID];
+			
 			if(world.setBlockAndMetadataWithNotify(x, y, z, this.blockID, this.getMetadata(itemStack.getItemDamage()))) {
 				if(world.getBlockId(x, y, z) == this.blockID) {
 					Block.blocksList[this.blockID].onBlockPlaced(world, x, y, z, side, xWithinFace, yWithinFace, zWithinFace, keyPressed);

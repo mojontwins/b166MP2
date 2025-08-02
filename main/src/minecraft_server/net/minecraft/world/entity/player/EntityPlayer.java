@@ -30,6 +30,7 @@ import net.minecraft.world.level.World;
 import net.minecraft.world.level.chunk.ChunkCoordinates;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.tile.Block;
+import net.minecraft.world.level.tile.entity.TileEntityDispenser;
 import net.minecraft.world.level.tile.entity.TileEntityFurnace;
 import net.minecraft.world.level.tile.entity.TileEntitySign;
 import net.minecraft.world.phys.AxisAlignedBB;
@@ -694,6 +695,9 @@ public abstract class EntityPlayer extends EntityLiving {
 	public void displayGUIFurnace(TileEntityFurnace tileEntityFurnace1) {
 	}
 	
+	public void displayGUIDispenser(TileEntityDispenser tileEntityDispenser1) {
+	}
+	
 	public void displayGUIEditSign(TileEntitySign tileEntitySign1) {
 	}
 	
@@ -952,7 +956,7 @@ public abstract class EntityPlayer extends EntityLiving {
 		return this.worldObj.getBlockId(this.playerLocation.posX, this.playerLocation.posY, this.playerLocation.posZ) == Block.bed.blockID;
 	}
 	*/
-	
+
 	/*
 	public static ChunkCoordinates verifyRespawnCoordinates(World world0, ChunkCoordinates chunkCoordinates1) {
 		IChunkProvider iChunkProvider2 = world0.getChunkProvider();

@@ -91,4 +91,8 @@ public class BlockCactus extends Block {
 	public boolean canGrowCacti() {
 		return true;
 	}
+	
+	public int getRenderType() {
+		return 13;
+	}
 }

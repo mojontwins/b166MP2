@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.world.level.Seasons;
 import net.minecraft.world.level.World;
-import net.minecraft.world.level.creative.CreativeTabs;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.AxisAlignedBB;
 

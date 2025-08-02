@@ -7,6 +7,7 @@ import com.risugami.recipebook.InventoryRecipeBook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.User;
 import net.minecraft.client.gui.GuiChest;
+import net.minecraft.client.gui.GuiDispenser;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiCrafting;
 import net.minecraft.client.gui.inventory.GuiEditSign;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockPos;
 import net.minecraft.world.level.World;
+import net.minecraft.world.level.tile.entity.TileEntityDispenser;
 import net.minecraft.world.level.tile.entity.TileEntityFurnace;
 import net.minecraft.world.level.tile.entity.TileEntitySign;
 
@@ -254,6 +256,10 @@ public class EntityPlayerSP extends EntityPlayer {
 
 	public void displayGUIFurnace(TileEntityFurnace tileEntityFurnace1) {
 		this.mc.displayGuiScreen(new GuiFurnace(this.inventory, tileEntityFurnace1));
+	}
+	
+	public void displayGUIDispenser(TileEntityDispenser tileEntityDispenser1) {
+		this.mc.displayGuiScreen(new GuiDispenser(this.inventory, tileEntityDispenser1));
 	}
 	
 	public void displayGUIRecipeBook(ItemStack itemStack) {

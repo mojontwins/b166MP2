@@ -30,6 +30,7 @@ import net.minecraft.world.level.World;
 import net.minecraft.world.level.chunk.ChunkCoordinates;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.tile.Block;
+import net.minecraft.world.level.tile.entity.TileEntityDispenser;
 import net.minecraft.world.level.tile.entity.TileEntityFurnace;
 import net.minecraft.world.level.tile.entity.TileEntitySign;
 import net.minecraft.world.phys.AxisAlignedBB;
@@ -692,6 +693,9 @@ public abstract class EntityPlayer extends EntityLiving {
 	}
 
 	public void displayGUIFurnace(TileEntityFurnace tileEntityFurnace1) {
+	}
+	
+	public void displayGUIDispenser(TileEntityDispenser tileEntityDispenser1) {
 	}
 	
 	public void displayGUIEditSign(TileEntitySign tileEntitySign1) {
