@@ -58,6 +58,7 @@ java.io.IOException: Received string length longer than maximum allowed (17 > 16
 	Check if this was just a glitch or if it happens always. - There's defintely something terribly wrong with the teleporter or the location you are moved to. -- Solved. The teleporter creation code was commented out in `ServerConfigurationManager.java`
 	* [X] Restore the special cactus renderer.
 	* [ ] Restore the pane renderer.
+	* [ ] Correct lilypad texture!
 
 # b1.2
 

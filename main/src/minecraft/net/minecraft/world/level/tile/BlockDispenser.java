@@ -92,7 +92,7 @@ public class BlockDispenser extends BlockContainer {
 			return true;
 		} else {
 			TileEntityDispenser tileEntityDispenser6 = (TileEntityDispenser)world1.getBlockTileEntity(i2, i3, i4);
-			if(tileEntityDispenser6 != null) {
+			if(tileEntityDispenser6 != null) { 
 				entityPlayer5.displayGUIDispenser(tileEntityDispenser6);
 			}
 
