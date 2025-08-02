@@ -437,3 +437,24 @@ java.lang.ArrayIndexOutOfBoundsException: -1
 2025-08-01 17:14:19 [INFO] Saving chunks
 2025-08-01 17:14:19 [INFO] Saving chunks
 2025-08-01 17:14:19 [INFO] Saving chunks
+2025-08-01 20:58:44 [INFO] Starting minecraft server version Beta 1.1.0
+2025-08-01 20:58:45 [INFO] Loading properties
+2025-08-01 20:58:45 [INFO] Starting Minecraft server on *:25565
+2025-08-01 20:58:45 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-01 20:58:45 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-01 20:58:45 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-01 20:58:45 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-01 20:58:45 [INFO] Configured level type: DEFAULT
+2025-08-01 20:58:45 [INFO] Preparing level "world"
+2025-08-01 20:58:45 [INFO] Default game type: 0
+2025-08-01 20:58:46 [INFO] Preparing start region for level 0
+2025-08-01 20:58:47 [INFO] Preparing spawn area: 24%
+2025-08-01 20:58:48 [INFO] Preparing spawn area: 89%
+2025-08-01 20:58:48 [INFO] Preparing start region for level 1
+2025-08-01 20:58:49 [INFO] Done (3,500s)! For help, type "help" or "?"
+2025-08-01 20:58:50 [INFO] Stopping server
+2025-08-01 20:58:50 [INFO] Saving chunks
+2025-08-01 20:58:51 [INFO] Saving chunks
+2025-08-01 20:58:51 [INFO] Saving chunks
+2025-08-01 20:58:51 [INFO] Saving chunks
+2025-08-01 20:58:51 [INFO] Saving chunks
