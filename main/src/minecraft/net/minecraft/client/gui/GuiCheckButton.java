@@ -32,7 +32,7 @@ public class GuiCheckButton extends GuiButton {
 				textColor = 16777120;
 			}
 
-			this.drawString(fr, this.displayString, this.xPosition + 24, this.yPosition + (this.h - 8) / 2, textColor);
+			this.drawString(fr, this.displayString, this.xPosition + 36, this.yPosition + (this.h - 8) / 2, textColor);
 		}
 	}
 

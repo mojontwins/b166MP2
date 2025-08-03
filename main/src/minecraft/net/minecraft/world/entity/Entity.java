@@ -50,7 +50,8 @@ public abstract class Entity {
 	public boolean isCollidedVertically;
 	public boolean isCollided = false;
 	public boolean velocityChanged = false;
-	protected boolean isInWeb;
+	public boolean isInWeb;
+	public boolean isInSnow = false;
 	public boolean field_9293_aM = true;
 	public boolean isDead = false;
 	public float yOffset = 0.0F;
@@ -293,179 +294,186 @@ public abstract class Entity {
 		return list8.size() > 0 ? false : !this.worldObj.isAnyLiquid(axisAlignedBB7);
 	}
 
-	public void moveEntity(double d1, double d3, double d5) {
+	public void moveEntity(double moveX, double moveY, double moveZ) {
 		if(this.noClip) {
-			this.boundingBox.offset(d1, d3, d5);
+			this.boundingBox.offset(moveX, moveY, moveZ);
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 		} else {
-			//Profiler.startSection("move");
 			this.ySize *= 0.4F;
 			double d7 = this.posX;
 			double d9 = this.posZ;
 			if(this.isInWeb) {
 				this.isInWeb = false;
-				d1 *= 0.25D;
-				d3 *= (double)0.05F;
-				d5 *= 0.25D;
+				moveX *= 0.25D;
+				moveY *= (double)0.05F;
+				moveZ *= 0.25D;
 				this.motionX = 0.0D;
 				this.motionY = 0.0D;
 				this.motionZ = 0.0D;
 			}
 
-			double d11 = d1;
-			double d13 = d3;
-			double d15 = d5;
+			if (this.isInSnow && !this.bootsOfLeather()) {
+				this.isInSnow = false;
+				moveX *= 0.8D;
+				moveZ *= 0.8D;
+				this.motionX *= 0.6D;
+				this.motionZ *= 0.6D;
+			}
+
+			double d11 = moveX;
+			double d13 = moveY;
+			double d15 = moveZ;
 			AxisAlignedBB axisAlignedBB17 = this.boundingBox.copy();
 			boolean z18 = this.onGround && this.isSneaking() && this instanceof EntityPlayer;
 			if(z18) {
 				double d19;
-				for(d19 = 0.05D; d1 != 0.0D && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.getOffsetBoundingBox(d1, -1.0D, 0.0D)).size() == 0; d11 = d1) {
-					if(d1 < d19 && d1 >= -d19) {
-						d1 = 0.0D;
-					} else if(d1 > 0.0D) {
-						d1 -= d19;
+				for(d19 = 0.05D; moveX != 0.0D && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.getOffsetBoundingBox(moveX, -1.0D, 0.0D)).size() == 0; d11 = moveX) {
+					if(moveX < d19 && moveX >= -d19) {
+						moveX = 0.0D;
+					} else if(moveX > 0.0D) {
+						moveX -= d19;
 					} else {
-						d1 += d19;
+						moveX += d19;
 					}
 				}
 
-				for(; d5 != 0.0D && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.getOffsetBoundingBox(0.0D, -1.0D, d5)).size() == 0; d15 = d5) {
-					if(d5 < d19 && d5 >= -d19) {
-						d5 = 0.0D;
-					} else if(d5 > 0.0D) {
-						d5 -= d19;
+				for(; moveZ != 0.0D && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.getOffsetBoundingBox(0.0D, -1.0D, moveZ)).size() == 0; d15 = moveZ) {
+					if(moveZ < d19 && moveZ >= -d19) {
+						moveZ = 0.0D;
+					} else if(moveZ > 0.0D) {
+						moveZ -= d19;
 					} else {
-						d5 += d19;
+						moveZ += d19;
 					}
 				}
 
-				while(d1 != 0.0D && d5 != 0.0D && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.getOffsetBoundingBox(d1, -1.0D, d5)).size() == 0) {
-					if(d1 < d19 && d1 >= -d19) {
-						d1 = 0.0D;
-					} else if(d1 > 0.0D) {
-						d1 -= d19;
+				while(moveX != 0.0D && moveZ != 0.0D && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.getOffsetBoundingBox(moveX, -1.0D, moveZ)).size() == 0) {
+					if(moveX < d19 && moveX >= -d19) {
+						moveX = 0.0D;
+					} else if(moveX > 0.0D) {
+						moveX -= d19;
 					} else {
-						d1 += d19;
+						moveX += d19;
 					}
 
-					if(d5 < d19 && d5 >= -d19) {
-						d5 = 0.0D;
-					} else if(d5 > 0.0D) {
-						d5 -= d19;
+					if(moveZ < d19 && moveZ >= -d19) {
+						moveZ = 0.0D;
+					} else if(moveZ > 0.0D) {
+						moveZ -= d19;
 					} else {
-						d5 += d19;
+						moveZ += d19;
 					}
 
-					d11 = d1;
-					d15 = d5;
+					d11 = moveX;
+					d15 = moveZ;
 				}
 			}
 
-			List<AxisAlignedBB> list35 = this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.addCoord(d1, d3, d5));
+			List<AxisAlignedBB> list35 = this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.addCoord(moveX, moveY, moveZ));
 
 			for(int i20 = 0; i20 < list35.size(); ++i20) {
-				d3 = ((AxisAlignedBB)list35.get(i20)).calculateYOffset(this.boundingBox, d3);
+				moveY = ((AxisAlignedBB)list35.get(i20)).calculateYOffset(this.boundingBox, moveY);
 			}
 
-			this.boundingBox.offset(0.0D, d3, 0.0D);
-			if(!this.field_9293_aM && d13 != d3) {
-				d5 = 0.0D;
-				d3 = 0.0D;
-				d1 = 0.0D;
+			this.boundingBox.offset(0.0D, moveY, 0.0D);
+			if(!this.field_9293_aM && d13 != moveY) {
+				moveZ = 0.0D;
+				moveY = 0.0D;
+				moveX = 0.0D;
 			}
 
-			boolean z36 = this.onGround || d13 != d3 && d13 < 0.0D;
+			boolean z36 = this.onGround || d13 != moveY && d13 < 0.0D;
 
 			int i21;
 			for(i21 = 0; i21 < list35.size(); ++i21) {
-				d1 = ((AxisAlignedBB)list35.get(i21)).calculateXOffset(this.boundingBox, d1);
+				moveX = ((AxisAlignedBB)list35.get(i21)).calculateXOffset(this.boundingBox, moveX);
 			}
 
-			this.boundingBox.offset(d1, 0.0D, 0.0D);
-			if(!this.field_9293_aM && d11 != d1) {
-				d5 = 0.0D;
-				d3 = 0.0D;
-				d1 = 0.0D;
+			this.boundingBox.offset(moveX, 0.0D, 0.0D);
+			if(!this.field_9293_aM && d11 != moveX) {
+				moveZ = 0.0D;
+				moveY = 0.0D;
+				moveX = 0.0D;
 			}
 
 			for(i21 = 0; i21 < list35.size(); ++i21) {
-				d5 = ((AxisAlignedBB)list35.get(i21)).calculateZOffset(this.boundingBox, d5);
+				moveZ = ((AxisAlignedBB)list35.get(i21)).calculateZOffset(this.boundingBox, moveZ);
 			}
 
-			this.boundingBox.offset(0.0D, 0.0D, d5);
-			if(!this.field_9293_aM && d15 != d5) {
-				d5 = 0.0D;
-				d3 = 0.0D;
-				d1 = 0.0D;
+			this.boundingBox.offset(0.0D, 0.0D, moveZ);
+			if(!this.field_9293_aM && d15 != moveZ) {
+				moveZ = 0.0D;
+				moveY = 0.0D;
+				moveX = 0.0D;
 			}
 
 			double d23;
 			int i28;
 			double d37;
-			if(this.stepHeight > 0.0F && z36 && (z18 || this.ySize < 0.05F) && (d11 != d1 || d15 != d5)) {
-				d37 = d1;
-				d23 = d3;
-				double d25 = d5;
-				d1 = d11;
-				d3 = (double)this.stepHeight;
-				d5 = d15;
+			if(this.stepHeight > 0.0F && z36 && (z18 || this.ySize < 0.05F) && (d11 != moveX || d15 != moveZ)) {
+				d37 = moveX;
+				d23 = moveY;
+				double d25 = moveZ;
+				moveX = d11;
+				moveY = (double)this.stepHeight;
+				moveZ = d15;
 				AxisAlignedBB axisAlignedBB27 = this.boundingBox.copy();
 				this.boundingBox.setBB(axisAlignedBB17);
-				list35 = this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.addCoord(d11, d3, d15));
+				list35 = this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox.addCoord(d11, moveY, d15));
 
 				for(i28 = 0; i28 < list35.size(); ++i28) {
-					d3 = ((AxisAlignedBB)list35.get(i28)).calculateYOffset(this.boundingBox, d3);
+					moveY = ((AxisAlignedBB)list35.get(i28)).calculateYOffset(this.boundingBox, moveY);
 				}
 
-				this.boundingBox.offset(0.0D, d3, 0.0D);
-				if(!this.field_9293_aM && d13 != d3) {
-					d5 = 0.0D;
-					d3 = 0.0D;
-					d1 = 0.0D;
-				}
-
-				for(i28 = 0; i28 < list35.size(); ++i28) {
-					d1 = ((AxisAlignedBB)list35.get(i28)).calculateXOffset(this.boundingBox, d1);
-				}
-
-				this.boundingBox.offset(d1, 0.0D, 0.0D);
-				if(!this.field_9293_aM && d11 != d1) {
-					d5 = 0.0D;
-					d3 = 0.0D;
-					d1 = 0.0D;
+				this.boundingBox.offset(0.0D, moveY, 0.0D);
+				if(!this.field_9293_aM && d13 != moveY) {
+					moveZ = 0.0D;
+					moveY = 0.0D;
+					moveX = 0.0D;
 				}
 
 				for(i28 = 0; i28 < list35.size(); ++i28) {
-					d5 = ((AxisAlignedBB)list35.get(i28)).calculateZOffset(this.boundingBox, d5);
+					moveX = ((AxisAlignedBB)list35.get(i28)).calculateXOffset(this.boundingBox, moveX);
 				}
 
-				this.boundingBox.offset(0.0D, 0.0D, d5);
-				if(!this.field_9293_aM && d15 != d5) {
-					d5 = 0.0D;
-					d3 = 0.0D;
-					d1 = 0.0D;
+				this.boundingBox.offset(moveX, 0.0D, 0.0D);
+				if(!this.field_9293_aM && d11 != moveX) {
+					moveZ = 0.0D;
+					moveY = 0.0D;
+					moveX = 0.0D;
 				}
 
-				if(!this.field_9293_aM && d13 != d3) {
-					d5 = 0.0D;
-					d3 = 0.0D;
-					d1 = 0.0D;
+				for(i28 = 0; i28 < list35.size(); ++i28) {
+					moveZ = ((AxisAlignedBB)list35.get(i28)).calculateZOffset(this.boundingBox, moveZ);
+				}
+
+				this.boundingBox.offset(0.0D, 0.0D, moveZ);
+				if(!this.field_9293_aM && d15 != moveZ) {
+					moveZ = 0.0D;
+					moveY = 0.0D;
+					moveX = 0.0D;
+				}
+
+				if(!this.field_9293_aM && d13 != moveY) {
+					moveZ = 0.0D;
+					moveY = 0.0D;
+					moveX = 0.0D;
 				} else {
-					d3 = (double)(-this.stepHeight);
+					moveY = (double)(-this.stepHeight);
 
 					for(i28 = 0; i28 < list35.size(); ++i28) {
-						d3 = ((AxisAlignedBB)list35.get(i28)).calculateYOffset(this.boundingBox, d3);
+						moveY = ((AxisAlignedBB)list35.get(i28)).calculateYOffset(this.boundingBox, moveY);
 					}
 
-					this.boundingBox.offset(0.0D, d3, 0.0D);
+					this.boundingBox.offset(0.0D, moveY, 0.0D);
 				}
 
-				if(d37 * d37 + d25 * d25 >= d1 * d1 + d5 * d5) {
-					d1 = d37;
-					d3 = d23;
-					d5 = d25;
+				if(d37 * d37 + d25 * d25 >= moveX * moveX + moveZ * moveZ) {
+					moveX = d37;
+					moveY = d23;
+					moveZ = d25;
 					this.boundingBox.setBB(axisAlignedBB27);
 				} else {
 					double d40 = this.boundingBox.minY - (double)((int)this.boundingBox.minY);
@@ -475,25 +483,23 @@ public abstract class Entity {
 				}
 			}
 
-			//Profiler.endSection();
-			//Profiler.startSection("rest");
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-			this.isCollidedHorizontally = d11 != d1 || d15 != d5;
-			this.isCollidedVertically = d13 != d3;
-			this.onGround = d13 != d3 && d13 < 0.0D;
+			this.isCollidedHorizontally = d11 != moveX || d15 != moveZ;
+			this.isCollidedVertically = d13 != moveY;
+			this.onGround = d13 != moveY && d13 < 0.0D;
 			this.isCollided = this.isCollidedHorizontally || this.isCollidedVertically;
-			this.updateFallState(d3, this.onGround);
-			if(d11 != d1) {
+			this.updateFallState(moveY, this.onGround);
+			if(d11 != moveX) {
 				this.motionX = 0.0D;
 			}
 
-			if(d13 != d3) {
+			if(d13 != moveY) {
 				this.motionY = 0.0D;
 			}
 
-			if(d15 != d5) {
+			if(d15 != moveZ) {
 				this.motionZ = 0.0D;
 			}
 
@@ -556,7 +562,6 @@ public abstract class Entity {
 				this.fire = -this.fireResistance;
 			}
 
-			//Profiler.endSection();
 		}
 	}
 
@@ -1296,5 +1301,13 @@ public abstract class Entity {
 
 	public IInventory getIInventory() {
 		return null;
+	}
+	
+	public void setInSnow() {
+		this.isInSnow = true;
+	}	
+
+	public boolean bootsOfLeather() {
+		return false;
 	}
 }

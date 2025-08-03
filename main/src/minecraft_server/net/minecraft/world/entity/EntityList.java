@@ -57,9 +57,9 @@ public class EntityList {
 		stringToIDMapping.put(string1, i2);
 	}
 
-	private static void addMapping(Class<?> class0, String string1, int i2, int i3, int i4) {
-		addMapping(class0, string1, i2);
-		entityEggs.put(i2, new EntityEggInfo(i2, i3, i4));
+	private static void addMapping(Class<?> class0, String name, int id, int c1, int c2) {
+		addMapping(class0, name, id);
+		entityEggs.put(id, new EntityEggInfo(id, c1, c2, name));
 	}
 
 	public static Entity createEntityByName(String string0, World world1) {

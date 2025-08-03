@@ -424,28 +424,29 @@ public class NetClientHandler extends NetHandler {
 		}
 	}
 
-	public void handleMapChunk(Packet51MapChunk packet51MapChunk1) {
-		this.worldClient.invalidateBlockReceiveRegion(packet51MapChunk1.xCh << 4, 0, packet51MapChunk1.zCh << 4, (packet51MapChunk1.xCh << 4) + 15, 256, (packet51MapChunk1.zCh << 4) + 15);
-		Chunk chunk2 = this.worldClient.getChunkFromChunkCoords(packet51MapChunk1.xCh, packet51MapChunk1.zCh);
-		if(packet51MapChunk1.includeInitialize && chunk2 == null) {
-			this.worldClient.doPreChunk(packet51MapChunk1.xCh, packet51MapChunk1.zCh, true);
-			chunk2 = this.worldClient.getChunkFromChunkCoords(packet51MapChunk1.xCh, packet51MapChunk1.zCh);
+	public void handleMapChunk(Packet51MapChunk packet) {
+		this.worldClient.invalidateBlockReceiveRegion(packet.chunkX << 4, 0, packet.chunkZ << 4, (packet.chunkX << 4) + 15, 256, (packet.chunkZ << 4) + 15);
+		Chunk chunk2 = this.worldClient.getChunkFromChunkCoords(packet.chunkX, packet.chunkZ);
+		if(packet.includeInitialize && chunk2 == null) {
+			this.worldClient.doPreChunk(packet.chunkX, packet.chunkZ, true);
+			chunk2 = this.worldClient.getChunkFromChunkCoords(packet.chunkX, packet.chunkZ);
 		}
 
 		if(chunk2 != null) {
-			chunk2.setChunkData(packet51MapChunk1.chunkData, packet51MapChunk1.yChMin, packet51MapChunk1.yChMax, packet51MapChunk1.includeInitialize);
-			this.worldClient.markBlocksDirty(packet51MapChunk1.xCh << 4, 0, packet51MapChunk1.zCh << 4, (packet51MapChunk1.xCh << 4) + 15, 256, (packet51MapChunk1.zCh << 4) + 15);
-			if(!packet51MapChunk1.includeInitialize || !(this.worldClient.worldProvider instanceof WorldProviderSurface)) {
+			chunk2.setChunkData(packet.chunkData, packet.usedSubchunks, packet.blockMSBSubchunks, packet.includeInitialize);
+			this.worldClient.markBlocksDirty(packet.chunkX << 4, 0, packet.chunkZ << 4, (packet.chunkX << 4) + 15, 256, (packet.chunkZ << 4) + 15);
+			if(!packet.includeInitialize || !(this.worldClient.worldProvider instanceof WorldProviderSurface)) {
 				//chunk2.resetRelightChecks();
 			}
 		}
 
 	}
 
-	public void handleBlockChange(Packet53BlockChange packet53BlockChange1) {
-		this.worldClient.setBlockAndMetadataAndInvalidate(packet53BlockChange1.xPosition, 
-				packet53BlockChange1.yPosition, packet53BlockChange1.zPosition, packet53BlockChange1.type, 
-				packet53BlockChange1.metadata);
+	public void handleBlockChange(Packet53BlockChange packet) {
+		this.worldClient.setBlockAndMetadataAndInvalidate(
+				packet.xPosition, packet.yPosition, packet.zPosition, 
+				packet.type, packet.metadata
+			);
 	}
 
 	public void handleKickDisconnect(Packet255KickDisconnect packet255KickDisconnect1) {

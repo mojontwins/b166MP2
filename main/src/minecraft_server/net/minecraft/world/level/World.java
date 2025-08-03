@@ -2005,12 +2005,12 @@ public class World implements IBlockAccess {
 		long worldTime;
 	
 		if(this.isAllPlayersFullyAsleep()) {
-			boolean z1 = false;
+			boolean nightmare = false;
 			if(this.spawnHostileMobs && this.difficultySetting >= 1) {
-				;
+				nightmare = SpawnerAnimals.performSleepSpawning(this, this.playerEntities);
 			}
 
-			if(!z1) {
+			if(!nightmare) {
 				worldTime = this.worldInfo.getWorldTime() + 24000L;
 				this.worldInfo.setWorldTime(worldTime - worldTime % 24000L);
 				this.wakeUpAllPlayers();

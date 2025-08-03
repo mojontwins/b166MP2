@@ -28,7 +28,7 @@ public class GameRules {
 	protected static File optionsFile;
 	
 	// Fixed (soft locked)
-	public static boolean oldSelectWorldScreen = true;
+	public static boolean oldSelectWorldScreen = false;
 	public static boolean genlayerWorldChunkManager = false;
 	public static boolean rampBasedTemperature = true;
 
@@ -66,7 +66,7 @@ public class GameRules {
 		gameRules.put("classicBow", new GameRule().withCaption("classicBow").withDescription("Classic shotgun bow").category(catGameplay).withValue(true));
 		gameRules.put("stackableFood", new GameRuleStackableFood().withCaption("stackableFood").withDescription("Food is stackable").category(catGameplay).withValue(false));
 		gameRules.put("colouredFog", new GameRule().withCaption("colouredFog").withDescription("Coloured fog").category(catAesthetics).withValue(true));
-		gameRules.put("renderAllBlocksStraight", new GameRule().withCaption("renderAllBlocksStraight").withDescription("Render al 3axis (i.e. logs) vertical").category(catAesthetics).withValue(false));
+		gameRules.put("renderAllBlocksStraight", new GameRule().withCaption("renderAllBlocksStraight").withDescription("Render al 3axis (i.e. logs) vertical").category(catAesthetics).withValue(true));
 		gameRules.put("snowPilesUp", new GameRule().withCaption("snowPilesUp").withDescription("Snow will build up as it keeps snowing").category(catAesthetics).withValue(true));
 	}
 	

@@ -24,7 +24,11 @@ import net.minecraft.world.level.chunk.Chunk;
 import net.minecraft.world.level.chunk.ChunkCoordIntPair;
 import net.minecraft.world.level.chunk.ChunkCoordinates;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.pathfinder.PathEntity;
+import net.minecraft.world.level.pathfinder.PathFinder;
+import net.minecraft.world.level.pathfinder.PathPoint;
 import net.minecraft.world.level.tile.Block;
+import net.minecraft.world.level.tile.BlockBed;
 
 public final class SpawnerAnimals {
 	private static HashMap<ChunkCoordIntPair, Boolean> eligibleChunksForSpawning = new HashMap<ChunkCoordIntPair, Boolean>();
@@ -265,7 +269,106 @@ public final class SpawnerAnimals {
 					}
 				}
 			}
+		}
+	}
+	
+	// Originally, this method was bugged. The path calculation used the n-w corner of the block
+	// For measurements rather than the center. This has been fixed in this version.
+	public static boolean performSleepSpawning(World world, List<EntityPlayer> listOfPlayers) {
+		boolean success = false;
+		PathFinder pathFinder = new PathFinder(world, false, false, false, true);
+		Iterator<EntityPlayer> itPlayers = listOfPlayers.iterator();
 
+		while(true) {
+			EntityPlayer thePlayer;
+			Class<?>[] entityClasses;
+			do {
+				do {
+					if(!itPlayers.hasNext()) {
+						return success;
+					}
+
+					thePlayer = (EntityPlayer)itPlayers.next();
+					entityClasses = nightSpawnEntities;
+				} while(entityClasses == null);
+			} while(entityClasses.length == 0);
+
+			boolean spawned = false;
+
+			for(int attempt = 0; attempt < 20 && !spawned; ++attempt) {
+
+				// Picks up a random position surrounding the player, radius 32 horizontally, 16 vertically.
+				int x = MathHelper.floor_double(thePlayer.posX) + world.rand.nextInt(32) - world.rand.nextInt(32);
+				int z = MathHelper.floor_double(thePlayer.posZ) + world.rand.nextInt(32) - world.rand.nextInt(32);
+				int y0 = MathHelper.floor_double(thePlayer.posY) + world.rand.nextInt(16) - world.rand.nextInt(16);
+				if(y0 < 1) {
+					y0 = 1;
+				} else if(y0 > 128) {
+					y0 = 128;
+				}
+
+				// Pick up a monster at random
+				int entityClassIdx = world.rand.nextInt(entityClasses.length);
+
+				// Sink until hit floor
+				int y;
+				for(y = y0; y > 2 && !world.isBlockOpaqueCube(x, y - 1, z); --y) {
+				}
+
+				while(!canCreatureTypeSpawnAtLocation(EnumCreatureType.monster, world, x, y, z) && y < y0 + 16 && y < 128) {
+					++y;
+				}
+
+				if(y < y0 + 16 && y < 128) {
+					float posX = (float)x + 0.5F;
+					float posY = (float)y;
+					float posZ = (float)z + 0.5F;
+
+					// Instantiate monster
+					EntityLiving theMonster;
+					try {
+						theMonster = (EntityLiving)entityClasses[entityClassIdx].getConstructor(new Class[]{World.class}).newInstance(new Object[]{world});
+					} catch (Exception e) {
+						e.printStackTrace();
+						return success;
+					}
+
+					theMonster.setLocationAndAngles((double)posX, (double)posY, (double)posZ, world.rand.nextFloat() * 360.0F, 0.0F);
+					if(theMonster.getCanSpawnHere()) {
+
+						// Attempt to create a path from the monster to the player, max 32 blocks.
+						PathEntity path = pathFinder.createEntityPathTo(theMonster, thePlayer, 32.0F);
+
+						// If succeeded . . .
+						if(path != null && path.pathLength > 1) {
+							// Get the final path point 
+							PathPoint pathPoint = path.getFinalPathPoint();
+
+							// If the distance to the player is less than 1.5 in any axis...
+							// Adding .5 fixes the bug in vanilla
+							if(
+									Math.abs((double)pathPoint.xCoord + .5 - thePlayer.posX) < 1.5D && 
+									Math.abs((double)pathPoint.zCoord + .5 - thePlayer.posZ) < 1.5D && 
+									Math.abs((double)pathPoint.yCoord + .5 - thePlayer.posY) < 1.5D
+							) {
+								ChunkCoordinates posNearBed = BlockBed.getNearestEmptyChunkCoordinates(world, MathHelper.floor_double(thePlayer.posX), MathHelper.floor_double(thePlayer.posY), MathHelper.floor_double(thePlayer.posZ), 1);
+								if(posNearBed == null) {
+									posNearBed = new ChunkCoordinates(x, y + 1, z);
+								}
+
+								// Spawn the monster near the player and wake up player
+								theMonster.setLocationAndAngles((double)((float)posNearBed.posX + 0.5F), (double)posNearBed.posY, (double)((float)posNearBed.posZ + 0.5F), 0.0F, 0.0F);
+								world.spawnEntityInWorld(theMonster);
+								creatureSpecificInit(theMonster, world, (float)posNearBed.posX + 0.5F, (float)posNearBed.posY, (float)posNearBed.posZ + 0.5F);
+								thePlayer.wakeUpPlayer(true, false, false);
+								theMonster.playLivingSound();
+								success = true;
+								spawned = true;
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }

@@ -10,10 +10,12 @@ public class GameHints {
 		"Craft a recipe book with ink and a book!",
 		"Walk better on snow with leather boots!",
 		"Edit signs using feathers!",
-		"Sponges may be powered to remove water!",
 		"Some trees drop apples!",
-		"Use a compass on crying obsidian!",
-		"Golden tools do something special!"
+		"Golden tools do something special!",
+		"Wool can be dyed!",
+		"Sheep can be dyed!",
+		"CTRL+click to place logs straight",
+		"Right click spawners with placer eggs"
 	};
 	
 	public static String getRandomHint() {

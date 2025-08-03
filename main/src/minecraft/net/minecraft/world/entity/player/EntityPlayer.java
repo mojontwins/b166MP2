@@ -1203,13 +1203,19 @@ public abstract class EntityPlayer extends EntityLiving {
 	public void displayGUIRecipeBook(ItemStack itemStack) {		
 	}
 	
+	private Item getInventoryItem(int i) {
+		if(this.inventory.armorInventory[i] == null) return null;
+		return this.inventory.armorInventory[i].getItem();
+	}
+	
 	public boolean wearingGold() {
-		ItemStack itemStack;
-		itemStack = this.inventory.armorItemInSlot(3); if(itemStack != null && itemStack.itemID == Item.helmetGold.shiftedIndex) return true;
-		itemStack = this.inventory.armorItemInSlot(2); if(itemStack != null && itemStack.itemID == Item.plateGold.shiftedIndex) return true;
-		itemStack = this.inventory.armorItemInSlot(1); if(itemStack != null && itemStack.itemID == Item.legsGold.shiftedIndex) return true;
-		itemStack = this.inventory.armorItemInSlot(0); if(itemStack != null && itemStack.itemID == Item.bootsGold.shiftedIndex) return true;
-		return false;
+		boolean oink = 
+				this.getInventoryItem(3) == Item.helmetGold ||
+				this.getInventoryItem(2) == Item.plateGold ||
+				this.getInventoryItem(1) == Item.legsGold || 
+				this.getInventoryItem(0) == Item.bootsGold;
+		
+		return oink;
 	}
 	
 	public ItemStack getCurrentArmor(int par1) {
@@ -1227,4 +1233,9 @@ public abstract class EntityPlayer extends EntityLiving {
 	public ChunkCoordinates getPlayerCoordinates() {
 		return new ChunkCoordinates((int)this.posX, (int)this.posY, (int)this.posZ);
 	}
+	
+	public boolean bootsOfLeather() {
+		return this.getInventoryItem(0) == Item.bootsLeather;
+	}
+	
 }
