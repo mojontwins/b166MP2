@@ -13,6 +13,7 @@ import net.minecraft.network.packet.Packet101CloseWindow;
 import net.minecraft.network.packet.Packet103SetSlot;
 import net.minecraft.network.packet.Packet104WindowItems;
 import net.minecraft.network.packet.Packet105UpdateProgressbar;
+import net.minecraft.network.packet.Packet17Sleep;
 import net.minecraft.network.packet.Packet18Animation;
 import net.minecraft.network.packet.Packet202PlayerAbilities;
 import net.minecraft.network.packet.Packet22Collect;
@@ -36,6 +37,7 @@ import net.minecraft.world.entity.EntityDamageSource;
 import net.minecraft.world.entity.EnumAction;
 import net.minecraft.world.entity.item.EntityItem;
 import net.minecraft.world.entity.player.EntityPlayer;
+import net.minecraft.world.entity.player.EnumStatus;
 import net.minecraft.world.entity.projectile.EntityArrow;
 import net.minecraft.world.inventory.Container;
 import net.minecraft.world.inventory.ContainerChest;
@@ -187,7 +189,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting {
 	public void onUpdateEntity(boolean z1) {
 		super.onUpdate();
 
-		/*2
+		/*
 		for(int i2 = 0; i2 < this.inventory.getSizeInventory(); ++i2) {
 			ItemStack itemStack3 = this.inventory.getStackInSlot(i2);
 			
@@ -351,6 +353,32 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting {
 	}
 
 	public void s_func_22068_s() {
+	}
+	
+	public EnumStatus sleepInBedAt(int i1, int i2, int i3) {
+		EnumStatus enumStatus4 = super.sleepInBedAt(i1, i2, i3);
+		if(enumStatus4 == EnumStatus.OK) {
+			EntityTracker entityTracker5 = this.mcServer.getEntityTracker(this.dimension);
+			Packet17Sleep packet17Sleep6 = new Packet17Sleep(this, 0, i1, i2, i3);
+			entityTracker5.sendPacketToTrackedPlayers(this, packet17Sleep6);
+			this.playerNetServerHandler.teleportTo(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
+			this.playerNetServerHandler.sendPacket(packet17Sleep6);
+		}
+
+		return enumStatus4;
+	}
+
+	public void wakeUpPlayer(boolean z1, boolean z2, boolean z3) {
+		if(this.isPlayerSleeping()) {
+			EntityTracker entityTracker4 = this.mcServer.getEntityTracker(this.dimension);
+			entityTracker4.sendPacketToTrackedPlayersAndTrackedEntity(this, new Packet18Animation(this, 3));
+		}
+
+		super.wakeUpPlayer(z1, z2, z3);
+		if(this.playerNetServerHandler != null) {
+			this.playerNetServerHandler.teleportTo(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
+		}
+
 	}
 
 	public void mountEntity(Entity entity1) {

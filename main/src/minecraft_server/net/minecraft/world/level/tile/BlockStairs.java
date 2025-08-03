@@ -234,7 +234,7 @@ public class BlockStairs extends Block {
 	}
 	
 	@Override
-	public boolean supportsRedstone(int meta) {
+	public boolean hasSolidTop(int meta) {
 		return BlockStairs.isUpsideDown(meta);
 	}
 	

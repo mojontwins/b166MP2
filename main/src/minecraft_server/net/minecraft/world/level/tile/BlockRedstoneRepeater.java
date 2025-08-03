@@ -27,13 +27,13 @@ public class BlockRedstoneRepeater extends BlockDirectional {
 
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		Block block = world.getBlock(x, y - 1, z);
-		if(block != null && !block.supportsRedstone(world.getBlockMetadata(x, y - 1, z))) return false;
+		if(block != null && !block.hasSolidTop(world.getBlockMetadata(x, y - 1, z))) return false;
 		return super.canPlaceBlockAt(world, x, y, z);
 	}
 
 	public boolean canBlockStay(World world, int x, int y, int z) {
 		Block block = world.getBlock(x, y - 1, z);
-		return block != null && block.supportsRedstone(world.getBlockMetadata(x, y - 1, z));
+		return block != null && block.hasSolidTop(world.getBlockMetadata(x, y - 1, z));
 	}
 
 	public void updateTick(World world, int x, int y, int z, Random rand) {

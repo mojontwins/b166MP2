@@ -54,11 +54,10 @@ java.io.IOException: Received string length longer than maximum allowed (17 > 16
 	* Problem is in the string telling the world type, expected 16 bytes, got 17 bytes.
 	* Problem was that for some reason worldtype.toString included "WorldType " prepended.
 
-	* [X] When being teleported player is not being placed correctly in the portal.
-	Check if this was just a glitch or if it happens always. - There's defintely something terribly wrong with the teleporter or the location you are moved to. -- Solved. The teleporter creation code was commented out in `ServerConfigurationManager.java`
-	* [X] Restore the special cactus renderer.
-	* [ ] Restore the pane renderer.
-	* [ ] Correct lilypad texture!
+* [X] When being teleported player is not being placed correctly in the portal.
+Check if this was just a glitch or if it happens always. - There's defintely something terribly wrong with the teleporter or the location you are moved to. -- Solved. The teleporter creation code was commented out in `ServerConfigurationManager.java`
+* [X] Restore the special cactus renderer.
+* [X] Correct lilypad texture!
 
 # b1.2
 
@@ -75,8 +74,24 @@ java.io.IOException: Received string length longer than maximum allowed (17 > 16
 * Wool dying
 * Bones -> Bone meal & making shit grow.
 
+# b1.3
+
+* [ ] This version adds beds and the sleeping functionality. I removed all this for the base version and now I'll have to add it again :D Sowly but steady!
+	* [X] Sleeping in SP works.
+	* [ ] Sleeping in SMP works.
+		* Bug! Crash when trying to translate the "can't sleep" message in the server. How is this even handled in vanilla?
+	* [X] Nightmare dynamic.
+
+
+	* [ ] Restore the pane renderer.
+
+
+
 # b16.6.6
 
 * Add a means to get cocoa seeds in a custom tree.
 * Colored sheep spawning.
 * Squids
+
+
+

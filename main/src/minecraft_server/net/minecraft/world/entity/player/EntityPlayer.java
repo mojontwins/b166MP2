@@ -28,8 +28,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.chunk.ChunkCoordinates;
+import net.minecraft.world.level.chunk.IChunkProvider;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.tile.Block;
+import net.minecraft.world.level.tile.BlockBed;
 import net.minecraft.world.level.tile.entity.TileEntityDispenser;
 import net.minecraft.world.level.tile.entity.TileEntityFurnace;
 import net.minecraft.world.level.tile.entity.TileEntitySign;
@@ -169,6 +171,14 @@ public abstract class EntityPlayer extends EntityLiving {
 			++this.sleepTimer;
 			if(this.sleepTimer > 100) {
 				this.sleepTimer = 100;
+			}
+			
+			if(!this.worldObj.isRemote) {
+				if(!this.isInBed()) {
+					this.wakeUpPlayer(true, true, false);
+				} else if(this.worldObj.isDaytime()) {
+					this.wakeUpPlayer(false, true, true);
+				}
 			}
 
 		} else if(this.sleepTimer > 0) {
@@ -830,7 +840,6 @@ public abstract class EntityPlayer extends EntityLiving {
 		return !this.sleeping && super.isEntityInsideOpaqueBlock();
 	}
 
-	/*
 	public EnumStatus sleepInBedAt(int i1, int i2, int i3) {
 		if(!this.worldObj.isRemote) {
 			if(this.isPlayerSleeping() || !this.isEntityAlive()) {
@@ -913,9 +922,7 @@ public abstract class EntityPlayer extends EntityLiving {
 		}
 
 	}
-	*/
 
-	/*
 	public void wakeUpPlayer(boolean z1, boolean z2, boolean z3) {
 		this.setSize(0.6F, 1.8F);
 		this.resetHeight();
@@ -949,15 +956,11 @@ public abstract class EntityPlayer extends EntityLiving {
 		}
 
 	}
-	*/
 
-	/*
 	private boolean isInBed() {
 		return this.worldObj.getBlockId(this.playerLocation.posX, this.playerLocation.posY, this.playerLocation.posZ) == Block.bed.blockID;
 	}
-	*/
 
-	/*
 	public static ChunkCoordinates verifyRespawnCoordinates(World world0, ChunkCoordinates chunkCoordinates1) {
 		IChunkProvider iChunkProvider2 = world0.getChunkProvider();
 		iChunkProvider2.loadChunk(chunkCoordinates1.posX - 3 >> 4, chunkCoordinates1.posZ - 3 >> 4);
@@ -971,9 +974,7 @@ public abstract class EntityPlayer extends EntityLiving {
 			return chunkCoordinates3;
 		}
 	}
-	*/
 
-	/*
 	public float getBedOrientationInDegrees() {
 		if(this.playerLocation != null) {
 			int i1 = this.worldObj.getBlockMetadata(this.playerLocation.posX, this.playerLocation.posY, this.playerLocation.posZ);
@@ -992,7 +993,6 @@ public abstract class EntityPlayer extends EntityLiving {
 
 		return 0.0F;
 	}
-	*/
 	
 	public boolean isPlayerSleeping() {
 		return this.sleeping;

@@ -509,7 +509,7 @@ public class NetClientHandler extends NetHandler {
 				entity2.performHurtAnimation();
 			} else if(packet18Animation1.animate == 3) {
 				entityPlayer3 = (EntityPlayer)entity2;
-				//entityPlayer3.wakeUpPlayer(false, false, false);
+				entityPlayer3.wakeUpPlayer(false, false, false);
 			} else if(packet18Animation1.animate == 4) {
 				entityPlayer3 = (EntityPlayer)entity2;
 				entityPlayer3.func_6420_o();
@@ -529,8 +529,8 @@ public class NetClientHandler extends NetHandler {
 		Entity entity2 = this.getEntityByID(packet17Sleep1.entityID);
 		if(entity2 != null) {
 			if(packet17Sleep1.field_22046_e == 0) {
-				//EntityPlayer entityPlayer3 = (EntityPlayer)entity2;
-				//entityPlayer3.sleepInBedAt(packet17Sleep1.bedX, packet17Sleep1.bedY, packet17Sleep1.bedZ);
+				EntityPlayer entityPlayer3 = (EntityPlayer)entity2;
+				entityPlayer3.sleepInBedAt(packet17Sleep1.bedX, packet17Sleep1.bedY, packet17Sleep1.bedZ);
 			}
 
 		}

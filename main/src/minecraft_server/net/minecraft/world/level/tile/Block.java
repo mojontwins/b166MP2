@@ -81,7 +81,7 @@ public class Block implements ITextureProvider {
 	public static final Block dispenser = (new BlockDispenser(23)).setHardness(3.5F).setStepSound(soundStoneFootstep).setBlockName("dispenser").setRequiresSelfNotify();
 	public static final Block sandStone = (new BlockSandStone(24)).setStepSound(soundStoneFootstep).setHardness(0.8F).setBlockName("sandStone").setRequiresSelfNotify();
 	public static final Block music = (new BlockNote(25)).setHardness(0.8F).setBlockName("musicBlock").setRequiresSelfNotify();
-	// 26
+	public static final Block bed = (new BlockBed(26)).setHardness(0.2F).setBlockName("bed").disableStats().setRequiresSelfNotify();
 	public static final Block railPowered = (new BlockRail(27, 179, true)).setHardness(0.7F).setStepSound(soundMetalFootstep).setBlockName("goldenRail").setRequiresSelfNotify();
 	// 28
 	// 29
@@ -888,7 +888,7 @@ public class Block implements ITextureProvider {
 		return false;
 	}
 	
-	public boolean supportsRedstone(int meta) {
+	public boolean hasSolidTop(int meta) {
 		return this.isBlockNormalCube(meta);
 	}
 	

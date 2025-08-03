@@ -48,7 +48,7 @@ public class BlockRedstoneWire extends Block {
 
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		Block block = world.getBlock(x, y - 1, z);
-		return block != null && block.supportsRedstone(world.getBlockMetadata(x, y - 1, z));
+		return block != null && block.hasSolidTop(world.getBlockMetadata(x, y - 1, z));
 	}
 
 	private void updateAndPropagateCurrentStrength(World world, int i2, int i3, int i4) {
@@ -336,7 +336,7 @@ public class BlockRedstoneWire extends Block {
 
 	public boolean isBlockGood(IBlockAccess world, int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
-		return block != null && block.supportsRedstone(world.getBlockMetadata(x, y, z));
+		return block != null && block.hasSolidTop(world.getBlockMetadata(x, y, z));
 	}
 
 	public boolean canProvidePower() {

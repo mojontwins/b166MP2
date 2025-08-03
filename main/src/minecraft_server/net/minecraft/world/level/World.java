@@ -87,6 +87,7 @@ public class World implements IBlockAccess {
 	protected final ISaveHandler saveHandler;
 	public WorldInfo worldInfo;
 	public boolean findingSpawnPoint;
+	private boolean allPlayersSleeping;
 	private ArrayList<AxisAlignedBB> collidingBoundingBoxes = new ArrayList<AxisAlignedBB>();
 	private boolean scanningTileEntities;
 	protected boolean spawnHostileMobs = true;
@@ -1080,7 +1081,7 @@ public class World implements IBlockAccess {
 			if(entity1 instanceof EntityPlayer) {
 				EntityPlayer entityPlayer5 = (EntityPlayer)entity1;
 				this.playerEntities.add(entityPlayer5);
-				//this.updateAllPlayersSleepingFlag();
+				this.updateAllPlayersSleepingFlag();
 			}
 
 			this.getChunkFromChunkCoords(i2, i3).addEntity(entity1);
@@ -1125,7 +1126,7 @@ public class World implements IBlockAccess {
 		entity1.setDead();
 		if(entity1 instanceof EntityPlayer) {
 			this.playerEntities.remove((EntityPlayer)entity1);
-			//this.updateAllPlayersSleepingFlag();
+			this.updateAllPlayersSleepingFlag();
 		}
 
 	}
@@ -1134,7 +1135,7 @@ public class World implements IBlockAccess {
 		entity1.setDead();
 		if(entity1 instanceof EntityPlayer) {
 			this.playerEntities.remove((EntityPlayer)entity1);
-			//this.updateAllPlayersSleepingFlag();
+			this.updateAllPlayersSleepingFlag();
 		}
 
 		int i2 = entity1.chunkCoordX;
@@ -2003,6 +2004,19 @@ public class World implements IBlockAccess {
 
 		long worldTime;
 	
+		if(this.isAllPlayersFullyAsleep()) {
+			boolean z1 = false;
+			if(this.spawnHostileMobs && this.difficultySetting >= 1) {
+				;
+			}
+
+			if(!z1) {
+				worldTime = this.worldInfo.getWorldTime() + 24000L;
+				this.worldInfo.setWorldTime(worldTime - worldTime % 24000L);
+				this.wakeUpAllPlayers();
+			}
+		}
+		
 		SpawnerAnimals.performSpawning(this, this.spawnHostileMobs, this.spawnPeacefulMobs && this.worldInfo.getWorldTime() % 400L == 0L);
 
 		this.chunkProvider.unload100OldestChunks();
@@ -2207,14 +2221,12 @@ public class World implements IBlockAccess {
 		}
 	}
 
-	/*
 	private void clearWeather() {
 		this.worldInfo.setRainTime(0);
 		this.worldInfo.setRaining(false);
 		this.worldInfo.setThunderTime(0);
 		this.worldInfo.setThundering(false);
 	}
-	*/
 
 	public void commandToggleDownfall() {
 		this.worldInfo.setRainTime(1);
@@ -2988,7 +3000,6 @@ public class World implements IBlockAccess {
 		return this.worldInfo;
 	}
 
-	/*
 	public void updateAllPlayersSleepingFlag() {
 		this.allPlayersSleeping = !this.playerEntities.isEmpty();
 		Iterator<EntityPlayer> iterator1 = this.playerEntities.iterator();
@@ -3002,9 +3013,7 @@ public class World implements IBlockAccess {
 		}
 
 	}
-	*/
 
-	/*
 	protected void wakeUpAllPlayers() {
 		this.allPlayersSleeping = false;
 		Iterator<EntityPlayer> iterator1 = this.playerEntities.iterator();
@@ -3018,9 +3027,7 @@ public class World implements IBlockAccess {
 
 		this.clearWeather();
 	}
-	*/
 
-	/*
 	public boolean isAllPlayersFullyAsleep() {
 		if(this.allPlayersSleeping && !this.isRemote) {
 			Iterator<EntityPlayer> iterator1 = this.playerEntities.iterator();
@@ -3039,7 +3046,6 @@ public class World implements IBlockAccess {
 			return false;
 		}
 	}
-	*/
 
 	public float getWeightedThunderStrength(float f1) {
 		return (this.prevThunderingStrength + (this.thunderingStrength - this.prevThunderingStrength) * f1) * this.getRainStrength(f1);

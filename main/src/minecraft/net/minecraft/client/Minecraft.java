@@ -1452,8 +1452,9 @@ public abstract class Minecraft implements Runnable {
 		if(this.thePlayer != null && !doRespawn) {
 			spawnCoordinates = this.thePlayer.getSpawnChunk();	
 			if(spawnCoordinates != null) {
-				if(this.thePlayer.isDontCheckSpawnCoordinates()) {
-					newSpawnCoordinates = spawnCoordinates;
+				newSpawnCoordinates = EntityPlayer.verifyRespawnCoordinates(this.theWorld, spawnCoordinates);	
+				if (newSpawnCoordinates == null) {
+					this.thePlayer.addChatMessage("tile.bed.notValid");
 				} else {
 					spawnDimension = this.thePlayer.getSpawnDimension();
 				}

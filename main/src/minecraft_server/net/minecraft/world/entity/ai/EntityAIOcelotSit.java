@@ -3,6 +3,7 @@ package net.minecraft.world.entity.ai;
 import net.minecraft.world.entity.animal.EntityOcelot;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.tile.Block;
+import net.minecraft.world.level.tile.BlockBed;
 import net.minecraft.world.level.tile.entity.TileEntityChest;
 
 public class EntityAIOcelotSit extends EntityAIBase {
@@ -79,7 +80,8 @@ public class EntityAIOcelotSit extends EntityAIBase {
 
 	private boolean likesSittingHere(World world1, int i2, int i3, int i4) {
 		int i5 = world1.getBlockId(i2, i3, i4);
-		//int i6 = world1.getBlockMetadata(i2, i3, i4);
+		int i6 = world1.getBlockMetadata(i2, i3, i4);
+		
 		if(i5 == Block.chest.blockID) {
 			TileEntityChest tileEntityChest7 = (TileEntityChest)world1.getBlockTileEntity(i2, i3, i4);
 			if(tileEntityChest7.numUsingPlayers < 1) {
@@ -90,11 +92,9 @@ public class EntityAIOcelotSit extends EntityAIBase {
 				return true;
 			}
 
-			/*
 			if(i5 == Block.bed.blockID && !BlockBed.isBlockFootOfBed(i6)) {
 				return true;
 			}
-			*/
 		}
 
 		return false;

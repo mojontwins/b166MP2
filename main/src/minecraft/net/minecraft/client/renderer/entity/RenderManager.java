@@ -25,6 +25,7 @@ import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderEngine;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.src.MathHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLightningBolt;
 import net.minecraft.world.entity.EntityLiving;
@@ -63,6 +64,7 @@ import net.minecraft.world.entity.projectile.EntitySmallFireball;
 import net.minecraft.world.entity.projectile.EntitySnowball;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.World;
+import net.minecraft.world.level.tile.Block;
 
 public class RenderManager {
 	private Map<Class<?>, Render> entityRenderMap = new HashMap<Class<?>, Render>();
@@ -151,7 +153,6 @@ public class RenderManager {
 		this.livingPlayer = entityLiving4;
 		this.fontRenderer = fontRenderer3;
 		if(entityLiving4.isPlayerSleeping()) {
-			/*
 			int i7 = world1.getBlockId(MathHelper.floor_double(entityLiving4.posX), MathHelper.floor_double(entityLiving4.posY), MathHelper.floor_double(entityLiving4.posZ));
 			if(i7 == Block.bed.blockID) {
 				int i8 = world1.getBlockMetadata(MathHelper.floor_double(entityLiving4.posX), MathHelper.floor_double(entityLiving4.posY), MathHelper.floor_double(entityLiving4.posZ));
@@ -159,7 +160,7 @@ public class RenderManager {
 				this.playerViewY = (float)(i9 * 90 + 180);
 				this.playerViewX = 0.0F;
 			}
-			*/
+
 		} else {
 			this.playerViewY = entityLiving4.prevRotationYaw + (entityLiving4.rotationYaw - entityLiving4.prevRotationYaw) * f6;
 			this.playerViewX = entityLiving4.prevRotationPitch + (entityLiving4.rotationPitch - entityLiving4.prevRotationPitch) * f6;

@@ -179,7 +179,7 @@ public class BlockStep extends Block {
 	}
 	
 	@Override
-	public boolean supportsRedstone(int meta) {
+	public boolean hasSolidTop(int meta) {
 		return BlockStep.isUpper(meta);
 	}
 	

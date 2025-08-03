@@ -5,6 +5,7 @@ import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.creative.CreativeTabs;
 import net.minecraft.world.level.tile.Block;
+import net.minecraft.world.level.tile.BlockBed;
 import net.minecraft.world.level.tile.BlockStep;
 import net.minecraft.world.level.tile.entity.TileEntitySign;
 
@@ -26,6 +27,10 @@ public class ItemSign extends Item {
 		
 		if(block instanceof BlockStep) {
 			if((meta & 8) == 8) return true;
+			return side != 1;
+		}
+		
+		if(block instanceof BlockBed) {
 			return side != 1;
 		}
 				

@@ -314,7 +314,7 @@ public class RenderPlayer extends RenderLiving {
 
 	protected void rotatePlayer(EntityPlayer entityPlayer1, float f2, float f3, float f4) {
 		if(entityPlayer1.isEntityAlive() && entityPlayer1.isPlayerSleeping()) {
-			//GL11.glRotatef(entityPlayer1.getBedOrientationInDegrees(), 0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(entityPlayer1.getBedOrientationInDegrees(), 0.0F, 1.0F, 0.0F);
 			GL11.glRotatef(this.getDeathMaxRotation(entityPlayer1), 0.0F, 0.0F, 1.0F);
 			GL11.glRotatef(270.0F, 0.0F, 1.0F, 0.0F);
 		} else {
