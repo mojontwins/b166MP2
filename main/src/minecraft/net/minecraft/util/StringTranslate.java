@@ -36,7 +36,7 @@ public class StringTranslate {
 				}
 			}
 		} catch (IOException iOException5) {
-			iOException5.printStackTrace();
+			treeMap1.put("en_US", "English (US)");
 			return;
 		}
 

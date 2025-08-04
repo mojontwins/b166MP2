@@ -35,8 +35,8 @@ public class StringTranslate {
 					treeMap1.put(string4[0], string4[1]);
 				}
 			}
-		} catch (IOException iOException5) {
-			iOException5.printStackTrace();
+		} catch (Exception e) {
+			treeMap1.put("en_US", "English (US)");
 			return;
 		}
 
@@ -68,7 +68,7 @@ public class StringTranslate {
 
 			try {
 				this.loadLanguage(properties2, "en_US");
-			} catch (IOException iOException8) {
+			} catch (Exception e) {
 			}
 
 			this.isUnicode = false;
@@ -100,8 +100,8 @@ public class StringTranslate {
 							}
 						}
 					}
-				} catch (IOException iOException9) {
-					iOException9.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
 					return;
 				}
 			}

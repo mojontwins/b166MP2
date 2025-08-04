@@ -2,6 +2,7 @@ package net.minecraft.world.level.tile;
 
 import java.util.Random;
 
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.EntityItem;
 import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.item.Item;
@@ -108,5 +109,10 @@ public class BlockSnow extends Block {
 
 	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
 		return side == 1 ? true : super.shouldSideBeRendered(world, x, y, z, side);
+	}
+	
+	@Override
+	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
+		entity.setInSnow();
 	}
 }

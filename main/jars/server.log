@@ -458,3 +458,150 @@ java.lang.ArrayIndexOutOfBoundsException: -1
 2025-08-01 20:58:51 [INFO] Saving chunks
 2025-08-01 20:58:51 [INFO] Saving chunks
 2025-08-01 20:58:51 [INFO] Saving chunks
+2025-08-03 17:13:10 [INFO] Starting minecraft server version Beta 1.2.0
+2025-08-03 17:13:11 [INFO] Loading properties
+2025-08-03 17:13:11 [INFO] Starting Minecraft server on *:25565
+2025-08-03 17:13:11 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-03 17:13:11 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-03 17:13:11 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-03 17:13:11 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-03 17:13:11 [INFO] Configured level type: DEFAULT
+2025-08-03 17:13:11 [INFO] Preparing level "world"
+2025-08-03 17:13:11 [INFO] Default game type: 0
+2025-08-03 17:13:11 [INFO] Preparing start region for level 0
+2025-08-03 17:13:12 [INFO] Preparing spawn area: 69%
+2025-08-03 17:13:13 [INFO] Preparing start region for level 1
+2025-08-03 17:13:13 [INFO] Done (2,144s)! For help, type "help" or "?"
+2025-08-03 17:13:18 [INFO] /127.0.0.1:64461 lost connection
+2025-08-03 17:13:19 [INFO] Popoch [/127.0.0.1:64462] logged in with entity id 238 at (9189.03125, 30.0, -6359.875)
+2025-08-03 17:13:31 [SEVERE] Unexpected exception
+java.lang.ExceptionInInitializerError
+	at net.minecraft.server.player.EntityPlayerMP.addChatMessage(EntityPlayerMP.java:481)
+	at net.minecraft.world.level.tile.BlockBed.blockActivated(BlockBed.java:86)
+	at net.minecraft.world.level.tile.Block.blockActivated(Block.java:684)
+	at net.minecraft.server.ItemInWorldManager.activeBlockOrUseItem(ItemInWorldManager.java:188)
+	at net.minecraft.server.network.NetServerHandler.handlePlace(NetServerHandler.java:398)
+	at net.minecraft.network.packet.Packet15Place.processPacket(Packet15Place.java:63)
+	at net.minecraft.network.NetworkManager.processReadPackets(NetworkManager.java:221)
+	at net.minecraft.server.network.NetServerHandler.handlePackets(NetServerHandler.java:86)
+	at net.minecraft.server.network.NetworkListenThread.handleNetworkListenThread(NetworkListenThread.java:76)
+	at net.minecraft.server.MinecraftServer.doTick(MinecraftServer.java:438)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:351)
+	at net.minecraft.server.ThreadServerApplication.run(ThreadServerApplication.java:12)
+Caused by: java.lang.NullPointerException
+	at java.io.Reader.<init>(Reader.java:78)
+	at java.io.InputStreamReader.<init>(InputStreamReader.java:97)
+	at net.minecraft.util.StringTranslate.loadLanguageList(StringTranslate.java:30)
+	at net.minecraft.util.StringTranslate.<init>(StringTranslate.java:18)
+	at net.minecraft.util.StringTranslate.<clinit>(StringTranslate.java:11)
+	... 12 more
+2025-08-03 17:13:41 [INFO] Stopping server
+2025-08-03 17:13:41 [INFO] Saving chunks
+2025-08-03 17:13:41 [INFO] Saving chunks
+2025-08-03 17:13:41 [INFO] Saving chunks
+2025-08-03 17:13:41 [INFO] Saving chunks
+2025-08-03 17:13:41 [INFO] Saving chunks
+2025-08-03 17:19:31 [INFO] Starting minecraft server version Beta 1.2.0
+2025-08-03 17:19:31 [INFO] Loading properties
+2025-08-03 17:19:31 [INFO] Starting Minecraft server on *:25565
+2025-08-03 17:19:31 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-03 17:19:32 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-03 17:19:32 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-03 17:19:32 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-03 17:19:32 [INFO] Configured level type: DEFAULT
+2025-08-03 17:19:32 [INFO] Preparing level "world"
+2025-08-03 17:19:32 [INFO] Default game type: 0
+2025-08-03 17:19:32 [INFO] Preparing start region for level 0
+2025-08-03 17:19:33 [INFO] Preparing spawn area: 53%
+2025-08-03 17:19:33 [INFO] Preparing start region for level 1
+2025-08-03 17:19:34 [INFO] Done (2,112s)! For help, type "help" or "?"
+2025-08-03 17:19:39 [INFO] Popoch [/127.0.0.1:64541] logged in with entity id 238 at (9189.03125, 30.0, -6359.875)
+2025-08-03 17:19:48 [SEVERE] Unexpected exception
+java.lang.ExceptionInInitializerError
+	at net.minecraft.server.player.EntityPlayerMP.addChatMessage(EntityPlayerMP.java:481)
+	at net.minecraft.world.level.tile.BlockBed.blockActivated(BlockBed.java:86)
+	at net.minecraft.world.level.tile.Block.blockActivated(Block.java:684)
+	at net.minecraft.server.ItemInWorldManager.activeBlockOrUseItem(ItemInWorldManager.java:188)
+	at net.minecraft.server.network.NetServerHandler.handlePlace(NetServerHandler.java:398)
+	at net.minecraft.network.packet.Packet15Place.processPacket(Packet15Place.java:63)
+	at net.minecraft.network.NetworkManager.processReadPackets(NetworkManager.java:221)
+	at net.minecraft.server.network.NetServerHandler.handlePackets(NetServerHandler.java:86)
+	at net.minecraft.server.network.NetworkListenThread.handleNetworkListenThread(NetworkListenThread.java:76)
+	at net.minecraft.server.MinecraftServer.doTick(MinecraftServer.java:438)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:351)
+	at net.minecraft.server.ThreadServerApplication.run(ThreadServerApplication.java:12)
+Caused by: java.lang.NullPointerException
+	at java.io.Reader.<init>(Reader.java:78)
+	at java.io.InputStreamReader.<init>(InputStreamReader.java:97)
+	at net.minecraft.util.StringTranslate.loadLanguageList(StringTranslate.java:30)
+	at net.minecraft.util.StringTranslate.<init>(StringTranslate.java:18)
+	at net.minecraft.util.StringTranslate.<clinit>(StringTranslate.java:11)
+	... 12 more
+2025-08-03 17:19:51 [INFO] Stopping server
+2025-08-03 17:19:51 [INFO] Saving chunks
+2025-08-03 17:19:51 [INFO] Saving chunks
+2025-08-03 17:19:51 [INFO] Saving chunks
+2025-08-03 17:19:51 [INFO] Saving chunks
+2025-08-03 17:19:51 [INFO] Saving chunks
+2025-08-03 22:59:21 [INFO] Starting minecraft server version Beta 1.2.0
+2025-08-03 22:59:21 [INFO] Loading properties
+2025-08-03 22:59:21 [INFO] Starting Minecraft server on *:25565
+2025-08-03 22:59:21 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-03 22:59:21 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-03 22:59:21 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-03 22:59:21 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-03 22:59:21 [INFO] Configured level type: DEFAULT
+2025-08-03 22:59:22 [INFO] Preparing level "world"
+2025-08-03 22:59:22 [INFO] Default game type: 0
+2025-08-03 22:59:22 [INFO] Preparing start region for level 0
+2025-08-03 22:59:23 [INFO] Preparing spawn area: 61%
+2025-08-03 22:59:24 [INFO] Preparing start region for level 1
+2025-08-03 22:59:24 [INFO] Done (3,027s)! For help, type "help" or "?"
+2025-08-03 22:59:25 [INFO] /127.0.0.1:52084 lost connection
+2025-08-03 22:59:26 [INFO] Popoch [/127.0.0.1:52085] logged in with entity id 238 at (9188.913672252293, 30.0, -6360.484809780008)
+2025-08-03 22:59:29 [SEVERE] Unexpected exception
+java.lang.ExceptionInInitializerError
+	at net.minecraft.server.player.EntityPlayerMP.addChatMessage(EntityPlayerMP.java:481)
+	at net.minecraft.world.level.tile.BlockBed.blockActivated(BlockBed.java:86)
+	at net.minecraft.world.level.tile.Block.blockActivated(Block.java:684)
+	at net.minecraft.server.ItemInWorldManager.activeBlockOrUseItem(ItemInWorldManager.java:188)
+	at net.minecraft.server.network.NetServerHandler.handlePlace(NetServerHandler.java:398)
+	at net.minecraft.network.packet.Packet15Place.processPacket(Packet15Place.java:63)
+	at net.minecraft.network.NetworkManager.processReadPackets(NetworkManager.java:221)
+	at net.minecraft.server.network.NetServerHandler.handlePackets(NetServerHandler.java:86)
+	at net.minecraft.server.network.NetworkListenThread.handleNetworkListenThread(NetworkListenThread.java:76)
+	at net.minecraft.server.MinecraftServer.doTick(MinecraftServer.java:438)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:351)
+	at net.minecraft.server.ThreadServerApplication.run(ThreadServerApplication.java:12)
+Caused by: java.lang.NullPointerException
+	at java.io.Reader.<init>(Reader.java:78)
+	at java.io.InputStreamReader.<init>(InputStreamReader.java:97)
+	at net.minecraft.util.StringTranslate.loadLanguageList(StringTranslate.java:30)
+	at net.minecraft.util.StringTranslate.<init>(StringTranslate.java:18)
+	at net.minecraft.util.StringTranslate.<clinit>(StringTranslate.java:11)
+	... 12 more
+2025-08-03 22:59:33 [INFO] Stopping server
+2025-08-03 22:59:33 [INFO] Saving chunks
+2025-08-03 22:59:33 [INFO] Saving chunks
+2025-08-03 22:59:33 [INFO] Saving chunks
+2025-08-03 22:59:33 [INFO] Saving chunks
+2025-08-03 22:59:33 [INFO] Saving chunks
+2025-08-03 23:01:03 [INFO] Starting minecraft server version Beta 1.2.0
+2025-08-03 23:01:03 [INFO] Loading properties
+2025-08-03 23:01:03 [INFO] Starting Minecraft server on *:25565
+2025-08-03 23:01:03 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-03 23:01:03 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-03 23:01:03 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-03 23:01:03 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-03 23:01:03 [INFO] Configured level type: DEFAULT
+2025-08-03 23:01:03 [INFO] Preparing level "world"
+2025-08-03 23:01:03 [INFO] Default game type: 0
+2025-08-03 23:01:04 [INFO] Preparing start region for level 0
+2025-08-03 23:01:05 [INFO] Preparing spawn area: 40%
+2025-08-03 23:01:06 [INFO] Preparing spawn area: 97%
+2025-08-03 23:01:06 [INFO] Preparing start region for level 1
+2025-08-03 23:01:06 [INFO] Done (2,761s)! For help, type "help" or "?"
+2025-08-03 23:01:07 [INFO] /127.0.0.1:52110 lost connection
+2025-08-03 23:01:08 [INFO] Popoch [/127.0.0.1:52111] logged in with entity id 238 at (9188.913672252293, 30.0, -6360.484809780008)
+2025-08-03 23:01:25 [INFO] Popoch issued server command: time set night
+2025-08-03 23:01:36 [INFO] Popoch lost connection: disconnect.genericReason

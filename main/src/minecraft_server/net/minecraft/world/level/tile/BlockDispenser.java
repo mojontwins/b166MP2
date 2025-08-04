@@ -150,7 +150,7 @@ public class BlockDispenser extends BlockContainer {
 					world1.spawnEntityInWorld(entityExpBottle19);
 					world1.playAuxSFX(1002, i2, i3, i4, 0);
 				} */else if(itemStack12.itemID == Item.monsterPlacer.shiftedIndex) {
-					ItemMonsterPlacer.func_48440_a(world1, itemStack12.getItemDamage(), d13 + (double)b9 * 0.3D, d15 - 0.3D, d17 + (double)b10 * 0.3D);
+					ItemMonsterPlacer.hatchEgg(world1, itemStack12.getItemDamage(), d13 + (double)b9 * 0.3D, d15 - 0.3D, d17 + (double)b10 * 0.3D);
 					world1.playAuxSFX(1002, i2, i3, i4, 0);
 				} else if(itemStack12.itemID == Item.fireballCharge.shiftedIndex) {
 					EntitySmallFireball entitySmallFireball22 = new EntitySmallFireball(world1, d13 + (double)b9 * 0.3D, d15, d17 + (double)b10 * 0.3D, (double)b9 + random5.nextGaussian() * 0.05D, random5.nextGaussian() * 0.05D, (double)b10 + random5.nextGaussian() * 0.05D);

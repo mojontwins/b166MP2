@@ -151,7 +151,7 @@ public class EntityOcelot extends EntityTameable {
 	public boolean interact(EntityPlayer entityPlayer1) {
 		ItemStack itemStack2 = entityPlayer1.inventory.getCurrentItem();
 		if(!this.isTamed()) {
-			if(this.aiTempt.func_48270_h() && itemStack2 != null && itemStack2.itemID == Item.fishRaw.shiftedIndex && entityPlayer1.getDistanceSqToEntity(this) < 9.0D) {
+			if(this.aiTempt.isTempted() && itemStack2 != null && itemStack2.itemID == Item.fishRaw.shiftedIndex && entityPlayer1.getDistanceSqToEntity(this) < 9.0D) {
 				--itemStack2.stackSize;
 				if(itemStack2.stackSize <= 0) {
 					entityPlayer1.inventory.setInventorySlotContents(entityPlayer1.inventory.currentItem, (ItemStack)null);
