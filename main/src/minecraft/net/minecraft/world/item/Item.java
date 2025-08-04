@@ -88,7 +88,7 @@ public class Item implements ITextureProvider {
 	public static Item bootsGold = (new ItemArmor(61, EnumArmorMaterial.GOLD, 4, 3)).setIconCoord(4, 3).setItemName("bootsGold");
 	public static Item flint = (new Item(62)).setIconCoord(6, 0).setItemName("flint").setCreativeTab(CreativeTabs.tabMaterials);
 	public static Item porkRaw = (new ItemFood(63, 3, 0.3F, true)).setIconCoord(7, 5).setItemName("porkchopRaw");
-	public static Item porkCooked = (new ItemPorkCooked(64, 8, 0.8F, true)).setIconCoord(8, 5).fixForAlphaBeta().setItemName("porkchopCooked");
+	public static Item porkCooked = (new ItemPorkCooked(64, 8, 0.8F, true)).setIconCoord(8, 5).setItemName("porkchopCooked");
 	public static Item painting = (new ItemPainting(65)).setIconCoord(10, 1).setItemName("painting");
 	public static Item appleGold = (new ItemAppleGold(66, 4, 1.2F, false)).setAlwaysEdible().setIconCoord(11, 0).setItemName("appleGold");
 	public static Item sign = (new ItemSign(67)).setIconCoord(10, 2).setItemName("sign");
@@ -129,21 +129,21 @@ public class Item implements ITextureProvider {
 	public static Item redstoneRepeater = (new ItemPlacesBlock(100, Block.redstoneRepeaterIdle)).setIconCoord(6, 5).setItemName("diode").setCreativeTab(CreativeTabs.tabRedstone);
 	public static Item cookie = (new ItemFood(101, 1, 0.1F, false)).setIconCoord(12, 5).setItemName("cookie");
 	public static ItemShears shears = (ItemShears)(new ItemShears(103)).setIconCoord(13, 5).setItemName("shears");
-	public static Item melon = (new ItemFood(104, 2, 0.3F, false)).setIconCoord(13, 6).setItemName("melon");
-	public static Item beefRaw = (new ItemFood(107, 3, 0.3F, true)).setIconCoord(9, 6).setItemName("beefRaw");
-	public static Item beefCooked = (new ItemFood(108, 8, 0.8F, true)).setIconCoord(10, 6).setItemName("beefCooked");
-	public static Item chickenRaw = (new ItemFood(109, 2, 0.3F, true)).setIconCoord(9, 7).setItemName("chickenRaw");
-	public static Item chickenCooked = (new ItemFood(110, 6, 0.6F, true)).setIconCoord(10, 7).setItemName("chickenCooked");
-	public static Item rottenFlesh = (new ItemFood(111, 4, 0.1F, true)).setIconCoord(11, 5).setItemName("rottenFlesh");
-	public static Item blazeRod = (new Item(113)).setIconCoord(12, 6).setItemName("blazeRod").setCreativeTab(CreativeTabs.tabMaterials);
-	public static Item ghastTear = (new Item(114)).setIconCoord(11, 7).setItemName("ghastTear").setCreativeTab(CreativeTabs.tabBrewing);
-	public static Item goldNugget = (new ItemGolden(115)).setIconCoord(12, 7).setItemName("goldNugget").setCreativeTab(CreativeTabs.tabMaterials);
+	public static Item melon = (new ItemFood(104, 2, 0.3F, false)).setIconCoord(13, 6).setItemName("melon").softlock();
+	public static Item beefRaw = (new ItemFood(107, 3, 0.3F, true)).setIconCoord(9, 6).setItemName("beefRaw").softlock();
+	public static Item beefCooked = (new ItemFood(108, 8, 0.8F, true)).setIconCoord(10, 6).setItemName("beefCooked").softlock();
+	public static Item chickenRaw = (new ItemFood(109, 2, 0.3F, true)).setIconCoord(9, 7).setItemName("chickenRaw").softlock();
+	public static Item chickenCooked = (new ItemFood(110, 6, 0.6F, true)).setIconCoord(10, 7).setItemName("chickenCooked").softlock();
+	public static Item rottenFlesh = (new ItemFood(111, 4, 0.1F, true)).setIconCoord(11, 5).setItemName("rottenFlesh").softlock();
+	public static Item blazeRod = (new Item(113)).setIconCoord(12, 6).setItemName("blazeRod").setCreativeTab(CreativeTabs.tabMaterials).softlock();
+	public static Item ghastTear = (new Item(114)).setIconCoord(11, 7).setItemName("ghastTear").setCreativeTab(CreativeTabs.tabBrewing).softlock();
+	public static Item goldNugget = (new ItemGolden(115)).setIconCoord(12, 7).setItemName("goldNugget").setCreativeTab(CreativeTabs.tabMaterials).softlock();
 	public static Item netherStalkSeeds = (new ItemSeeds(116, Block.netherStalk.blockID, Block.slowSand.blockID)).setIconCoord(13, 7).setItemName("netherStalkSeeds").setPotionEffect("+4");
-	public static Item glassBottle = (new Item(118)).setIconCoord(12, 8).setItemName("glassBottle");
+	public static Item glassBottle = (new Item(118)).setIconCoord(12, 8).setItemName("glassBottle").softlock();
 	public static Item monsterPlacer = (new ItemMonsterPlacer(127)).setIconCoord(9, 9).setItemName("monsterPlacer");
 
 	public static Item fireballCharge = (new ItemFireball(129)).setIconCoord(14, 2).setItemName("fireball");
-	public static Item emerald = (new Item(132)).setIconCoord(10, 11).setItemName("emerald").setCreativeTab(CreativeTabs.tabMaterials);
+	public static Item emerald = (new Item(132)).setIconCoord(10, 11).setItemName("emerald").setCreativeTab(CreativeTabs.tabMaterials).softlock();
 	
 	public static Item record13 = (new ItemRecord(2000, "13")).setIconCoord(0, 15).setItemName("record");
 	public static Item recordCat = (new ItemRecord(2001, "cat")).setIconCoord(1, 15).setItemName("record");
@@ -206,6 +206,7 @@ public class Item implements ITextureProvider {
 	public boolean isDefaultTexture = true;
 	private String currentTexture = "/gui/items.png";
 	public CreativeTabs displayOnCreativeTab;
+	public boolean softlocked = false;
 
 	protected Item(int i1) {
 		this.shiftedIndex = 256 + i1;
@@ -217,6 +218,11 @@ public class Item implements ITextureProvider {
 	}
 	
 	public Item fixForAlphaBeta() {
+		return this;
+	}
+	
+	public Item softlock() {
+		this.softlocked = true;
 		return this;
 	}
 

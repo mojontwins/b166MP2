@@ -76,13 +76,14 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 
 # b1.3
 
-* [ ] This version adds beds and the sleeping functionality. I removed all this for the base version and now I'll have to add it again :D Sowly but steady!
+* [X] This version adds beds and the sleeping functionality. I removed all this for the base version and now I'll have to add it again :D Sowly but steady!
 	* [X] Sleeping in SP works.
-	* [ ] Sleeping in SMP works.
+	* [X] Sleeping in SMP works.
 		* Bug! Crash when trying to translate the "can't sleep" message in the server. How is this even handled in vanilla?
 	* [X] Nightmare dynamic.
 
-
+## Bugs / glitches
+	* [ ] seeds not consistent? revise beta gen
 	* [ ] Restore the pane renderer.
 
 

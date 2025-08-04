@@ -12,13 +12,13 @@ advancedOpengl:false
 fpsLimit:0
 difficulty:2
 fancyGraphics:false
-ao:true
+ao:false
 clouds:true
 skin:Default
 lastServer:
 lang:en_US
 displayMode:DEFAULT
-ofMipmapLevel:4
+ofMipmapLevel:0
 ofMipmapLinear:true
 coloredFog:true
 key_key.attack:-100
