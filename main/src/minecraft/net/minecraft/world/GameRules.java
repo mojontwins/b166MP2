@@ -68,6 +68,7 @@ public class GameRules {
 		gameRules.put("colouredFog", new GameRule().withCaption("colouredFog").withDescription("Coloured fog").category(catAesthetics).withValue(true));
 		gameRules.put("renderAllBlocksStraight", new GameRule().withCaption("renderAllBlocksStraight").withDescription("Render al 3axis (i.e. logs) vertical").category(catAesthetics).withValue(true));
 		gameRules.put("snowPilesUp", new GameRule().withCaption("snowPilesUp").withDescription("Snow will build up as it keeps snowing").category(catAesthetics).withValue(true));
+		gameRules.put("fixedArmorTier", new GameRule().withCaption("fixedArmorTier").withDescription("A spawner will spawn mobs with a fixed armor tier").category(catGameplay).withValue(true));
 	}
 	
 	public static boolean boolRule(String rule) {

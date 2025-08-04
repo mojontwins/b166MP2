@@ -17,9 +17,9 @@ public class GuiCheckButton extends GuiButton {
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, mc.renderEngine.getTexture("/gui/gui.png"));
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			
-			boolean hover = x >= this.xPosition && y >= this.yPosition && x < this.xPosition + this.w && y < this.yPosition + this.h;
+			this.hover = x >= this.xPosition && y >= this.yPosition && x < this.xPosition + this.w && y < this.yPosition + this.h;
 			int onOff = this.forcedOn ? 166 : 146;
-			if(hover) onOff += 40;
+			if(this.hover) onOff += 40;
 			
 			this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, onOff, this.w / 2, this.h);
 			this.drawTexturedModalRect(this.xPosition + this.w / 2, this.yPosition, 200 - this.w / 2, onOff, this.w / 2, this.h);
@@ -28,7 +28,7 @@ public class GuiCheckButton extends GuiButton {
 			int textColor = 14737632;
 			if(!this.enabled) {
 				textColor = -6250336;
-			} else if(hover) {
+			} else if(this.hover) {
 				textColor = 16777120;
 			}
 

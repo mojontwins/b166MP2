@@ -61,7 +61,7 @@ public class BlockFire extends Block {
 
 	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
 		int bid = world1.getBlockId(i2, i3 - 1, i4);
-		boolean z6 = /*bid == Block.netherrack.blockID ||*/ bid == Block.blockCoal.blockID;
+		boolean z6 = bid == Block.netherrack.blockID || bid == Block.blockCoal.blockID;
 		
 		if(!this.canPlaceBlockAt(world1, i2, i3, i4)) {
 			world1.setBlockWithNotify(i2, i3, i4, 0);

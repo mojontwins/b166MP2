@@ -16,8 +16,8 @@ public class ChunkProviderOcean extends ChunkProviderAlpha {
 		double scaleXZ = 684.412D;
 		double scaleY = 684.412D;
 
-		this.scaleArray = this.scaleNoiseA.generateNoiseOctaves(this.scaleArray, (double)x, (double)y, (double)z, xSize, 1, zSize, 1.0D, 0.0D, 1.0D);
-		this.depthArray = this.depthNoiseA.generateNoiseOctaves(this.depthArray, (double)x, (double)y, (double)z, xSize, 1, zSize, 100.0D, 0.0D, 100.0D);
+		this.scaleArray = this.scaleNoiseA.generateNoiseOctaves(this.scaleArray, (double)x, (double)y, (double)z, xSize, 1, zSize, 1.121D, 1.121D, 0.5D);
+		this.depthArray = this.depthNoiseA.generateNoiseOctaves(this.depthArray, (double)x, (double)y, (double)z, xSize, 1, zSize, 200.0D, 200.0D, 0.5D);
 		this.mainArray = this.mainNoiseA.generateNoiseOctaves(this.mainArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ / 80.0D, scaleY / 160.0D, scaleXZ / 80.0D);
 		this.minLimitArray = this.minLimitNoiseA.generateNoiseOctaves(this.minLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);
 		this.maxLimitArray = this.maxLimitNoiseA.generateNoiseOctaves(this.maxLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);
@@ -38,7 +38,7 @@ public class ChunkProviderOcean extends ChunkProviderAlpha {
 					depth = -depth;
 				}
 
-				depth = depth * 3.0D - 3.0D;
+				depth = depth * 3.0D - 4.0D;
 				if(depth < 0.0D) {
 					depth /= 2.0D;
 					if(depth < -1.0D) {

@@ -14,6 +14,7 @@ import com.mojang.nbt.CompressedStreamTools;
 import com.mojang.nbt.NBTTagCompound;
 
 import net.minecraft.src.MathHelper;
+import net.minecraft.util.UtilDir;
 import net.minecraft.world.level.WorldChunkManager;
 import net.minecraft.world.level.WorldChunkManagerHell;
 import net.minecraft.world.level.WorldInfo;
@@ -50,8 +51,8 @@ public class AnvilSaveConverter extends SaveFormatOld {
 						worldName = saveFileName;
 					}
 
-					long seed = 0L;
-					savesList.add(new SaveFormatComparator(saveFileName, worldName, worldInfo.getLastTimePlayed(), seed, worldInfo.getGameType(), needsConversion, worldInfo.isHardcoreModeEnabled()));
+					long fileSize = UtilDir.dirSize(saveFile);
+					savesList.add(new SaveFormatComparator(saveFileName, worldName, worldInfo.getLastTimePlayed(), fileSize, worldInfo.getGameType(), needsConversion, worldInfo.isHardcoreModeEnabled()));
 				}
 			}
 		}

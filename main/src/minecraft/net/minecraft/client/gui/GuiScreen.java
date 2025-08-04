@@ -25,14 +25,70 @@ public class GuiScreen extends Gui {
 	protected FontRenderer fontRenderer;
 	public GuiParticle guiParticles;
 	private GuiButton selectedButton = null;
+	private GuiButton hoveredButton = null;
+	
 	private int eventButton = 0;
 	private long clickTime = 0L;
 	public int updateCounter = 0;
 
-	public void drawScreen(int i1, int i2, float f3) {
-		for(int i4 = 0; i4 < this.controlList.size(); ++i4) {
-			GuiButton guiButton5 = (GuiButton)this.controlList.get(i4);
-			guiButton5.drawButton(this.mc, i1, i2);
+	int lastMouseX = 0;
+	int lastMouseY = 0;
+	private long mouseStillTime;
+	private boolean showingTooltip;
+
+	public void drawScreen(int mouseX, int mouseY, float renderPartialTicks) {
+		GuiButton lastHoveredButton = this.hoveredButton;
+		this.hoveredButton = null;
+		
+		for(int i = 0; i < this.controlList.size(); ++i) {
+			GuiButton control = (GuiButton)this.controlList.get(i);
+			control.drawButton(this.mc, mouseX, mouseY);
+			
+			if(control.hover) {
+				this.hoveredButton = control;
+			}
+		}
+		
+		if (lastHoveredButton != this.hoveredButton) {
+			this.showingTooltip = false;
+		}
+		
+		if (this.showingTooltip && this.hoveredButton != null && this.hoveredButton.toolTip != null) {
+			String lines [] = this.hoveredButton.toolTip.split ("\n");
+			int maxTextWidth = 0; for (String line : lines) {
+				int tw = fontRenderer.getStringWidth(line); if (tw > maxTextWidth) maxTextWidth = tw;
+			}
+			
+			int x1 = mouseX + 12;// mouseX - 2 - maxTextWidth / 2;
+			if (x1 < 0) x1 = 0;
+			
+			int y1 = mouseY + 12; // mouseY - 2;
+			if (y1 < 0) y1 = 0;
+			
+			int x2 = x1 + maxTextWidth + 4; 
+			if (x2 > this.width) x1 = this.width - maxTextWidth - 4;
+			
+			int y2 = y1 + 2 + 10 * lines.length;
+			if (y2 > this.height) y1 = this.height - 2 - 10 * lines.length;
+			
+			this.drawGradientRect(x1, y1, x2, y2, -536870912, -536870912);
+			
+			int y = y1 + 2;
+			for(String line : lines) {
+				this.drawString(fontRenderer, line, x1 + 2, y, 0xFFFFFF);
+				y += 10;
+			}
+		} else {
+			// Draw tooltips if mouse is still
+			if (Math.abs (this.lastMouseX - mouseX) < 16 && Math.abs(this.lastMouseY - mouseY) < 16) {
+				if (System.currentTimeMillis() >= this.mouseStillTime + 600) {
+					this.showingTooltip = true;
+				}
+			} else {
+				this.lastMouseX = mouseX;
+				this.lastMouseY = mouseY;
+				this.mouseStillTime = System.currentTimeMillis();
+			}
 		}
 
 	}

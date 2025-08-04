@@ -15,6 +15,9 @@ public class GuiButton extends Gui {
 	public boolean enabled;
 	public boolean drawButton;
 	public boolean forcedOn = false;
+	public boolean hover;
+
+	public String toolTip = null;
 
 	public GuiButton(int id, int x, int y, String caption) {
 		this(id, x, y, 200, 20, caption);
@@ -51,8 +54,8 @@ public class GuiButton extends Gui {
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, mc.renderEngine.getTexture("/gui/gui.png"));
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			
-			boolean hover = x >= this.xPosition && y >= this.yPosition && x < this.xPosition + this.w && y < this.yPosition + this.h;
-			int i6 = this.getHoverState(hover);
+			this.hover = x >= this.xPosition && y >= this.yPosition && x < this.xPosition + this.w && y < this.yPosition + this.h;
+			int i6 = this.getHoverState(this.hover);
 			
 			this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, 46 + i6 * 20, this.w / 2, this.h);
 			this.drawTexturedModalRect(this.xPosition + this.w / 2, this.yPosition, 200 - this.w / 2, 46 + i6 * 20, this.w / 2, this.h);
@@ -61,7 +64,7 @@ public class GuiButton extends Gui {
 			int textColor = 14737632;
 			if(!this.enabled) {
 				textColor = -6250336;
-			} else if(hover || this.forcedOn) {
+			} else if(this.hover || this.forcedOn) {
 				textColor = 16777120;
 			}
 

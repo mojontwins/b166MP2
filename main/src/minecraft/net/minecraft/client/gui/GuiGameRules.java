@@ -55,6 +55,7 @@ public class GuiGameRules extends GuiScreen {
 			for(GameRule rule : thisCatRules) {				
 				int buttonId = catId + ruleId;
 				GuiButton ruleButton = new GuiCheckButton(buttonId, this.width / 2 - (ruleButtonW + 2) + lr * (ruleButtonW + 4), y, ruleButtonW, 20, st.translateKey("gamerule." + rule.getCaption()));
+				ruleButton.toolTip = rule.getDescription();
 				ruleButton.forcedOn = rule.getValue();
 				
 				this.controlList.add(ruleButton);

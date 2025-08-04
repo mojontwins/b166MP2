@@ -4,6 +4,7 @@ import com.mojang.nbt.NBTTagCompound;
 
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.entity.EntityList;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.monster.EntityArmoredMob;
@@ -92,7 +93,12 @@ public class TileEntityMobSpawner extends TileEntity {
 							if(theEntityLiving instanceof EntityArmoredMob && this.maxArmorTier > this.minArmorTier && this.maxArmorTier > 0) {
 								InventoryMob inventory = new InventoryMob (theEntityLiving);
 								for (int k = 0; k < 4; k ++) {
-									inventory.setArmorItemInSlot(3 - k, ItemArmor.getArmorPieceForTier(this.minArmorTier + this.worldObj.rand.nextInt (1 + this.maxArmorTier - this.minArmorTier), k));
+									inventory.setArmorItemInSlot(3 - k, ItemArmor.getArmorPieceForTier(
+											GameRules.boolRule("fixedArmorTier") ? 
+													this.minArmorTier 
+												:
+													this.minArmorTier + this.worldObj.rand.nextInt (1 + this.maxArmorTier - this.minArmorTier)
+											, k));
 								}
 								((EntityArmoredMob) theEntityLiving).setInventory(inventory);
 							}

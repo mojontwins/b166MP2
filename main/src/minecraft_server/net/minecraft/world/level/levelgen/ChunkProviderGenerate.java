@@ -16,6 +16,7 @@ import net.minecraft.world.level.chunk.Chunk;
 import net.minecraft.world.level.chunk.IChunkProvider;
 import net.minecraft.world.level.chunk.storage.IProgressUpdate;
 import net.minecraft.world.level.levelgen.feature.WorldGenDungeons;
+import net.minecraft.world.level.levelgen.feature.WorldGenDungeonsWater;
 import net.minecraft.world.level.levelgen.feature.WorldGenLakes;
 import net.minecraft.world.level.levelgen.synth.NoiseGeneratorOctaves;
 import net.minecraft.world.level.tile.Block;
@@ -382,6 +383,15 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			y = this.rand.nextInt(128);
 			z = z0 + this.rand.nextInt(16) + 8;
 			if((new WorldGenDungeons(biomeGen)).generate(this.worldObj, this.rand, x, y, z)) {
+				;
+			}
+		}
+		
+		for(int i = 0; i < 2; ++i) {
+			x = x0 + this.rand.nextInt(16) + 8;
+			y = this.rand.nextInt(512);
+			z = z0 + this.rand.nextInt(16) + 8;
+			if((new WorldGenDungeonsWater(biomeGen)).generate(this.worldObj, this.rand, x, y, z)) {
 				;
 			}
 		}

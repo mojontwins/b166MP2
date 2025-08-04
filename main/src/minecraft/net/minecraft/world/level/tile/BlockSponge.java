@@ -14,9 +14,9 @@ public class BlockSponge extends Block {
 		super(i, Material.sponge);
 		this.blockIndexInTexture = 48;
 		this.active = isActive;
-		this.setTickRandomly(this.active);
 		
 		this.displayOnCreativeTab = CreativeTabs.tabBlock;
+		this.setTickRandomly(true);
 	}
 
 	@Override
@@ -24,6 +24,7 @@ public class BlockSponge extends Block {
 		super.onBlockAdded(world, x, y, z);
 		
 		this.clearRadiusMinusOneSection(world, x, y, z);
+		//world.scheduleBlockUpdate(x, y, z, this.blockID, this.tickRate());
 	}
 	
 	@Override
@@ -33,7 +34,11 @@ public class BlockSponge extends Block {
 	
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
+		super.updateTick(world, x, y, z, rand);
+		if(!world.isRemote) {
 		this.clearRadiusMinusOneSection(world, x, y, z);
+			//world.scheduleBlockUpdate(x, y, z, this.blockID, this.tickRate());
+		}
 	}
 	
 	private void clearRadiusMinusOneSection(World world, int x, int y, int z) {
@@ -42,9 +47,8 @@ public class BlockSponge extends Block {
 		for(int xx = x - mincoverage; xx <= x + mincoverage; ++xx) {
 			for(int yy = y - mincoverage; yy <= y + mincoverage; ++yy) {
 				for(int zz = z - mincoverage; zz <= z + mincoverage; ++zz) {
-					if (world.getBlockId(xx, yy, zz) == Block.waterMoving.blockID || 
-							world.getBlockId(xx, yy, zz) == Block.waterStill.blockID) {
-						world.setBlockAndMetadataWithNotify(xx, yy, zz, 0, 0xf);
+					if (world.getBlockMaterial(xx, yy, zz) == Material.water) {
+						world.setBlockAndMetadata(xx, yy, zz, 0, 0xf);
 					}
 				}
 			}
