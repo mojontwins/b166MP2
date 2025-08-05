@@ -117,5 +117,11 @@ public class WorldProviderSurfaceClassic extends WorldProvider {
 		world.worldInfo.setSpawnPosition(spawnX, spawnY, spawnZ);
 	}
 	
-	
+	public Vec3D getSkyColorBottom(Entity entity, float renderPartialTick) {
+		Vec3D color = this.getSkyColor(entity, renderPartialTick);
+		color.xCoord = color.xCoord * .2F + .04F;
+		color.yCoord = color.yCoord * .2F + .04F;
+		color.zCoord = color.zCoord * .6F + .1F;
+		return color;
+	}
 }

@@ -981,74 +981,74 @@ public class Chunk {
 		this.storageArrays = extendedBlockStorage1;
 	}
 
-	public void setChunkData(byte[] b1, int i2, int i3, boolean z4) {
-		int i5 = 0;
+	public void setChunkData(byte[] chunkData, int usedSubChunks, int blockMSBSubchunks, boolean includeInitialize) {
+		int byteOffs = 0;
 
-		int i6;
-		for(i6 = 0; i6 < this.storageArrays.length; ++i6) {
-			if((i2 & 1 << i6) != 0) {
-				if(this.storageArrays[i6] == null) {
-					this.storageArrays[i6] = new ExtendedBlockStorage(i6 << 4);
+		int i;
+		for(i = 0; i < this.storageArrays.length; ++i) {
+			if((usedSubChunks & 1 << i) != 0) {
+				if(this.storageArrays[i] == null) {
+					this.storageArrays[i] = new ExtendedBlockStorage(i << 4);
 				}
 
-				byte[] b7 = this.storageArrays[i6].getBlockLSBArray();
-				System.arraycopy(b1, i5, b7, 0, b7.length);
-				i5 += b7.length;
-			} else if(z4 && this.storageArrays[i6] != null) {
-				this.storageArrays[i6] = null;
+				byte[] byteArray = this.storageArrays[i].getBlockLSBArray();
+				System.arraycopy(chunkData, byteOffs, byteArray, 0, byteArray.length);
+				byteOffs += byteArray.length;
+			} else if(includeInitialize && this.storageArrays[i] != null) {
+				this.storageArrays[i] = null;
 			}
 		}
 
-		NibbleArray nibbleArray8;
-		for(i6 = 0; i6 < this.storageArrays.length; ++i6) {
-			if((i2 & 1 << i6) != 0 && this.storageArrays[i6] != null) {
-				nibbleArray8 = this.storageArrays[i6].getMetadataArray();
-				System.arraycopy(b1, i5, nibbleArray8.data, 0, nibbleArray8.data.length);
-				i5 += nibbleArray8.data.length;
+		NibbleArray nibbles;
+		for(i = 0; i < this.storageArrays.length; ++i) {
+			if((usedSubChunks & 1 << i) != 0 && this.storageArrays[i] != null) {
+				nibbles = this.storageArrays[i].getMetadataArray();
+				System.arraycopy(chunkData, byteOffs, nibbles.data, 0, nibbles.data.length);
+				byteOffs += nibbles.data.length;
 			}
 		}
 
-		for(i6 = 0; i6 < this.storageArrays.length; ++i6) {
-			if((i2 & 1 << i6) != 0 && this.storageArrays[i6] != null) {
-				nibbleArray8 = this.storageArrays[i6].getBlocklightArray();
-				System.arraycopy(b1, i5, nibbleArray8.data, 0, nibbleArray8.data.length);
-				i5 += nibbleArray8.data.length;
+		for(i = 0; i < this.storageArrays.length; ++i) {
+			if((usedSubChunks & 1 << i) != 0 && this.storageArrays[i] != null) {
+				nibbles = this.storageArrays[i].getBlocklightArray();
+				System.arraycopy(chunkData, byteOffs, nibbles.data, 0, nibbles.data.length);
+				byteOffs += nibbles.data.length;
 			}
 		}
 
-		for(i6 = 0; i6 < this.storageArrays.length; ++i6) {
-			if((i2 & 1 << i6) != 0 && this.storageArrays[i6] != null) {
-				nibbleArray8 = this.storageArrays[i6].getSkylightArray();
-				System.arraycopy(b1, i5, nibbleArray8.data, 0, nibbleArray8.data.length);
-				i5 += nibbleArray8.data.length;
+		for(i = 0; i < this.storageArrays.length; ++i) {
+			if((usedSubChunks & 1 << i) != 0 && this.storageArrays[i] != null) {
+				nibbles = this.storageArrays[i].getSkylightArray();
+				System.arraycopy(chunkData, byteOffs, nibbles.data, 0, nibbles.data.length);
+				byteOffs += nibbles.data.length;
 			}
 		}
 
-		for(i6 = 0; i6 < this.storageArrays.length; ++i6) {
-			if((i3 & 1 << i6) != 0) {
-				if(this.storageArrays[i6] == null) {
-					i5 += 2048;
+		for(i = 0; i < this.storageArrays.length; ++i) {
+			if((blockMSBSubchunks & 1 << i) != 0) {
+				if(this.storageArrays[i] == null) {
+					byteOffs += 2048;
 				} else {
-					nibbleArray8 = this.storageArrays[i6].getBlockMSBArray();
-					if(nibbleArray8 == null) {
-						nibbleArray8 = this.storageArrays[i6].createBlockMSBArray();
+					nibbles = this.storageArrays[i].getBlockMSBArray();
+					if(nibbles == null) {
+						nibbles = this.storageArrays[i].createBlockMSBArray();
 					}
 
-					System.arraycopy(b1, i5, nibbleArray8.data, 0, nibbleArray8.data.length);
-					i5 += nibbleArray8.data.length;
+					System.arraycopy(chunkData, byteOffs, nibbles.data, 0, nibbles.data.length);
+					byteOffs += nibbles.data.length;
 				}
-			} else if(z4 && this.storageArrays[i6] != null && this.storageArrays[i6].getBlockMSBArray() != null) {
-				this.storageArrays[i6].resetMSBarray();
+			} else if(includeInitialize && this.storageArrays[i] != null && this.storageArrays[i].getBlockMSBArray() != null) {
+				this.storageArrays[i].resetMSBarray();
 			}
 		}
 
-		if(z4) {
-			System.arraycopy(b1, i5, this.blockBiomeArray, 0, this.blockBiomeArray.length);
+		if(includeInitialize) {
+			System.arraycopy(chunkData, byteOffs, this.blockBiomeArray, 0, this.blockBiomeArray.length);
 		}
 
-		for(i6 = 0; i6 < this.storageArrays.length; ++i6) {
-			if(this.storageArrays[i6] != null && (i2 & 1 << i6) != 0) {
-				this.storageArrays[i6].cleanupAndUpdateCounters();
+		for(i = 0; i < this.storageArrays.length; ++i) {
+			if(this.storageArrays[i] != null && (usedSubChunks & 1 << i) != 0) {
+				this.storageArrays[i].cleanupAndUpdateCounters();
 			}
 		}
 

@@ -2,6 +2,8 @@ package net.minecraft.world.level.biome;
 
 import java.util.Random;
 
+import net.minecraft.world.entity.animal.EntityWolf;
+import net.minecraft.world.level.SpawnListEntry;
 import net.minecraft.world.level.levelgen.feature.WorldGenBigTree;
 import net.minecraft.world.level.levelgen.feature.WorldGenTallGrass;
 import net.minecraft.world.level.levelgen.feature.WorldGenTrees;
@@ -11,6 +13,7 @@ import net.minecraft.world.level.tile.Block;
 public class BiomeGenRainforest extends BiomeGenBaseBeta {
 	protected BiomeGenRainforest(int i1) {
 		super(i1);
+		this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 2, 4, 6));
 		
 		// And some tweaks...
 		this.biomeDecorator.extraTreesPerChunk = 10;

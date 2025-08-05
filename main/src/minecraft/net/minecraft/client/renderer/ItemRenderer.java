@@ -16,6 +16,8 @@ import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.EnumAction;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.map.ItemMap;
+import net.minecraft.world.item.map.MapData;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.tile.Block;
 
@@ -26,9 +28,12 @@ public class ItemRenderer {
 	private float prevEquippedProgress = 0.0F;
 	private RenderBlocks renderBlocksInstance = new RenderBlocks();
 	private int equippedItemSlot = -1;
+	private MapItemRenderer mapItemRenderer;
 
 	public ItemRenderer(Minecraft mc) {
 		this.mc = mc;
+		this.mapItemRenderer = new MapItemRenderer(mc.fontRenderer, mc.renderEngine);
+		
 	}
 
 	public void renderItem(EntityLiving entityLiving1, ItemStack itemStack2, int i3) {
@@ -224,7 +229,76 @@ public class ItemRenderer {
 
 		float f11;
 		float f13;
-		if(itemStack14 != null) {
+		if(itemStack14 != null && itemStack14.getItem() instanceof ItemMap) {
+			GL11.glPushMatrix();
+			f7 = 0.8F;
+			f16 = entityPlayerSP3.getSwingProgress(f1);
+			f18 = MathHelper.sin(f16 * (float)Math.PI);
+			f10 = MathHelper.sin(MathHelper.sqrt_float(f16) * (float)Math.PI);
+			GL11.glTranslatef(-f10 * 0.4F, MathHelper.sin(MathHelper.sqrt_float(f16) * (float)Math.PI * 2.0F) * 0.2F, -f18 * 0.2F);
+			f16 = 1.0F - f4 / 45.0F + 0.1F;
+			if(f16 < 0.0F) {
+				f16 = 0.0F;
+			}
+
+			if(f16 > 1.0F) {
+				f16 = 1.0F;
+			}
+
+			f16 = -MathHelper.cos(f16 * (float)Math.PI) * 0.5F + 0.5F;
+			GL11.glTranslatef(0.0F, 0.0F * f7 - (1.0F - f2) * 1.2F - f16 * 0.5F + 0.04F, -0.9F * f7);
+			GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(f16 * -85.0F, 0.0F, 0.0F, 1.0F);
+			GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTextureForDownloadableImage(this.mc.thePlayer.skinUrl, this.mc.thePlayer.getTexture()));
+
+			for(i9 = 0; i9 < 2; ++i9) {
+				int i24 = i9 * 2 - 1;
+				GL11.glPushMatrix();
+				GL11.glTranslatef(-0.0F, -0.6F, 1.1F * (float)i24);
+				GL11.glRotatef((float)(-45 * i24), 1.0F, 0.0F, 0.0F);
+				GL11.glRotatef(-90.0F, 0.0F, 0.0F, 1.0F);
+				GL11.glRotatef(59.0F, 0.0F, 0.0F, 1.0F);
+				GL11.glRotatef((float)(-65 * i24), 0.0F, 1.0F, 0.0F);
+				Render render22 = RenderManager.instance.getEntityRenderObject(this.mc.thePlayer);
+				RenderPlayer renderPlayer26 = (RenderPlayer)render22;
+				f13 = 1.0F;
+				GL11.glScalef(f13, f13, f13);
+				renderPlayer26.drawFirstPersonHand();
+				GL11.glPopMatrix();
+			}
+
+			f18 = entityPlayerSP3.getSwingProgress(f1);
+			f10 = MathHelper.sin(f18 * f18 * (float)Math.PI);
+			f11 = MathHelper.sin(MathHelper.sqrt_float(f18) * (float)Math.PI);
+			GL11.glRotatef(-f10 * 20.0F, 0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(-f11 * 20.0F, 0.0F, 0.0F, 1.0F);
+			GL11.glRotatef(-f11 * 80.0F, 1.0F, 0.0F, 0.0F);
+			f18 = 0.38F;
+			GL11.glScalef(f18, f18, f18);
+			GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
+			GL11.glTranslatef(-1.0F, -1.0F, 0.0F);
+			f10 = 0.015625F;
+			GL11.glScalef(f10, f10, f10);
+			this.mc.renderEngine.bindTexture(this.mc.renderEngine.getTexture("/misc/mapbg.png"));
+			Tessellator tessellator23 = Tessellator.instance;
+			GL11.glNormal3f(0.0F, 0.0F, -1.0F);
+			tessellator23.startDrawingQuads();
+			byte b27 = 7;
+			tessellator23.addVertexWithUV((double)(0 - b27), (double)(128 + b27), 0.0D, 0.0D, 1.0D);
+			tessellator23.addVertexWithUV((double)(128 + b27), (double)(128 + b27), 0.0D, 1.0D, 1.0D);
+			tessellator23.addVertexWithUV((double)(128 + b27), (double)(0 - b27), 0.0D, 1.0D, 0.0D);
+			tessellator23.addVertexWithUV((double)(0 - b27), (double)(0 - b27), 0.0D, 0.0D, 0.0D);
+			tessellator23.draw();
+			MapData mapData25 = Item.map.getMapData(itemStack14, this.mc.theWorld);
+			/*if(itemStack14.getItem() instanceof ItemTFMagicMap) {
+				this.TFMagicMapItemRenderer.renderMap(this.mc.thePlayer, this.mc.renderEngine, mapData25);
+			} else*/ {
+				this.mapItemRenderer.renderMap(this.mc.thePlayer, this.mc.renderEngine, mapData25);
+			}
+			GL11.glPopMatrix();
+		} else if(itemStack14 != null) {
 			GL11.glPushMatrix();
 			f7 = 0.8F;
 			float f12;

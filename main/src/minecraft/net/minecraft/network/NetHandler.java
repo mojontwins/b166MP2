@@ -13,6 +13,7 @@ import net.minecraft.network.packet.Packet107CreativeSetSlot;
 import net.minecraft.network.packet.Packet108EnchantItem;
 import net.minecraft.network.packet.Packet10Flying;
 import net.minecraft.network.packet.Packet130UpdateSign;
+import net.minecraft.network.packet.Packet131MapData;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.network.packet.Packet14BlockDig;
 import net.minecraft.network.packet.Packet15Place;
@@ -315,6 +316,10 @@ public abstract class NetHandler {
 	}
 
 	public void handleSetArmor(Packet89SetArmor packet) {
+		this.registerPacket(packet);
+	}
+
+	public void handleMapData(Packet131MapData packet) {
 		this.registerPacket(packet);
 	}
 

@@ -250,6 +250,7 @@ public abstract class Packet {
 		addIdClassMapping(107, true, true, Packet107CreativeSetSlot.class);
 		addIdClassMapping(108, false, true, Packet108EnchantItem.class);
 		addIdClassMapping(130, true, true, Packet130UpdateSign.class);
+		addIdClassMapping(131, true, false, Packet131MapData.class);
 		addIdClassMapping(132, true, false, Packet132TileEntityData.class);
 		addIdClassMapping(200, true, false, Packet200Statistic.class);
 		addIdClassMapping(201, true, false, Packet201PlayerInfo.class);

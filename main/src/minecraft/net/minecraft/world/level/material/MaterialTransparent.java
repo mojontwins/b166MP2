@@ -1,8 +1,10 @@
 package net.minecraft.world.level.material;
 
+import net.minecraft.world.item.map.MapColor;
+
 public class MaterialTransparent extends Material {
-	public MaterialTransparent() {
-		super();
+	public MaterialTransparent(MapColor mapColor) {
+		super(mapColor);
 		this.setGroundCover();
 	}
 

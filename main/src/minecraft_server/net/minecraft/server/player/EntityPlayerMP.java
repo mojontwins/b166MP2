@@ -46,7 +46,9 @@ import net.minecraft.world.inventory.ContainerWorkbench;
 import net.minecraft.world.inventory.ICrafting;
 import net.minecraft.world.inventory.IInventory;
 import net.minecraft.world.inventory.SlotCrafting;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.map.ItemMapBase;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.chunk.Chunk;
 import net.minecraft.world.level.chunk.ChunkCoordIntPair;
@@ -189,7 +191,6 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting {
 	public void onUpdateEntity(boolean z1) {
 		super.onUpdate();
 
-		/*
 		for(int i2 = 0; i2 < this.inventory.getSizeInventory(); ++i2) {
 			ItemStack itemStack3 = this.inventory.getStackInSlot(i2);
 			
@@ -200,7 +201,6 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting {
 				}
 			}
 		}
-		*/
 
 		if(z1 && !this.loadedChunks.isEmpty()) {
 			ChunkCoordIntPair chunkCoordIntPair10 = (ChunkCoordIntPair)this.loadedChunks.get(0);

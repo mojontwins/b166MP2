@@ -1,8 +1,10 @@
 package net.minecraft.world.level.material;
 
+import net.minecraft.world.item.map.MapColor;
+
 public class MaterialLiquid extends Material {
-	public MaterialLiquid() {
-		super();
+	public MaterialLiquid(MapColor mapColor) {
+		super(mapColor);
 		this.setGroundCover();
 		this.setNoPushMobility();
 	}

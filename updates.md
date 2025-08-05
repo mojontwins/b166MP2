@@ -82,10 +82,23 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 		* Bug! Crash when trying to translate the "can't sleep" message in the server. How is this even handled in vanilla?
 	* [X] Nightmare dynamic.
 
-## Bugs / glitches
-	* [ ] seeds not consistent? revise beta gen
-	* [ ] Restore the pane renderer.
+# b1.4 
 
+* Wolves are already in
+
+# b1.5
+
+* [ ] Statistics & achievements - which took forever to remove :D
+
+# b1.6
+
+* [X] Maps!
+	* [X] Working on the client, crash on SMP.
+	* [X] No longer crashes but no map data on the map.
+* [X] Trapdoors
+* [X] Dead bush, tall grass & ferns.
+
+* and now we are ready for...
 
 
 # b16.6.6
@@ -94,5 +107,9 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 * Colored sheep spawning.
 * Squids
 
+# Bugs / glitches
+	* [X] Beds (and possible other stuff) look bad when re-login into SMP, possibly metadata related!
+	* [ ] seeds not consistent? revise beta gen
+	* [ ] Restore the pane renderer.
 
 

@@ -20,6 +20,7 @@ import net.minecraft.world.entity.EntityLightningBolt;
 import net.minecraft.world.entity.EnumCreatureType;
 import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.map.MapStorage;
 import net.minecraft.world.level.biome.BiomeGenBase;
 import net.minecraft.world.level.chunk.Chunk;
 import net.minecraft.world.level.chunk.ChunkCache;
@@ -88,6 +89,7 @@ public class World implements IBlockAccess {
 	public WorldInfo worldInfo;
 	public boolean findingSpawnPoint;
 	private boolean allPlayersSleeping;
+	public MapStorage mapStorage;
 	private ArrayList<AxisAlignedBB> collidingBoundingBoxes = new ArrayList<AxisAlignedBB>();
 	private boolean scanningTileEntities;
 	protected boolean spawnHostileMobs = true;
@@ -151,6 +153,7 @@ public class World implements IBlockAccess {
 		this.saveHandler = iSaveHandler1;
 		this.worldInfo = new WorldInfo(worldSettings4, string2);
 		this.worldProvider = worldProvider3;
+		this.mapStorage = new MapStorage(iSaveHandler1);
 		worldProvider3.registerWorld(this);
 		this.chunkProvider = this.createChunkProvider();
 		this.calculateInitialSkylight();
@@ -191,6 +194,7 @@ public class World implements IBlockAccess {
 		this.isRemote = false;
 		this.saveHandler = world1.saveHandler;
 		this.worldInfo = new WorldInfo(world1.worldInfo);
+		this.mapStorage = new MapStorage(this.saveHandler);
 		this.worldProvider = worldProvider2;
 		worldProvider2.registerWorld(this);
 		this.chunkProvider = this.createChunkProvider();
@@ -236,6 +240,7 @@ public class World implements IBlockAccess {
 		this.isRemote = false;
 		
 		this.saveHandler = saveHandler;
+		this.mapStorage = new MapStorage(saveHandler);
 		
 		Seasons.dayOfTheYear = -1;
 		
@@ -373,6 +378,7 @@ public class World implements IBlockAccess {
 	private void saveLevel() {
 		this.checkSessionLock();
 		this.saveHandler.saveWorldInfoAndPlayer(this.worldInfo, this.playerEntities);
+		this.mapStorage.saveAllData();
 	}
 
 	public boolean quickSaveWorld(int i1) {
@@ -3130,6 +3136,18 @@ public class World implements IBlockAccess {
 	public boolean isBlockHighHumidity(int i1, int i2, int i3) {
 		BiomeGenBase biomeGenBase4 = this.getBiomeGenForCoords(i1, i3);
 		return biomeGenBase4.isHighHumidity();
+	}
+	
+	public void setItemData(String string1, WorldSavedData worldSavedData2) {
+		this.mapStorage.setData(string1, worldSavedData2);
+	}
+
+	public WorldSavedData loadItemData(Class<?> class1, String string2) {
+		return this.mapStorage.loadData(class1, string2);
+	}
+
+	public int getUniqueDataId(String string1) {
+		return this.mapStorage.getUniqueDataId(string1);
 	}
 
 	public void playAuxSFX(int i1, int i2, int i3, int i4, int i5) {

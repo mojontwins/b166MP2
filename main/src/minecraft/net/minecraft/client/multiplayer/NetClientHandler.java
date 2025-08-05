@@ -39,6 +39,7 @@ import net.minecraft.network.packet.Packet105UpdateProgressbar;
 import net.minecraft.network.packet.Packet106Transaction;
 import net.minecraft.network.packet.Packet10Flying;
 import net.minecraft.network.packet.Packet130UpdateSign;
+import net.minecraft.network.packet.Packet131MapData;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.network.packet.Packet17Sleep;
 import net.minecraft.network.packet.Packet18Animation;
@@ -105,12 +106,12 @@ import net.minecraft.world.inventory.Container;
 import net.minecraft.world.inventory.InventoryBasic;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.map.ItemMap;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.WorldSettings;
 import net.minecraft.world.level.chunk.Chunk;
 import net.minecraft.world.level.chunk.ChunkCoordinates;
-import net.minecraft.world.level.dimension.WorldProviderSurface;
 import net.minecraft.world.level.tile.Block;
 import net.minecraft.world.level.tile.entity.TileEntity;
 import net.minecraft.world.level.tile.entity.TileEntityDispenser;
@@ -426,18 +427,16 @@ public class NetClientHandler extends NetHandler {
 
 	public void handleMapChunk(Packet51MapChunk packet) {
 		this.worldClient.invalidateBlockReceiveRegion(packet.chunkX << 4, 0, packet.chunkZ << 4, (packet.chunkX << 4) + 15, 256, (packet.chunkZ << 4) + 15);
-		Chunk chunk2 = this.worldClient.getChunkFromChunkCoords(packet.chunkX, packet.chunkZ);
-		if(packet.includeInitialize && chunk2 == null) {
+		Chunk chunk = this.worldClient.getChunkFromChunkCoords(packet.chunkX, packet.chunkZ);
+		if(packet.includeInitialize && chunk == null) {
 			this.worldClient.doPreChunk(packet.chunkX, packet.chunkZ, true);
-			chunk2 = this.worldClient.getChunkFromChunkCoords(packet.chunkX, packet.chunkZ);
+			chunk = this.worldClient.getChunkFromChunkCoords(packet.chunkX, packet.chunkZ);
 		}
 
-		if(chunk2 != null) {
-			chunk2.setChunkData(packet.chunkData, packet.usedSubchunks, packet.blockMSBSubchunks, packet.includeInitialize);
+		if(chunk != null) {
+			chunk.setChunkData(packet.chunkData, packet.usedSubchunks, packet.blockMSBSubchunks, packet.includeInitialize);
 			this.worldClient.markBlocksDirty(packet.chunkX << 4, 0, packet.chunkZ << 4, (packet.chunkX << 4) + 15, 256, (packet.chunkZ << 4) + 15);
-			if(!packet.includeInitialize || !(this.worldClient.worldProvider instanceof WorldProviderSurface)) {
-				//chunk2.resetRelightChecks();
-			}
+
 		}
 
 	}
@@ -961,5 +960,14 @@ public class NetClientHandler extends NetHandler {
 				tileEntityCommandBlock.onInventoryChanged();
 			}
 		}
+	}
+	
+	public void handleMapData(Packet131MapData packet131MapData1) {
+		if(packet131MapData1.itemID == Item.map.shiftedIndex) {
+			ItemMap.getMPMapData(packet131MapData1.uniqueID, this.mc.theWorld).func_28171_a(packet131MapData1.itemData);
+		} else {
+			System.out.println("Unknown itemid: " + packet131MapData1.uniqueID);
+		}
+
 	}
 }

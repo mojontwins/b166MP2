@@ -1,8 +1,10 @@
 package net.minecraft.world.level.material;
 
+import net.minecraft.world.item.map.MapColor;
+
 public class MaterialPortal extends Material {
-	public MaterialPortal() {
-		super();
+	public MaterialPortal(MapColor mapColor) {
+		super(mapColor);
 	}
 
 	public boolean isSolid() {

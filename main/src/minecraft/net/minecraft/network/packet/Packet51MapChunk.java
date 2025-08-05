@@ -35,12 +35,6 @@ public class Packet51MapChunk extends Packet {
 		// 16K high data
 		// 16K meta
 		// 32K lights
-
-		// Now it is 
-		// 32K low data
-		// 16K high data
-		// 32K meta
-		// 32K lights
 		
 		this.isChunkDataPacket = true;
 		this.chunkX = chunk.xPosition;
@@ -67,7 +61,7 @@ public class Packet51MapChunk extends Packet {
 		}
 
 		// blockLSBsubChunks is the amount of subchunks with normal data (low id, meta, light)
-		// each subchunk use 5 nibbles (2.5 bytes) per block: 2 ID, 2 meta, 2 light, hence
+		// each subchunk use 6 nibbles per block: 2 LSB, 1 meta, 2 light, 1 MSB
 		int byteLength = 2048 * (5 * blockLSBsubChunks + blockMSBsubChunks);
 		if(isNewChunk) {
 			byteLength += 256;
@@ -88,11 +82,12 @@ public class Packet51MapChunk extends Packet {
 				totalSize += data.length;
 			}
 		}
+		
 		NibbleArray nibbles;
 		
 		for(i = 0; i < subChunks.length; ++i) {
 			if(subChunks[i] != null && (!isNewChunk || !subChunks[i].getIsEmpty()) && (updateHash & 1 << i) != 0) {
-				nibbles = subChunks[i].getBlocklightArray();
+				nibbles = subChunks[i].getMetadataArray();
 				System.arraycopy(nibbles.data, 0, rawBytes, totalSize, nibbles.data.length);
 				totalSize += nibbles.data.length;
 			}
@@ -142,7 +137,6 @@ public class Packet51MapChunk extends Packet {
 		}
 
 	}
-
 
 	public void readPacketData(DataInputStream dis) throws IOException {
 		this.chunkX = dis.readInt();

@@ -14,6 +14,7 @@ import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.EnumAction;
 import net.minecraft.world.entity.item.EnumToolMaterial;
 import net.minecraft.world.entity.player.EntityPlayer;
+import net.minecraft.world.item.map.ItemMap;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.creative.CreativeTabs;
 import net.minecraft.world.level.material.Material;
@@ -128,6 +129,7 @@ public class Item implements ITextureProvider {
 	public static Item bed = (new ItemBed(99)).setMaxStackSize(1).setIconCoord(13, 2).setItemName("bed");
 	public static Item redstoneRepeater = (new ItemPlacesBlock(100, Block.redstoneRepeaterIdle)).setIconCoord(6, 5).setItemName("diode").setCreativeTab(CreativeTabs.tabRedstone);
 	public static Item cookie = (new ItemFood(101, 1, 0.1F, false)).setIconCoord(12, 5).setItemName("cookie");
+	public static ItemMap map = (ItemMap)(new ItemMap(102)).setIconCoord(12, 3).setItemName("map");
 	public static ItemShears shears = (ItemShears)(new ItemShears(103)).setIconCoord(13, 5).setItemName("shears");
 	public static Item melon = (new ItemFood(104, 2, 0.3F, false)).setIconCoord(13, 6).setItemName("melon").softlock();
 	public static Item beefRaw = (new ItemFood(107, 3, 0.3F, true)).setIconCoord(9, 6).setItemName("beefRaw").softlock();

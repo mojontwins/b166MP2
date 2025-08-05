@@ -19,7 +19,7 @@ lastServer:
 lang:en_US
 displayMode:DEFAULT
 ofMipmapLevel:4
-ofMipmapLinear:true
+ofMipmapLinear:false
 coloredFog:true
 key_key.attack:-100
 key_key.use:-99

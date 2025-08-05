@@ -202,9 +202,9 @@ public class PathFinder {
 				for(int i9 = i4; i9 < i4 + pathPoint5.zCoord; ++i9) {
 					int i10 = this.worldMap.getBlockId(i7, i8, i9);
 					if(i10 > 0) {
-						/*if(i10 == Block.trapdoor.blockID) {
+						if(i10 == Block.trapdoor.blockID) {
 							z6 = true;
-						} else*/ if(i10 != Block.waterMoving.blockID && i10 != Block.waterStill.blockID) {
+						} else if(i10 != Block.waterMoving.blockID && i10 != Block.waterStill.blockID) {
 							if(!this.isWoddenDoorAllowed && i10 == Block.doorWood.blockID) {
 								return 0;
 							}
@@ -221,11 +221,10 @@ public class PathFinder {
 							if(i10 == Block.fence.blockID /*|| i10 == Block.fenceGate.blockID*/) {
 								return -3;
 							}
-							/*
+							
 							if(i10 == Block.trapdoor.blockID) {
 								return -4;
 							}
-							*/
 
 							Material material12 = block11.blockMaterial;
 							if(material12 != Material.lava) {

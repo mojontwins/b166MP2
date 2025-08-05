@@ -1,8 +1,10 @@
 package net.minecraft.world.level.material;
 
+import net.minecraft.world.item.map.MapColor;
+
 final class MaterialWeb extends Material {
-	MaterialWeb() {
-		super();
+	MaterialWeb(MapColor mapColor) {
+		super(mapColor);
 	}
 
 	public boolean blocksMovement() {

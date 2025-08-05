@@ -15,7 +15,9 @@ public class GameHints {
 		"Wool can be dyed!",
 		"Sheep can be dyed!",
 		"CTRL+click to place logs straight",
-		"Right click spawners with placer eggs"
+		"Right click spawners with placer eggs",
+		"Shears can cut grass, vines and leaves",
+		"Break tall grass for seeds!",
 	};
 	
 	public static String getRandomHint() {

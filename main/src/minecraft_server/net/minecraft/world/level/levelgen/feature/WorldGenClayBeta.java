@@ -38,8 +38,8 @@ public class WorldGenClayBeta extends WorldGenerator {
 				int x2 = MathHelper.floor_double(radiusXa + radiusXZ / 2.0D);
 				int y1 = MathHelper.floor_double(radiusYa - radiusY / 2.0D);
 				int y2 = MathHelper.floor_double(radiusYa + radiusY / 2.0D);
-				int z1 = MathHelper.floor_double(radiusXa - radiusXZ / 2.0D);
-				int z2 = MathHelper.floor_double(radiusXa + radiusXZ / 2.0D);
+				int z1 = MathHelper.floor_double(radiusZa - radiusXZ / 2.0D);
+				int z2 = MathHelper.floor_double(radiusZa + radiusXZ / 2.0D);
 
 				for(int x = x1; x <= x2; ++x) {
 					for(int y = y1; y <= y2; ++y) {
