@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class NoiseGeneratorOctavesBeta extends NoiseGenerator {
 	private NoiseGeneratorPerlinBeta[] generatorCollection;
-	private int field_1191_b;
+	private int numOctaves;
 
 	public NoiseGeneratorOctavesBeta(Random random1, int i2) {
-		this.field_1191_b = i2;
+		this.numOctaves = i2;
 		this.generatorCollection = new NoiseGeneratorPerlinBeta[i2];
 
 		for(int i3 = 0; i3 < i2; ++i3) {
@@ -16,11 +16,11 @@ public class NoiseGeneratorOctavesBeta extends NoiseGenerator {
 
 	}
 
-	public double func_806_a(double d1, double d3) {
+	public double getDensity(double d1, double d3) {
 		double d5 = 0.0D;
 		double d7 = 1.0D;
 
-		for(int i9 = 0; i9 < this.field_1191_b; ++i9) {
+		for(int i9 = 0; i9 < this.numOctaves; ++i9) {
 			d5 += this.generatorCollection[i9].generateNoise(d1 * d7, d3 * d7) / d7;
 			d7 /= 2.0D;
 		}
@@ -39,7 +39,7 @@ public class NoiseGeneratorOctavesBeta extends NoiseGenerator {
 
 		double d20 = 1.0D;
 
-		for(int i19 = 0; i19 < this.field_1191_b; ++i19) {
+		for(int i19 = 0; i19 < this.numOctaves; ++i19) {
 			this.generatorCollection[i19].generateNoise(d1, d2, d4, d6, i8, i9, i10, d11 * d20, d13 * d20, d15 * d20, d20);
 			d20 /= 2.0D;
 		}

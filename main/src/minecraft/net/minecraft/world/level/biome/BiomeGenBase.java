@@ -342,7 +342,12 @@ public abstract class BiomeGenBase {
 		}
 	}
 	
-	public void replaceBlocksForBiome(IChunkProvider generator, World world, Random rand, int chunkX, int chunkZ, int x, int z, byte[] blocks, byte[] metadata, int seaLevel, double sandNoise, double gravelNoise, double stoneNoise) {
+	public void replaceBlocksForBiome(
+			IChunkProvider generator, World world, Random rand, 
+			int chunkX, int chunkZ, int x, int z, 
+			byte[] blocks, byte[] metadata, int seaLevel, 
+			double sandNoise, double gravelNoise, double stoneNoise
+	) {
 		float temperature = this.getFloatTemperature();
 		int height = (int)(stoneNoise / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
 		

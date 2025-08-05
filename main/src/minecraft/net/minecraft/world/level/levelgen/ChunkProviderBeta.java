@@ -4,20 +4,25 @@ import java.util.Random;
 
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.WorldChunkManagerBeta;
+import net.minecraft.world.level.biome.BiomeGenBase;
 import net.minecraft.world.level.chunk.Chunk;
 import net.minecraft.world.level.levelgen.synth.NoiseGeneratorOctavesBeta;
 import net.minecraft.world.level.tile.Block;
 
-public class ChunkProviderBeta extends ChunkProviderAlpha {
+public class ChunkProviderBeta extends ChunkProviderGenerate {
 	
-	private NoiseGeneratorOctavesBeta minLimitNoise;
-	private NoiseGeneratorOctavesBeta maxLimitNoise;
-	private NoiseGeneratorOctavesBeta mainNoise;
-	protected NoiseGeneratorOctavesBeta noiseGenSandOrGravel;
-	protected NoiseGeneratorOctavesBeta noiseStone;
-	private NoiseGeneratorOctavesBeta scaleNoise;
-	private NoiseGeneratorOctavesBeta depthNoise;
-	public NoiseGeneratorOctavesBeta mobSpawnerNoise;
+	private NoiseGeneratorOctavesBeta minLimitNoiseB;
+	private NoiseGeneratorOctavesBeta maxLimitNoiseB;
+	private NoiseGeneratorOctavesBeta mainNoiseB;
+	private NoiseGeneratorOctavesBeta noiseGenSandOrGravelB;
+	private NoiseGeneratorOctavesBeta noiseStoneB;
+	private NoiseGeneratorOctavesBeta scaleNoiseB;
+	private NoiseGeneratorOctavesBeta depthNoiseB;
+	
+	private double[] sandNoise = new double[256];
+	private double[] gravelNoise = new double[256];
+	
+	private MapGenBase caveGeneratorB = new MapGenCavesBeta();
 
 	public ChunkProviderBeta(World world, long seed, boolean mapFeaturesEnabled) {
 		super(world, seed, mapFeaturesEnabled);
@@ -25,17 +30,16 @@ public class ChunkProviderBeta extends ChunkProviderAlpha {
 		// Reset the randomizer so worlds are seed-accurate with vanilla
 		this.rand = new Random(seed);
 		
-		this.minLimitNoise = new NoiseGeneratorOctavesBeta(this.rand, 16);
-		this.maxLimitNoise = new NoiseGeneratorOctavesBeta(this.rand, 16);
-		this.mainNoise = new NoiseGeneratorOctavesBeta(this.rand, 8);
+		this.minLimitNoiseB = new NoiseGeneratorOctavesBeta(this.rand, 16);
+		this.maxLimitNoiseB = new NoiseGeneratorOctavesBeta(this.rand, 16);
+		this.mainNoiseB = new NoiseGeneratorOctavesBeta(this.rand, 8);
 		
-		this.noiseGenSandOrGravel = new NoiseGeneratorOctavesBeta(this.rand, 4);
-		this.noiseStone = new NoiseGeneratorOctavesBeta(this.rand, 4);
+		this.noiseGenSandOrGravelB = new NoiseGeneratorOctavesBeta(this.rand, 4);
+		this.noiseStoneB = new NoiseGeneratorOctavesBeta(this.rand, 4);
 		
-		this.scaleNoise = new NoiseGeneratorOctavesBeta(this.rand, 10);
-		this.depthNoise = new NoiseGeneratorOctavesBeta(this.rand, 16);
+		this.scaleNoiseB = new NoiseGeneratorOctavesBeta(this.rand, 10);
+		this.depthNoiseB = new NoiseGeneratorOctavesBeta(this.rand, 16);
 		
-		this.mobSpawnerNoise = new NoiseGeneratorOctavesBeta(this.rand, 8);
 	}
 	
 	public void generateTerrain(int chunkX, int chunkZ, byte[] blocks) {
@@ -72,28 +76,35 @@ public class ChunkProviderBeta extends ChunkProviderAlpha {
 						double xLerpAmountMinZ = (densityMaxXMinYMinZ - densityMinXMinYMinZ) * scalingFactor;
 						double xLerpAmountMaxZ = (densityMaxXMinYMaxZ - densityMinXMinYMaxZ) * scalingFactor;
 
-						for(int x = 0; x < 4; ++x) {
-							
+						for(int x = 0; x < 4; ++x) {			
 							int indexInBlockArray = x + xSection * 4 << 11 | 0 + zSection * 4 << 7 | ySection * 8 + y;
 							
 							double densityIncrement = (curDensityMinXMinYMaxZ - curDensityMinXMinYMinZ) * densityVariationSpeed;
 							double density = curDensityMinXMinYMinZ - densityIncrement;
 
+							int yy = ySection * 8 + y;
 							for(int z = 0; z < 4; ++z) {
 
 								int blockID = 0;
 								
-								if(ySection * 8 + y < seaLevel) {
+								// Fill with water 	
+								if(yy < seaLevel) {
 									blockID = Block.waterStill.blockID;
 								}
 
+								// World density positive: fill with block.
 								if(density > 0.0D) {
 									blockID = Block.stone.blockID;
 								}
 
 								blocks[indexInBlockArray] = (byte)blockID;
+								
+								// Next Z
 								indexInBlockArray += heightShift;
 								density += densityIncrement;
+								
+								// Ocean detector
+								if(yy == seaLevel - 1) this.isOcean &= (blockID != Block.stone.blockID);
 							}
 
 							curDensityMinXMinYMinZ += xLerpAmountMinZ;
@@ -110,20 +121,46 @@ public class ChunkProviderBeta extends ChunkProviderAlpha {
 		}
 	}
 	
+	public void replaceBlocksForBiome(int chunkX, int chunkZ, byte[] blocks, byte[] metadata, BiomeGenBase[] biomes) {
+		int seaLevel = 64;
+		double d5 = 8.0D / 256D;
+		this.sandNoise = this.noiseGenSandOrGravelB.generateNoiseOctaves(this.sandNoise, (double)(chunkX * 16), (double)(chunkZ * 16), 0.0D, 16, 16, 1, d5, d5, 1.0D);
+		this.gravelNoise = this.noiseGenSandOrGravelB.generateNoiseOctaves(this.gravelNoise, (double)(chunkX * 16), 109.0134D, (double)(chunkZ * 16), 16, 1, 16, d5, 1.0D, d5);
+		this.stoneNoise = this.noiseStoneB.generateNoiseOctaves(this.stoneNoise, (double)(chunkX * 16), (double)(chunkZ * 16), 0.0D, 16, 16, 1, d5 * 2.0D, d5 * 2.0D, d5 * 2.0D);
+
+		BiomeGenBase biomeGen;
+
+		for(int z = 0; z < 16; ++z) {
+			for(int x = 0; x < 16; ++x) {		
+				biomeGen = biomes[z | (x << 4)];
+
+				int noiseIndex = z | (x << 4);
+				biomeGen.replaceBlocksForBiome(this, this.worldObj, this.rand, 
+						chunkX, chunkZ, x, z, 
+						blocks, metadata, seaLevel, 
+						this.sandNoise[noiseIndex], this.gravelNoise[noiseIndex], this.stoneNoise[noiseIndex]
+				);
+			}
+		}
+
+	}
+	
 	// I have to override provideChunk 'cause beta needs the biomes generated before generateTerrain is called.
 	@Override
-	public Chunk provideChunk(int chunkX, int chunkZ) {
+	public Chunk provideChunk(int chunkX, int chunkZ) { 
 		this.rand.setSeed((long)chunkX * 341873128712L + (long)chunkZ * 132897987541L);
 
 		byte[] blockArray = this.createByteArray();
 		byte[] metadataArray = this.createByteArray();
 		
+		// This preloads temperature and humidity, which are used in the noise generator.
+		// Note that the order of the biome array is different in beta
 		this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
 		
 		this.generateTerrain(chunkX, chunkZ, blockArray);
 		this.replaceBlocksForBiome(chunkX, chunkZ, blockArray, metadataArray, this.biomesForGeneration);
 		
-		this.caveGenerator.generate(this, this.worldObj, chunkX, chunkZ, blockArray);
+		this.caveGeneratorB.generate(this, this.worldObj, chunkX, chunkZ, blockArray);
 		this.ravineGenerator.generate(this, this.worldObj, chunkX, chunkZ, blockArray);
 		
 		Chunk chunk = new Chunk(this.worldObj, blockArray, chunkX, chunkZ);
@@ -143,6 +180,18 @@ public class ChunkProviderBeta extends ChunkProviderAlpha {
 	}
 
 	@Override
+	public Chunk justGenerate(int chunkX, int chunkZ) {
+		this.rand.setSeed((long)chunkX * 341873128712L + (long)chunkZ * 132897987541L);
+		byte[] blockArray = this.createByteArray();
+		this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
+		this.generateTerrain(chunkX, chunkZ, blockArray);
+		
+		Chunk chunk = new Chunk(this.worldObj, blockArray, chunkX, chunkZ);
+		
+		return chunk;
+	}
+	
+	@Override
 	public double[] initializeNoiseField(double[] densityMapArray, int x, int y, int z, int xSize, int ySize, int zSize) {
 		if(densityMapArray == null) {
 			densityMapArray = new double[xSize * ySize * zSize];
@@ -154,11 +203,11 @@ public class ChunkProviderBeta extends ChunkProviderAlpha {
 		double[] temperatureArray = ((WorldChunkManagerBeta)this.worldObj.getWorldChunkManager()).temperature;
 		double[] humidityArray = ((WorldChunkManagerBeta)this.worldObj.getWorldChunkManager()).humidity;
 
-		this.scaleArray = this.scaleNoise.generateNoiseOctaves(this.scaleArray, x, z, xSize, zSize, 1.121D, 1.121D, 0.5D);
-		this.depthArray = this.depthNoise.generateNoiseOctaves(this.depthArray, x, z, xSize, zSize, 200.0D, 200.0D, 0.5D);
-		this.mainArray = this.mainNoise.generateNoiseOctaves(this.mainArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ / 80.0D, scaleY / 160.0D, scaleXZ / 80.0D);
-		this.minLimitArray = this.minLimitNoise.generateNoiseOctaves(this.minLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);
-		this.maxLimitArray = this.maxLimitNoise.generateNoiseOctaves(this.maxLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);
+		this.scaleArray = this.scaleNoiseB.generateNoiseOctaves(this.scaleArray, x, z, xSize, zSize, 1.121D, 1.121D, 0.5D);
+		this.depthArray = this.depthNoiseB.generateNoiseOctaves(this.depthArray, x, z, xSize, zSize, 200.0D, 200.0D, 0.5D);
+		this.mainArray = this.mainNoiseB.generateNoiseOctaves(this.mainArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ / 80.0D, scaleY / 160.0D, scaleXZ / 80.0D);
+		this.minLimitArray = this.minLimitNoiseB.generateNoiseOctaves(this.minLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);
+		this.maxLimitArray = this.maxLimitNoiseB.generateNoiseOctaves(this.maxLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);
 		
 		int mainIndex = 0;
 		int depthScaleIndex = 0;
@@ -210,6 +259,7 @@ public class ChunkProviderBeta extends ChunkProviderAlpha {
 					depth /= 8.0D;
 				}
 
+				// This removes monoliths
 				if(scale < 0.0D) {
 					scale = 0.0D;
 				}

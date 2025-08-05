@@ -4,13 +4,13 @@ import java.util.Random;
 
 public class ChunkProviderGenerate implements IChunkProvider {
 	private Random rand;
-	private NoiseGeneratorOctaves field_912_k;
-	private NoiseGeneratorOctaves field_911_l;
-	private NoiseGeneratorOctaves field_910_m;
-	private NoiseGeneratorOctaves field_909_n;
-	private NoiseGeneratorOctaves field_908_o;
-	public NoiseGeneratorOctaves field_922_a;
-	public NoiseGeneratorOctaves field_921_b;
+	private NoiseGeneratorOctaves minLimitNoiseB;
+	private NoiseGeneratorOctaves maxLimitNoiseB;
+	private NoiseGeneratorOctaves mainNoiseB;
+	private NoiseGeneratorOctaves noiseGenSandOrGravelB;
+	private NoiseGeneratorOctaves noiseStoneB;
+	public NoiseGeneratorOctaves scaleNoiseB;
+	public NoiseGeneratorOctaves depthNoiseB;
 	public NoiseGeneratorOctaves mobSpawnerNoise;
 	private World worldObj;
 	private double[] field_4180_q;
@@ -30,13 +30,13 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	public ChunkProviderGenerate(World world1, long j2) {
 		this.worldObj = world1;
 		this.rand = new Random(j2);
-		this.field_912_k = new NoiseGeneratorOctaves(this.rand, 16);
-		this.field_911_l = new NoiseGeneratorOctaves(this.rand, 16);
-		this.field_910_m = new NoiseGeneratorOctaves(this.rand, 8);
-		this.field_909_n = new NoiseGeneratorOctaves(this.rand, 4);
-		this.field_908_o = new NoiseGeneratorOctaves(this.rand, 4);
-		this.field_922_a = new NoiseGeneratorOctaves(this.rand, 10);
-		this.field_921_b = new NoiseGeneratorOctaves(this.rand, 16);
+		this.minLimitNoiseB = new NoiseGeneratorOctaves(this.rand, 16);
+		this.maxLimitNoiseB = new NoiseGeneratorOctaves(this.rand, 16);
+		this.mainNoiseB = new NoiseGeneratorOctaves(this.rand, 8);
+		this.noiseGenSandOrGravelB = new NoiseGeneratorOctaves(this.rand, 4);
+		this.noiseStoneB = new NoiseGeneratorOctaves(this.rand, 4);
+		this.scaleNoiseB = new NoiseGeneratorOctaves(this.rand, 10);
+		this.depthNoiseB = new NoiseGeneratorOctaves(this.rand, 16);
 		this.mobSpawnerNoise = new NoiseGeneratorOctaves(this.rand, 8);
 	}
 
@@ -113,9 +113,9 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	public void replaceBlocksForBiome(int i1, int i2, byte[] b3, BiomeGenBase[] biomeGenBase4) {
 		byte b5 = 64;
 		double d6 = 8.0D / 256D;
-		this.sandNoise = this.field_909_n.generateNoiseOctaves(this.sandNoise, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d6, d6, 1.0D);
-		this.gravelNoise = this.field_909_n.generateNoiseOctaves(this.gravelNoise, (double)(i1 * 16), 109.0134D, (double)(i2 * 16), 16, 1, 16, d6, 1.0D, d6);
-		this.stoneNoise = this.field_908_o.generateNoiseOctaves(this.stoneNoise, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d6 * 2.0D, d6 * 2.0D, d6 * 2.0D);
+		this.sandNoise = this.noiseGenSandOrGravelB.generateNoiseOctaves(this.sandNoise, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d6, d6, 1.0D);
+		this.gravelNoise = this.noiseGenSandOrGravelB.generateNoiseOctaves(this.gravelNoise, (double)(i1 * 16), 109.0134D, (double)(i2 * 16), 16, 1, 16, d6, 1.0D, d6);
+		this.stoneNoise = this.noiseStoneB.generateNoiseOctaves(this.stoneNoise, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d6 * 2.0D, d6 * 2.0D, d6 * 2.0D);
 
 		for(int i8 = 0; i8 < 16; ++i8) {
 			for(int i9 = 0; i9 < 16; ++i9) {
@@ -212,11 +212,11 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		double d10 = 684.412D;
 		double[] d12 = this.worldObj.getWorldChunkManager().temperature;
 		double[] d13 = this.worldObj.getWorldChunkManager().humidity;
-		this.field_4182_g = this.field_922_a.func_4109_a(this.field_4182_g, i2, i4, i5, i7, 1.121D, 1.121D, 0.5D);
-		this.field_4181_h = this.field_921_b.func_4109_a(this.field_4181_h, i2, i4, i5, i7, 200.0D, 200.0D, 0.5D);
-		this.field_4185_d = this.field_910_m.generateNoiseOctaves(this.field_4185_d, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8 / 80.0D, d10 / 160.0D, d8 / 80.0D);
-		this.field_4184_e = this.field_912_k.generateNoiseOctaves(this.field_4184_e, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
-		this.field_4183_f = this.field_911_l.generateNoiseOctaves(this.field_4183_f, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
+		this.field_4182_g = this.scaleNoiseB.func_4109_a(this.field_4182_g, i2, i4, i5, i7, 1.121D, 1.121D, 0.5D);
+		this.field_4181_h = this.depthNoiseB.func_4109_a(this.field_4181_h, i2, i4, i5, i7, 200.0D, 200.0D, 0.5D);
+		this.field_4185_d = this.mainNoiseB.generateNoiseOctaves(this.field_4185_d, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8 / 80.0D, d10 / 160.0D, d8 / 80.0D);
+		this.field_4184_e = this.minLimitNoiseB.generateNoiseOctaves(this.field_4184_e, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
+		this.field_4183_f = this.maxLimitNoiseB.generateNoiseOctaves(this.field_4183_f, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
 		int i14 = 0;
 		int i15 = 0;
 		int i16 = 16 / i5;
@@ -311,12 +311,14 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		BlockSand.fallInstantly = true;
 		int i4 = i2 * 16;
 		int i5 = i3 * 16;
+		
 		BiomeGenBase biomeGenBase6 = this.worldObj.getWorldChunkManager().getBiomeGenAt(i4 + 16, i5 + 16);
 		this.rand.setSeed(this.worldObj.getRandomSeed());
 		long j7 = this.rand.nextLong() / 2L * 2L + 1L;
 		long j9 = this.rand.nextLong() / 2L * 2L + 1L;
 		this.rand.setSeed((long)i2 * j7 + (long)i3 * j9 ^ this.worldObj.getRandomSeed());
 		double d11 = 0.25D;
+		
 		int i13;
 		int i14;
 		int i15;

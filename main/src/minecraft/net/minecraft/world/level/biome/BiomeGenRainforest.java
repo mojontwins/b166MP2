@@ -8,7 +8,7 @@ import net.minecraft.world.level.levelgen.feature.WorldGenTrees;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 import net.minecraft.world.level.tile.Block;
 
-public class BiomeGenRainforest extends BiomeGenBase {
+public class BiomeGenRainforest extends BiomeGenBaseBeta {
 	protected BiomeGenRainforest(int i1) {
 		super(i1);
 		

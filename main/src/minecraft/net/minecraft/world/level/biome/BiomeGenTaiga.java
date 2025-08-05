@@ -8,7 +8,7 @@ import net.minecraft.world.entity.animal.EntityWolf;
 import net.minecraft.world.level.SpawnListEntry;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 
-public class BiomeGenTaiga extends BiomeGenBase {
+public class BiomeGenTaiga extends BiomeGenBaseBeta {
 	public BiomeGenTaiga(int biomeID) {
 		super(biomeID);
 		this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 2, 6, 6));

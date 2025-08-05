@@ -45,11 +45,12 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	
 	protected BiomeGenBase[] biomesForGeneration;
 	
-	double[] mainArray;
-	double[] minLimitArray;
-	double[] maxLimitArray;
-	double[] scaleArray;
-	double[] depthArray;
+	protected double[] mainArray;
+	protected double[] minLimitArray;
+	protected double[] maxLimitArray;
+	protected double[] scaleArray;
+	protected double[] depthArray;
+
 	float[] distanceArray;
 	int[][] unusedArray = new int[32][32];
 	protected boolean isOcean;
@@ -83,8 +84,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 		// Split in 4x16x4 sections
 		for(int xSection = 0; xSection < quadrantSize; ++xSection) {
-			for(int zSection = 0; zSection < quadrantSize; ++zSection) {
-				
+			for(int zSection = 0; zSection < quadrantSize; ++zSection) {		
 				for(int ySection = 0; ySection < 16; ++ySection) {
 
 					double densityMinXMinYMinZ = this.terrainNoise[((xSection + 0) * cellSize + zSection + 0) * columnSize + ySection + 0];
@@ -113,7 +113,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 								
 								int blockID = 0;
 
-								// Fill with water with a layer of ice if suitable								
+								// Fill with water 								
 								if(yy < seaLevel) {
 									blockID = Block.waterStill.blockID;
 								}
@@ -189,7 +189,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		this.caveGenerator.generate(this, this.worldObj, chunkX, chunkZ, blockArray);
 		this.ravineGenerator.generate(this, this.worldObj, chunkX, chunkZ, blockArray);
 		
-		Chunk chunk = new Chunk(this.worldObj, blockArray, chunkX, chunkZ);
+		Chunk chunk = new Chunk(this.worldObj, blockArray, metadataArray, chunkX, chunkZ);
 
 		if (this.mapFeaturesEnabled) {
 			this.featureProvider.getNearestFeatures(chunkX, chunkZ, chunk);
@@ -387,6 +387,12 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			}
 		}
 		
+		biomeGen.decorate(this.worldObj, this.rand, x0, z0, hadCustomFeat);
+		
+		SpawnerAnimals.performWorldGenSpawning(this.worldObj, biomeGen, x0 + 8, z0 + 8, 16, 16, this.rand);
+		x0 += 8;
+		z0 += 8;
+
 		for(int i = 0; i < 2; ++i) {
 			x = x0 + this.rand.nextInt(16) + 8;
 			y = this.rand.nextInt(512);
@@ -395,12 +401,6 @@ public class ChunkProviderGenerate implements IChunkProvider {
 				;
 			}
 		}
-
-		biomeGen.decorate(this.worldObj, this.rand, x0, z0, hadCustomFeat);
-		
-		SpawnerAnimals.performWorldGenSpawning(this.worldObj, biomeGen, x0 + 8, z0 + 8, 16, 16, this.rand);
-		x0 += 8;
-		z0 += 8;
 
 		for(x = 0; x < 16; ++x) {
 			for(z = 0; z < 16; ++z) {

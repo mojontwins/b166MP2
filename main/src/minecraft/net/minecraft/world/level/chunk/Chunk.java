@@ -123,13 +123,14 @@ public class Chunk {
 	public Chunk(World world, byte[] ids, byte[] metadata, int chunkX, int chunkZ) {
 		this(world, chunkX, chunkZ);
 		int height = ids.length / 256;
-
+		int index = 0;
 		for(int x = 0; x < 16; ++x) {
 			for(int z = 0; z < 16; ++z) {
 				for(int y = 0; y < height; ++y) {
-					int index = x << 11 | z << 7 | y;
 					int id = ids[index] & 255;
 					int meta = metadata[index] & 15;
+					index ++;
+					
 					if(id != 0) {
 						int chunkY = y >> 4;
 						if(this.storageArrays[chunkY] == null) {

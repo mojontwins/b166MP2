@@ -1,6 +1,6 @@
 package net.minecraft.world.level.biome;
 
-public class BiomeGenPlains extends BiomeGenBase {
+public class BiomeGenPlains extends BiomeGenBaseBeta {
 
 	protected BiomeGenPlains(int i1) {
 		super(i1);

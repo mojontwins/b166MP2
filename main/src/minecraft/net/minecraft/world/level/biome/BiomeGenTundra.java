@@ -1,6 +1,6 @@
 package net.minecraft.world.level.biome;
 
-public class BiomeGenTundra extends BiomeGenBase {
+public class BiomeGenTundra extends BiomeGenBaseBeta {
 
 	public BiomeGenTundra(int i1) {
 		super(i1);

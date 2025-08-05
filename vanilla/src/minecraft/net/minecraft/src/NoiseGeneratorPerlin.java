@@ -104,10 +104,6 @@ public class NoiseGeneratorPerlin extends NoiseGenerator {
 		double d42;
 		int i75;
 		if(i9 == 1) {
-			boolean z64 = false;
-			boolean z65 = false;
-			boolean z21 = false;
-			boolean z68 = false;
 			double d70 = 0.0D;
 			double d73 = 0.0D;
 			i75 = 0;
@@ -150,12 +146,6 @@ public class NoiseGeneratorPerlin extends NoiseGenerator {
 			i19 = 0;
 			double d20 = 1.0D / d17;
 			i22 = -1;
-			boolean z23 = false;
-			boolean z24 = false;
-			boolean z25 = false;
-			boolean z26 = false;
-			boolean z27 = false;
-			boolean z28 = false;
 			double d29 = 0.0D;
 			d31 = 0.0D;
 			double d33 = 0.0D;

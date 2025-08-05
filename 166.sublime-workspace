@@ -12,27 +12,10 @@
 	"buffers":
 	[
 		{
-			"file": "vanilla/src/minecraft/net/minecraft/src/BlockDetectorRail.java",
+			"file": "vanilla/src/minecraft_server/net/minecraft/src/ChunkProviderGenerate.java",
 			"settings":
 			{
-				"buffer_size": 2299,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "vanilla/src/minecraft/net/minecraft/src/ChunkProviderGenerate.java",
-			"settings":
-			{
-				"buffer_size": 19147,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "important.md",
-			"settings":
-			{
-				"buffer_size": 206,
-				"encoding": "UTF-8",
+				"buffer_size": 19083,
 				"line_ending": "Windows"
 			}
 		}
@@ -85,10 +68,23 @@
 	},
 	"expanded_folders":
 	[
-		"/D/cosas/b166MP2"
+		"/D/Cosas/b166MP2",
+		"/D/Cosas/b166MP2/vanilla",
+		"/D/Cosas/b166MP2/vanilla/src",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft_server",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft_server/net",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft_server/net/minecraft",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft_server/net/minecraft/src"
 	],
 	"file_history":
 	[
+		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft/world/level/levelgen/ChunkProviderBeta.java",
+		"/D/Cosas/postalpha/NSSS_de/decompiled/com/mojang/minecraft/gui/GuiSelectWorld.java",
+		"/C/Users/na_th/Downloads/message.txt",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src/BlockDetectorRail.java",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src/ChunkProviderGenerate.java",
+		"/D/Cosas/b166MP2/important.md",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft_server/net/minecraft/src/EntityPlayerMP.java",
 		"/C/Lair/cosas/mc/1.6.6/vanilla/src/minecraft/net/minecraft/src/WorldChunkManager.java",
 		"/C/Lair/cosas/mc/1.6.6/fiddle/org/mojontwins/retroterrain/ChunkProviderGenerateRetro.java",
 		"/C/Lair/cosas/mc/1.6.6/vanilla/src/minecraft/net/minecraft/src/BlockGrass.java",
@@ -209,18 +205,11 @@
 		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Responses/ReservationResponse.php",
 		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Responses/GroupResponse.php",
 		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Requests/ReservationAccessoryRequest.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Responses/GroupsResponse.php",
-		"/C/Users/jcastano/Downloads/style.cfg",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Domain/BookableResource.php",
-		"/C/Proyectos/2025/20250513 - Reservas 1.46.0.0 - Mejoras sedes asociadas, rendimiento en el manejo de clones, CSS/instrucciones.txt",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Database/MySQL/MySqlConnection.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Presenters/Admin/ManageResourcesPresenter.php",
-		"/C/Proyectos/2025/20250505 - Consigna v2.21.0.0 - Subidas robustas en momentos de degradación del servicio/instrucciones.txt",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/config/log4php.config.xml"
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Responses/GroupsResponse.php"
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 54.0
 	},
 	"find_in_files":
 	{
@@ -482,106 +471,43 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"sheets":
+			[
+			]
+		},
+		{
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "vanilla/src/minecraft/net/minecraft/src/BlockDetectorRail.java",
+					"file": "vanilla/src/minecraft_server/net/minecraft/src/ChunkProviderGenerate.java",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2299,
+						"buffer_size": 19083,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								6617,
+								6679
 							]
 						],
 						"settings":
 						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
 							"syntax": "Packages/Java/Java.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "vanilla/src/minecraft/net/minecraft/src/ChunkProviderGenerate.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19147,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								18460,
-								18481
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 6782.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "important.md",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 206,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								89,
-								89
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2035.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				}
-			]
-		},
-		{
-			"sheets":
-			[
 			]
 		}
 	],
@@ -669,7 +595,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},
@@ -677,7 +603,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 177.0,
+	"side_bar_width": 336.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
