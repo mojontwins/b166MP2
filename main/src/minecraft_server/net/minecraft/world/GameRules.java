@@ -51,12 +51,12 @@ public class GameRules {
 		gameRules.put("connectFences", new GameRule().withCaption("connectFences").withDescription("Fences connect to all cube blocks.").category(catAesthetics).withValue(false));
 		gameRules.put("generateLapislazuli", new GameRule().withCaption("generateLapislazuli").withDescription("Generate lapislazuli ore.").category(catGameplay).withValue(true));
 		gameRules.put("noiseTreeDensity", new GameRule().withCaption("noiseTreeDensity").withDescription("Tree density based on noise.").category(catAesthetics).withValue(true));
-		gameRules.put("smarterMobs", new GameRule().withCaption("smarterMobs").withDescription("Use new AI based zombies & skeletons.").category(catMobs).withValue(true));
+		gameRules.put("smarterMobs", new GameRule().withCaption("smarterMobs").withDescription("Use new AI based zombies & skeletons.").category(catMobs).withValue(false));
 		gameRules.put("enableSquids", new GameRule().withCaption("enableSquids").withDescription("Spawn squids.").category(catMobs).withValue(true));
 		gameRules.put("oldFences", new GameRule().withCaption("oldFences").withDescription("Fences have full block collision.").category(catGameplay).withValue(false));
 		gameRules.put("colouredWater", new GameRule().withCaption("colouredWater").withDescription("Use T/H from the biome gen to get color from ramp.").category(catAesthetics).withValue(false));
-		gameRules.put("edibleChicken", new GameRule().withCaption("edibleChicken").withDescription("Chicken sometimes drop chicken meat.").category(catMobs).withValue(true));
-		gameRules.put("edibleCows", new GameRule().withCaption("edibleCows").withDescription("Cows sometimes drop cow meat.").category(catMobs).withValue(true));
+		gameRules.put("edibleChicken", new GameRule().withCaption("edibleChicken").withDescription("Chicken sometimes drop chicken meat.").category(catMobs).withValue(false));
+		gameRules.put("edibleCows", new GameRule().withCaption("edibleCows").withDescription("Cows sometimes drop cow meat.").category(catMobs).withValue(false));
 		gameRules.put("canBreedAnimals", new GameRule().withCaption("canBreedAnimals").withDescription("You can make animals mate & reproduce").category(catMobs).withValue(true));
 		gameRules.put("skeletonsWithBows", new GameRule().withCaption("skeletonsWithBows").withDescription("Skeletons have visible bows.").category(catAesthetics).withValue(true));
 		gameRules.put("classicHurtSound", new GameRule().withCaption("classicHurtSound").withDescription("Use the classic HUH when hurt.").category(catAesthetics).withValue(true));

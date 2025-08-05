@@ -5,7 +5,7 @@ import net.minecraft.world.level.World;
 import net.minecraft.world.level.biome.BiomeGenBase;
 import net.minecraft.world.level.tile.Block;
 
-public class ChunkProviderAmplified extends ChunkProviderGenerate {
+public class ChunkProviderAmplified extends ChunkProviderBeta {
 	private final double[] terrainNoise;
 	private final boolean amplified = true;
 	private final float[] parabolicField;
@@ -30,7 +30,6 @@ public class ChunkProviderAmplified extends ChunkProviderGenerate {
 
 	public void generateTerrain(int chunkX, int chunkZ, byte[] blocks) {
 		byte var4 = 63;
-		this.biomesForGeneration = this.worldObj.getWorldChunkManager().getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, 10, 10);
 		this.initializeNoiseField(chunkX * 4, 0, chunkZ * 4);
 
 		for (int sectionX = 0; sectionX < 4; ++sectionX) {
@@ -95,14 +94,14 @@ public class ChunkProviderAmplified extends ChunkProviderGenerate {
 		}
 	}
 
-	public void replaceBlocksForBiome(int chunkX, int chunkZ, byte[] blockArray, BiomeGenBase[] biomeGenBase4) {
+	public void replaceBlocksForBiome(int chunkX, int chunkZ, byte[] blocks, byte[] metadata, BiomeGenBase[] biomes) {
 		byte seaLevel = 63;
 		double d6 = 8.0D / 256D;
 		this.stoneNoise = this.noiseStone.generateNoiseOctaves(this.stoneNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, d6 * 2.0D, d6 * 2.0D, d6 * 2.0D);
 
 		for(int z = 0; z < 16; ++z) {
 			for(int x = 0; x < 16; ++x) {
-				BiomeGenBase biomeGenBase10 = biomeGenBase4[x + z * 16];
+				BiomeGenBase biomeGenBase10 = biomes[z | (x << 4)];
 				float f11 = biomeGenBase10.getFloatTemperature();
 				int i12 = (int)(this.stoneNoise[z + x * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
 				int run = -1;
@@ -113,9 +112,9 @@ public class ChunkProviderAmplified extends ChunkProviderGenerate {
 					int idx = x << 12 | z << 8 | y;
 
 					if(y <= 0 + this.rand.nextInt(5)) {
-						blockArray[idx] = (byte)Block.bedrock.blockID;
+						blocks[idx] = (byte)Block.bedrock.blockID;
 					} else {
-						byte blockID = blockArray[idx];
+						byte blockID = blocks[idx];
 						if(blockID == 0) {
 							run = -1;
 						} else if(blockID == Block.stone.blockID) {
@@ -138,13 +137,13 @@ public class ChunkProviderAmplified extends ChunkProviderGenerate {
 
 								run = i12;
 								if(y >= seaLevel - 1) {
-									blockArray[idx] = topBlock;
+									blocks[idx] = topBlock;
 								} else {
-									blockArray[idx] = fillBlock;
+									blocks[idx] = fillBlock;
 								}
 							} else if(run > 0) {
 								--run;
-								blockArray[idx] = fillBlock;
+								blocks[idx] = fillBlock;
 								if(run == 0 && fillBlock == Block.sand.blockID) {
 									run = this.rand.nextInt(4);
 									fillBlock = (byte)Block.sandStone.blockID;

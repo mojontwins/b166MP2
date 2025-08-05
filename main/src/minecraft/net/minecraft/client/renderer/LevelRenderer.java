@@ -658,7 +658,7 @@ public class LevelRenderer implements IWorldAccess {
 		++this.cloudOffsetX;
 	}
 
-	public void renderSky(float f1) {
+	public void renderSky(float renderPartialTick) {
 		if(this.mc.theWorld.worldProvider.worldType == 1) {
 			GL11.glDisable(GL11.GL_FOG);
 			GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -706,18 +706,18 @@ public class LevelRenderer implements IWorldAccess {
 			GL11.glEnable(GL11.GL_ALPHA_TEST);
 		} else if(this.mc.theWorld.worldProvider.canSleepHere() && !this.mc.theWorld.worldProvider.noCelestials()) {
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
-			Vec3D vec3D2 = this.worldObj.getSkyColor(this.mc.renderViewEntity, f1);
-			float f3 = (float)vec3D2.xCoord;
-			float f4 = (float)vec3D2.yCoord;
-			float f5 = (float)vec3D2.zCoord;
+			Vec3D vec3D2 = this.worldObj.getSkyColor(this.mc.renderViewEntity, renderPartialTick);
+			float r = (float)vec3D2.xCoord;
+			float g = (float)vec3D2.yCoord;
+			float b = (float)vec3D2.zCoord;
 			float f7;
 			float f8;
 
-			GL11.glColor3f(f3, f4, f5);
+			GL11.glColor3f(r, g, b);
 			Tessellator tessellator21 = Tessellator.instance;
 			GL11.glDepthMask(false);
 			GL11.glEnable(GL11.GL_FOG);
-			GL11.glColor3f(f3, f4, f5);
+			GL11.glColor3f(r, g, b);
 			GL11.glCallList(this.glSkyList);
 			GL11.glDisable(GL11.GL_FOG);
 			GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -734,13 +734,13 @@ public class LevelRenderer implements IWorldAccess {
 			int i25;
 			
 			if(GameRules.boolRule("hasSunriseSunset")) {
-				float[] f22 = this.worldObj.worldProvider.calcSunriseSunsetColors(this.worldObj.getCelestialAngle(f1), f1);
+				float[] f22 = this.worldObj.worldProvider.calcSunriseSunsetColors(this.worldObj.getCelestialAngle(renderPartialTick), renderPartialTick);
 				if(f22 != null) {
 					GL11.glDisable(GL11.GL_TEXTURE_2D);
 					GL11.glShadeModel(GL11.GL_SMOOTH);
 					GL11.glPushMatrix();
 					GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
-					GL11.glRotatef(MathHelper.sin(this.worldObj.getCelestialAngleRadians(f1)) < 0.0F ? 180.0F : 0.0F, 0.0F, 0.0F, 1.0F);
+					GL11.glRotatef(MathHelper.sin(this.worldObj.getCelestialAngleRadians(renderPartialTick)) < 0.0F ? 180.0F : 0.0F, 0.0F, 0.0F, 1.0F);
 					GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
 					f8 = f22[0];
 					f9 = f22[1];
@@ -769,14 +769,14 @@ public class LevelRenderer implements IWorldAccess {
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
 			GL11.glPushMatrix();
-			f7 = 1.0F - this.worldObj.getRainStrength(f1) - this.worldObj.getSandstormingStrength(f1);
+			f7 = 1.0F - this.worldObj.getRainStrength(renderPartialTick) - this.worldObj.getSandstormingStrength(renderPartialTick);
 			f8 = 0.0F;
 			f9 = 0.0F;
 			f10 = 0.0F;
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, f7);
 			GL11.glTranslatef(f8, f9, f10);
 			GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
-			GL11.glRotatef(this.worldObj.getCelestialAngle(f1) * 360.0F, 1.0F, 0.0F, 0.0F);
+			GL11.glRotatef(this.worldObj.getCelestialAngle(renderPartialTick) * 360.0F, 1.0F, 0.0F, 0.0F);
 			f11 = 30.0F;
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.renderEngine.getTexture("/terrain/sun.png"));
 			tessellator21.startDrawingQuads();
@@ -787,7 +787,7 @@ public class LevelRenderer implements IWorldAccess {
 			tessellator21.draw();
 			f11 = 20.0F;
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.renderEngine.getTexture("/terrain/moon_phases.png"));
-			i25 = this.worldObj.getMoonPhase(f1);
+			i25 = this.worldObj.getMoonPhase(renderPartialTick);
 			int i26 = i25 % 4;
 			int i27 = i25 / 4 % 2;
 			f15 = (float)(i26 + 0) / 4.0F;
@@ -801,7 +801,7 @@ public class LevelRenderer implements IWorldAccess {
 			tessellator21.addVertexWithUV((double)(-f11), -100.0D, (double)(-f11), (double)f17, (double)f16);
 			tessellator21.draw();
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
-			f12 = this.worldObj.getStarBrightness(f1) * f7;
+			f12 = this.worldObj.getStarBrightness(renderPartialTick) * f7;
 			if(f12 > 0.0F) {
 				GL11.glColor4f(f12, f12, f12, f12);
 				GL11.glCallList(this.starGLCallList);
@@ -815,12 +815,12 @@ public class LevelRenderer implements IWorldAccess {
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			
 			if (GameRules.boolRule("colouredWater")) {
-				this.setBottomOfTheWorldColours(f3, f4, f5, f1);
+				this.setBottomOfTheWorldColours(r, g, b, renderPartialTick);
 			} else {
 				GL11.glColor3f(0.0F, 0.0F, 0.0F);
 			}
 						
-			double d23 = this.mc.thePlayer.getCurrentNodeVec3d(f1).yCoord - this.worldObj.getSeaLevelForRendering();
+			double d23 = this.mc.thePlayer.getCurrentNodeVec3d(renderPartialTick).yCoord - this.worldObj.getSeaLevelForRendering();
 			if(d23 < 0.0D) {
 				GL11.glPushMatrix();
 				GL11.glTranslatef(0.0F, 12.0F, 0.0F);
@@ -854,7 +854,7 @@ public class LevelRenderer implements IWorldAccess {
 				tessellator21.draw();
 			}
 
-			this.setBottomOfTheWorldColours(f3, f4, f5, f1);
+			this.setBottomOfTheWorldColours(r, g, b, renderPartialTick);
 
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0.0F, -((float)(d23 - 16.0D)), 0.0F);
@@ -865,15 +865,15 @@ public class LevelRenderer implements IWorldAccess {
 		}
 	}
 	
-	public void setBottomOfTheWorldColours(float f3, float f4, float f5, float f1) {
+	public void setBottomOfTheWorldColours(float r, float g, float b, float renderPartialTick) {
 		if(this.worldObj.worldProvider.isSkyColored()) {
-			//GL11.glColor3f(f3 * 0.2F + 0.04F, f4 * 0.2F + 0.04F, f5 * 0.6F + 0.1F);
+			//GL11.glColor3f(r * 0.2F + 0.04F, g * 0.2F + 0.04F, b * 0.6F + 0.1F);
 
-			Vec3D vec3D = this.worldObj.getSkyColorBottom(this.mc.renderViewEntity, f1);
+			Vec3D vec3D = this.worldObj.getSkyColorBottom(this.mc.renderViewEntity, renderPartialTick);
 			
 			GL11.glColor3d(vec3D.xCoord, vec3D.yCoord, vec3D.zCoord);
 		} else {
-			GL11.glColor3f(f3, f4, f5);
+			GL11.glColor3f(r, g, b);
 		}
 	}
 

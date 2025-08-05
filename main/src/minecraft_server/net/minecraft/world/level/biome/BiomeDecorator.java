@@ -8,7 +8,6 @@ import net.minecraft.world.level.dimension.WorldProviderSkyClassic;
 import net.minecraft.world.level.levelgen.feature.WorldGenBigMushroom;
 import net.minecraft.world.level.levelgen.feature.WorldGenCactus;
 import net.minecraft.world.level.levelgen.feature.WorldGenClay;
-import net.minecraft.world.level.levelgen.feature.WorldGenDeadBush;
 import net.minecraft.world.level.levelgen.feature.WorldGenFlowers;
 import net.minecraft.world.level.levelgen.feature.WorldGenLiquids;
 import net.minecraft.world.level.levelgen.feature.WorldGenMinable;
@@ -18,7 +17,7 @@ import net.minecraft.world.level.levelgen.feature.WorldGenSand;
 import net.minecraft.world.level.levelgen.feature.WorldGenSandSurface;
 import net.minecraft.world.level.levelgen.feature.WorldGenWaterlily;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
-import net.minecraft.world.level.levelgen.synth.NoiseGeneratorOctavesAlpha;
+import net.minecraft.world.level.levelgen.synth.NoiseGeneratorOctavesBeta;
 import net.minecraft.world.level.tile.Block;
 
 public class BiomeDecorator {
@@ -68,7 +67,7 @@ public class BiomeDecorator {
 	
 	public boolean skyDecorator = false;
 	
-	public NoiseGeneratorOctavesAlpha mobSpawnerNoise = null;
+	public NoiseGeneratorOctavesBeta mobSpawnerNoise = null;
 
 	public BiomeDecorator(BiomeGenBase biomeGenBase1) {
 		this.biome = biomeGenBase1;
@@ -76,7 +75,7 @@ public class BiomeDecorator {
 
 	public void decorate(World world1, Random random2, int i3, int i4, boolean hadFeature) {
 		if(this.mobSpawnerNoise == null) {
-			this.mobSpawnerNoise = new NoiseGeneratorOctavesAlpha(random2, 8);
+			this.mobSpawnerNoise = new NoiseGeneratorOctavesBeta(random2, 8);
 		}
 		
 		if(this.worldObj != null) {
@@ -132,7 +131,7 @@ public class BiomeDecorator {
 			
 			if(GameRules.boolRule("noiseTreeDensity")) {
 				double noiseScaler = 0.5D;
-				int treeBaseAttempts = (int)((this.mobSpawnerNoise.generateNoiseOctaves((double)this.chunkX * noiseScaler, (double)this.chunkZ * noiseScaler) / 8.0D + this.rand.nextDouble() * 4.0D + 4.0D) / 3.0D);
+				int treeBaseAttempts = (int)((this.mobSpawnerNoise.getDensity((double)this.chunkX * noiseScaler, (double)this.chunkZ * noiseScaler) / 8.0D + this.rand.nextDouble() * 4.0D + 4.0D) / 3.0D);
 				if(treeBaseAttempts < 0) {
 					treeBaseAttempts = 0;
 				}
@@ -182,12 +181,14 @@ public class BiomeDecorator {
 			worldGenerator6.generate(this.worldObj, this.rand, i3, i4, i7);
 		}
 
+		/*
 		for(i2 = 0; i2 < this.deadBushPerChunk; ++i2) {
 			i3 = this.chunkX + this.rand.nextInt(16) + 8;
 			i4 = this.rand.nextInt(this.maxTerrainHeight);
 			i7 = this.chunkZ + this.rand.nextInt(16) + 8;
 			(new WorldGenDeadBush(Block.deadBush.blockID)).generate(this.worldObj, this.rand, i3, i4, i7);
 		}
+		*/
 
 		for(i2 = 0; i2 < this.waterlilyPerChunk; ++i2) {
 			i3 = this.chunkX + this.rand.nextInt(16) + 8;

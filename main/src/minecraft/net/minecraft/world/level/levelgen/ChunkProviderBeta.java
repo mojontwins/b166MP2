@@ -214,6 +214,13 @@ public class ChunkProviderBeta extends ChunkProviderGenerate {
 		int quadrantSize = 16 / xSize;
 
 		for(int dx = 0; dx < xSize; ++dx) {
+			/*
+			 * 0->1
+			 * 1->4
+			 * 2->7
+			 * 3->10
+			 * 4->13
+			 */
 			int thX = dx * quadrantSize + quadrantSize / 2;
 			
 			for(int dz = 0; dz < zSize; ++dz) {

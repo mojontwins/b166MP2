@@ -1,6 +1,6 @@
 package net.minecraft.world.level.biome;
 
-public class BiomeGenSeasonalForest extends BiomeGenForest {
+public class BiomeGenSeasonalForest extends BiomeGenBaseBeta {
 
 	public BiomeGenSeasonalForest(int biomeID) {
 		super(biomeID);

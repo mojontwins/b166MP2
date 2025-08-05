@@ -9,7 +9,7 @@ import net.minecraft.world.level.levelgen.feature.WorldGenForest;
 import net.minecraft.world.level.levelgen.feature.WorldGenTrees;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 
-public class BiomeGenForest extends BiomeGenBase {
+public class BiomeGenForest extends BiomeGenBaseBeta {
 	public BiomeGenForest(int biomeID) {
 		super(biomeID);
 		this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 2, 4, 6));

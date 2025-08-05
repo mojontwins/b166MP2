@@ -1,6 +1,6 @@
 package net.minecraft.world.level.biome;
 
-public class BiomeGenShrubland extends BiomeGenBase {
+public class BiomeGenShrubland extends BiomeGenBaseBeta {
 
 	protected BiomeGenShrubland(int i1) {
 		super(i1);

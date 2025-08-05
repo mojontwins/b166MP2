@@ -117,7 +117,7 @@ public class CreativeTabs {
 
 		for (int i = 0; i < numItems; ++i) {
 			Item item = itemsList[i];
-
+			if(item != null && item.softlocked) continue;
 			if (item != null && item.getCreativeTab() == this) {
 				item.getSubItems(item.shiftedIndex, this, par1List);
 			}
