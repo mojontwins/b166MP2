@@ -212,7 +212,7 @@ public class ServerConfigurationManager implements IServerConfigManager {
 		entityPlayerMP5.itemInWorldManager.setGameMode(worldServer6.getWorldInfo().getGameType());
 		
 		if(chunkCoordinates4 != null) {
-			/*
+			
 			ChunkCoordinates chunkCoordinates7 = EntityPlayer.verifyRespawnCoordinates(this.mcServer.getWorldManager(entityPlayerMP1.dimension), chunkCoordinates4);
 			if(chunkCoordinates7 != null) {
 				entityPlayerMP5.setLocationAndAngles((double)((float)chunkCoordinates7.posX + 0.5F), (double)((float)chunkCoordinates7.posY + 0.1F), (double)((float)chunkCoordinates7.posZ + 0.5F), 0.0F, 0.0F);
@@ -220,7 +220,7 @@ public class ServerConfigurationManager implements IServerConfigManager {
 				
 				// Also set spawn dimension!
 				entityPlayerMP5.setSpawnDimension(spawnDimension);
-			} else*/ {
+			} else {
 				entityPlayerMP5.playerNetServerHandler.sendPacket(new Packet70GameEvent(0, 0));
 			}
 		}
@@ -672,12 +672,9 @@ public class ServerConfigurationManager implements IServerConfigManager {
 
 	public void updateTimeAndWeather(EntityPlayerMP thePlayer, WorldServer world) {
 		thePlayer.playerNetServerHandler.sendPacket(new Packet4UpdateTime(world.getWorldTime()));
+		System.out.println ("Sending time = " + world.getWorldTime());
 		thePlayer.playerNetServerHandler.sendPacket(new Packet70GameEvent(world.isRaining(), world.isSnowing(), world.isThundering()));
-		/*
-		if(worldServer2.isRaining()) {
-			entityPlayerMP1.playerNetServerHandler.sendPacket(new Packet70GameEvent(1, 0));
-		}
-		 */
+
 	}
 
 	public void s_func_30008_g(EntityPlayerMP entityPlayerMP1) {

@@ -858,12 +858,14 @@ public abstract class EntityPlayer extends EntityLiving {
 				return EnumStatus.TOO_FAR_AWAY;
 			}
 
+			/*
 			double d4 = 8.0D;
 			double d6 = 5.0D;
 			List<Entity> list8 = this.worldObj.getEntitiesWithinAABB(EntityMob.class, AxisAlignedBB.getBoundingBoxFromPool((double)i1 - d4, (double)i2 - d6, (double)i3 - d4, (double)i1 + d4, (double)i2 + d6, (double)i3 + d4));
 			if(!list8.isEmpty()) {
 				return EnumStatus.NOT_SAFE;
 			}
+			*/
 		}
 
 		this.setSize(0.2F, 0.2F);
@@ -923,33 +925,34 @@ public abstract class EntityPlayer extends EntityLiving {
 
 	}
 
-	public void wakeUpPlayer(boolean z1, boolean z2, boolean z3) {
+	public void wakeUpPlayer(boolean resetTimer, boolean updateFlag, boolean setSpawn) {
 		this.setSize(0.6F, 1.8F);
 		this.resetHeight();
-		ChunkCoordinates chunkCoordinates4 = this.playerLocation;
-		ChunkCoordinates chunkCoordinates5 = this.playerLocation;
-		if(chunkCoordinates4 != null && this.worldObj.getBlockId(chunkCoordinates4.posX, chunkCoordinates4.posY, chunkCoordinates4.posZ) == Block.bed.blockID) {
-			BlockBed.setBedOccupied(this.worldObj, chunkCoordinates4.posX, chunkCoordinates4.posY, chunkCoordinates4.posZ, false);
-			chunkCoordinates5 = BlockBed.getNearestEmptyChunkCoordinates(this.worldObj, chunkCoordinates4.posX, chunkCoordinates4.posY, chunkCoordinates4.posZ, 0);
-			if(chunkCoordinates5 == null) {
-				chunkCoordinates5 = new ChunkCoordinates(chunkCoordinates4.posX, chunkCoordinates4.posY + 1, chunkCoordinates4.posZ);
+		
+		ChunkCoordinates coords = this.playerLocation;
+		ChunkCoordinates coordsG = this.playerLocation;
+		if(coords != null && this.worldObj.getBlockId(coords.posX, coords.posY, coords.posZ) == Block.bed.blockID) {
+			BlockBed.setBedOccupied(this.worldObj, coords.posX, coords.posY, coords.posZ, false);
+			coordsG = BlockBed.getNearestEmptyChunkCoordinates(this.worldObj, coords.posX, coords.posY, coords.posZ, 0);
+			if(coordsG == null) {
+				coordsG = new ChunkCoordinates(coords.posX, coords.posY + 1, coords.posZ);
 			}
 
-			this.setPosition((double)((float)chunkCoordinates5.posX + 0.5F), (double)((float)chunkCoordinates5.posY + this.yOffset + 0.1F), (double)((float)chunkCoordinates5.posZ + 0.5F));
+			this.setPosition((double)((float)coordsG.posX + 0.5F), (double)((float)coordsG.posY + this.yOffset + 0.1F), (double)((float)coordsG.posZ + 0.5F));
 		}
 
 		this.sleeping = false;
-		if(!this.worldObj.isRemote && z2) {
+		if(!this.worldObj.isRemote && updateFlag) {
 			this.worldObj.updateAllPlayersSleepingFlag();
 		}
 
-		if(z1) {
+		if(resetTimer) {
 			this.sleepTimer = 0;
 		} else {
 			this.sleepTimer = 100;
 		}
 
-		if(z3) {
+		if(setSpawn) {
 			this.setSpawnChunk(this.playerLocation);
 			this.setSpawnDimension(this.dimension);
 			this.setDontCheckSpawnCoordinates(false);

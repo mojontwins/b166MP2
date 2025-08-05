@@ -858,12 +858,14 @@ public abstract class EntityPlayer extends EntityLiving {
 				return EnumStatus.TOO_FAR_AWAY;
 			}
 
+			/*
 			double d4 = 8.0D;
 			double d6 = 5.0D;
 			List<Entity> list8 = this.worldObj.getEntitiesWithinAABB(EntityMob.class, AxisAlignedBB.getBoundingBoxFromPool((double)i1 - d4, (double)i2 - d6, (double)i3 - d4, (double)i1 + d4, (double)i2 + d6, (double)i3 + d4));
 			if(!list8.isEmpty()) {
 				return EnumStatus.NOT_SAFE;
 			}
+			*/
 		}
 
 		this.setSize(0.2F, 0.2F);

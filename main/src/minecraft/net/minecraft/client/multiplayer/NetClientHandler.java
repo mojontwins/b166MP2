@@ -498,27 +498,33 @@ public class NetClientHandler extends NetHandler {
 		this.mc.ingameGUI.addChatMessage(packet3Chat1.message);
 	}
 
-	public void handleAnimation(Packet18Animation packet18Animation1) {
-		Entity entity2 = this.getEntityByID(packet18Animation1.entityId);
-		if(entity2 != null) {
-			EntityPlayer entityPlayer3;
-			if(packet18Animation1.animate == 1) {
-				entityPlayer3 = (EntityPlayer)entity2;
-				entityPlayer3.swingItem();
-			} else if(packet18Animation1.animate == 2) {
-				entity2.performHurtAnimation();
-			} else if(packet18Animation1.animate == 3) {
-				entityPlayer3 = (EntityPlayer)entity2;
-				entityPlayer3.wakeUpPlayer(false, false, false);
-			} else if(packet18Animation1.animate == 4) {
-				entityPlayer3 = (EntityPlayer)entity2;
-				entityPlayer3.func_6420_o();
-			} else if(packet18Animation1.animate == 6) {
-				this.mc.effectRenderer.addEffect(new EntityCrit2FX(this.mc.theWorld, entity2));
-			} else if(packet18Animation1.animate == 7) {
-				EntityCrit2FX entityCrit2FX4 = new EntityCrit2FX(this.mc.theWorld, entity2, "magicCrit");
+	public void handleAnimation(Packet18Animation packet) {
+		Entity theEntity = this.getEntityByID(packet.entityId);
+		if(theEntity != null) {
+			EntityPlayer thePlayer;
+			if(packet.animate == 1) {
+				thePlayer = (EntityPlayer)theEntity;
+				thePlayer.swingItem();
+				
+			} else if(packet.animate == 2) {
+				theEntity.performHurtAnimation();
+				
+			} else if(packet.animate == 3) {
+				thePlayer = (EntityPlayer)theEntity;
+				thePlayer.wakeUpPlayer(false, false, false);
+				
+			} else if(packet.animate == 4) {
+				thePlayer = (EntityPlayer)theEntity;
+				thePlayer.func_6420_o();
+				
+			} else if(packet.animate == 6) {
+				this.mc.effectRenderer.addEffect(new EntityCrit2FX(this.mc.theWorld, theEntity));
+				
+			} else if(packet.animate == 7) {
+				EntityCrit2FX entityCrit2FX4 = new EntityCrit2FX(this.mc.theWorld, theEntity, "magicCrit");
 				this.mc.effectRenderer.addEffect(entityCrit2FX4);
-			} else if(packet18Animation1.animate == 5 && entity2 instanceof EntityOtherPlayerMP) {
+				
+			} else if(packet.animate == 5 && theEntity instanceof EntityOtherPlayerMP) {
 				;
 			}
 

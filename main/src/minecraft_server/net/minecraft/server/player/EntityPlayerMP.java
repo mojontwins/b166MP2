@@ -370,8 +370,8 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting {
 
 	public void wakeUpPlayer(boolean z1, boolean z2, boolean z3) {
 		if(this.isPlayerSleeping()) {
-			EntityTracker entityTracker4 = this.mcServer.getEntityTracker(this.dimension);
-			entityTracker4.sendPacketToTrackedPlayersAndTrackedEntity(this, new Packet18Animation(this, 3));
+			EntityTracker tracker = this.mcServer.getEntityTracker(this.dimension);
+			tracker.sendPacketToTrackedPlayersAndTrackedEntity(this, new Packet18Animation(this, 3));
 		}
 
 		super.wakeUpPlayer(z1, z2, z3);
@@ -469,6 +469,10 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting {
 
 		if(this.riddenByEntity != null) {
 			this.riddenByEntity.mountEntity(this);
+		}
+
+		if(this.sleeping) {
+			this.wakeUpPlayer(true, false, false);
 		}
 
 	}

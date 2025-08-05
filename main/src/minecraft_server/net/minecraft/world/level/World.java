@@ -2009,7 +2009,7 @@ public class World implements IBlockAccess {
 		this.updateWeather();
 
 		long worldTime;
-	
+		
 		if(this.isAllPlayersFullyAsleep()) {
 			boolean nightmare = false;
 			if(this.spawnHostileMobs && this.difficultySetting >= 1) {
@@ -2020,6 +2020,7 @@ public class World implements IBlockAccess {
 				worldTime = this.worldInfo.getWorldTime() + 24000L;
 				this.worldInfo.setWorldTime(worldTime - worldTime % 24000L);
 				this.wakeUpAllPlayers();
+				
 			}
 		}
 		

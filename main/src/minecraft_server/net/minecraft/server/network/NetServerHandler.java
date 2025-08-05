@@ -559,7 +559,10 @@ public class NetServerHandler extends NetHandler implements ICommandListener {
 			this.playerEntity.setSprinting(true);
 		} else if(packet19EntityAction1.state == 5) {
 			this.playerEntity.setSprinting(false);
-		} 
+		} else if(packet19EntityAction1.state == 3) {
+			this.playerEntity.wakeUpPlayer(false, true, true);
+			this.hasMoved = false;
+		}
 
 	}
 

@@ -82,7 +82,7 @@ public class Packet51MapChunk extends Packet {
 				totalSize += data.length;
 			}
 		}
-		
+
 		NibbleArray nibbles;
 		
 		for(i = 0; i < subChunks.length; ++i) {

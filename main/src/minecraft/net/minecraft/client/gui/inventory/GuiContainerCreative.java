@@ -208,40 +208,40 @@ public class GuiContainerCreative extends GuiContainer {
 	}
 
 	private void doSearch() {
-		ContainerCreative var1 = (ContainerCreative) this.inventorySlots;
-		var1.itemList.clear();
-		Item[] var2 = Item.itemsList;
-		int var3 = var2.length;
+		ContainerCreative inventory = (ContainerCreative) this.inventorySlots;
+		inventory.itemList.clear();
+		Item[] allItems = Item.itemsList;
+		int numItems = allItems.length;
 
-		for (int var4 = 0; var4 < var3; ++var4) {
-			Item var5 = var2[var4];
+		for (int i = 0; i < numItems; ++i) {
+			Item item = allItems[i];
 
-			if (var5 != null && var5.getCreativeTab() != null) {
-				var5.getSubItems(var5.shiftedIndex, (CreativeTabs) null, var1.itemList);
+			if (item != null && item.getCreativeTab() != null && !item.softlocked) {
+				item.getSubItems(item.shiftedIndex, (CreativeTabs) null, inventory.itemList);
 			}
 		}
 
-		Iterator<ItemStack> var8 = var1.itemList.iterator();
-		String var9 = this.searchField.getText().toLowerCase();
+		Iterator<ItemStack> it = inventory.itemList.iterator();
+		String searchString = this.searchField.getText().toLowerCase();
 
-		while (var8.hasNext()) {
-			ItemStack var10 = (ItemStack) var8.next();
-			boolean var11 = false;
-			Iterator<String> var6 = var10.getItemNameandInformation().iterator();
+		while (it.hasNext()) {
+			ItemStack stack = (ItemStack) it.next();
+			boolean keep = false;
+			Iterator<String> itInfo = stack.getItemNameandInformation().iterator();
 
 			while (true) {
-				if (var6.hasNext()) {
-					String var7 = (String) var6.next();
+				if (itInfo.hasNext()) {
+					String label = (String) itInfo.next();
 
-					if (!var7.toLowerCase().contains(var9)) {
+					if (!label.toLowerCase().contains(searchString)) {
 						continue;
 					}
 
-					var11 = true;
+					keep = true;
 				}
 
-				if (!var11) {
-					var8.remove();
+				if (!keep) {
+					it.remove();
 				}
 
 				break;
@@ -249,7 +249,7 @@ public class GuiContainerCreative extends GuiContainer {
 		}
 
 		this.currentScroll = 0.0F;
-		var1.scrollTo(0.0F);
+		inventory.scrollTo(0.0F);
 	}
 
 	/**

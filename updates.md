@@ -104,6 +104,7 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 	* [ ] seeds not consistent? revise beta gen
 	* [ ] Restore the pane renderer.
 	* [ ] Sleeping in SMP doesn't advance the day
+	* [ ] Biomes shown in SMP not correct, also not correct overall (particle decide).
 
 * and now we are ready for...
 
