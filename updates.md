@@ -98,6 +98,13 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 * [X] Trapdoors
 * [X] Dead bush, tall grass & ferns.
 
+
+# Bugs / glitches
+	* [X] Beds (and possible other stuff) look bad when re-login into SMP, possibly metadata related!
+	* [ ] seeds not consistent? revise beta gen
+	* [ ] Restore the pane renderer.
+	* [ ] Sleeping in SMP doesn't advance the day
+
 * and now we are ready for...
 
 
@@ -106,10 +113,3 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 * Add a means to get cocoa seeds in a custom tree.
 * Colored sheep spawning.
 * Squids
-
-# Bugs / glitches
-	* [X] Beds (and possible other stuff) look bad when re-login into SMP, possibly metadata related!
-	* [ ] seeds not consistent? revise beta gen
-	* [ ] Restore the pane renderer.
-
-
