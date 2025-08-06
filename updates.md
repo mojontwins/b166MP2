@@ -97,7 +97,7 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 	* [X] No longer crashes but no map data on the map.
 * [X] Trapdoors
 * [X] Dead bush, tall grass & ferns.
-* [ ] Make sure beta arrows behave the same way as the arrows I have !!
+* [X] Make sure beta arrows behave the same way as the arrows I have !!
 
 
 # Bugs / glitches
@@ -155,5 +155,15 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 # b16.6.6
 
 * Add a means to get cocoa seeds in a custom tree.
+	* [1.0.0] Chocolate Mod [v2.2] Over 3000 downloads! !!!! https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/1278267-1-0-0-chocolate-mod-v2-2-over-3000-downloads 
 * Colored sheep spawning.
-* Squids
+
+# Credits
+
+* Chocolate Mod by X8xScoutx8X
+
+
+# To transfer to sister projects ...
+
+* [ ] EntityArrow arrangements for classic skeletons (EntityClassicSkeleton, EntityArrow)
+* [ ] RailDetector is needed for circuits (Block, BlockDetectorRail, CraftingManager, ItemPickaxe)

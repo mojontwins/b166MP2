@@ -50,7 +50,7 @@ public class BlockSnow extends Block {
 		
 		return 
 				(block == null || block.blockMaterial.isGroundCover()) &&
-				below != null && (below == Block.leaves || below.isOpaqueCube()) ? below.blockMaterial.blocksMovement() : false;
+				below != null && (below == Block.leaves || below.isOpaqueCube() || below.hasSolidTop(world.getBlockMetadata(x, y - 1, z))) ? below.blockMaterial.blocksMovement() : false;
 	}
 
 	public void onNeighborBlockChange(World world, int x, int y, int z, int i5) {

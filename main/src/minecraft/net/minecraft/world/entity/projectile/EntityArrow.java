@@ -33,45 +33,49 @@ public class EntityArrow extends Entity {
 	private int field_46027_au;
 	public boolean arrowCritical = false;
 
-	public EntityArrow(World world1) {
-		super(world1);
+	public EntityArrow(World world) {
+		super(world);
 		this.setSize(0.5F, 0.5F);
 	}
 
-	public EntityArrow(World world1, double d2, double d4, double d6) {
-		super(world1);
+	public EntityArrow(World world, double d2, double d4, double d6) {
+		super(world);
 		this.setSize(0.5F, 0.5F);
 		this.setPosition(d2, d4, d6);
 		this.yOffset = 0.0F;
 	}
 
-	public EntityArrow(World world1, EntityLiving entityLiving2, EntityLiving entityLiving3, float f4, float f5) {
-		super(world1);
-		this.shootingEntity = entityLiving2;
-		this.doesArrowBelongToPlayer = entityLiving2 instanceof EntityPlayer;
-		this.posY = entityLiving2.posY + (double)entityLiving2.getEyeHeight() - (double)0.1F;
-		double d6 = entityLiving3.posX - entityLiving2.posX;
+	// EntityAIArrowAttack uses this constructor and sets arrow heading
+	// This constructor wasn't present in beta.
+	public EntityArrow(World world, EntityLiving shooter, EntityLiving entityLiving3, float f4, float f5) {
+		super(world);
+		this.shootingEntity = shooter;
+		this.doesArrowBelongToPlayer = shooter instanceof EntityPlayer;
+		this.posY = shooter.posY + (double)shooter.getEyeHeight() - (double)0.1F;
+		double d6 = entityLiving3.posX - shooter.posX;
 		double d8 = entityLiving3.posY + (double)entityLiving3.getEyeHeight() - (double)0.7F - this.posY;
-		double d10 = entityLiving3.posZ - entityLiving2.posZ;
+		double d10 = entityLiving3.posZ - shooter.posZ;
 		double d12 = (double)MathHelper.sqrt_double(d6 * d6 + d10 * d10);
 		if(d12 >= 1.0E-7D) {
 			float f14 = (float)(Math.atan2(d10, d6) * 180.0D / (double)(float)Math.PI) - 90.0F;
 			float f15 = (float)(-(Math.atan2(d8, d12) * 180.0D / (double)(float)Math.PI));
 			double d16 = d6 / d12;
 			double d18 = d10 / d12;
-			this.setLocationAndAngles(entityLiving2.posX + d16, this.posY, entityLiving2.posZ + d18, f14, f15);
+			this.setLocationAndAngles(shooter.posX + d16, this.posY, shooter.posZ + d18, f14, f15);
 			this.yOffset = 0.0F;
 			float f20 = (float)d12 * 0.2F;
 			this.setArrowHeading(d6, d8 + (double)f20, d10, f4, f5);
 		}
 	}
 
-	public EntityArrow(World world1, EntityLiving entityLiving2, float f3) {
-		super(world1);
-		this.shootingEntity = entityLiving2;
-		this.doesArrowBelongToPlayer = entityLiving2 instanceof EntityPlayer;
+	// Classic skeletons throw arrows using this method, i.e. no aim.
+	// I have to make sure this method and the subsequent setArrowHeading behave the same.
+	public EntityArrow(World world, EntityLiving shooter, float multiplier) {
+		super(world);
+		this.shootingEntity = shooter;
+		this.doesArrowBelongToPlayer = shooter instanceof EntityPlayer;
 		this.setSize(0.5F, 0.5F);
-		this.setLocationAndAngles(entityLiving2.posX, entityLiving2.posY + (double)entityLiving2.getEyeHeight(), entityLiving2.posZ, entityLiving2.rotationYaw, entityLiving2.rotationPitch);
+		this.setLocationAndAngles(shooter.posX, shooter.posY + (double)shooter.getEyeHeight(), shooter.posZ, shooter.rotationYaw, shooter.rotationPitch);
 		this.posX -= (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
 		this.posY -= (double)0.1F;
 		this.posZ -= (double)(MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
@@ -80,29 +84,39 @@ public class EntityArrow extends Entity {
 		this.motionX = (double)(-MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
 		this.motionZ = (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
 		this.motionY = (double)(-MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI));
-		this.setArrowHeading(this.motionX, this.motionY, this.motionZ, f3 * 1.5F, 1.0F);
+		
+		// This sets a standard heading.
+		this.setArrowHeading(this.motionX, this.motionY, this.motionZ, multiplier * 1.5F, 1.0F);
 	}
 
 	protected void entityInit() {
 	}
 
-	public void setArrowHeading(double d1, double d3, double d5, float f7, float f8) {
-		float f9 = MathHelper.sqrt_double(d1 * d1 + d3 * d3 + d5 * d5);
-		d1 /= (double)f9;
-		d3 /= (double)f9;
-		d5 /= (double)f9;
-		d1 += this.rand.nextGaussian() * (double)0.0075F * (double)f8;
-		d3 += this.rand.nextGaussian() * (double)0.0075F * (double)f8;
-		d5 += this.rand.nextGaussian() * (double)0.0075F * (double)f8;
-		d1 *= (double)f7;
-		d3 *= (double)f7;
-		d5 *= (double)f7;
-		this.motionX = d1;
-		this.motionY = d3;
-		this.motionZ = d5;
-		float f10 = MathHelper.sqrt_double(d1 * d1 + d5 * d5);
-		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(d1, d5) * 180.0D / (double)(float)Math.PI);
-		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(d3, (double)f10) * 180.0D / (double)(float)Math.PI);
+	// Skeletons call this method after shooting to adjust the heading so they 
+	// can target other entities.
+	public void setArrowHeading(double dx, double dy, double dz, float n, float n2) {
+		float distance = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
+		dx /= distance;
+		dy /= distance;
+		dz /= distance;
+
+		dx += this.rand.nextGaussian() * 0.0075F * n2;
+		dy += this.rand.nextGaussian() * 0.0075F * n2;
+		dz += this.rand.nextGaussian() * 0.0075F * n2;
+
+		dx *= n;
+		dy *= n;
+		dz *= n;
+
+		this.motionX = dx;
+		this.motionY = dy;
+		this.motionZ = dz;
+
+		float hypotenuse = MathHelper.sqrt_double(dx * dx + dz * dz);
+
+		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(dx, dz) * 180.0D / (float)Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(dy, hypotenuse) * 180.0D / (float)Math.PI);
+		
 		this.ticksInGround = 0;
 	}
 

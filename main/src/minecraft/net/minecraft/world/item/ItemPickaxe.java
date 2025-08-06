@@ -25,7 +25,8 @@ public class ItemPickaxe extends ItemTool {
 			Block.oreRedstone, 
 			Block.oreRedstoneGlowing, 
 			Block.rail, 
-			Block.railPowered
+			Block.railPowered,
+			Block.railDetector
 		};
 
 	protected ItemPickaxe(int i1, EnumToolMaterial enumToolMaterial2) {

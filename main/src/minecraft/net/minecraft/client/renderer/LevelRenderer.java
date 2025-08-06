@@ -863,8 +863,6 @@ public class LevelRenderer implements IWorldAccess {
 	
 	public void setBottomOfTheWorldColours(float r, float g, float b, float renderPartialTick) {
 		if(this.worldObj.worldProvider.isSkyColored()) {
-			//GL11.glColor3f(r * 0.2F + 0.04F, g * 0.2F + 0.04F, b * 0.6F + 0.1F);
-
 			Vec3D vec3D = this.worldObj.getSkyColorBottom(this.mc.renderViewEntity, renderPartialTick);
 			
 			GL11.glColor3d(vec3D.xCoord, vec3D.yCoord, vec3D.zCoord);
