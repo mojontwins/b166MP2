@@ -170,9 +170,9 @@ public class RenderBlocks {
 
 	public boolean renderBlockTorch(Block block1, int i2, int i3, int i4) {
 		int i5 = this.blockAccess.getBlockMetadata(i2, i3, i4);
-		Tessellator tessellator6 = Tessellator.instance;
-		tessellator6.setBrightness(block1.getMixedBrightnessForBlock(this.blockAccess, i2, i3, i4));
-		tessellator6.setColorOpaque_F(1.0F, 1.0F, 1.0F);
+		Tessellator tes = Tessellator.instance;
+		tes.setBrightness(block1.getMixedBrightnessForBlock(this.blockAccess, i2, i3, i4));
+		tes.setColorOpaque_F(1.0F, 1.0F, 1.0F);
 		double d7 = (double)0.4F;
 		double d9 = 0.5D - d7;
 		double d11 = (double)0.2F;
@@ -1031,54 +1031,388 @@ public class RenderBlocks {
 		return true;
 	}
 	
-	public boolean renderBlockPane(BlockPane block, int x, int y, int z) { 
-		Tessellator tessellator = Tessellator.instance;
-		tessellator.setBrightness(block.getMixedBrightnessForBlock(this.blockAccess, x, y, z));
+	public boolean renderBlockPane(BlockPane block, int x, int y, int z) {
+		int maxHeight = this.blockAccess.getHeight();
+		Tessellator tes = Tessellator.instance;
+		tes.setBrightness(block.getMixedBrightnessForBlock(this.blockAccess, x, y, z));
+		float light = 1.0F;
+		int rgbai = block.colorMultiplier(this.blockAccess, x, y, z);
+		float r = (float)(rgbai >> 16 & 255) / 255.0F;
+		float g = (float)(rgbai >> 8 & 255) / 255.0F;
+		float b = (float)(rgbai & 255) / 255.0F;
 		
-		int colorMultiplier = block.colorMultiplier(this.blockAccess, x, y, z);
-		float r = (float)(colorMultiplier >> 16 & 255) / 255.0F;
-		float g = (float)(colorMultiplier >> 8 & 255) / 255.0F;
-		float b = (float)(colorMultiplier & 255) / 255.0F;
+		tes.setColorOpaque_F(light * r, light * g, light * b);
+		int texFace;
+		int texSide;
+	
+		if(this.overrideBlockTexture >= 0) {
+			texFace = this.overrideBlockTexture;
+			texSide = this.overrideBlockTexture;
+		} else {
+			int meta = this.blockAccess.getBlockMetadata(x, y, z);
+			texFace = block.getBlockTextureFromSideAndMetadata(0, meta);
+			texSide = block.getSideTextureIndex();
+		}
+
+		int texX = (texFace & 15) << 4;
+		int texY = texFace & 0xff0;
+		double faceU1 = (double)((float)texX / TextureAtlasSize.w);
+		double faceU2 = (double)(((float)texX + 7.99F) / TextureAtlasSize.w);
+		double faceU3 = (double)(((float)texX + 15.99F) / TextureAtlasSize.w);
+		double faceV1 = (double)((float)texY / TextureAtlasSize.h);
+		double faceV2 = (double)(((float)texY + 15.99F) / TextureAtlasSize.h);
+
+		texX = (texSide & 15) << 4;
+		texY = texSide & 0xff0;
+		double sideU1 = (double)((float)(texX + 7) / TextureAtlasSize.w);
+		double sideU2 = (double)(((float)texX + 8.99F) / TextureAtlasSize.w);
+		double sideV3 = (double)((float)texY / TextureAtlasSize.h);
+		double sideV1 = (double)((float)(texY + 8) / TextureAtlasSize.h);
+		double sideV2 = (double)(((float)texY + 15.99F) / TextureAtlasSize.h);
 		
-		tessellator.setColorOpaque_F(r, g, b);
+		double dX1 = (double)x;
+		double dXh = (double)x + 0.5D;
+		double dX2 = (double)(x + 1);
+		double dZ1 = (double)z;
+		double dZh = (double)z + 0.5D;
+		double dZ2 = (double)(z + 1);
+		double dXc1 = (double)x + 0.5D - 0.0625D;
+		double dXc2 = (double)x + 0.5D + 0.0625D;
+		double dZc1 = (double)z + 0.5D - 0.0625D;
+		double dZc2 = (double)z + 0.5D + 0.0625D;
 		
 		boolean connectN = block.canThisPaneConnectToThisBlockID(this.blockAccess.getBlockId(x, y, z - 1));
 		boolean connectS = block.canThisPaneConnectToThisBlockID(this.blockAccess.getBlockId(x, y, z + 1));
 		boolean connectW = block.canThisPaneConnectToThisBlockID(this.blockAccess.getBlockId(x - 1, y, z));
 		boolean connectE = block.canThisPaneConnectToThisBlockID(this.blockAccess.getBlockId(x + 1, y, z));
-		
-		// New, simple renderer
-		if (!connectN && !connectS && !connectW && !connectE) {
-			block.setBlockBounds(.5F-0.0625F, 0.0F, .5F-0.0625F, .5F+0.0625F, 1.0F, .5F+0.0625F);
-			this.renderStandardBlock(block, x, y, z);
-		} else if (connectN && connectS && !connectW && !connectE) {
-			block.setBlockBounds(.5F-0.0625F, 0.0F, 0.0F, .5F+0.0625F, 1.0F, 1.0F);
-			this.renderStandardBlock(block, x, y, z);
-		} else if (!connectN && !connectS && connectW && connectE) {
-			block.setBlockBounds(0.0F, 0.0F, .5F-0.0625F, 1.0F, 1.0F, .5F+0.0625F);
-			this.renderStandardBlock(block, x, y, z);
+		boolean renderTop = block.shouldSideBeRendered(this.blockAccess, x, y + 1, z, 1);
+		boolean renderBottom = block.shouldSideBeRendered(this.blockAccess, x, y - 1, z, 0);
+
+		if((!connectW || !connectE) && (connectW || connectE || connectN || connectS)) {
+			// Not both sides W/E at the same time
+			if(connectW && !connectE) {
+				tes.addVertexWithUV(dX1, (double)(y + 1), dZh, faceU1, faceV1);
+				tes.addVertexWithUV(dX1, (double)(y + 0), dZh, faceU1, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZh, faceU2, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZh, faceU2, faceV1);
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZh, faceU1, faceV1);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZh, faceU1, faceV2);
+				tes.addVertexWithUV(dX1, (double)(y + 0), dZh, faceU2, faceV2);
+				tes.addVertexWithUV(dX1, (double)(y + 1), dZh, faceU2, faceV1);
+				if(!connectS && !connectN) {
+					tes.addVertexWithUV(dXh, (double)(y + 1), dZc2, sideU1, sideV3);
+					tes.addVertexWithUV(dXh, (double)(y + 0), dZc2, sideU1, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 0), dZc1, sideU2, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 1), dZc1, sideU2, sideV3);
+					tes.addVertexWithUV(dXh, (double)(y + 1), dZc1, sideU1, sideV3);
+					tes.addVertexWithUV(dXh, (double)(y + 0), dZc1, sideU1, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 0), dZc2, sideU2, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 1), dZc2, sideU2, sideV3);
+				}
+
+				if(renderTop || y < maxHeight - 1 && this.blockAccess.isAirBlock(x - 1, y + 1, z)) {
+					tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV2);
+					tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV2);
+					tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV1);
+				}
+
+				if(renderBottom || y > 1 && this.blockAccess.isAirBlock(x - 1, y - 1, z)) {
+					tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc2, sideU2, sideV2);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc1, sideU1, sideV2);
+					tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc2, sideU2, sideV2);
+					tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc1, sideU1, sideV2);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc1, sideU1, sideV1);
+				}
+			} else if(!connectW && connectE) {
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZh, faceU2, faceV1);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZh, faceU2, faceV2);
+				tes.addVertexWithUV(dX2, (double)(y + 0), dZh, faceU3, faceV2);
+				tes.addVertexWithUV(dX2, (double)(y + 1), dZh, faceU3, faceV1);
+				tes.addVertexWithUV(dX2, (double)(y + 1), dZh, faceU2, faceV1);
+				tes.addVertexWithUV(dX2, (double)(y + 0), dZh, faceU2, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZh, faceU3, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZh, faceU3, faceV1);
+				if(!connectS && !connectN) {
+					tes.addVertexWithUV(dXh, (double)(y + 1), dZc1, sideU1, sideV3);
+					tes.addVertexWithUV(dXh, (double)(y + 0), dZc1, sideU1, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 0), dZc2, sideU2, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 1), dZc2, sideU2, sideV3);
+					tes.addVertexWithUV(dXh, (double)(y + 1), dZc2, sideU1, sideV3);
+					tes.addVertexWithUV(dXh, (double)(y + 0), dZc2, sideU1, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 0), dZc1, sideU2, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 1), dZc1, sideU2, sideV3);
+				}
+
+				if(renderTop || y < maxHeight - 1 && this.blockAccess.isAirBlock(x + 1, y + 1, z)) {
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV3);
+					tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV3);
+					tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV3);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV3);
+				}
+
+				if(renderBottom || y > 1 && this.blockAccess.isAirBlock(x + 1, y - 1, z)) {
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc2, sideU2, sideV3);
+					tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc1, sideU1, sideV3);
+					tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc2, sideU2, sideV3);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc1, sideU1, sideV3);
+				}
+			}
 		} else {
-			if (connectS) {
-				block.setBlockBounds(.5F-0.0625F, 0.0F, .5F, .5F+0.0625F, 1.0F, 1F);
-				this.renderStandardBlock(block, x, y, z);
+			// Both sides W/E at the same time
+
+			tes.addVertexWithUV(dX1, (double)(y + 1), dZh, faceU1, faceV1);
+			tes.addVertexWithUV(dX1, (double)(y + 0), dZh, faceU1, faceV2);
+			tes.addVertexWithUV(dX2, (double)(y + 0), dZh, faceU3, faceV2);
+			tes.addVertexWithUV(dX2, (double)(y + 1), dZh, faceU3, faceV1);
+			tes.addVertexWithUV(dX2, (double)(y + 1), dZh, faceU1, faceV1);
+			tes.addVertexWithUV(dX2, (double)(y + 0), dZh, faceU1, faceV2);
+			tes.addVertexWithUV(dX1, (double)(y + 0), dZh, faceU3, faceV2);
+			tes.addVertexWithUV(dX1, (double)(y + 1), dZh, faceU3, faceV1);
+			if(renderTop) {
+				tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV2);
+				tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV3);
+				tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV3);
+				tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV2);
+				tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV2);
+				tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV3);
+				tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV3);
+				tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV2);
+			} else {
+				if(y < maxHeight - 1 && this.blockAccess.isAirBlock(x - 1, y + 1, z)) {
+					tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV2);
+					tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV2);
+					tes.addVertexWithUV(dX1, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV2);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV1);
+				}
+
+				if(y < maxHeight - 1 && this.blockAccess.isAirBlock(x + 1, y + 1, z)) {
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV3);
+					tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV3);
+					tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV3);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dXh, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dX2, (double)(y + 1) + 0.01D, dZc1, sideU1, sideV3);
+				}
 			}
-			
-			if (connectN) {
-				block.setBlockBounds(.5F-0.0625F, 0.0F, 0F, .5F+0.0625F, 1.0F, .5F);
-				this.renderStandardBlock(block, x, y, z);
-			}
-			
-			if (connectE) {
-				block.setBlockBounds(0.5F, 0.0F, .5F-0.0625F, 1.0F, 1.0F, .5F+0.0625F);
-				this.renderStandardBlock(block, x, y, z);
-			}
-			
-			if (connectW) {
-				block.setBlockBounds(0F, 0.0F, .5F-0.0625F, 0.5F, 1.0F, .5F+0.0625F);
-				this.renderStandardBlock(block, x, y, z);
+
+			if(renderBottom) {
+				tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc2, sideU2, sideV2);
+				tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc2, sideU2, sideV3);
+				tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc1, sideU1, sideV3);
+				tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc1, sideU1, sideV2);
+				tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc2, sideU2, sideV2);
+				tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc2, sideU2, sideV3);
+				tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc1, sideU1, sideV3);
+				tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc1, sideU1, sideV2);
+			} else {
+				if(y > 1 && this.blockAccess.isAirBlock(x - 1, y - 1, z)) {
+					tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc2, sideU2, sideV2);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc1, sideU1, sideV2);
+					tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc2, sideU2, sideV2);
+					tes.addVertexWithUV(dX1, (double)y - 0.01D, dZc1, sideU1, sideV2);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc1, sideU1, sideV1);
+				}
+
+				if(y > 1 && this.blockAccess.isAirBlock(x + 1, y - 1, z)) {
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc2, sideU2, sideV3);
+					tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc1, sideU1, sideV3);
+					tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc2, sideU2, sideV3);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc2, sideU2, sideV1);
+					tes.addVertexWithUV(dXh, (double)y - 0.01D, dZc1, sideU1, sideV1);
+					tes.addVertexWithUV(dX2, (double)y - 0.01D, dZc1, sideU1, sideV3);
+				}
 			}
 		}
-		
+
+		if((!connectN || !connectS) && (connectW || connectE || connectN || connectS)) {
+			// Not both sides N/S at the same time
+			if(connectN && !connectS) {
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZ1, faceU1, faceV1);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZ1, faceU1, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZh, faceU2, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZh, faceU2, faceV1);
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZh, faceU1, faceV1);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZh, faceU1, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZ1, faceU2, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZ1, faceU2, faceV1);
+				if(!connectE && !connectW) {
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU1, sideV3);
+					tes.addVertexWithUV(dXc1, (double)(y + 0), dZh, sideU1, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 0), dZh, sideU2, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU2, sideV3);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU1, sideV3);
+					tes.addVertexWithUV(dXc2, (double)(y + 0), dZh, sideU1, sideV2);
+					tes.addVertexWithUV(dXc1, (double)(y + 0), dZh, sideU2, sideV2);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU2, sideV3);
+				}
+
+				if(renderTop || y < maxHeight - 1 && this.blockAccess.isAirBlock(x, y + 1, z - 1)) {
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZ1, sideU2, sideV3);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU2, sideV1);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU1, sideV1);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZ1, sideU1, sideV3);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU2, sideV3);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZ1, sideU2, sideV1);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZ1, sideU1, sideV1);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU1, sideV3);
+				}
+
+				if(renderBottom || y > 1 && this.blockAccess.isAirBlock(x, y - 1, z - 1)) {
+					tes.addVertexWithUV(dXc1, (double)y, dZ1, sideU2, sideV3);
+					tes.addVertexWithUV(dXc1, (double)y, dZh, sideU2, sideV1);
+					tes.addVertexWithUV(dXc2, (double)y, dZh, sideU1, sideV1);
+					tes.addVertexWithUV(dXc2, (double)y, dZ1, sideU1, sideV3);
+					tes.addVertexWithUV(dXc1, (double)y, dZh, sideU2, sideV3);
+					tes.addVertexWithUV(dXc1, (double)y, dZ1, sideU2, sideV1);
+					tes.addVertexWithUV(dXc2, (double)y, dZ1, sideU1, sideV1);
+					tes.addVertexWithUV(dXc2, (double)y, dZh, sideU1, sideV3);
+				}
+			} else if(!connectN && connectS) {
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZh, faceU2, faceV1);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZh, faceU2, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZ2, faceU3, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZ2, faceU3, faceV1);
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZ2, faceU2, faceV1);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZ2, faceU2, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 0), dZh, faceU3, faceV2);
+				tes.addVertexWithUV(dXh, (double)(y + 1), dZh, faceU3, faceV1);
+				if(!connectE && !connectW) {
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU1, sideV3);
+					tes.addVertexWithUV(dXc2, (double)(y + 0), dZh, sideU1, sideV2);
+					tes.addVertexWithUV(dXc1, (double)(y + 0), dZh, sideU2, sideV2);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU2, sideV3);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU1, sideV3);
+					tes.addVertexWithUV(dXc1, (double)(y + 0), dZh, sideU1, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 0), dZh, sideU2, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU2, sideV3);
+				}
+
+				if(renderTop || y < maxHeight - 1 && this.blockAccess.isAirBlock(x, y + 1, z + 1)) {
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU1, sideV1);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZ2, sideU1, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZ2, sideU2, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU2, sideV1);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZ2, sideU1, sideV1);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU1, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU2, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZ2, sideU2, sideV1);
+				}
+
+				if(renderBottom || y > 1 && this.blockAccess.isAirBlock(x, y - 1, z + 1)) {
+					tes.addVertexWithUV(dXc1, (double)y, dZh, sideU1, sideV1);
+					tes.addVertexWithUV(dXc1, (double)y, dZ2, sideU1, sideV2);
+					tes.addVertexWithUV(dXc2, (double)y, dZ2, sideU2, sideV2);
+					tes.addVertexWithUV(dXc2, (double)y, dZh, sideU2, sideV1);
+					tes.addVertexWithUV(dXc1, (double)y, dZ2, sideU1, sideV1);
+					tes.addVertexWithUV(dXc1, (double)y, dZh, sideU1, sideV2);
+					tes.addVertexWithUV(dXc2, (double)y, dZh, sideU2, sideV2);
+					tes.addVertexWithUV(dXc2, (double)y, dZ2, sideU2, sideV1);
+				}
+			}
+		} else {
+			// Both sides N/S at the same time
+			tes.addVertexWithUV(dXh, (double)(y + 1), dZ2, faceU1, faceV1);
+			tes.addVertexWithUV(dXh, (double)(y + 0), dZ2, faceU1, faceV2);
+			tes.addVertexWithUV(dXh, (double)(y + 0), dZ1, faceU3, faceV2);
+			tes.addVertexWithUV(dXh, (double)(y + 1), dZ1, faceU3, faceV1);
+			tes.addVertexWithUV(dXh, (double)(y + 1), dZ1, faceU1, faceV1);
+			tes.addVertexWithUV(dXh, (double)(y + 0), dZ1, faceU1, faceV2);
+			tes.addVertexWithUV(dXh, (double)(y + 0), dZ2, faceU3, faceV2);
+			tes.addVertexWithUV(dXh, (double)(y + 1), dZ2, faceU3, faceV1);
+			if(renderTop) {
+				tes.addVertexWithUV(dXc2, (double)(y + 1), dZ2, sideU2, sideV2);
+				tes.addVertexWithUV(dXc2, (double)(y + 1), dZ1, sideU2, sideV3);
+				tes.addVertexWithUV(dXc1, (double)(y + 1), dZ1, sideU1, sideV3);
+				tes.addVertexWithUV(dXc1, (double)(y + 1), dZ2, sideU1, sideV2);
+				tes.addVertexWithUV(dXc2, (double)(y + 1), dZ1, sideU2, sideV2);
+				tes.addVertexWithUV(dXc2, (double)(y + 1), dZ2, sideU2, sideV3);
+				tes.addVertexWithUV(dXc1, (double)(y + 1), dZ2, sideU1, sideV3);
+				tes.addVertexWithUV(dXc1, (double)(y + 1), dZ1, sideU1, sideV2);
+			} else {
+				if(y < maxHeight - 1 && this.blockAccess.isAirBlock(x, y + 1, z - 1)) {
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZ1, sideU2, sideV3);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU2, sideV1);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU1, sideV1);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZ1, sideU1, sideV3);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU2, sideV3);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZ1, sideU2, sideV1);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZ1, sideU1, sideV1);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU1, sideV3);
+				}
+
+				if(y < maxHeight - 1 && this.blockAccess.isAirBlock(x, y + 1, z + 1)) {
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU1, sideV1);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZ2, sideU1, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZ2, sideU2, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU2, sideV1);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZ2, sideU1, sideV1);
+					tes.addVertexWithUV(dXc1, (double)(y + 1), dZh, sideU1, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZh, sideU2, sideV2);
+					tes.addVertexWithUV(dXc2, (double)(y + 1), dZ2, sideU2, sideV1);
+				}
+			}
+
+			if(renderBottom) {
+				tes.addVertexWithUV(dXc2, (double)y, dZ2, sideU2, sideV2);
+				tes.addVertexWithUV(dXc2, (double)y, dZ1, sideU2, sideV3);
+				tes.addVertexWithUV(dXc1, (double)y, dZ1, sideU1, sideV3);
+				tes.addVertexWithUV(dXc1, (double)y, dZ2, sideU1, sideV2);
+				tes.addVertexWithUV(dXc2, (double)y, dZ1, sideU2, sideV2);
+				tes.addVertexWithUV(dXc2, (double)y, dZ2, sideU2, sideV3);
+				tes.addVertexWithUV(dXc1, (double)y, dZ2, sideU1, sideV3);
+				tes.addVertexWithUV(dXc1, (double)y, dZ1, sideU1, sideV2);
+			} else {
+				if(y > 1 && this.blockAccess.isAirBlock(x, y - 1, z - 1)) {
+					tes.addVertexWithUV(dXc1, (double)y, dZ1, sideU2, sideV3);
+					tes.addVertexWithUV(dXc1, (double)y, dZh, sideU2, sideV1);
+					tes.addVertexWithUV(dXc2, (double)y, dZh, sideU1, sideV1);
+					tes.addVertexWithUV(dXc2, (double)y, dZ1, sideU1, sideV3);
+					tes.addVertexWithUV(dXc1, (double)y, dZh, sideU2, sideV3);
+					tes.addVertexWithUV(dXc1, (double)y, dZ1, sideU2, sideV1);
+					tes.addVertexWithUV(dXc2, (double)y, dZ1, sideU1, sideV1);
+					tes.addVertexWithUV(dXc2, (double)y, dZh, sideU1, sideV3);
+				}
+
+				if(y > 1 && this.blockAccess.isAirBlock(x, y - 1, z + 1)) {
+					tes.addVertexWithUV(dXc1, (double)y, dZh, sideU1, sideV1);
+					tes.addVertexWithUV(dXc1, (double)y, dZ2, sideU1, sideV2);
+					tes.addVertexWithUV(dXc2, (double)y, dZ2, sideU2, sideV2);
+					tes.addVertexWithUV(dXc2, (double)y, dZh, sideU2, sideV1);
+					tes.addVertexWithUV(dXc1, (double)y, dZ2, sideU1, sideV1);
+					tes.addVertexWithUV(dXc1, (double)y, dZh, sideU1, sideV2);
+					tes.addVertexWithUV(dXc2, (double)y, dZh, sideU2, sideV2);
+					tes.addVertexWithUV(dXc2, (double)y, dZ2, sideU2, sideV1);
+				}
+			}
+		}
+
 		return true;
 	}
 	
@@ -1433,175 +1767,182 @@ public class RenderBlocks {
 		tessellator9.addVertexWithUV(d23, d5 + 1.0D, d27, d15, d17);
 	}
 
-	public boolean renderBlockFluids(Block block1, int i2, int i3, int i4) {
-		Tessellator tessellator5 = Tessellator.instance;
-		int i6 = block1.colorMultiplier(this.blockAccess, i2, i3, i4);
-		float f7 = (float)(i6 >> 16 & 255) / 255.0F;
-		float f8 = (float)(i6 >> 8 & 255) / 255.0F;
-		float f9 = (float)(i6 & 255) / 255.0F;
-		boolean z10 = block1.shouldSideBeRendered(this.blockAccess, i2, i3 + 1, i4, 1);
-		boolean z11 = block1.shouldSideBeRendered(this.blockAccess, i2, i3 - 1, i4, 0);
-		boolean[] z12 = new boolean[]{block1.shouldSideBeRendered(this.blockAccess, i2, i3, i4 - 1, 2), block1.shouldSideBeRendered(this.blockAccess, i2, i3, i4 + 1, 3), block1.shouldSideBeRendered(this.blockAccess, i2 - 1, i3, i4, 4), block1.shouldSideBeRendered(this.blockAccess, i2 + 1, i3, i4, 5)};
-		if(!z10 && !z11 && !z12[0] && !z12[1] && !z12[2] && !z12[3]) {
+	public boolean renderBlockFluids(Block block, int x, int y, int z) {
+		Tessellator tes = Tessellator.instance;
+		int color = block.colorMultiplier(this.blockAccess, x, y, z);
+		float r = (float)(color >> 16 & 255) / 255.0F;
+		float g = (float)(color >> 8 & 255) / 255.0F;
+		float b = (float)(color & 255) / 255.0F;
+
+		boolean upSide = block.shouldSideBeRendered(this.blockAccess, x, y + 1, z, 1);
+		boolean dwSide = block.shouldSideBeRendered(this.blockAccess, x, y - 1, z, 0);
+		boolean[] isSide = new boolean[]{
+			block.shouldSideBeRendered(this.blockAccess, x, y, z - 1, 2), 
+			block.shouldSideBeRendered(this.blockAccess, x, y, z + 1, 3), 
+			block.shouldSideBeRendered(this.blockAccess, x - 1, y, z, 4), 
+			block.shouldSideBeRendered(this.blockAccess, x + 1, y, z, 5)
+		};
+
+		if(!upSide && !dwSide && !isSide[0] && !isSide[1] && !isSide[2] && !isSide[3]) {
 			return false;
 		} else {
-			boolean z13 = false;
-			float f14 = 0.5F;
-			float f15 = 1.0F;
-			float f16 = 0.8F;
-			float f17 = 0.6F;
-			double d18 = 0.0D;
-			double d20 = 1.0D;
-			Material material22 = block1.blockMaterial;
-			int armorValue = this.blockAccess.getBlockMetadata(i2, i3, i4);
+			boolean changed = false;
+			float lD = 0.5F;
+			float lU = 1.0F;
+			float lNS = 0.8F;
+			float lWE = 0.6F;
+			double minY = 0.0D;
+			double maxY = 1.0D;
+			Material mat = block.blockMaterial;
+			int meta = this.blockAccess.getBlockMetadata(x, y, z);
 			
-			double d24 = (double)this.getFluidHeight(i2, i3, i4, material22);
-			double d26 = (double)this.getFluidHeight(i2, i3, i4 + 1, material22);
-			double d28 = (double)this.getFluidHeight(i2 + 1, i3, i4 + 1, material22);
-			double d30 = (double)this.getFluidHeight(i2 + 1, i3, i4, material22);
+			double hWN = this.getFluidHeight(x, y, z, mat);
+			double hWS = this.getFluidHeight(x, y, z + 1, mat);
+			double hES = this.getFluidHeight(x + 1, y, z + 1, mat);
+			double hEN = this.getFluidHeight(x + 1, y, z, mat);
 
-			double d32 = 0.0010000000474974513D;
-			int i34;
-			int i37;
-			if(this.renderAllFaces || z10) {
-				z13 = true;
-				i34 = block1.getBlockTextureFromSideAndMetadata(1, armorValue);
-				float f35 = (float)BlockFluid.func_293_a(this.blockAccess, i2, i3, i4, material22);
-				if(f35 > -999.0F) {
-					i34 = block1.getBlockTextureFromSideAndMetadata(2, armorValue);
+			double wee = 0.0010000000474974513D;
+			int textId;
+
+			if(this.renderAllFaces || upSide) {
+				changed = true;
+				textId = block.getBlockTextureFromSideAndMetadata(1, meta);
+				float angle = (float)BlockFluid.getAngle(this.blockAccess, x, y, z, mat);
+				if(angle > -999.0F) {
+					textId = block.getBlockTextureFromSideAndMetadata(2, meta);
 				}
 
-				d24 -= d32;
-				d26 -= d32;
-				d28 -= d32;
-				d30 -= d32;
+				hWN -= wee;
+				hWS -= wee;
+				hES -= wee;
+				hEN -= wee;
 
-				int i36 = (i34 & 15) << 4;
-				    i37 = i34 & 0xff0;
+				int u = (textId & 15) << 4;
+				int v = textId & 0xff0;
 
 				double uCenter, vCenter;
 				
-				if(f35 < -999.0F) {
-					f35 = 0.0F;
-					uCenter = ((double)i36 + 8.0D) / TextureAtlasSize.w;
-					vCenter = ((double)i37 + 8.0D) / TextureAtlasSize.h;
+				if(angle < -999.0F) {
+					angle = 0.0F;
+					uCenter = (u + 8.0D) / TextureAtlasSize.w;
+					vCenter = (v + 8.0D) / TextureAtlasSize.h;
 				} else {
-					uCenter = (double)((float)(i36 + 16) / TextureAtlasSize.w);
-					vCenter = (double)((float)(i37 + 16) / TextureAtlasSize.h);
+					uCenter = ((float)(u + 16) / TextureAtlasSize.w);
+					vCenter = ((float)(v + 16) / TextureAtlasSize.h);
 				}
 
-				double d42 = (double)(MathHelper.sin(f35) * 8.0F);
-				double d44 = (double)(MathHelper.cos(f35) * 8.0F);
+				double d42 = (MathHelper.sin(angle) * 8.0F);
+				double d44 = (MathHelper.cos(angle) * 8.0F);
 
 				double u1 = (d44 - d42) / TextureAtlasSize.w;
 				double u2 = (d44 + d42) / TextureAtlasSize.w;
 				double v1 = (d44 - d42) / TextureAtlasSize.h;
 				double v2 = (d44 + d42) / TextureAtlasSize.h;
 
-				tessellator5.setBrightness(block1.getMixedBrightnessForBlock(this.blockAccess, i2, i3, i4));
-				float f46 = 1.0F;
-				tessellator5.setColorOpaque_F(f15 * f46 * f7, f15 * f46 * f8, f15 * f46 * f9);
-				tessellator5.addVertexWithUV((double)(i2 + 0), (double)i3 + d24, (double)(i4 + 0), uCenter - u2, vCenter - v1);
-				tessellator5.addVertexWithUV((double)(i2 + 0), (double)i3 + d26, (double)(i4 + 1), uCenter - u1, vCenter + v2);
-				tessellator5.addVertexWithUV((double)(i2 + 1), (double)i3 + d28, (double)(i4 + 1), uCenter + u2, vCenter + v1);
-				tessellator5.addVertexWithUV((double)(i2 + 1), (double)i3 + d30, (double)(i4 + 0), uCenter + u1, vCenter - v2);
+				tes.setBrightness(block.getMixedBrightnessForBlock(this.blockAccess, x, y, z));
+				float br = 1.0F;
+				tes.setColorOpaque_F(lU * br * r, lU * br * g, lU * br * b);
+				tes.addVertexWithUV((x + 0), y + hWN, (z + 0), uCenter - u2, vCenter - v1);
+				tes.addVertexWithUV((x + 0), y + hWS, (z + 1), uCenter - u1, vCenter + v2);
+				tes.addVertexWithUV((x + 1), y + hES, (z + 1), uCenter + u2, vCenter + v1);
+				tes.addVertexWithUV((x + 1), y + hEN, (z + 0), uCenter + u1, vCenter - v2);
 			}
 
-			if(this.renderAllFaces || z11) {
-				tessellator5.setBrightness(block1.getMixedBrightnessForBlock(this.blockAccess, i2, i3 - 1, i4));
-				float f64 = 1.0F;
-				tessellator5.setColorOpaque_F(f14 * f64 * f7, f14 * f64 * f8, f14 * f64 * f9);
-				this.renderBottomFace(block1, (double)i2, (double)i3 + d32, (double)i4, block1.getBlockTextureFromSide(0));
-				z13 = true;
+			if(this.renderAllFaces || dwSide) {
+				tes.setBrightness(block.getMixedBrightnessForBlock(this.blockAccess, x, y - 1, z));
+				float br = 1.0F;
+				tes.setColorOpaque_F(lD * br * r, lD * br * g, lD * br * b);
+				this.renderBottomFace(block, x, y + wee, z, block.getBlockTextureFromSide(0));
+				changed = true;
 			}
 
-			for(i34 = 0; i34 < 4; ++i34) {
-				int i65 = i2;
-				i37 = i4;
-				if(i34 == 0) {
-					i37 = i4 - 1;
+			for(int face = 0; face < 4; ++face) {
+				int xt2 = x;
+				int zt = z;
+				if(face == 0) {
+					zt = z - 1;
 				}
 
-				if(i34 == 1) {
-					++i37;
+				if(face == 1) {
+					++zt;
 				}
 
-				if(i34 == 2) {
-					i65 = i2 - 1;
+				if(face == 2) {
+					xt2 = x - 1;
 				}
 
-				if(i34 == 3) {
-					++i65;
+				if(face == 3) {
+					++xt2;
 				}
 
-				if(this.renderAllFaces || z12[i34]) {
-					double d41;
-					double d43;
-					double d45;
-					double d47;
-					double d49;
-					double d51;
-					if(i34 == 0) {
-						d41 = d24;
-						d43 = d30;
-						d45 = (double)i2;
-						d49 = (double)(i2 + 1);
-						d47 = (double)i4 + d32;
-						d51 = (double)i4 + d32;
-					} else if(i34 == 1) {
-						d41 = d28;
-						d43 = d26;
-						d45 = (double)(i2 + 1);
-						d49 = (double)i2;
-						d47 = (double)(i4 + 1) - d32;
-						d51 = (double)(i4 + 1) - d32;
-					} else if(i34 == 2) {
-						d41 = d26;
-						d43 = d24;
-						d45 = (double)i2 + d32;
-						d49 = (double)i2 + d32;
-						d47 = (double)(i4 + 1);
-						d51 = (double)i4;
+				if(this.renderAllFaces || isSide[face]) {
+					double hh0;
+					double hh2;
+					double x2;
+					double z2;
+					double x3;
+					double z3;
+					if(face == 0) {
+						hh0 = hWN;
+						hh2 = hEN;
+						x2 = x;
+						x3 = (x + 1);
+						z2 = z + wee;
+						z3 = z + wee;
+					} else if(face == 1) {
+						hh0 = hES;
+						hh2 = hWS;
+						x2 = (x + 1);
+						x3 = x;
+						z2 = (z + 1) - wee;
+						z3 = (z + 1) - wee;
+					} else if(face == 2) {
+						hh0 = hWS;
+						hh2 = hWN;
+						x2 = x + wee;
+						x3 = x + wee;
+						z2 = (z + 1);
+						z3 = z;
 					} else {
-						d41 = d30;
-						d43 = d28;
-						d45 = (double)(i2 + 1) - d32;
-						d49 = (double)(i2 + 1) - d32;
-						d47 = (double)i4;
-						d51 = (double)(i4 + 1);
+						hh0 = hEN;
+						hh2 = hES;
+						x2 = (x + 1) - wee;
+						x3 = (x + 1) - wee;
+						z2 = z;
+						z3 = (z + 1);
 					}
 
-					z13 = true;
-					int i66 = block1.getBlockTextureFromSideAndMetadata(i34 + 2, armorValue);
+					changed = true;
+					int texId = block.getBlockTextureFromSideAndMetadata(face + 2, meta);
 					
-					int i39 = (i66 & 15) << 4;
-					int i67 = i66 & 0xff0;
+					int u = (texId & 15) << 4;
+					int v = texId & 0xff0;
 
-					double d53 = (double)((float)(i39 + 0) / TextureAtlasSize.w);
-					double d55 = ((double)(i39 + 16) - 0.01D) / TextureAtlasSize.w;
-					double d57 = ((double)i67 + (1.0D - d41) * 16.0D) / TextureAtlasSize.h;
-					double d59 = ((double)i67 + (1.0D - d43) * 16.0D) / TextureAtlasSize.h;
-					double d61 = ((double)(i67 + 16) - 0.01D) / TextureAtlasSize.h;
+					double u0 = ((float)(u + 0) / TextureAtlasSize.w);
+					double u2 = ((u + 16) - 0.01D) / TextureAtlasSize.w;
+					double v01 = (v + (1.0D - hh0) * 16.0D) / TextureAtlasSize.h;
+					double v2 = (v + (1.0D - hh2) * 16.0D) / TextureAtlasSize.h;
+					double v3 = ((v + 16) - 0.01D) / TextureAtlasSize.h;
 					
-					tessellator5.setBrightness(block1.getMixedBrightnessForBlock(this.blockAccess, i65, i3, i37));
-					float f63 = 1.0F;
-					if(i34 < 2) {
-						f63 *= f16;
+					tes.setBrightness(block.getMixedBrightnessForBlock(this.blockAccess, xt2, y, zt));
+					float br3 = 1.0F;
+					if(face < 2) {
+						br3 *= lNS;
 					} else {
-						f63 *= f17;
+						br3 *= lWE;
 					}
 
-					tessellator5.setColorOpaque_F(f15 * f63 * f7, f15 * f63 * f8, f15 * f63 * f9);
-					tessellator5.addVertexWithUV(d45, (double)i3 + d41, d47, d53, d57);
-					tessellator5.addVertexWithUV(d49, (double)i3 + d43, d51, d55, d59);
-					tessellator5.addVertexWithUV(d49, (double)(i3 + 0), d51, d55, d61);
-					tessellator5.addVertexWithUV(d45, (double)(i3 + 0), d47, d53, d61);
+					tes.setColorOpaque_F(lU * br3 * r, lU * br3 * g, lU * br3 * b);
+					tes.addVertexWithUV(x2, y + hh0, z2, u0, v01);
+					tes.addVertexWithUV(x3, y + hh2, z3, u2, v2);
+					tes.addVertexWithUV(x3, (y + 0), z3, u2, v3);
+					tes.addVertexWithUV(x2, (y + 0), z2, u0, v3);
 				}
 			}
 
-			block1.minY = d18;
-			block1.maxY = d20;
-			return z13;
+			block.minY = minY;
+			block.maxY = maxY;
+			return changed;
 		}
 	}
 
@@ -1751,7 +2092,7 @@ public class RenderBlocks {
 		int i20 = i19;
 		int i21 = i19;
 		int i22 = i19;
-		int armorValue = i19;
+		int i23 = i19;
 		int i24 = i19;
 		int i25 = i19;
 		if(block1.minY <= 0.0D) {
@@ -1767,7 +2108,7 @@ public class RenderBlocks {
 		}
 
 		if(block1.maxX >= 1.0D) {
-			armorValue = block1.getMixedBrightnessForBlock(this.blockAccess, i2 + 1, i3, i4);
+			i23 = block1.getMixedBrightnessForBlock(this.blockAccess, i2 + 1, i3, i4);
 		}
 
 		if(block1.minZ <= 0.0D) {
@@ -2339,16 +2680,16 @@ public class RenderBlocks {
 				f12 = (this.aoLightValueXPos + this.aoLightValueScratchXZPP + this.aoLightValueScratchXYPP + this.aoLightValueScratchXYZPPP) / 4.0F;
 				f11 = (this.aoLightValueScratchXZPN + this.aoLightValueXPos + this.aoLightValueScratchXYZPPN + this.aoLightValueScratchXYPP) / 4.0F;
 				f10 = (this.aoLightValueScratchXYZPNN + this.aoLightValueScratchXYPN + this.aoLightValueScratchXZPN + this.aoLightValueXPos) / 4.0F;
-				this.brightnessTopLeft = this.getAoBrightness(this.aoBrightnessXYPN, this.aoBrightnessXYZPNP, this.aoBrightnessXZPP, armorValue);
-				this.brightnessTopRight = this.getAoBrightness(this.aoBrightnessXZPP, this.aoBrightnessXYPP, this.aoBrightnessXYZPPP, armorValue);
-				this.brightnessBottomRight = this.getAoBrightness(this.aoBrightnessXZPN, this.aoBrightnessXYZPPN, this.aoBrightnessXYPP, armorValue);
-				this.brightnessBottomLeft = this.getAoBrightness(this.aoBrightnessXYZPNN, this.aoBrightnessXYPN, this.aoBrightnessXZPN, armorValue);
+				this.brightnessTopLeft = this.getAoBrightness(this.aoBrightnessXYPN, this.aoBrightnessXYZPNP, this.aoBrightnessXZPP, i23);
+				this.brightnessTopRight = this.getAoBrightness(this.aoBrightnessXZPP, this.aoBrightnessXYPP, this.aoBrightnessXYZPPP, i23);
+				this.brightnessBottomRight = this.getAoBrightness(this.aoBrightnessXZPN, this.aoBrightnessXYZPPN, this.aoBrightnessXYPP, i23);
+				this.brightnessBottomLeft = this.getAoBrightness(this.aoBrightnessXYZPNN, this.aoBrightnessXYPN, this.aoBrightnessXZPN, i23);
 			} else {
 				f12 = this.aoLightValueXPos;
 				f11 = this.aoLightValueXPos;
 				f10 = this.aoLightValueXPos;
 				f9 = this.aoLightValueXPos;
-				this.brightnessTopLeft = this.brightnessBottomLeft = this.brightnessBottomRight = this.brightnessTopRight = armorValue;
+				this.brightnessTopLeft = this.brightnessBottomLeft = this.brightnessBottomRight = this.brightnessTopRight = i23;
 			}
 
 			this.colorRedTopLeft = this.colorRedBottomLeft = this.colorRedBottomRight = this.colorRedTopRight = (z18 ? f5 : 1.0F) * 0.6F;

@@ -383,7 +383,7 @@ public abstract class BlockFluid extends Block implements ILiquid {
 
 	}
 
-	public static double func_293_a(IBlockAccess iBlockAccess0, int i1, int i2, int i3, Material material4) {
+	public static double getAngle(IBlockAccess iBlockAccess0, int i1, int i2, int i3, Material material4) {
 		Vec3D vec3D5 = null;
 		if(material4 == Material.water) {
 			vec3D5 = ((BlockFluid)Block.waterMoving).getFlowVector(iBlockAccess0, i1, i2, i3);

@@ -49,15 +49,6 @@ public abstract class Render {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		int i9 = Block.fire.blockIndexInTexture;
 		
-		/*
-		int i10 = (i9 & 15) << 4;
-		int i11 = i9 & 240;
-		float f12 = (float)i10 / 256.0F;
-		float f13 = ((float)i10 + 15.99F) / 256.0F;
-		float f14 = (float)i11 / 256.0F;
-		float f15 = ((float)i11 + 15.99F) / 256.0F;
-		*/
-		
 		double f12, f13, f14, f15;
 		
 		GL11.glPushMatrix();
@@ -74,11 +65,11 @@ public abstract class Render {
 		GL11.glTranslatef(0.0F, 0.0F, -0.3F + (float)((int)f20) * 0.02F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		float f22 = 0.0F;
-		int armorValue = 0;
+		int i23 = 0;
 		tessellator17.startDrawingQuads();
 
 		while(f20 > 0.0F) {
-			if(armorValue % 2 == 0) {
+			if(i23 % 2 == 0) {
 				Idx2uvF.calc(i9);
 				f12 = Idx2uvF.u1;
 				f13 = Idx2uvF.u2;
@@ -92,7 +83,7 @@ public abstract class Render {
 				f15 = Idx2uvF.v2 + Texels.texelsV(16F);
 			}
 
-			if(armorValue / 2 % 2 == 0) {
+			if(i23 / 2 % 2 == 0) {
 				double f24 = f13;
 				f13 = f12;
 				f12 = f24;
@@ -106,7 +97,7 @@ public abstract class Render {
 			f21 -= 0.45F;
 			f18 *= 0.9F;
 			f22 += 0.03F;
-			++armorValue;
+			++i23;
 		}
 
 		tessellator17.draw();
@@ -140,7 +131,7 @@ public abstract class Render {
 		int i20 = MathHelper.floor_double(d36 + (double)f12);
 		int i21 = MathHelper.floor_double(d15 - (double)f12);
 		int i22 = MathHelper.floor_double(d15);
-		int armorValue = MathHelper.floor_double(d17 - (double)f12);
+		int i23 = MathHelper.floor_double(d17 - (double)f12);
 		int i24 = MathHelper.floor_double(d17 + (double)f12);
 		double d25 = d2 - d36;
 		double d27 = d4 - d15;
@@ -150,7 +141,7 @@ public abstract class Render {
 
 		for(int i32 = i19; i32 <= i20; ++i32) {
 			for(int i33 = i21; i33 <= i22; ++i33) {
-				for(int i34 = armorValue; i34 <= i24; ++i34) {
+				for(int i34 = i23; i34 <= i24; ++i34) {
 					int i35 = world11.getBlockId(i32, i33 - 1, i34);
 					if(i35 > 0 && world11.getBlockLightValue(i32, i33, i34) > 3) {
 						this.renderShadowOnBlock(Block.blocksList[i35], d2, d4 + (double)entity1.getShadowSize(), d6, i32, i33, i34, f8, f12, d25, d27 + (double)entity1.getShadowSize(), d29);

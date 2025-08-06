@@ -61,15 +61,15 @@ public class Explosion {
 
 						for(float f21 = 0.3F; f14 > 0.0F; f14 -= f21 * 0.75F) {
 							int i22 = MathHelper.floor_double(d15);
-							int armorValue = MathHelper.floor_double(d17);
+							int i23 = MathHelper.floor_double(d17);
 							int i24 = MathHelper.floor_double(d19);
-							int i25 = this.worldObj.getBlockId(i22, armorValue, i24);
+							int i25 = this.worldObj.getBlockId(i22, i23, i24);
 							if(i25 > 0) {
 								f14 -= (Block.blocksList[i25].getExplosionResistance(this.exploder) + 0.3F) * f21;
 							}
 
 							if(f14 > 0.0F) {
-								this.destroyedBlockPositions.add(new ChunkPosition(i22, armorValue, i24));
+								this.destroyedBlockPositions.add(new ChunkPosition(i22, i23, i24));
 							}
 
 							d15 += d6 * (double)f21;

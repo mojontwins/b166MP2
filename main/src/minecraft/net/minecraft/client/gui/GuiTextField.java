@@ -373,17 +373,17 @@ public class GuiTextField extends Gui {
 			i4 = i5;
 		}
 
-		Tessellator tessellator6 = Tessellator.instance;
+		Tessellator tes = Tessellator.instance;
 		GL11.glColor4f(0.0F, 0.0F, 255.0F, 255.0F);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_COLOR_LOGIC_OP);
 		GL11.glLogicOp(GL11.GL_OR_REVERSE);
-		tessellator6.startDrawingQuads();
-		tessellator6.addVertex((double) i1, (double) i4, 0.0D);
-		tessellator6.addVertex((double) i3, (double) i4, 0.0D);
-		tessellator6.addVertex((double) i3, (double) i2, 0.0D);
-		tessellator6.addVertex((double) i1, (double) i2, 0.0D);
-		tessellator6.draw();
+		tes.startDrawingQuads();
+		tes.addVertex((double) i1, (double) i4, 0.0D);
+		tes.addVertex((double) i3, (double) i4, 0.0D);
+		tes.addVertex((double) i3, (double) i2, 0.0D);
+		tes.addVertex((double) i1, (double) i2, 0.0D);
+		tes.draw();
 		GL11.glDisable(GL11.GL_COLOR_LOGIC_OP);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}

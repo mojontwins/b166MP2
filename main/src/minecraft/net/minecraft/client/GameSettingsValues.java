@@ -22,7 +22,6 @@ public class GameSettingsValues {
 	public static boolean hideGUI = false;
 	public static int thirdPersonView = 0;
 	public static boolean showDebugInfo = false;
-	public static boolean field_50119_G = false;
 	public static String lastServer = "";
 	public static boolean noclip = false;
 	public static boolean smoothCamera = false;

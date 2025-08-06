@@ -44,6 +44,8 @@ import net.minecraft.world.phys.AxisAlignedBB;
 import net.minecraft.world.phys.Vec3D;
 
 public class MinecraftServer implements Runnable, ICommandListener, IServer {
+	public static final int dimensions = 2;
+	
 	public static Logger logger = Logger.getLogger("Minecraft");
 	public static HashMap<String, Integer> s_field_6037_b = new HashMap<String, Integer>();
 	private String hostname;
@@ -62,7 +64,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 	public int percentDone;
 	private List<IUpdatePlayerListBox> playersOnline = new ArrayList<IUpdatePlayerListBox>();
 	private List<ServerCommand> commands = Collections.synchronizedList(new ArrayList<ServerCommand>());
-	public EntityTracker[] entityTracker = new EntityTracker[5];
+	public EntityTracker[] entityTracker = new EntityTracker[MinecraftServer.dimensions];
 	public boolean onlineMode;
 	public boolean spawnPeacefulMobs;
 	public boolean s_field_44002_p;
@@ -146,10 +148,12 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 		// Todo: Proper DimensionManager to dehardcode this
 		this.entityTracker[0] = new EntityTracker(this, 0);
 		this.entityTracker[1] = new EntityTracker(this, -1);
+		/*
 		this.entityTracker[2] = new EntityTracker(this, 1);
 		this.entityTracker[3] = new EntityTracker(this, 7);
 		this.entityTracker[4] = new EntityTracker(this, 9);
-
+		*/
+		
 		long nowMillis = System.nanoTime();
 		String levelName = this.propertyManagerObj.getStringProperty("level-name", "world");
 		String levelSeed = this.propertyManagerObj.getStringProperty("level-seed", "");
@@ -207,7 +211,8 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 			saveManager.convertMapFormat(levelName, new ConvertProgressUpdater(this));
 		}
 
-		this.worldMngr = new WorldServer[5];
+		// Todo: Proper DimensionManager to dehardcode this
+		this.worldMngr = new WorldServer[MinecraftServer.dimensions];
 		this.s_field_40028_g = new long[this.worldMngr.length][100];
 		
 		int gameMode = this.propertyManagerObj.getIntProperty("gamemode", 0);
@@ -215,7 +220,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 		logger.info("Default game type: " + gameMode);
 		
 		//boolean generateStructures = this.propertyManagerObj.getBooleanProperty("generate-structures", true);
-		boolean enableSeasons = this.propertyManagerObj.getBooleanProperty("enableSeasons", true);
+		boolean enableSeasons = this.propertyManagerObj.getBooleanProperty("enableSeasons", false);
 		
 		WorldSettings worldSettings = new WorldSettings(seed, gameMode, false, false, enableSeasons, terrainType);
 		
@@ -256,7 +261,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 		short radius = 196;
 		long prevTime = System.currentTimeMillis();
 
-		for(int dimension = 0; dimension < 2; ++dimension) {
+		for(int dimension = 0; dimension < MinecraftServer.dimensions; ++dimension) {
 			logger.info("Preparing start region for level " + dimension);
 			WorldServer worldServer = this.worldMngr[dimension];
 			ChunkCoordinates spawnCoords = worldServer.getSpawnPoint();

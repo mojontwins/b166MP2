@@ -40,7 +40,7 @@ public class NoiseGeneratorPerlinInfdev extends NoiseGenerator {
 		double d11 = d5 + this.zCoord;
 		int i22 = MathHelper.floor_double(d7) & 255;
 		int i2 = MathHelper.floor_double(d9) & 255;
-		int armorValue = MathHelper.floor_double(d11) & 255;
+		int i23 = MathHelper.floor_double(d11) & 255;
 		d7 -= (double)MathHelper.floor_double(d7);
 		d9 -= (double)MathHelper.floor_double(d9);
 		d11 -= (double)MathHelper.floor_double(d11);
@@ -48,11 +48,11 @@ public class NoiseGeneratorPerlinInfdev extends NoiseGenerator {
 		double d18 = generateNoise(d9);
 		double d20 = generateNoise(d11);
 		int i4 = this.permutations[i22] + i2;
-		int i24 = this.permutations[i4] + armorValue;
-		i4 = this.permutations[i4 + 1] + armorValue;
+		int i24 = this.permutations[i4] + i23;
+		i4 = this.permutations[i4 + 1] + i23;
 		i22 = this.permutations[i22 + 1] + i2;
-		i2 = this.permutations[i22] + armorValue;
-		i22 = this.permutations[i22 + 1] + armorValue;
+		i2 = this.permutations[i22] + i23;
+		i22 = this.permutations[i22 + 1] + i23;
 		return lerp(d20, lerp(d18, lerp(d16, grad(this.permutations[i24], d7, d9, d11), grad(this.permutations[i2], d7 - 1.0D, d9, d11)), lerp(d16, grad(this.permutations[i4], d7, d9 - 1.0D, d11), grad(this.permutations[i22], d7 - 1.0D, d9 - 1.0D, d11))), lerp(d18, lerp(d16, grad(this.permutations[i24 + 1], d7, d9, d11 - 1.0D), grad(this.permutations[i2 + 1], d7 - 1.0D, d9, d11 - 1.0D)), lerp(d16, grad(this.permutations[i4 + 1], d7, d9 - 1.0D, d11 - 1.0D), grad(this.permutations[i22 + 1], d7 - 1.0D, d9 - 1.0D, d11 - 1.0D))));
 	}
 

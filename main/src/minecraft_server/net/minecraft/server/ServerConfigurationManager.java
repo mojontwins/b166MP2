@@ -31,7 +31,7 @@ public class ServerConfigurationManager implements IServerConfigManager {
 	public static Logger logger = Logger.getLogger("Minecraft");
 	public List<EntityPlayerMP> playerEntities = new ArrayList<EntityPlayerMP>();
 	private MinecraftServer mcServer;
-	private PlayerManager[] playerManagerObj = new PlayerManager[5];
+	private PlayerManager[] playerManagerObj = new PlayerManager[MinecraftServer.dimensions];
 	private int maxPlayers;
 	private Set<String> bannedPlayers = new HashSet<String>();
 	private Set<String> bannedIPs = new HashSet<String>();
@@ -52,11 +52,14 @@ public class ServerConfigurationManager implements IServerConfigManager {
 		this.opFile = minecraftServer1.getFile("ops.txt");
 		this.whitelistPlayersFile = minecraftServer1.getFile("white-list.txt");
 		int i2 = minecraftServer1.propertyManagerObj.getIntProperty("view-distance", 10);
+		// Todo: dehardcode this with proper dimensions
 		this.playerManagerObj[0] = new PlayerManager(minecraftServer1, 0, i2);
 		this.playerManagerObj[1] = new PlayerManager(minecraftServer1, -1, i2);
+		/*
 		this.playerManagerObj[2] = new PlayerManager(minecraftServer1, 1, i2);
 		this.playerManagerObj[3] = new PlayerManager(minecraftServer1, 7, i2);
 		this.playerManagerObj[4] = new PlayerManager(minecraftServer1, 9, i2);
+		*/
 		this.maxPlayers = minecraftServer1.propertyManagerObj.getIntProperty("max-players", 20);
 		this.whiteListEnforced = minecraftServer1.propertyManagerObj.getBooleanProperty("white-list", false);
 		this.readBannedPlayers();
@@ -80,9 +83,11 @@ public class ServerConfigurationManager implements IServerConfigManager {
 	public void joinNewPlayerManager(EntityPlayerMP entityPlayerMP1) {
 		this.playerManagerObj[0].removePlayer(entityPlayerMP1);
 		this.playerManagerObj[1].removePlayer(entityPlayerMP1);
+		/*
 		this.playerManagerObj[2].removePlayer(entityPlayerMP1);
 		this.playerManagerObj[3].removePlayer(entityPlayerMP1);
 		this.playerManagerObj[4].removePlayer(entityPlayerMP1);
+		*/
 		this.getPlayerManager(entityPlayerMP1.dimension).addPlayer(entityPlayerMP1);
 		WorldServer worldServer2 = this.mcServer.getWorldManager(entityPlayerMP1.dimension);
 		worldServer2.chunkProviderServer.loadChunk((int)entityPlayerMP1.posX >> 4, (int)entityPlayerMP1.posZ >> 4);
@@ -97,9 +102,11 @@ public class ServerConfigurationManager implements IServerConfigManager {
 		switch(i1) {
 		case -1: return this.playerManagerObj[1];
 		case 0: return this.playerManagerObj[0];
+		/*
 		case 1: return this.playerManagerObj[2];
 		case 7: return this.playerManagerObj[3];
 		case 9: return this.playerManagerObj[4];
+		*/
 		default: return null;
 		}
 	}

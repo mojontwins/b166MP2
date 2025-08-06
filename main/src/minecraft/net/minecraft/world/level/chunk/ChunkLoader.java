@@ -67,15 +67,15 @@ public class ChunkLoader {
 				NibbleArray nibbleArray21 = new NibbleArray(b19.length, 4);
 				NibbleArray nibbleArray22 = new NibbleArray(b19.length, 4);
 
-				for(int armorValue = 0; armorValue < 16; ++armorValue) {
+				for(int i11 = 0; i11 < 16; ++i11) {
 					for(int i12 = 0; i12 < 16; ++i12) {
 						for(int i13 = 0; i13 < 16; ++i13) {
-							int i14 = armorValue << 11 | i13 << 7 | i12 + (i5 << 4);
+							int i14 = i11 << 11 | i13 << 7 | i12 + (i5 << 4);
 							byte b15 = anvilConverterData0.blocks[i14];
-							b19[i12 << 8 | i13 << 4 | armorValue] = (byte)(b15 & 255);
-							nibbleArray20.set(armorValue, i12, i13, anvilConverterData0.data.get(armorValue, i12 + (i5 << 4), i13));
-							nibbleArray21.set(armorValue, i12, i13, anvilConverterData0.skyLight.get(armorValue, i12 + (i5 << 4), i13));
-							nibbleArray22.set(armorValue, i12, i13, anvilConverterData0.blockLight.get(armorValue, i12 + (i5 << 4), i13));
+							b19[i12 << 8 | i13 << 4 | i11] = (byte)(b15 & 255);
+							nibbleArray20.set(i11, i12, i13, anvilConverterData0.data.get(i11, i12 + (i5 << 4), i13));
+							nibbleArray21.set(i11, i12, i13, anvilConverterData0.skyLight.get(i11, i12 + (i5 << 4), i13));
+							nibbleArray22.set(i11, i12, i13, anvilConverterData0.blockLight.get(i11, i12 + (i5 << 4), i13));
 						}
 					}
 				}

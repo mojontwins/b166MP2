@@ -429,24 +429,24 @@ public class World implements IBlockAccess {
 		return Block.blocksList[i4] != null && Block.blocksList[i4].hasTileEntity();
 	}
 
-	public boolean blockExists(int i1, int i2, int i3) {
-		return i2 >= 0 && i2 < 256 ? this.chunkExists(i1 >> 4, i3 >> 4) : false;
+	public boolean blockExists(int x, int y, int z) {
+		return y >= 0 && y < 256 ? this.chunkExists(x >> 4, z >> 4) : false;
 	}
 
-	public boolean doChunksNearChunkExist(int i1, int i2, int i3, int i4) {
-		return this.checkChunksExist(i1 - i4, i2 - i4, i3 - i4, i1 + i4, i2 + i4, i3 + i4);
+	public boolean doChunksNearChunkExist(int x, int y, int z, int r) {
+		return this.checkChunksExist(x - r, y - r, z - r, x + r, y + r, z + r);
 	}
 
-	public boolean checkChunksExist(int i1, int i2, int i3, int i4, int i5, int i6) {
-		if(i5 >= 0 && i2 < 256) {
-			i1 >>= 4;
-			i3 >>= 4;
-			i4 >>= 4;
-			i6 >>= 4;
+	public boolean checkChunksExist(int x1, int y1, int z1, int x2, int y2, int z2) {
+		if(y2 >= 0 && y1 < 256) {
+			x1 >>= 4;
+			z1 >>= 4;
+			x2 >>= 4;
+			z2 >>= 4;
 
-			for(int i7 = i1; i7 <= i4; ++i7) {
-				for(int i8 = i3; i8 <= i6; ++i8) {
-					if(!this.chunkExists(i7, i8)) {
+			for(int x = x1; x <= x2; ++x) {
+				for(int z = z1; z <= z2; ++z) {
+					if(!this.chunkExists(x, z)) {
 						return false;
 					}
 				}
@@ -458,16 +458,16 @@ public class World implements IBlockAccess {
 		}
 	}
 
-	public boolean chunkExists(int i1, int i2) {
-		return this.chunkProvider.chunkExists(i1, i2);
+	public boolean chunkExists(int x, int z) {
+		return this.chunkProvider.chunkExists(x, z);
 	}
 
-	public Chunk getChunkFromBlockCoords(int i1, int i2) {
-		return this.getChunkFromChunkCoords(i1 >> 4, i2 >> 4);
+	public Chunk getChunkFromBlockCoords(int x, int z) {
+		return this.getChunkFromChunkCoords(x >> 4, z >> 4);
 	}
 
-	public Chunk getChunkFromChunkCoords(int i1, int i2) {
-		return this.chunkProvider.provideChunk(i1, i2);
+	public Chunk getChunkFromChunkCoords(int x, int z) {
+		return this.chunkProvider.provideChunk(x, z);
 	}
 	
 	/*

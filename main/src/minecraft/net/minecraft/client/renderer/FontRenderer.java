@@ -70,13 +70,13 @@ public class FontRenderer {
 			throw new RuntimeException(iOException22);
 		}
 
-		int armorValue = bufferedimage.getWidth();
+		int imgWidth = bufferedimage.getWidth();
 		int imgHeight = bufferedimage.getHeight();
-		int charW = armorValue / 16;
+		int charW = imgWidth / 16;
 		int charH = imgHeight / 16;
-		float kx = (float)armorValue / 128.0F;
-		int[] ai = new int[armorValue * imgHeight];
-		bufferedimage.getRGB(0, 0, armorValue, imgHeight, ai, 0, armorValue);
+		float kx = (float)imgWidth / 128.0F;
+		int[] ai = new int[imgWidth * imgHeight];
+		bufferedimage.getRGB(0, 0, imgWidth, imgHeight, ai, 0, imgWidth);
 
 		int l;
 		int j1;
@@ -93,7 +93,7 @@ public class FontRenderer {
 				boolean l2 = true;
 
 				for(i3 = 0; i3 < charH && l2; ++i3) {
-					k3 = (j1 * charH + i3) * armorValue;
+					k3 = (j1 * charH + i3) * imgWidth;
 					i4 = ai[j2 + k3];
 					int alpha = i4 >> 24 & 255;
 					if(alpha > 16) {

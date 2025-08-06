@@ -51,7 +51,7 @@ public class RenderArrow extends Render {
 		tessellator10.addVertexWithUV(-7.0D, -2.0D, -2.0D, (double)f16, (double)f19);
 		tessellator10.draw();
 
-		for(int armorValue = 0; armorValue < 4; ++armorValue) {
+		for(int i23 = 0; i23 < 4; ++i23) {
 			GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
 			GL11.glNormal3f(0.0F, 0.0F, f20);
 			tessellator10.startDrawingQuads();

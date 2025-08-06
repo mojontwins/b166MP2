@@ -6,11 +6,15 @@ import net.minecraft.world.level.levelgen.feature.WorldGenTaiga1;
 import net.minecraft.world.level.levelgen.feature.WorldGenTaiga2;
 import net.minecraft.world.entity.animal.EntityWolf;
 import net.minecraft.world.level.SpawnListEntry;
+import net.minecraft.world.level.Weather;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 
 public class BiomeGenTaiga extends BiomeGenBaseBeta {
 	public BiomeGenTaiga(int biomeID) {
 		super(biomeID);
+		
+		this.weather = Weather.cold;
+		
 		this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 2, 6, 6));
 		
 		// And some tweaks...

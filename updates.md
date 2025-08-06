@@ -97,14 +97,57 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 	* [X] No longer crashes but no map data on the map.
 * [X] Trapdoors
 * [X] Dead bush, tall grass & ferns.
+* [ ] Make sure beta arrows behave the same way as the arrows I have !!
 
 
 # Bugs / glitches
 	* [X] Beds (and possible other stuff) look bad when re-login into SMP, possibly metadata related!
-	* [ ] seeds not consistent? revise beta gen
-	* [ ] Restore the pane renderer.
-	* [ ] Sleeping in SMP doesn't advance the day
-	* [ ] Biomes shown in SMP not correct, also not correct overall (particle decide).
+	* [X] Restore the pane renderer.
+	* [X] Sleeping in SMP doesn't advance the day IT DOES BUT ...
+		* What was happenning is that I was having a nightmare but ENTITIES ARE NOT SHOWN IN TEH CLIENT. I did break something very nasty. Absolutely no entity works. I have to check when this stopped working.
+			* NOPE! This is working... It's just that entities don't render if I turn Advanced OpenGL on!? this is really odd... 
+			* But it's not right yet
+		Real problem is: 
+		* day/night cycle is stuck, but apparently it's daytime as "You can only sleep at night" is shown.
+
+		`isDayTime` is `this.skylightSubtracted < 4`. Skylightsubtracted has to do with the celestial angle, which has to do with worldTime. So worldTime is getting advanced right? But when I log out and then log back in it's still dark.
+
+		When I logged out and back in, the server console sang `sending time: 24316` which is right (316 ticks) after a reset.
+
+		WAIT WHAT
+
+		I keep logging the ticks but when I sleep I get to reads... That should be the two worlds out of sync. And somehow the wrong time gets to the client. Or BOTH.
+
+		Or four of them:
+
+		net.minecraft.world.level.dimension.WorldProviderHell@63fa2a1f 15068
+		net.minecraft.world.level.dimension.WorldProviderSurfaceClassic@5b78b878 15068
+		net.minecraft.world.level.dimension.WorldProviderSurfaceClassic@688ad29 15068
+		net.minecraft.world.level.dimension.WorldProviderSurfaceClassic@667d0971 15068
+
+		1st of all I have to make this only run the active worlds.
+		2nd of all I have to check what's wrong with this and how this works in vanilla.
+
+		K - problem was two uncared for overworlds sending updates. Removed this. Still thinking that I should encapsulate all dimension related stuff.
+	* [X] Advanced OpenGL -> entities don't show?!
+		Superstripped also has this problem. Turning it on makes pass two and entities to disappear. I have to check if MP125 has this problem. This has to be a badly integrated Optifine issue.
+
+		* Advanced OpenGL DOES work in MP125, so I have something to compare shit to. Class affected by teh setting is of course LevelRenderer (which was RenderGlobal in vanilla). Removing anaglyph I had removed a `GL11.glColorMask(true, true, true, true);` too much... YAAY
+
+	* [X] Biomes shown in SMP not correct, also not correct overall (particle decide).
+		* GUI gets biomes from `world.getBiomeGenForCoords`...
+		* particleDecide gets biomes from the biomegen it gets, which is...
+			* Render: `world.getBiomeGenForCoords`.
+			* World: `world.getBiomeGenForCoords`...
+
+		So, `world.getBiomeGenForCoords` calls 
+			* `Chunk.getBiomeForCoords`, if chunk exists or
+			* `worldProvider.worldChunkMgr.getBiomeGenAt` if it doesn't.
+
+		In SMP, meh it seems just right, maybe a problem with the biome configuration (the particle decide).
+
+	* [X] Are seasons OFF in the server?
+	* [/] seeds not consistent? revise beta gen -- almost.
 
 * and now we are ready for...
 

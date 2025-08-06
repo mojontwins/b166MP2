@@ -131,7 +131,6 @@ public class WorldGenTrees extends WorldGenerator {
 	}
 
 	private void growVines(World world1, int addedHeight, int woodMeta, int leavesMeta, int i5) {
-		/*
 		this.setBlockAndMetadata(world1, addedHeight, woodMeta, leavesMeta, Block.vine.blockID, i5);
 		int i6 = 4;
 
@@ -144,6 +143,5 @@ public class WorldGenTrees extends WorldGenerator {
 			this.setBlockAndMetadata(world1, addedHeight, woodMeta, leavesMeta, Block.vine.blockID, i5);
 			--i6;
 		}
-		*/
 	}
 }

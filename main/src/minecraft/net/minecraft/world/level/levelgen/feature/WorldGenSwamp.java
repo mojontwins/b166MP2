@@ -116,7 +116,6 @@ public class WorldGenSwamp extends WorldGenerator {
 	}
 
 	private void generateVines(World world1, int i2, int i3, int i4, int i5) {
-		/*
 		this.setBlockAndMetadata(world1, i2, i3, i4, Block.vine.blockID, i5);
 		int i6 = 4;
 
@@ -129,6 +128,6 @@ public class WorldGenSwamp extends WorldGenerator {
 			this.setBlockAndMetadata(world1, i2, i3, i4, Block.vine.blockID, i5);
 			--i6;
 		}
-		*/
+		
 	}
 }
