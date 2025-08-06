@@ -154,9 +154,22 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 
 # b16.6.6
 
-* Add a means to get cocoa seeds in a custom tree.
-	* [1.0.0] Chocolate Mod [v2.2] Over 3000 downloads! !!!! https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/1278267-1-0-0-chocolate-mod-v2-2-over-3000-downloads 
-* Colored sheep spawning.
+* [ ] Expand atlases to 256x512.
+* [X] Add a means to get cocoa seeds in a custom tree.
+	* Cocoa tree = normal tree with hanging cocoa pod blocks.
+		* Added a `BlockTreeFruit` which will contain all fruits that hang from trees. 
+			* meta = 0 -> Cocoa pods.
+		* Added a `withFruit(id)` to add fruit to normal trees.
+* [ ] Colored sheep spawning.
+
+## Diary
+
+#### 20250806 
+
+* Added ILeaves interface to easily detect leaves.
+* Added IGetNameBasedOnMeta to be able to easily name blocks with different metadata representing different things.
+* Added BlockTreeFruit which will contain all types of hanging fruit from trees. Meta 0 is cocoa pods which will drop cocoa beans.
+* Added the ability for normal vanilla trees to receive a Blockstate and a chance so they can grow hanging fruit (only on generation).
 
 # Credits
 
@@ -167,3 +180,5 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 
 * [ ] EntityArrow arrangements for classic skeletons (EntityClassicSkeleton, EntityArrow)
 * [ ] RailDetector is needed for circuits (Block, BlockDetectorRail, CraftingManager, ItemPickaxe)
+* [ ] Move trees to .trees 
+* [ ] ItemMetadata, names & stuff - wood type names in BlockLog, IGetNameBasedOnMeta, ILeaves, LeavesBase.

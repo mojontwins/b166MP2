@@ -1,9 +1,10 @@
-package net.minecraft.world.level.levelgen.feature;
+package net.minecraft.world.level.levelgen.feature.trees;
 
 import java.util.Random;
 
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.level.World;
+import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 import net.minecraft.world.level.tile.Block;
 
 public class WorldGenHugeTrees extends WorldGenerator {

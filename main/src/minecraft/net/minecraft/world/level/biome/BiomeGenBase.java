@@ -29,11 +29,11 @@ import net.minecraft.world.level.colorizer.ColorizerGrass;
 import net.minecraft.world.level.colorizer.ColorizerWater;
 import net.minecraft.world.level.levelgen.ChunkProviderSky;
 import net.minecraft.world.level.levelgen.feature.WorldGenBigTree;
-import net.minecraft.world.level.levelgen.feature.WorldGenForest;
-import net.minecraft.world.level.levelgen.feature.WorldGenSwamp;
 import net.minecraft.world.level.levelgen.feature.WorldGenTallGrass;
-import net.minecraft.world.level.levelgen.feature.WorldGenTrees;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenForest;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenSwamp;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenTrees;
 import net.minecraft.world.level.tile.Block;
 
 public abstract class BiomeGenBase {

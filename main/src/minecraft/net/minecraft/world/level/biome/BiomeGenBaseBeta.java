@@ -2,10 +2,13 @@ package net.minecraft.world.level.biome;
 
 import java.util.Random;
 
+import net.minecraft.world.level.BlockState;
 import net.minecraft.world.level.Weather;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.chunk.IChunkProvider;
 import net.minecraft.world.level.levelgen.ChunkProviderSky;
+import net.minecraft.world.level.levelgen.feature.WorldGenerator;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenTrees;
 import net.minecraft.world.level.tile.Block;
 
 public class BiomeGenBaseBeta extends BiomeGenBase {
@@ -20,6 +23,7 @@ public class BiomeGenBaseBeta extends BiomeGenBase {
 		return new BiomeDecoratorBeta(this);
 	}
 	
+	@Override
 	public void replaceBlocksForBiome(
 			IChunkProvider generator, World world, Random rand, 
 			int chunkX, int chunkZ, int x, int z, 
@@ -101,4 +105,5 @@ public class BiomeGenBaseBeta extends BiomeGenBase {
 			}
 		}
 	}
+
 }

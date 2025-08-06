@@ -18,6 +18,7 @@ public class GameHints {
 		"Right click spawners with placer eggs",
 		"Shears can cut grass, vines and leaves",
 		"Break tall grass for seeds!",
+		"Some trees produce cocoa pods!"
 	};
 	
 	public static String getRandomHint() {

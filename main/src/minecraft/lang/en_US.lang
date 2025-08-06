@@ -237,6 +237,10 @@ tile.oreGold.name=Gold Ore
 tile.oreIron.name=Iron Ore
 tile.oreCoal.name=Coal Ore
 tile.log.name=Wood
+tile.oaklog.name=Oak Wood
+tile.sprucelog.name=Spruce Wood
+tile.birchlog.name=Birch Wood
+tile.junglelog.name=Jungle Wood
 tile.leaves.name=Leaves
 tile.tallgrass.name=Grass
 tile.tallgrass.shrub.name=Shrub
@@ -544,6 +548,7 @@ tile.stoneSlab.quartz.name=Quartz slab
 tile.limestoneSlab.limestone.name=Limestone slab
 tile.limestoneSlab.limestoneBricks.name=Limestone brick slab
 tile.limestoneSlab.redrockBricks.name=Redrock brick slab
+tile.cocoapod.name=Cocoa pod
 
 
 item.shovelIron.name=Iron Shovel

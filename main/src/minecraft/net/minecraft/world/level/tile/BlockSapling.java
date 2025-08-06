@@ -10,10 +10,10 @@ import net.minecraft.world.level.Seasons;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.creative.CreativeTabs;
 import net.minecraft.world.level.levelgen.feature.WorldGenBigTree;
-import net.minecraft.world.level.levelgen.feature.WorldGenForest;
-import net.minecraft.world.level.levelgen.feature.WorldGenHugeTrees;
-import net.minecraft.world.level.levelgen.feature.WorldGenTrees;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenForest;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenHugeTrees;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenTrees;
 
 public class BlockSapling extends BlockFlower {
 	protected BlockSapling(int i1, int i2) {

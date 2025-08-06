@@ -181,6 +181,10 @@ public class Block implements ITextureProvider {
 	public static final Block cryingObsidian = (new BlockCryingObsidian(209, 11*16+8)).setHardness(10.0F).setResistance(2000.0F).setStepSound(soundStoneFootstep).setBlockName("cryingObsidian");
 	//public static final Block spongeOff = (new BlockSponge(210, false)).setHardness(0.6F).setStepSound(soundGrassFootstep).setBlockName("sponge");
 	
+	// Put the engine to the test!
+	// Ids used by vanilla items ~ 256 to ~ 512, 2256 onwards for 256 disks, so...
+	public static final Block treeFruit = (new BlockTreeFruit(512).setHardness(0.1F)).setCreativeTab(CreativeTabs.tabDeco);	
+	
 	public int blockIndexInTexture;
 	public final int blockID;
 	public float blockHardness;
@@ -393,11 +397,11 @@ public class Block implements ITextureProvider {
 		return this.getBlockTextureFromSideAndMetadata(i5, iBlockAccess1.getBlockMetadata(i2, i3, i4));
 	}
 
-	public int getBlockTextureFromSideAndMetadata(int i1, int i2) {
-		return this.getBlockTextureFromSide(i1);
+	public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+		return this.getBlockTextureFromSide(side);
 	}
 
-	public int getBlockTextureFromSide(int i1) {
+	public int getBlockTextureFromSide(int side) {
 		return this.blockIndexInTexture;
 	}
 
@@ -442,7 +446,7 @@ public class Block implements ITextureProvider {
 	public void onBlockDestroyedByPlayer(World world1, int i2, int i3, int i4, int i5) {
 	}
 
-	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
+	public void onNeighborBlockChange(World world, int x, int y, int z, int id) {
 	}
 
 	public int tickRate() {
@@ -467,7 +471,7 @@ public class Block implements ITextureProvider {
 		return this.quantityDropped(random);
 	}
 
-	public int idDropped(int i1, Random random2, int i3) {
+	public int idDropped(int meta, Random rand, int fortune) {
 		return this.blockID;
 	}
 
@@ -476,8 +480,8 @@ public class Block implements ITextureProvider {
 		return hardness < 0.0F ? 0.0F : (!entityPlayer1.canHarvestBlock(this, metadata) ? 1.0F / hardness / 100.0F : entityPlayer1.getCurrentPlayerStrVsBlock(this, metadata) / hardness / 30.0F);
 	}
 
-	public final void dropBlockAsItem(World world1, int i2, int i3, int i4, int i5, int i6) {
-		this.dropBlockAsItemWithChance(world1, i2, i3, i4, i5, 1.0F, i6);
+	public final void dropBlockAsItem(World world, int x, int y, int z, int meta, int fortune) {
+		this.dropBlockAsItemWithChance(world, x, y, z, meta, 1.0F, fortune);
 	}
 
 	/*
@@ -549,7 +553,7 @@ public class Block implements ITextureProvider {
 
 	}
 
-	public int damageDropped(int i1) {
+	public int damageDropped(int meta) {
 		return 0;
 	}
 
@@ -675,8 +679,8 @@ public class Block implements ITextureProvider {
 		return this.canPlaceBlockAt(world, x, y, z);
 	}
 
-	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
-		int i5 = world1.getBlockId(i2, i3, i4);
+	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+		int i5 = world.getBlockId(x, y, z);
 		return i5 == 0 || blocksList[i5].blockMaterial.isGroundCover();
 	}
 
@@ -777,7 +781,7 @@ public class Block implements ITextureProvider {
 		return this.quantityDropped(random2);
 	}
 
-	public boolean canBlockStay(World world1, int i2, int i3, int i4) {
+	public boolean canBlockStay(World world, int x, int y, int z) {
 		return true;
 	}
 
@@ -846,6 +850,7 @@ public class Block implements ITextureProvider {
 		Item.itemsList[leaves.blockID] = (new ItemLeaves(leaves.blockID - 256)).setItemName("leaves");
 		Item.itemsList[vine.blockID] = new ItemColored(vine.blockID - 256, false);
 		Item.itemsList[tallGrass.blockID] = (new ItemColored(tallGrass.blockID - 256, true)).setBlockNames(new String[]{"shrub", "grass", "fern"});
+		Item.itemsList[treeFruit.blockID] = (new ItemMetadata(treeFruit.blockID - 256, treeFruit)).setItemName("treeFruit");
 		
 		for(int i0 = 0; i0 < 4096; ++i0) {
 			if(blocksList[i0] != null) {

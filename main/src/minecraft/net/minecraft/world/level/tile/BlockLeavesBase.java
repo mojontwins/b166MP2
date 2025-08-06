@@ -4,7 +4,7 @@ import net.minecraft.world.level.IBlockAccess;
 import net.minecraft.world.level.creative.CreativeTabs;
 import net.minecraft.world.level.material.Material;
 
-public class BlockLeavesBase extends Block {
+public class BlockLeavesBase extends Block implements iLeaves {
 	protected boolean graphicsLevel;
 
 	protected BlockLeavesBase(int i1, int i2, Material material3, boolean z4) {

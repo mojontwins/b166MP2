@@ -3,8 +3,8 @@ package net.minecraft.world.level.biome;
 import java.util.Random;
 
 import net.minecraft.world.level.Weather;
-import net.minecraft.world.level.levelgen.feature.WorldGenTrees;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenTrees;
 
 public class BiomeGenSwamp extends BiomeGenBaseBeta {
 
