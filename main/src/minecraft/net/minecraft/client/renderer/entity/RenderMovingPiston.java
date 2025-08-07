@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.EntityMovingPiston;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.tile.Block;
 

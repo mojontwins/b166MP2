@@ -12,6 +12,7 @@ import net.minecraft.world.inventory.IInventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.tile.Block;
+import net.minecraft.world.level.tile.BlockPistonBase;
 import net.minecraft.world.level.tile.BlockRail;
 import net.minecraft.world.level.tile.BlockStairs;
 import net.minecraft.world.level.tile.BlockStep;
@@ -114,8 +115,8 @@ public class EntityMovingPiston extends Entity {
 
 	private static boolean tryBreak(World world0, int i1, int i2, int i3, Block block4) {
 		if(!isNormalBlock(block4) && block4.blockID != Block.fence.blockID && !(block4 instanceof BlockStep) && block4.blockID != Block.cake.blockID && !(block4 instanceof BlockStairs) && !(block4 instanceof BlockRail)) {
-			if(block4.blockID != Block.blockBed.blockID) {
-				block4.dropBlockAsItem(world0, i1, i2, i3, 0);
+			if(block4.blockID != Block.bed.blockID) {
+				block4.dropBlockAsItem(world0, i1, i2, i3, 0, 0);
 				world0.setBlockWithNotify(i1, i2, i3, 0);
 			}
 
@@ -303,7 +304,7 @@ public class EntityMovingPiston extends Entity {
 
 	public void onUpdate() {
 		if(this.blockid == 0) {
-			this.setEntityDead();
+			this.setDead();
 		} else {
 			this.prevPosX = this.posX;
 			this.prevPosY = this.posY;
@@ -325,7 +326,7 @@ public class EntityMovingPiston extends Entity {
 				} else {
 					this.end(i1, i2, i3, !z4);
 					if(this.blockid == Block.classicPistonBase.blockID || this.blockid == Block.classicStickyPistonBase.blockID) {
-						((PistonBase)Block.blocksList[this.blockid]).onPistonPushed(this.worldObj, i1, i2, i3);
+						((BlockPistonBase)Block.blocksList[this.blockid]).onPistonPushed(this.worldObj, i1, i2, i3);
 					}
 
 					List<Entity> list5 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, AxisAlignedBB.getBoundingBoxFromPool((double)i1, (double)(i2 + 1), (double)i3, (double)(i1 + 1), (double)i2 + 1.1D, (double)(i3 + 1)));
@@ -336,9 +337,9 @@ public class EntityMovingPiston extends Entity {
 					}
 				}
 
-				this.setEntityDead();
+				this.setDead();
 			} else if(this.timeout > 100 && !this.worldObj.isRemote) {
-				this.setEntityDead();
+				this.setDead();
 			}
 
 		}
@@ -349,7 +350,7 @@ public class EntityMovingPiston extends Entity {
 		boolean z6 = Block.blocksList[i5] == null ? false : isNormalBlock(Block.blocksList[i5]);
 		if(z6) {
 			if(z4) {
-				Block.blocksList[this.blockid].dropBlockAsItem(this.worldObj, i1, i2, i3, 0);
+				Block.blocksList[this.blockid].dropBlockAsItem(this.worldObj, i1, i2, i3, 0, 0);
 				this.worldObj.setBlockWithNotify(i1, i2, i3, 0);
 			} else {
 				boolean z7 = this.blockid == Block.classicStickyPiston.blockID;

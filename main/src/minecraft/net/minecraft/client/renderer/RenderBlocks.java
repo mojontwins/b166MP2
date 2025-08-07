@@ -8,6 +8,7 @@ import com.mojontwins.utils.Texels;
 import com.mojontwins.utils.TextureAtlasSize;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.tile.RenderBlockClassicPiston;
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.Direction;
 import net.minecraft.world.GameRules;
@@ -164,6 +165,9 @@ public class RenderBlocks {
 			case 20: return this.renderBlockVine(block, x, y, z);
 			case 23: return this.renderBlockLilyPad(block, x, y, z);	
 			case 31: return this.renderLog(block, x, y, z);
+			
+			case 109: return this.renderBlockClassicPiston(block, x, y, z);
+			
 			default: return false;
 		}
 	}
@@ -3906,6 +3910,12 @@ public class RenderBlocks {
 			tessellator9.addVertexWithUV(d28, d32, d36, u1, v1);
 		}
 
+	}
+	
+	// End
+	
+	public boolean renderBlockClassicPiston(Block block, int x, int y, int z) {
+		return RenderBlockClassicPiston.RenderWorldBlock(this, this.blockAccess, x, y, z, block, 0);
 	}
 	
 	public void renderBlockAsItem(Block block1, float f2) {

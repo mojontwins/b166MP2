@@ -179,7 +179,11 @@ public class Block implements ITextureProvider {
 	public static final Block leafPile = (new BlockLeafPile(168)).setHardness(0.1F).setResistance(0.1F).setStepSound(soundGrassFootstep).setBlockName("leafPile");
 	// 169 - 208
 	public static final Block cryingObsidian = (new BlockCryingObsidian(209, 11*16+8)).setHardness(10.0F).setResistance(2000.0F).setStepSound(soundStoneFootstep).setBlockName("cryingObsidian");
-	//public static final Block spongeOff = (new BlockSponge(210, false)).setHardness(0.6F).setStepSound(soundGrassFootstep).setBlockName("sponge");
+	// 210 - 251
+	public static final Block classicPistonBase = (new BlockPistonBase(252, 22, false)).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep).setBlockName("piston").setCreativeTab(CreativeTabs.tabRedstone);
+	public static final Block classicPiston = (new BlockPiston(253, 22, false)).setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep).setBlockName("piston");
+	public static final Block classicStickyPistonBase = (new BlockPistonBase(254, 23, true)).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep).setBlockName("pistonSticky").setCreativeTab(CreativeTabs.tabRedstone);
+	public static final Block classicStickyPiston = (new BlockPiston(255, 23, true)).setLightOpacity(0).setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep).setBlockName("pistonSticky");
 	
 	// Put the engine to the test!
 	// Ids used by vanilla items ~ 256 to ~ 512, 2256 onwards for 256 disks, so...

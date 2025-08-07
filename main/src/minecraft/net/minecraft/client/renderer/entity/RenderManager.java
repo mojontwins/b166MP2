@@ -43,6 +43,7 @@ import net.minecraft.world.entity.item.EntityBoat;
 import net.minecraft.world.entity.item.EntityFallingSand;
 import net.minecraft.world.entity.item.EntityItem;
 import net.minecraft.world.entity.item.EntityMinecart;
+import net.minecraft.world.entity.item.EntityMovingPiston;
 import net.minecraft.world.entity.item.EntityTNTPrimed;
 import net.minecraft.world.entity.monster.EntityClassicSkeleton;
 import net.minecraft.world.entity.monster.EntityClassicZombie;
@@ -122,6 +123,8 @@ public class RenderManager {
 		
 		this.entityRenderMap.put(EntityClassicZombie.class, new RenderBiped(new ModelZombie(), 0.5F));
 		this.entityRenderMap.put(EntityClassicSkeleton.class, new RenderBiped(new ModelSkeleton(), 0.5F));
+		
+		this.entityRenderMap.put(EntityMovingPiston.class, new RenderMovingPiston());
 		
 		Iterator<Render> iterator1 = this.entityRenderMap.values().iterator();
 

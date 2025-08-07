@@ -56,10 +56,10 @@ public class BlockPistonBase extends Block {
 
 		int i10 = world1.getBlockId(i7, i8, i9);
 		if((i10 == Block.classicPiston.blockID || i10 == Block.classicStickyPiston.blockID) && !z5) {
-			Piston.resetBase = false;
+			BlockPiston.resetBase = false;
 			EntityMovingPiston.buildRetractingPistons(world1, i7, i8, i9, i2, i3, i4, i6, this.sticky);
 			world1.setBlockWithNotify(i7, i8, i9, 0);
-			Piston.resetBase = true;
+			BlockPiston.resetBase = true;
 		} else if(z5) {
 			EntityMovingPiston movingPiston11 = new EntityMovingPiston(world1, i2, i3, i4, this.sticky);
 			if(!EntityMovingPiston.buildPistons(movingPiston11, i7, i8, i9, i6)) {
