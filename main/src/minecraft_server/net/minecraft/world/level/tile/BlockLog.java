@@ -9,12 +9,18 @@ import net.minecraft.world.level.World;
 import net.minecraft.world.level.creative.CreativeTabs;
 import net.minecraft.world.level.material.Material;
 
-public class BlockLog extends Block3Axes {
+public class BlockLog extends Block3Axes implements IGetNameBasedOnMeta {
 	
 	public static final int OakMetadata = 0;
 	public static final int SpruceMetadata = 1;
 	public static final int BirchMetadata = 2;
 	public static final int JungleMetadata = 3;
+	
+	// This strings will be used by ItemMetadata thru IGetNameBasedOnBeta
+	// to produce tile.[name].name to give custom names to different metadata.
+	public static final String[] logNames = new String[] {
+			"oaklog", "sprucelog", "birchlog", "junglelog"
+	};
 	
 	protected BlockLog(int i1) {
 		super(i1, Material.wood);
@@ -57,8 +63,7 @@ public class BlockLog extends Block3Axes {
 	}
 	
 	public int getTextureSides(int metadata) {
-		int woodtype = metadata & 0xF3;
-		switch(woodtype) {
+		switch(this.getWoodType(metadata)) {
 			case 1: return 116;
 			case 2: return 117;
 			case 3: return 153;
@@ -74,5 +79,14 @@ public class BlockLog extends Block3Axes {
 		par3List.add(new ItemStack(par1, 1, 0));
 		par3List.add(new ItemStack(par1, 1, 1));
 		par3List.add(new ItemStack(par1, 1, 2));
+	}
+	
+	public int getWoodType(int meta) {
+		return meta & 0xf3;
+	}
+
+	@Override
+	public String getName(int meta) {
+		return BlockLog.logNames[this.getWoodType(meta)];
 	}
 }

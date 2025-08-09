@@ -1,6 +1,8 @@
 package net.minecraft.world.level.dimension;
 
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.EntityPlayer;
+import net.minecraft.world.level.World;
 import net.minecraft.world.level.WorldChunkManagerHellWithBiomes;
 import net.minecraft.world.level.chunk.IChunkProvider;
 import net.minecraft.world.level.levelgen.ChunkProviderHell;
@@ -60,6 +62,54 @@ public class WorldProviderHell extends WorldProvider {
 			this.lightBrightnessTable[i2] = (1.0F - f3) / (f3 * 3.0F + 1.0F) * (1.0F - f1) + f1;
 		}
 
+	}
+	
+	@Override
+	public int[] updateLightmap(float torchFlicker, float gamma, EntityPlayer thePlayer) {
+		int[] lightmapColors = new int[256];
+		World world = this.worldObj;
+		
+		if(world != null) {
+			float sb = world.getSunBrightness(1.0F);
+			for(int idx = 0; idx < 256; ++idx) {
+				float sunBrightness = sb * 0.95F + 0.05F;
+				float lightCoarse =this.lightBrightnessTable[idx / 16] * sunBrightness;
+				float lightFine = this.lightBrightnessTable[idx % 16];
+				if(world.lightningFlash > 0) {
+					lightCoarse = this.lightBrightnessTable[idx / 16];
+				}
+				
+				float lightCoarseNorm = lightCoarse * sb; 	// This is darker than Release Vanilla
+				float component = lightCoarseNorm + lightFine; 				// Grey only needs one component for rgb
+				
+				component = component * 0.96F + 0.03F;						// Don't let it get pitch black
+				
+				if (component > 1.0F) component = 1.0F;
+				
+				float componentI = 1.0F - component;
+				componentI = 1.0F - componentI * componentI * componentI * componentI;
+				component = component * (1.0F - gamma) + componentI * component;
+				
+				component = component * 0.98F + 0.01F;						// Don't let it get pitch black
+				component = component * 0.98F + 0.01F;						// Don't let it get pitch black
+				
+				float componentB = component * 0.96F + 0.03F;
+				
+				if (component > 1.0F) component = 1.0F;
+				if (component < 0.0F) component = 0.0F;
+				
+				if (componentB > 1.0F) componentB = 1.0F;
+				if (componentB < 0.0F) componentB = 0.0F;
+				
+				short alpha = 255;
+				int cI = (int)(component * 255.0F);
+				int cB = (int)(componentB * 255.0F);
+				
+				lightmapColors[idx] = alpha << 24 | cB << 16 | cI << 8 | cI;
+			}	
+		}
+		
+		return lightmapColors;
 	}
 
 	public IChunkProvider getChunkProvider() {

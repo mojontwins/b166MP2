@@ -25,10 +25,10 @@ public class RenderMovingPiston extends Render {
 		int i13 = movingPiston10.getYRender();
 		int i14 = movingPiston10.getZRender();
 		GL11.glDisable(GL11.GL_LIGHTING);
-		if(movingPiston10.blockid != Block.classicPiston.blockID && movingPiston10.blockid != Block.classicStickyPiston.blockID) {
-			this.a.renderBlockFallingSand(Block.blocksList[movingPiston10.blockid], world11, i12, i13, i14);
+		if(movingPiston10.blockID != Block.classicPiston.blockID && movingPiston10.blockID != Block.classicStickyPiston.blockID) {
+			this.a.renderBlockFallingSand(Block.blocksList[movingPiston10.blockID], world11, i12, i13, i14);
 		} else {
-			this.renderPiston(Block.blocksList[movingPiston10.blockid], world11, i12, i13, i14, movingPiston10.data);
+			this.renderPiston(Block.blocksList[movingPiston10.blockID], world11, i12, i13, i14, movingPiston10.data);
 		}
 
 		GL11.glEnable(GL11.GL_LIGHTING);

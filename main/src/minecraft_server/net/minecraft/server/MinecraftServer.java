@@ -458,14 +458,14 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 		}
 
 		this.s_field_40027_f[this.deathTime % 100] = System.nanoTime() - millis;
-		this.s_field_48080_u[this.deathTime % 100] = Packet.field_48157_o - this.s_field_48074_E;
-		this.s_field_48074_E = Packet.field_48157_o;
-		this.s_field_48079_v[this.deathTime % 100] = Packet.field_48155_p - this.s_field_48075_F;
-		this.s_field_48075_F = Packet.field_48155_p;
-		this.s_field_48078_w[this.deathTime % 100] = Packet.field_48158_m - this.s_field_48076_G;
-		this.s_field_48076_G = Packet.field_48158_m;
-		this.s_field_48082_x[this.deathTime % 100] = Packet.field_48156_n - this.s_field_48077_H;
-		this.s_field_48077_H = Packet.field_48156_n;
+		this.s_field_48080_u[this.deathTime % 100] = Packet.packetsWritten - this.s_field_48074_E;
+		this.s_field_48074_E = Packet.packetsWritten;
+		this.s_field_48079_v[this.deathTime % 100] = Packet.bytesWritten - this.s_field_48075_F;
+		this.s_field_48075_F = Packet.bytesWritten;
+		this.s_field_48078_w[this.deathTime % 100] = Packet.packetsRead - this.s_field_48076_G;
+		this.s_field_48076_G = Packet.packetsRead;
+		this.s_field_48082_x[this.deathTime % 100] = Packet.bytesRead - this.s_field_48077_H;
+		this.s_field_48077_H = Packet.bytesRead;
 	}
 
 	public void addCommand(ComplexCommand complexCommand, ICommandListener iCommandListener2) {

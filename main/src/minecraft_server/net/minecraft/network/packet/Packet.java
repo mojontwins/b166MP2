@@ -23,10 +23,10 @@ public abstract class Packet {
 	private static Set<Integer> clientPacketIdList = new HashSet<Integer>();
 	private static Set<Integer> serverPacketIdList = new HashSet<Integer>();
 	public final long creationTimeMillis = System.currentTimeMillis();
-	public static long field_48158_m;
-	public static long field_48156_n;
-	public static long field_48157_o;
-	public static long field_48155_p;
+	public static long packetsRead;
+	public static long bytesRead;
+	public static long packetsWritten;
+	public static long bytesWritten;
 	public boolean isChunkDataPacket = false;
 
 	static void addIdClassMapping(int i0, boolean z1, boolean z2, Class<?> class3) {
@@ -48,13 +48,13 @@ public abstract class Packet {
 		}
 	}
 
-	public static Packet getNewPacket(int i0) {
+	public static Packet getNewPacket(int packetID) {
 		try {
-			Class<?> class1 = (Class<?>)packetIdToClassMap.lookup(i0);
-			return class1 == null ? null : (Packet)class1.getConstructor().newInstance();
-		} catch (Exception exception2) {
-			exception2.printStackTrace();
-			System.out.println("Skipping packet with id " + i0);
+			Class<?> clazz = (Class<?>)packetIdToClassMap.lookup(packetID);
+			return clazz == null ? null : (Packet)clazz.getConstructor().newInstance();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Skipping packet with id " + packetID);
 			return null;
 		}
 	}
@@ -63,44 +63,44 @@ public abstract class Packet {
 		return ((Integer)packetClassToIdMap.get(this.getClass())).intValue();
 	}
 
-	public static Packet readPacket(DataInputStream dataInputStream0, boolean z1) throws IOException {
-		Packet packet3 = null;
+	public static Packet readPacket(DataInputStream dis, boolean isServer) throws IOException {
+		Packet packet = null;
 
-		int i6;
+		int packetID;
 		try {
-			i6 = dataInputStream0.read();
-			if(i6 == -1) {
+			packetID = dis.read();
+			if(packetID == -1) {
 				return null;
 			}
 
-			if(z1 && !serverPacketIdList.contains(i6) || !z1 && !clientPacketIdList.contains(i6)) {
-				throw new IOException("Bad packet id " + i6);
+			if(isServer && !serverPacketIdList.contains(packetID) || !isServer && !clientPacketIdList.contains(packetID)) {
+				throw new IOException("Bad packet id " + packetID);
 			}
 
-			packet3 = getNewPacket(i6);
-			if(packet3 == null) {
-				throw new IOException("Bad packet id " + i6);
+			packet = getNewPacket(packetID);
+			if(packet == null) {
+				throw new IOException("Bad packet id " + packetID);
 			}
 
-			packet3.readPacketData(dataInputStream0);
-			++field_48158_m;
-			field_48156_n += (long)packet3.getPacketSize();
+			packet.readPacketData(dis);
+			++packetsRead;
+			bytesRead += (long)packet.getPacketSize();
 		} catch (EOFException eOFException5) {
 			System.out.println("Reached end of stream");
 			return null;
 		}
 
-		PacketCount.countPacket(i6, (long)packet3.getPacketSize());
-		++field_48158_m;
-		field_48156_n += (long)packet3.getPacketSize();
-		return packet3;
+		PacketCount.countPacket(packetID, (long)packet.getPacketSize());
+		++packetsRead;
+		bytesRead += (long)packet.getPacketSize();
+		return packet;
 	}
 
 	public static void writePacket(Packet packet0, DataOutputStream dataOutputStream1) throws IOException {
 		dataOutputStream1.write(packet0.getPacketId());
 		packet0.writePacketData(dataOutputStream1);
-		++field_48157_o;
-		field_48155_p += (long)packet0.getPacketSize();
+		++packetsWritten;
+		bytesWritten += (long)packet0.getPacketSize();
 	}
 
 	public static void writeString(String string0, DataOutputStream dataOutputStream1) throws IOException {
@@ -236,6 +236,7 @@ public abstract class Packet {
 		addIdClassMapping(61, true, false, Packet61DoorChange.class);
 		addIdClassMapping(70, true, false, Packet70GameEvent.class);
 		addIdClassMapping(71, true, false, Packet71Weather.class);
+		addIdClassMapping(88, true, true, Packet88MovingPiston.class);
 		addIdClassMapping(89, true, false, Packet89SetArmor.class);
 		addIdClassMapping(90, true, false, Packet90ArmoredMobSpawn.class);
 		addIdClassMapping(91, true, true, Packet91UpdateCommandBlock.class);

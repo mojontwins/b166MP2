@@ -58,6 +58,7 @@ import net.minecraft.network.packet.Packet6SpawnPosition;
 import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.network.packet.Packet71Weather;
 import net.minecraft.network.packet.Packet7UseEntity;
+import net.minecraft.network.packet.Packet88MovingPiston;
 import net.minecraft.network.packet.Packet89SetArmor;
 import net.minecraft.network.packet.Packet8UpdateHealth;
 import net.minecraft.network.packet.Packet90ArmoredMobSpawn;
@@ -320,6 +321,10 @@ public abstract class NetHandler {
 	}
 
 	public void handleMapData(Packet131MapData packet) {
+		this.registerPacket(packet);
+	}
+
+	public void handleMovingPiston(Packet88MovingPiston packet) {
 		this.registerPacket(packet);
 	}
 

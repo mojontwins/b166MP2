@@ -22,6 +22,7 @@ import net.minecraft.network.packet.Packet34EntityTeleport;
 import net.minecraft.network.packet.Packet35EntityHeadRotation;
 import net.minecraft.network.packet.Packet40EntityMetadata;
 import net.minecraft.network.packet.Packet5PlayerInventory;
+import net.minecraft.network.packet.Packet88MovingPiston;
 import net.minecraft.network.packet.Packet90ArmoredMobSpawn;
 import net.minecraft.server.player.EntityPlayerMP;
 import net.minecraft.src.MathHelper;
@@ -33,6 +34,7 @@ import net.minecraft.world.entity.item.EntityBoat;
 import net.minecraft.world.entity.item.EntityFallingSand;
 import net.minecraft.world.entity.item.EntityItem;
 import net.minecraft.world.entity.item.EntityMinecart;
+import net.minecraft.world.entity.item.EntityMovingPiston;
 import net.minecraft.world.entity.item.EntityTNTPrimed;
 import net.minecraft.world.entity.monster.EntityArmoredMob;
 import net.minecraft.world.entity.player.EntityPlayer;
@@ -342,6 +344,9 @@ public class EntityTrackerEntry {
 	
 		} else if(this.trackedEntity instanceof EntityPainting) {
 			return new Packet25EntityPainting((EntityPainting)this.trackedEntity);
+		
+		} else if(this.trackedEntity instanceof EntityMovingPiston) {
+			return new Packet88MovingPiston((EntityMovingPiston)this.trackedEntity);
 			
 		} else {
 			throw new IllegalArgumentException("Don\'t know how to add " + this.trackedEntity.getClass() + "!");

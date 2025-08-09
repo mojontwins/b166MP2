@@ -1069,18 +1069,18 @@ public class ZanMinimap implements Runnable {
 
 	}
 
-	private final int blockColorID(int blockid, int meta) {
-		return blockid | meta << 8;
+	private final int blockColorID(int blockID, int meta) {
+		return blockID | meta << 8;
 	}
 
-	private final int getBlockColor(int blockid, int meta) { 
+	private final int getBlockColor(int blockID, int meta) { 
 		try {
-			int e = this.blockColors[this.blockColorID(blockid, meta)];
+			int e = this.blockColors[this.blockColorID(blockID, meta)];
 	
 			if(e != 0xFF01FF) {
 				return e;
 			} else {
-				e = this.blockColors[this.blockColorID(blockid, 0)];
+				e = this.blockColors[this.blockColorID(blockID, 0)];
 				if(e != 0xFF01FF) {
 					return e;
 				} else {

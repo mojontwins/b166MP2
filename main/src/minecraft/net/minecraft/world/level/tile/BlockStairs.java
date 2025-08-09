@@ -203,8 +203,8 @@ public class BlockStairs extends Block {
 	}
 
 	@Override
-	public void onBlockPlacedBy(World world1, int i2, int i3, int i4, EntityLiving entityLiving5) {
-		int i6 = MathHelper.floor_double((double)(entityLiving5.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+	public void onBlockPlacedBy(World world1, int i2, int i3, int i4, EntityLiving entityLiving) {
+		int i6 = MathHelper.floor_double((double)(entityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 		int i7 = world1.getBlockMetadata(i2, i3, i4) & 4;
 		if(i6 == 0) {
 			world1.setBlockMetadataWithNotify(i2, i3, i4, 2 | i7);

@@ -564,3 +564,364 @@
 2025-08-06 09:45:49 [INFO] Stopping server
 2025-08-06 09:45:49 [INFO] Saving chunks
 2025-08-06 09:45:50 [INFO] Saving chunks
+2025-08-07 18:40:34 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-07 18:40:35 [SEVERE] Unexpected exception
+java.lang.ExceptionInInitializerError
+	at net.minecraft.world.level.tile.Block.<clinit>(Block.java:190)
+	at net.minecraft.world.item.ItemSpade.<clinit>(ItemSpade.java:8)
+	at net.minecraft.world.item.Item.<clinit>(Item.java:28)
+	at net.minecraft.world.GameRuleStackableFood.setValue(GameRuleStackableFood.java:11)
+	at net.minecraft.world.GameRules.loadRules(GameRules.java:96)
+	at net.minecraft.world.GameRules.loadRulesFromOptions(GameRules.java:186)
+	at net.minecraft.world.GameRules.withMcDataDir(GameRules.java:83)
+	at net.minecraft.server.MinecraftServer.startServer(MinecraftServer.java:99)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:335)
+	at net.minecraft.server.ThreadServerApplication.run(ThreadServerApplication.java:12)
+Caused by: java.lang.NullPointerException
+	at net.minecraft.world.item.ItemStack.<init>(ItemStack.java:49)
+	at net.minecraft.world.level.tile.BlockTreeFruit.<clinit>(BlockTreeFruit.java:20)
+	... 10 more
+2025-08-07 18:40:49 [INFO] Stopping server
+2025-08-07 18:41:37 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-07 18:41:37 [SEVERE] Unexpected exception
+java.lang.ExceptionInInitializerError
+	at net.minecraft.world.level.tile.Block.<clinit>(Block.java:190)
+	at net.minecraft.world.item.ItemSpade.<clinit>(ItemSpade.java:8)
+	at net.minecraft.world.item.Item.<clinit>(Item.java:28)
+	at net.minecraft.world.GameRuleStackableFood.setValue(GameRuleStackableFood.java:11)
+	at net.minecraft.world.GameRules.loadRules(GameRules.java:96)
+	at net.minecraft.world.GameRules.loadRulesFromOptions(GameRules.java:186)
+	at net.minecraft.world.GameRules.withMcDataDir(GameRules.java:83)
+	at net.minecraft.server.MinecraftServer.startServer(MinecraftServer.java:99)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:335)
+	at net.minecraft.server.ThreadServerApplication.run(ThreadServerApplication.java:12)
+Caused by: java.lang.NullPointerException
+	at net.minecraft.world.item.ItemStack.<init>(ItemStack.java:49)
+	at net.minecraft.world.level.tile.BlockTreeFruit.<clinit>(BlockTreeFruit.java:20)
+	... 10 more
+2025-08-07 18:41:51 [INFO] Stopping server
+2025-08-07 18:46:08 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-07 18:46:08 [SEVERE] Unexpected exception
+java.lang.ExceptionInInitializerError
+	at net.minecraft.world.level.tile.Block.<clinit>(Block.java:190)
+	at net.minecraft.world.item.ItemSpade.<clinit>(ItemSpade.java:8)
+	at net.minecraft.world.item.Item.<clinit>(Item.java:28)
+	at net.minecraft.world.GameRuleStackableFood.setValue(GameRuleStackableFood.java:11)
+	at net.minecraft.world.GameRules.loadRules(GameRules.java:96)
+	at net.minecraft.world.GameRules.loadRulesFromOptions(GameRules.java:186)
+	at net.minecraft.world.GameRules.withMcDataDir(GameRules.java:83)
+	at net.minecraft.server.MinecraftServer.startServer(MinecraftServer.java:99)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:335)
+	at net.minecraft.server.ThreadServerApplication.run(ThreadServerApplication.java:12)
+Caused by: java.lang.NullPointerException
+	at net.minecraft.world.level.tile.BlockTreeFruit.<clinit>(BlockTreeFruit.java:20)
+	... 10 more
+2025-08-07 18:46:11 [INFO] Stopping server
+2025-08-07 18:47:11 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-07 18:47:11 [SEVERE] Unexpected exception
+java.lang.ExceptionInInitializerError
+	at net.minecraft.world.item.ItemSpade.<clinit>(ItemSpade.java:8)
+	at net.minecraft.world.item.Item.<clinit>(Item.java:28)
+	at net.minecraft.world.GameRuleStackableFood.setValue(GameRuleStackableFood.java:11)
+	at net.minecraft.world.GameRules.loadRules(GameRules.java:96)
+	at net.minecraft.world.GameRules.loadRulesFromOptions(GameRules.java:186)
+	at net.minecraft.world.GameRules.withMcDataDir(GameRules.java:83)
+	at net.minecraft.server.MinecraftServer.startServer(MinecraftServer.java:99)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:335)
+	at net.minecraft.server.ThreadServerApplication.run(ThreadServerApplication.java:12)
+Caused by: java.lang.NullPointerException
+	at net.minecraft.world.level.tile.BlockTreeFruit.<init>(BlockTreeFruit.java:20)
+	at net.minecraft.world.level.tile.Block.<clinit>(Block.java:190)
+	... 9 more
+2025-08-07 18:47:16 [INFO] Stopping server
+2025-08-07 18:52:33 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-07 18:52:34 [INFO] Loading properties
+2025-08-07 18:52:34 [INFO] Starting Minecraft server on *:25565
+2025-08-07 18:52:34 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-07 18:52:34 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-07 18:52:34 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-07 18:52:34 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-07 18:52:34 [INFO] Configured level type: DEFAULT
+2025-08-07 18:52:34 [INFO] Preparing level "world"
+2025-08-07 18:52:34 [INFO] Default game type: 0
+2025-08-07 18:52:34 [INFO] Preparing start region for level 0
+2025-08-07 18:52:35 [INFO] Preparing spawn area: 85%
+2025-08-07 18:52:35 [INFO] Preparing start region for level 1
+2025-08-07 18:52:35 [INFO] Done (1,613s)! For help, type "help" or "?"
+2025-08-07 18:52:42 [INFO] Popoch [/127.0.0.1:60535] logged in with entity id 234 at (1490.25, 80.0, -894.09375)
+2025-08-07 18:52:49 [INFO] Popoch issued server command: gamemode 0
+2025-08-07 18:52:52 [INFO] Popoch issued server command: gamemode 1
+2025-08-07 18:54:25 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-07 18:54:26 [INFO] Stopping server
+2025-08-07 18:54:26 [INFO] Saving chunks
+2025-08-07 18:54:27 [INFO] Saving chunks
+2025-08-08 17:07:49 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 17:07:50 [INFO] Loading properties
+2025-08-08 17:07:50 [INFO] Starting Minecraft server on *:25565
+2025-08-08 17:07:50 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 17:07:50 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 17:07:50 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 17:07:50 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 17:07:50 [INFO] Configured level type: DEFAULT
+2025-08-08 17:07:51 [INFO] Preparing level "world"
+2025-08-08 17:07:51 [INFO] Default game type: 0
+2025-08-08 17:07:51 [INFO] Preparing start region for level 0
+2025-08-08 17:07:52 [INFO] Preparing spawn area: 61%
+2025-08-08 17:07:53 [INFO] Preparing start region for level 1
+2025-08-08 17:07:53 [INFO] Done (2,769s)! For help, type "help" or "?"
+2025-08-08 17:08:00 [INFO] /127.0.0.1:55680 lost connection
+2025-08-08 17:08:01 [INFO] Popoch [/127.0.0.1:55681] logged in with entity id 209 at (1490.25, 79.0, -892.125)
+2025-08-08 17:08:06 [INFO] Popoch lost connection: disconnect.endOfStream
+2025-08-08 17:12:55 [INFO] Popoch [/127.0.0.1:55739] logged in with entity id 794 at (1489.3489394796643, 78.0, -891.0624105142957)
+2025-08-08 17:12:56 [INFO] Popoch lost connection: disconnect.endOfStream
+2025-08-08 17:12:56 [INFO] Popoch lost connection: disconnect.endOfStream
+2025-08-08 17:13:18 [INFO] Popoch [/127.0.0.1:55773] logged in with entity id 1427 at (1489.3489394796643, 78.0, -891.0624105142957)
+2025-08-08 17:13:18 [INFO] Popoch lost connection: disconnect.endOfStream
+2025-08-08 17:13:18 [INFO] Popoch lost connection: disconnect.endOfStream
+2025-08-08 17:14:28 [INFO] Stopping server
+2025-08-08 17:14:28 [INFO] Saving chunks
+2025-08-08 17:14:29 [INFO] Saving chunks
+2025-08-08 17:14:31 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 17:14:31 [INFO] Loading properties
+2025-08-08 17:14:31 [INFO] Starting Minecraft server on *:25565
+2025-08-08 17:14:31 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 17:14:31 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 17:14:31 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 17:14:31 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 17:14:31 [INFO] Configured level type: DEFAULT
+2025-08-08 17:14:31 [INFO] Preparing level "world"
+2025-08-08 17:14:32 [INFO] Default game type: 0
+2025-08-08 17:14:32 [INFO] Preparing start region for level 0
+2025-08-08 17:14:33 [INFO] Preparing spawn area: 77%
+2025-08-08 17:14:33 [INFO] Preparing start region for level 1
+2025-08-08 17:14:33 [INFO] Done (1,666s)! For help, type "help" or "?"
+2025-08-08 17:14:43 [INFO] Popoch [/127.0.0.1:55801] logged in with entity id 205 at (1489.3489394796643, 78.0, -891.0624105142957)
+2025-08-08 17:14:43 [INFO] Popoch lost connection: disconnect.endOfStream
+2025-08-08 17:14:43 [INFO] Popoch lost connection: disconnect.endOfStream
+2025-08-08 17:14:52 [INFO] Stopping server
+2025-08-08 17:14:52 [INFO] Saving chunks
+2025-08-08 17:14:52 [INFO] Saving chunks
+2025-08-08 17:20:13 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 17:20:13 [INFO] Loading properties
+2025-08-08 17:20:13 [INFO] Starting Minecraft server on *:25565
+2025-08-08 17:20:13 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 17:20:13 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 17:20:13 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 17:20:13 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 17:20:13 [INFO] Configured level type: DEFAULT
+2025-08-08 17:20:13 [INFO] Preparing level "world"
+2025-08-08 17:20:14 [INFO] Default game type: 0
+2025-08-08 17:20:14 [INFO] Preparing start region for level 0
+2025-08-08 17:20:15 [INFO] Preparing spawn area: 85%
+2025-08-08 17:20:15 [INFO] Preparing start region for level 1
+2025-08-08 17:20:15 [INFO] Done (1,612s)! For help, type "help" or "?"
+2025-08-08 17:20:16 [INFO] Popoch [/127.0.0.1:55849] logged in with entity id 205 at (1489.3489394796643, 78.0, -891.0624105142957)
+2025-08-08 17:20:16 [INFO] Popoch lost connection: disconnect.endOfStream
+2025-08-08 17:20:16 [INFO] Popoch lost connection: disconnect.endOfStream
+2025-08-08 17:21:33 [INFO] Stopping server
+2025-08-08 17:21:33 [INFO] Saving chunks
+2025-08-08 17:21:33 [INFO] Saving chunks
+2025-08-08 17:23:51 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 17:23:51 [INFO] Loading properties
+2025-08-08 17:23:51 [INFO] Starting Minecraft server on *:25565
+2025-08-08 17:23:51 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 17:23:51 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 17:23:51 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 17:23:51 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 17:23:51 [INFO] Configured level type: DEFAULT
+2025-08-08 17:23:52 [INFO] Preparing level "world"
+2025-08-08 17:23:52 [INFO] Default game type: 0
+2025-08-08 17:23:52 [INFO] Preparing start region for level 0
+2025-08-08 17:23:53 [INFO] Preparing spawn area: 81%
+2025-08-08 17:23:53 [INFO] Preparing start region for level 1
+2025-08-08 17:23:53 [INFO] Done (1,620s)! For help, type "help" or "?"
+2025-08-08 17:23:54 [INFO] /127.0.0.1:55875 lost connection
+2025-08-08 17:23:55 [INFO] Popoch [/127.0.0.1:55876] logged in with entity id 205 at (1489.3489394796643, 78.0, -891.0624105142957)
+2025-08-08 17:25:10 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 17:32:46 [INFO] Stopping server
+2025-08-08 17:32:46 [INFO] Saving chunks
+2025-08-08 17:32:46 [INFO] Saving chunks
+2025-08-08 17:32:49 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 17:32:49 [INFO] Loading properties
+2025-08-08 17:32:49 [INFO] Starting Minecraft server on *:25565
+2025-08-08 17:32:49 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 17:32:49 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 17:32:49 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 17:32:49 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 17:32:49 [INFO] Configured level type: DEFAULT
+2025-08-08 17:32:49 [INFO] Preparing level "world"
+2025-08-08 17:32:49 [INFO] Default game type: 0
+2025-08-08 17:32:49 [INFO] Preparing start region for level 0
+2025-08-08 17:32:50 [INFO] Preparing spawn area: 32%
+2025-08-08 17:32:51 [INFO] Preparing start region for level 1
+2025-08-08 17:32:51 [INFO] Preparing spawn area: 16%
+2025-08-08 17:32:52 [INFO] Done (2,402s)! For help, type "help" or "?"
+2025-08-08 17:33:12 [INFO] Popoch [/127.0.0.1:57611] logged in with entity id 221 at (1489.8125, 79.0, -892.5625)
+2025-08-08 17:33:38 [INFO] Popoch lost connection: disconnect.quitting
+2025-08-08 17:33:41 [INFO] Stopping server
+2025-08-08 17:33:41 [INFO] Saving chunks
+2025-08-08 17:33:41 [INFO] Saving chunks
+2025-08-08 17:49:53 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 17:49:53 [INFO] Loading properties
+2025-08-08 17:49:53 [INFO] Starting Minecraft server on *:25565
+2025-08-08 17:49:53 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 17:49:53 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 17:49:53 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 17:49:53 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 17:49:53 [INFO] Configured level type: DEFAULT
+2025-08-08 17:49:53 [INFO] Preparing level "world"
+2025-08-08 17:49:53 [INFO] Default game type: 0
+2025-08-08 17:49:53 [INFO] Preparing start region for level 0
+2025-08-08 17:49:54 [INFO] Preparing spawn area: 81%
+2025-08-08 17:49:54 [INFO] Preparing start region for level 1
+2025-08-08 17:49:55 [INFO] Done (1,620s)! For help, type "help" or "?"
+2025-08-08 17:49:58 [INFO] Popoch [/127.0.0.1:57813] logged in with entity id 221 at (1489.8125, 79.0, -892.5625)
+2025-08-08 17:50:32 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 17:51:22 [INFO] Stopping server
+2025-08-08 17:51:22 [INFO] Saving chunks
+2025-08-08 17:51:22 [INFO] Saving chunks
+2025-08-08 17:51:26 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 17:51:26 [INFO] Loading properties
+2025-08-08 17:51:26 [INFO] Starting Minecraft server on *:25565
+2025-08-08 17:51:26 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 17:51:26 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 17:51:26 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 17:51:26 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 17:51:26 [INFO] Configured level type: DEFAULT
+2025-08-08 17:51:26 [INFO] Preparing level "world"
+2025-08-08 17:51:26 [INFO] Default game type: 0
+2025-08-08 17:51:26 [INFO] Preparing start region for level 0
+2025-08-08 17:51:28 [INFO] Preparing spawn area: 81%
+2025-08-08 17:51:28 [INFO] Preparing start region for level 1
+2025-08-08 17:51:28 [INFO] Done (1,650s)! For help, type "help" or "?"
+2025-08-08 17:51:34 [INFO] Popoch [/127.0.0.1:57844] logged in with entity id 207 at (1489.3855433959866, 79.0, -892.5522924150918)
+2025-08-08 17:51:52 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 17:52:31 [INFO] Stopping server
+2025-08-08 17:52:31 [INFO] Saving chunks
+2025-08-08 17:52:31 [INFO] Saving chunks
+2025-08-08 17:52:34 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 17:52:34 [INFO] Loading properties
+2025-08-08 17:52:34 [INFO] Starting Minecraft server on *:25565
+2025-08-08 17:52:34 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 17:52:34 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 17:52:34 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 17:52:34 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 17:52:34 [INFO] Configured level type: DEFAULT
+2025-08-08 17:52:34 [INFO] Preparing level "world"
+2025-08-08 17:52:34 [INFO] Default game type: 0
+2025-08-08 17:52:34 [INFO] Preparing start region for level 0
+2025-08-08 17:52:35 [INFO] Preparing spawn area: 85%
+2025-08-08 17:52:35 [INFO] Preparing start region for level 1
+2025-08-08 17:52:35 [INFO] Done (1,596s)! For help, type "help" or "?"
+2025-08-08 17:52:38 [INFO] Popoch [/127.0.0.1:57863] logged in with entity id 195 at (1489.3855433959866, 79.0, -892.5522924150918)
+2025-08-08 17:52:53 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 22:03:11 [INFO] Stopping server
+2025-08-08 22:03:11 [INFO] Saving chunks
+2025-08-08 22:03:12 [INFO] Saving chunks
+2025-08-08 22:04:12 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 22:04:12 [INFO] Loading properties
+2025-08-08 22:04:12 [INFO] Starting Minecraft server on *:25565
+2025-08-08 22:04:12 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 22:04:12 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 22:04:12 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 22:04:12 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 22:04:12 [INFO] Configured level type: DEFAULT
+2025-08-08 22:04:12 [INFO] Preparing level "world"
+2025-08-08 22:04:12 [INFO] Default game type: 0
+2025-08-08 22:04:12 [INFO] Preparing start region for level 0
+2025-08-08 22:04:13 [INFO] Preparing spawn area: 85%
+2025-08-08 22:04:13 [INFO] Preparing start region for level 1
+2025-08-08 22:04:14 [INFO] Done (1,607s)! For help, type "help" or "?"
+2025-08-08 22:04:23 [INFO] /127.0.0.1:59873 lost connection
+2025-08-08 22:04:24 [INFO] Popoch [/127.0.0.1:59874] logged in with entity id 199 at (1489.3855433959866, 79.0, -892.5522924150918)
+2025-08-08 22:05:10 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 22:05:54 [INFO] Popoch [/127.0.0.1:59898] logged in with entity id 821 at (1489.375, 79.0, -892.5625)
+2025-08-08 22:06:16 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 22:06:49 [INFO] Popoch [/127.0.0.1:59922] logged in with entity id 1268 at (1489.375, 79.0, -892.5625)
+2025-08-08 22:07:02 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 22:08:51 [INFO] Stopping server
+2025-08-08 22:08:51 [INFO] Saving chunks
+2025-08-08 22:08:51 [INFO] Saving chunks
+2025-08-08 22:09:28 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 22:09:28 [INFO] Loading properties
+2025-08-08 22:09:28 [INFO] Starting Minecraft server on *:25565
+2025-08-08 22:09:28 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 22:09:28 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 22:09:28 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 22:09:28 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 22:09:28 [INFO] Configured level type: DEFAULT
+2025-08-08 22:09:28 [INFO] Preparing level "world"
+2025-08-08 22:09:28 [INFO] Default game type: 0
+2025-08-08 22:09:28 [INFO] Preparing start region for level 0
+2025-08-08 22:09:29 [INFO] Preparing spawn area: 40%
+2025-08-08 22:09:30 [INFO] Preparing start region for level 1
+2025-08-08 22:09:30 [INFO] Preparing spawn area: 60%
+2025-08-08 22:09:30 [INFO] Done (2,295s)! For help, type "help" or "?"
+2025-08-08 22:09:48 [INFO] Popoch [/127.0.0.1:59990] logged in with entity id 188 at (1489.375, 79.0, -892.5625)
+2025-08-08 22:10:03 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 22:10:24 [INFO] Stopping server
+2025-08-08 22:10:24 [INFO] Saving chunks
+2025-08-08 22:10:24 [INFO] Saving chunks
+2025-08-08 22:10:38 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 22:10:38 [INFO] Loading properties
+2025-08-08 22:10:38 [INFO] Starting Minecraft server on *:25565
+2025-08-08 22:10:38 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 22:10:38 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 22:10:38 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 22:10:38 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 22:10:38 [INFO] Configured level type: DEFAULT
+2025-08-08 22:10:38 [INFO] Preparing level "world"
+2025-08-08 22:10:38 [INFO] Default game type: 0
+2025-08-08 22:10:38 [INFO] Preparing start region for level 0
+2025-08-08 22:10:39 [INFO] Preparing spawn area: 85%
+2025-08-08 22:10:39 [INFO] Preparing start region for level 1
+2025-08-08 22:10:40 [INFO] Done (1,575s)! For help, type "help" or "?"
+2025-08-08 22:10:41 [INFO] Popoch [/127.0.0.1:60008] logged in with entity id 187 at (1489.375, 79.0, -892.5625)
+2025-08-08 22:10:50 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 22:10:51 [INFO] Stopping server
+2025-08-08 22:10:51 [INFO] Saving chunks
+2025-08-08 22:10:52 [INFO] Saving chunks
+2025-08-08 22:13:21 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 22:13:22 [INFO] Loading properties
+2025-08-08 22:13:22 [INFO] Starting Minecraft server on *:25565
+2025-08-08 22:13:22 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 22:13:22 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 22:13:22 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 22:13:22 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 22:13:22 [INFO] Configured level type: DEFAULT
+2025-08-08 22:13:22 [INFO] Preparing level "world"
+2025-08-08 22:13:22 [INFO] Default game type: 0
+2025-08-08 22:13:22 [INFO] Preparing start region for level 0
+2025-08-08 22:13:23 [INFO] Preparing spawn area: 85%
+2025-08-08 22:13:23 [INFO] Preparing start region for level 1
+2025-08-08 22:13:23 [INFO] Done (1,541s)! For help, type "help" or "?"
+2025-08-08 22:13:32 [INFO] Popoch [/127.0.0.1:60030] logged in with entity id 188 at (1489.2681888039785, 79.0, -892.4618075244678)
+2025-08-08 22:13:48 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 22:14:14 [INFO] Popoch [/127.0.0.1:60051] logged in with entity id 535 at (1489.2681888039785, 79.0, -892.4618075244678)
+2025-08-08 22:14:56 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 22:15:57 [INFO] Popoch [/127.0.0.1:60096] logged in with entity id 1195 at (1489.25, 79.0, -892.46875)
+2025-08-08 22:16:04 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 22:23:19 [INFO] Stopping server
+2025-08-08 22:23:19 [INFO] Saving chunks
+2025-08-08 22:23:19 [INFO] Saving chunks
+2025-08-08 22:36:24 [INFO] Starting minecraft server version Beta 1.6.6
+2025-08-08 22:36:25 [INFO] Loading properties
+2025-08-08 22:36:25 [INFO] Starting Minecraft server on *:25565
+2025-08-08 22:36:25 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2025-08-08 22:36:25 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2025-08-08 22:36:25 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2025-08-08 22:36:25 [WARNING] To change this, set "online-mode" to "true" in the server.settings file.
+2025-08-08 22:36:25 [INFO] Configured level type: DEFAULT
+2025-08-08 22:36:25 [INFO] Preparing level "world"
+2025-08-08 22:36:25 [INFO] Default game type: 0
+2025-08-08 22:36:25 [INFO] Preparing start region for level 0
+2025-08-08 22:36:26 [INFO] Preparing spawn area: 81%
+2025-08-08 22:36:26 [INFO] Preparing start region for level 1
+2025-08-08 22:36:27 [INFO] Done (1,954s)! For help, type "help" or "?"
+2025-08-08 22:36:30 [INFO] Popoch [/127.0.0.1:60927] logged in with entity id 210 at (1489.25, 79.0, -892.46875)
+2025-08-08 22:37:01 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 22:40:46 [INFO] Popoch [/127.0.0.1:60968] logged in with entity id 560 at (1490.3543162978176, 79.0, -892.0047577863537)
+2025-08-08 22:41:09 [INFO] Popoch lost connection: disconnect.genericReason
+2025-08-08 22:41:13 [INFO] Stopping server
+2025-08-08 22:41:13 [INFO] Saving chunks
+2025-08-08 22:41:14 [INFO] Saving chunks

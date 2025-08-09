@@ -1,10 +1,12 @@
-package net.minecraft.world.level.levelgen.feature;
+package net.minecraft.world.level.levelgen.feature.trees;
 
 import java.util.Random;
 
 import com.mojontwins.utils.BlockUtils;
 
+import net.minecraft.world.level.BlockState;
 import net.minecraft.world.level.World;
+import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 import net.minecraft.world.level.tile.Block;
 
 public class WorldGenTrees extends WorldGenerator {
@@ -12,6 +14,8 @@ public class WorldGenTrees extends WorldGenerator {
 	private final boolean hasVines;
 	private final int woodMeta;
 	private final int leavesMeta;
+	private BlockState fruitBlock = null;
+	private int fruitChance = 8;
 
 	public WorldGenTrees(boolean notify) {
 		this(notify, 4, 0, 0, false);
@@ -23,6 +27,12 @@ public class WorldGenTrees extends WorldGenerator {
 		this.woodMeta = woodMeta;
 		this.leavesMeta = leavesMeta;
 		this.hasVines = withVines;
+	}
+	
+	public WorldGenerator withFruit(BlockState fruitBlock, int chance) {
+		this.fruitBlock = fruitBlock;
+		this.fruitChance = chance;
+		return this;
 	}
 
 	public boolean generate(World world, Random rand, int x0, int y0, int z0) {
@@ -68,6 +78,13 @@ public class WorldGenTrees extends WorldGenerator {
 					int dz = Math.abs(z - z0);
 					if((dx != radius || Math.abs(dz) != radius || rand.nextInt(2) != 0 && yy != 0) && !Block.opaqueCubeLookup[world.getBlockId(x, y, z)]) {
 						this.setBlockAndMetadata(world, x, y, z, Block.leaves.blockID, this.leavesMeta);
+						if(
+								this.fruitBlock != null &&
+								rand.nextInt(this.fruitChance) == 0 &&
+								this.fruitBlock.getBlock().canBlockStay(world, x, y - 1, z)
+						) {
+							this.setBlockAndMetadata(world, x, y - 1, z, this.fruitBlock.getBlockID(), this.fruitBlock.getMetadata());
+						}
 					}
 				}
 			}
@@ -76,7 +93,7 @@ public class WorldGenTrees extends WorldGenerator {
 		for(int y = 0; y < height; ++y) {
 			if(BlockUtils.canBeReplacedByWood(world.getBlockId(x0, y0 + y, z0))) {
 				this.setBlockAndMetadata(world, x0, y0 + y, z0, Block.wood.blockID, this.woodMeta);
-				/*
+				
 				if(this.hasVines && y > 0) {
 					if(rand.nextInt(3) > 0 && world.isAirBlock(x0 - 1, y0 + y, z0)) {
 						this.setBlockAndMetadata(world, x0 - 1, y0 + y, z0, Block.vine.blockID, 8);
@@ -94,7 +111,6 @@ public class WorldGenTrees extends WorldGenerator {
 						this.setBlockAndMetadata(world, x0, y0 + y, z0 + 1, Block.vine.blockID, 4);
 					}
 				}
-				*/
 			}
 		}
 

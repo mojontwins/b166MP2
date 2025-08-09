@@ -2,12 +2,12 @@ package net.minecraft.world.level.biome;
 
 import java.util.Random;
 
-import net.minecraft.world.level.levelgen.feature.WorldGenTaiga1;
-import net.minecraft.world.level.levelgen.feature.WorldGenTaiga2;
 import net.minecraft.world.entity.animal.EntityWolf;
 import net.minecraft.world.level.SpawnListEntry;
 import net.minecraft.world.level.Weather;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenTaiga1;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenTaiga2;
 
 public class BiomeGenTaiga extends BiomeGenBaseBeta {
 	public BiomeGenTaiga(int biomeID) {

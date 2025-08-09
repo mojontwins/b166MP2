@@ -83,7 +83,7 @@ public class Block implements ITextureProvider {
 	public static final Block music = (new BlockNote(25)).setHardness(0.8F).setBlockName("musicBlock").setRequiresSelfNotify();
 	public static final Block bed = (new BlockBed(26)).setHardness(0.2F).setBlockName("bed").disableStats().setRequiresSelfNotify();
 	public static final Block railPowered = (new BlockRail(27, 179, true)).setHardness(0.7F).setStepSound(soundMetalFootstep).setBlockName("goldenRail").setRequiresSelfNotify();
-	// 28
+	public static final Block railDetector = (new BlockDetectorRail(28, 195)).setHardness(0.7F).setStepSound(soundMetalFootstep).setBlockName("detectorRail").setRequiresSelfNotify().setCreativeTab(CreativeTabs.tabTransport);
 	// 29
 	public static final Block web = (new BlockWeb(30, 11)).setLightOpacity(1).setHardness(4.0F).setBlockName("web");
 	public static final BlockTallGrass tallGrass = (BlockTallGrass)(new BlockTallGrass(31, 39)).setHardness(0.0F).setStepSound(soundGrassFootstep).setBlockName("tallgrass");
@@ -179,7 +179,15 @@ public class Block implements ITextureProvider {
 	public static final Block leafPile = (new BlockLeafPile(168)).setHardness(0.1F).setResistance(0.1F).setStepSound(soundGrassFootstep).setBlockName("leafPile");
 	// 169 - 208
 	public static final Block cryingObsidian = (new BlockCryingObsidian(209, 11*16+8)).setHardness(10.0F).setResistance(2000.0F).setStepSound(soundStoneFootstep).setBlockName("cryingObsidian");
-	//public static final Block spongeOff = (new BlockSponge(210, false)).setHardness(0.6F).setStepSound(soundGrassFootstep).setBlockName("sponge");
+	// 210 - 251
+	public static final Block classicPistonBase = (new BlockPistonBase(252, 22, false)).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep).setBlockName("piston").setCreativeTab(CreativeTabs.tabRedstone);
+	public static final Block classicPiston = (new BlockPiston(253, 22, false)).setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep).setBlockName("piston");
+	public static final Block classicStickyPistonBase = (new BlockPistonBase(254, 23, true)).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep).setBlockName("pistonSticky").setCreativeTab(CreativeTabs.tabRedstone);
+	public static final Block classicStickyPiston = (new BlockPiston(255, 23, true)).setLightOpacity(0).setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep).setBlockName("pistonSticky");
+	
+	// Put the engine to the test!
+	// Ids used by vanilla items ~ 256 to ~ 512, 2256 onwards for 256 disks, so...
+	public static final Block treeFruit = (new BlockTreeFruit(512).setHardness(0.1F)).setCreativeTab(CreativeTabs.tabDeco);	
 	
 	public int blockIndexInTexture;
 	public final int blockID;
@@ -393,11 +401,11 @@ public class Block implements ITextureProvider {
 		return this.getBlockTextureFromSideAndMetadata(i5, iBlockAccess1.getBlockMetadata(i2, i3, i4));
 	}
 
-	public int getBlockTextureFromSideAndMetadata(int i1, int i2) {
-		return this.getBlockTextureFromSide(i1);
+	public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+		return this.getBlockTextureFromSide(side);
 	}
 
-	public int getBlockTextureFromSide(int i1) {
+	public int getBlockTextureFromSide(int side) {
 		return this.blockIndexInTexture;
 	}
 
@@ -442,7 +450,7 @@ public class Block implements ITextureProvider {
 	public void onBlockDestroyedByPlayer(World world1, int i2, int i3, int i4, int i5) {
 	}
 
-	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
+	public void onNeighborBlockChange(World world, int x, int y, int z, int id) {
 	}
 
 	public int tickRate() {
@@ -467,7 +475,7 @@ public class Block implements ITextureProvider {
 		return this.quantityDropped(random);
 	}
 
-	public int idDropped(int i1, Random random2, int i3) {
+	public int idDropped(int meta, Random rand, int fortune) {
 		return this.blockID;
 	}
 
@@ -476,8 +484,8 @@ public class Block implements ITextureProvider {
 		return hardness < 0.0F ? 0.0F : (!entityPlayer1.canHarvestBlock(this, metadata) ? 1.0F / hardness / 100.0F : entityPlayer1.getCurrentPlayerStrVsBlock(this, metadata) / hardness / 30.0F);
 	}
 
-	public final void dropBlockAsItem(World world1, int i2, int i3, int i4, int i5, int i6) {
-		this.dropBlockAsItemWithChance(world1, i2, i3, i4, i5, 1.0F, i6);
+	public final void dropBlockAsItem(World world, int x, int y, int z, int meta, int fortune) {
+		this.dropBlockAsItemWithChance(world, x, y, z, meta, 1.0F, fortune);
 	}
 
 	/*
@@ -549,7 +557,7 @@ public class Block implements ITextureProvider {
 
 	}
 
-	public int damageDropped(int i1) {
+	public int damageDropped(int meta) {
 		return 0;
 	}
 
@@ -675,8 +683,8 @@ public class Block implements ITextureProvider {
 		return this.canPlaceBlockAt(world, x, y, z);
 	}
 
-	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
-		int i5 = world1.getBlockId(i2, i3, i4);
+	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+		int i5 = world.getBlockId(x, y, z);
 		return i5 == 0 || blocksList[i5].blockMaterial.isGroundCover();
 	}
 
@@ -777,11 +785,11 @@ public class Block implements ITextureProvider {
 		return this.quantityDropped(random2);
 	}
 
-	public boolean canBlockStay(World world1, int i2, int i3, int i4) {
+	public boolean canBlockStay(World world, int x, int y, int z) {
 		return true;
 	}
 
-	public void onBlockPlacedBy(World world1, int i2, int i3, int i4, EntityLiving entityLiving5) {
+	public void onBlockPlacedBy(World world1, int i2, int i3, int i4, EntityLiving entityLiving) {
 	}
 
 	public Block setBlockName(String string1) {
@@ -846,6 +854,7 @@ public class Block implements ITextureProvider {
 		Item.itemsList[leaves.blockID] = (new ItemLeaves(leaves.blockID - 256)).setItemName("leaves");
 		Item.itemsList[vine.blockID] = new ItemColored(vine.blockID - 256, false);
 		Item.itemsList[tallGrass.blockID] = (new ItemColored(tallGrass.blockID - 256, true)).setBlockNames(new String[]{"shrub", "grass", "fern"});
+		Item.itemsList[treeFruit.blockID] = (new ItemMetadata(treeFruit.blockID - 256, treeFruit)).setItemName("treeFruit");
 		
 		for(int i0 = 0; i0 < 4096; ++i0) {
 			if(blocksList[i0] != null) {

@@ -29,7 +29,7 @@ public class EntityMovingPiston extends Entity {
 	public int data;
 	private boolean extending;
 	private int timeout;
-	public int blockid;
+	public int blockID;
 	private TileEntity tileEntity;
 
 	public int getXRender() {
@@ -45,79 +45,88 @@ public class EntityMovingPiston extends Entity {
 	}
 
 	private static boolean isNormalBlock(Block block0) {
-		return block0.blockID != Block.classicPiston.blockID && block0.blockID != Block.classicStickyPiston.blockID && block0.blockID != Block.classicPistonBase.blockID && block0.blockID != Block.classicStickyPistonBase.blockID ? block0.renderAsNormalBlock() : true;
+		return 
+				block0.blockID != Block.classicPiston.blockID && 
+				block0.blockID != Block.classicStickyPiston.blockID && 
+				block0.blockID != Block.classicPistonBase.blockID && 
+				block0.blockID != Block.classicStickyPistonBase.blockID ? 
+						block0.renderAsNormalBlock() 
+					: 
+						true;
 	}
 
-	public EntityMovingPiston(World world1) {
-		super(world1);
+	public EntityMovingPiston(World world) {
+		super(world);
 		this.timeout = 0;
 	}
 
-	public EntityMovingPiston(World world1, int i2, int i3, int i4, boolean z5) {
-		this(world1, i2, i3, i4, 0);
-		if(z5) {
-			this.blockid = Block.classicStickyPiston.blockID;
+	public EntityMovingPiston(World world, int x, int y, int z, boolean sticky) {
+		this(world, x, y, z, 0);
+		if(sticky) {
+			this.blockID = Block.classicStickyPiston.blockID;
 		} else {
-			this.blockid = Block.classicPiston.blockID;
+			this.blockID = Block.classicPiston.blockID;
 		}
 
 	}
 
-	private EntityMovingPiston(World world1, int i2, int i3, int i4, int i5) {
-		super(world1);
+	private EntityMovingPiston(World world, int x, int y, int z, int blockID) {
+		super(world);
 		this.timeout = 0;
 		this.preventEntitySpawning = true;
 		this.setSize(0.98F, 0.98F);
 		this.yOffset = this.height / 2.0F;
-		this.setPosition((double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F));
+		this.setPosition((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F));
 		this.motionX = 0.0D;
 		this.motionY = 0.0D;
 		this.motionZ = 0.0D;
-		this.prevPosX = (double)((float)i2 + 0.5F);
-		this.prevPosY = (double)((float)i3 + 0.5F);
-		this.prevPosZ = (double)((float)i4 + 0.5F);
-		this.xstart = i2;
-		this.ystart = i3;
-		this.zstart = i4;
-		this.blockid = i5;
+		this.prevPosX = (double)((float)x + 0.5F);
+		this.prevPosY = (double)((float)y + 0.5F);
+		this.prevPosZ = (double)((float)z + 0.5F);
+		this.xstart = x;
+		this.ystart = y;
+		this.zstart = z;
+		this.blockID = blockID;
 	}
 
 	private void start() {
-		if(this.blockid != Block.classicPiston.blockID && this.blockid != Block.classicStickyPiston.blockID) {
+		if(this.blockID != Block.classicPiston.blockID && this.blockID != Block.classicStickyPiston.blockID) {
 			this.data = this.worldObj.getBlockMetadata(this.xstart, this.ystart, this.zstart);
-			this.worldObj.setBlockWithNotify(this.xstart, this.ystart, this.zstart, 0);
+			if(!this.worldObj.isRemote)	this.worldObj.setBlockWithNotify(this.xstart, this.ystart, this.zstart, 0);
 		}
 
 		this.worldObj.spawnEntityInWorld(this);
 	}
 
-	private static TileEntity getTileEntity(World world0, int i1, int i2, int i3) {
-		TileEntity tileEntity4 = world0.getBlockTileEntity(i1, i2, i3);
+	private static TileEntity getTileEntity(World world, int x, int y, int z) {
+		TileEntity te = world.getBlockTileEntity(x, y, z);
 
 		try {
-			if(tileEntity4 != null && tileEntity4 instanceof IInventory) {
-				IInventory iInventory5 = (IInventory)tileEntity4;
-				IInventory iInventory6 = (IInventory)tileEntity4.getClass().newInstance();
+			if(te != null && te instanceof IInventory) {
+				IInventory inventorySrc = (IInventory)te;
+				IInventory inventoryDst = (IInventory)te.getClass().newInstance();
 
-				for(int i7 = 0; i7 < iInventory5.getSizeInventory(); ++i7) {
-					iInventory6.setInventorySlotContents(i7, iInventory5.getStackInSlot(i7));
-					iInventory5.setInventorySlotContents(i7, (ItemStack)null);
+				for(int i = 0; i < inventorySrc.getSizeInventory(); ++i) {
+					inventoryDst.setInventorySlotContents(i, inventorySrc.getStackInSlot(i));
+					inventorySrc.setInventorySlotContents(i, (ItemStack)null);
 				}
 
-				return (TileEntity)iInventory6;
+				return (TileEntity)inventoryDst;
 			}
-		} catch (InstantiationException instantiationException8) {
-		} catch (IllegalAccessException illegalAccessException9) {
+		} catch (InstantiationException e) {
+		} catch (IllegalAccessException e) {
 		}
 
-		return tileEntity4;
+		return te;
 	}
 
-	private static boolean tryBreak(World world0, int i1, int i2, int i3, Block block4) {
-		if(!isNormalBlock(block4) && block4.blockID != Block.fence.blockID && !(block4 instanceof BlockStep) && block4.blockID != Block.cake.blockID && !(block4 instanceof BlockStairs) && !(block4 instanceof BlockRail)) {
-			if(block4.blockID != Block.bed.blockID) {
-				block4.dropBlockAsItem(world0, i1, i2, i3, 0, 0);
-				world0.setBlockWithNotify(i1, i2, i3, 0);
+	private static boolean tryBreak(World world, int x, int y, int z, Block block) {
+		if(!isNormalBlock(block) && block.blockID != Block.fence.blockID && !(block instanceof BlockStep) && block.blockID != Block.cake.blockID && !(block instanceof BlockStairs) && !(block instanceof BlockRail)) {
+			if(block.blockID != Block.bed.blockID) {
+				if(!world.isRemote)	{
+					block.dropBlockAsItem(world, x, y, z, 0, 0);
+					world.setBlockWithNotify(x, y, z, 0);
+				}
 			}
 
 			return true;
@@ -126,41 +135,41 @@ public class EntityMovingPiston extends Entity {
 		}
 	}
 
-	private static double getEntityMovement(double d0, double d2) {
-		return d2 + d0;
+	private static double getEntityMovement(double dx, double dz) {
+		return dx + dz;
 	}
 
-	public static boolean buildPistons(EntityMovingPiston movingPiston0, int i1, int i2, int i3, int i4) {
-		ArrayList<EntityMovingPiston> arrayList5 = new ArrayList<EntityMovingPiston>();
-		movingPiston0.data = i4;
-		arrayList5.add(movingPiston0);
-		int i6 = movingPiston0.xstart;
-		int i7 = movingPiston0.ystart;
-		int i8 = movingPiston0.zstart;
-		int i9 = i1 - movingPiston0.xstart;
-		int i10 = i2 - movingPiston0.ystart;
-		int i11 = i3 - movingPiston0.zstart;
-		int i13 = 0;
+	public static boolean buildPistons(EntityMovingPiston thePiston, int x, int y, int z, int data) {
+		ArrayList<EntityMovingPiston> pistonsList = new ArrayList<EntityMovingPiston>();
+		thePiston.data = data;
+		pistonsList.add(thePiston);
+		int x0 = thePiston.xstart;
+		int y0 = thePiston.ystart;
+		int z0 = thePiston.zstart;
+		int dx = x - thePiston.xstart;
+		int dy = y - thePiston.ystart;
+		int dz = z - thePiston.zstart;
+		int progress = 0;
 
 		while(true) {
-			if(i13 < 17) {
-				i6 += i9;
-				i7 += i10;
-				i8 += i11;
-				int i12 = movingPiston0.worldObj.getBlockId(i6, i7, i8);
-				if(i12 != 0 && !tryBreak(movingPiston0.worldObj, i6, i7, i8, Block.blocksList[i12])) {
-					if(i12 != Block.bedrock.blockID && i12 != Block.obsidian.blockID && i12 != Block.classicPiston.blockID && i12 != Block.classicStickyPiston.blockID && i13 < 16) {
-						if(i12 == Block.classicPistonBase.blockID || i12 == Block.classicStickyPistonBase.blockID) {
-							int i23 = movingPiston0.worldObj.getBlockMetadata(i6, i7, i8);
-							if((i23 & 8) != 0) {
+			if(progress < 17) {
+				x0 += dx;
+				y0 += dy;
+				z0 += dz;
+				int blockID = thePiston.worldObj.getBlockId(x0, y0, z0);
+				if(blockID != 0 && !tryBreak(thePiston.worldObj, x0, y0, z0, Block.blocksList[blockID])) {
+					if(blockID != Block.bedrock.blockID && blockID != Block.obsidian.blockID && blockID != Block.classicPiston.blockID && blockID != Block.classicStickyPiston.blockID && progress < 16) {
+						if(blockID == Block.classicPistonBase.blockID || blockID == Block.classicStickyPistonBase.blockID) {
+							int meta = thePiston.worldObj.getBlockMetadata(x0, y0, z0);
+							if((meta & 8) != 0) {
 								return false;
 							}
 						}
 
-						EntityMovingPiston movingPiston24 = new EntityMovingPiston(movingPiston0.worldObj, i6, i7, i8, i12);
-						movingPiston24.tileEntity = getTileEntity(movingPiston0.worldObj, i6, i7, i8);
-						arrayList5.add(movingPiston24);
-						++i13;
+						EntityMovingPiston newPiston = new EntityMovingPiston(thePiston.worldObj, x0, y0, z0, blockID);
+						newPiston.tileEntity = getTileEntity(thePiston.worldObj, x0, y0, z0);
+						pistonsList.add(newPiston);
+						++progress;
 						continue;
 					}
 
@@ -168,121 +177,125 @@ public class EntityMovingPiston extends Entity {
 				}
 			}
 
-			EntityMovingPiston movingPiston22 = (EntityMovingPiston)arrayList5.get(arrayList5.size() - 1);
-			List<Entity> list14 = movingPiston22.worldObj.getEntitiesWithinAABBExcludingEntity(movingPiston22, AxisAlignedBB.getBoundingBoxFromPool((double)i6, (double)i7, (double)i8, (double)(i6 + 1), (double)(i7 + 1), (double)(i8 + 1)));
-			double d15 = 1.1999999731779099D;
-			if(movingPiston0.blockid == Block.classicStickyPiston.blockID) {
-				d15 = 0.7199999839067459D;
+			EntityMovingPiston lastPiston = (EntityMovingPiston)pistonsList.get(pistonsList.size() - 1);
+			List<Entity> collidingEntities = lastPiston.worldObj.getEntitiesWithinAABBExcludingEntity(lastPiston, AxisAlignedBB.getBoundingBoxFromPool((double)x0, (double)y0, (double)z0, (double)(x0 + 1), (double)(y0 + 1), (double)(z0 + 1)));
+
+			double vMod = 1.1999999731779099D;
+			if(thePiston.blockID == Block.classicStickyPiston.blockID) {
+				vMod = 0.7199999839067459D;
 			}
 
-			Iterator<Entity> iterator17;
-			Entity entity18;
-			for(iterator17 = list14.iterator(); iterator17.hasNext(); entity18.motionZ = getEntityMovement((double)i11 * d15, entity18.motionZ)) {
-				entity18 = (Entity)iterator17.next();
-				entity18.motionX = getEntityMovement((double)i9 * d15, entity18.motionX);
-				entity18.motionY = getEntityMovement((double)i10 * d15, entity18.motionY);
+			Iterator<Entity> itEntities;
+			Entity theEntity;
+
+			itEntities = collidingEntities.iterator(); while(itEntities.hasNext()) {
+				theEntity = (Entity)itEntities.next();
+				theEntity.motionX = getEntityMovement((double)dx * vMod, theEntity.motionX);
+				theEntity.motionY = getEntityMovement((double)dy * vMod, theEntity.motionY);
+				theEntity.motionZ = getEntityMovement((double)dz * vMod, theEntity.motionZ);
 			}
 
-			list14 = movingPiston22.worldObj.getEntitiesWithinAABBExcludingEntity(movingPiston22, AxisAlignedBB.getBoundingBoxFromPool((double)i6, (double)(i7 - 1), (double)i8, (double)(i6 + 1), (double)(i7 + 1), (double)(i8 + 1)));
-			iterator17 = list14.iterator();
+			collidingEntities = lastPiston.worldObj.getEntitiesWithinAABBExcludingEntity(lastPiston, AxisAlignedBB.getBoundingBoxFromPool((double)x0, (double)(y0 - 1), (double)z0, (double)(x0 + 1), (double)(y0 + 1), (double)(z0 + 1)));
 
-			while(iterator17.hasNext()) {
-				entity18 = (Entity)iterator17.next();
-				if(entity18 instanceof EntityMinecart) {
-					entity18.motionX = getEntityMovement((double)i9 * d15, entity18.motionX);
-					entity18.motionY = getEntityMovement((double)i10 * d15, entity18.motionY);
-					entity18.motionZ = getEntityMovement((double)i11 * d15, entity18.motionZ);
+			itEntities = collidingEntities.iterator(); while(itEntities.hasNext()) {
+				theEntity = (Entity)itEntities.next();
+				if(theEntity instanceof EntityMinecart) {
+					theEntity.motionX = getEntityMovement((double)dx * vMod, theEntity.motionX);
+					theEntity.motionY = getEntityMovement((double)dy * vMod, theEntity.motionY);
+					theEntity.motionZ = getEntityMovement((double)dz * vMod, theEntity.motionZ);
 				}
 			}
 
-			if(i10 > 0 && i9 == 0 && i11 == 0 && movingPiston0.blockid != Block.classicStickyPiston.blockID) {
-				double d25 = (double)i10 * (double)0.24F * 5.0D;
+			if(dy > 0 && dx == 0 && dz == 0 && thePiston.blockID != Block.classicStickyPiston.blockID) {
+				double pistonThustY = (double)dy * (double)0.24F * 5.0D;
 
-				while(arrayList5.size() > 0) {
-					int i19 = arrayList5.size() - 1;
-					EntityMovingPiston movingPiston20 = (EntityMovingPiston)arrayList5.get(i19);
-					if(movingPiston20.blockid != Block.sand.blockID && movingPiston20.blockid != Block.gravel.blockID) {
+				while(pistonsList.size() > 0) {
+					int numPistons = pistonsList.size() - 1;
+					EntityMovingPiston aPiston = (EntityMovingPiston)pistonsList.get(numPistons);
+					if(aPiston.blockID != Block.sand.blockID && aPiston.blockID != Block.gravel.blockID) {
 						break;
 					}
 
-					movingPiston20.worldObj.setBlockWithNotify(movingPiston20.xstart, movingPiston20.ystart, movingPiston20.zstart, 0);
-					EntityFallingSand entityFallingSand21 = new EntityFallingSand(movingPiston20.worldObj, (double)((float)movingPiston20.xstart + 0.5F), (double)((float)movingPiston20.ystart + 0.5F), (double)((float)movingPiston20.zstart + 0.5F), movingPiston20.blockid);
-					entityFallingSand21.motionY += d25;
-					movingPiston20.worldObj.spawnEntityInWorld(entityFallingSand21);
-					arrayList5.remove(i19);
-					d25 -= 0.2D;
-					if(d25 < 0.4D) {
+					if(!aPiston.worldObj.isRemote) {
+						aPiston.worldObj.setBlockWithNotify(aPiston.xstart, aPiston.ystart, aPiston.zstart, 0);
+						EntityFallingSand fallingSand = new EntityFallingSand(aPiston.worldObj, (double)((float)aPiston.xstart + 0.5F), (double)((float)aPiston.ystart + 0.5F), (double)((float)aPiston.zstart + 0.5F), aPiston.blockID);
+						fallingSand.motionY += pistonThustY;
+						aPiston.worldObj.spawnEntityInWorld(fallingSand);
+					}
+					pistonsList.remove(numPistons);
+					pistonThustY -= 0.2D;
+					if(pistonThustY < 0.4D) {
 						break;
 					}
 				}
 			}
 
-			Iterator<EntityMovingPiston> iterator18 = arrayList5.iterator();
+			Iterator<EntityMovingPiston> itPistons = pistonsList.iterator();
 
-			while(iterator18.hasNext()) {
-				EntityMovingPiston movingPiston26 = (EntityMovingPiston)iterator18.next();
-				movingPiston26.extending = true;
-				movingPiston26.xmove = i9;
-				movingPiston26.ymove = i10;
-				movingPiston26.zmove = i11;
-				movingPiston26.start();
+			while(itPistons.hasNext()) {
+				EntityMovingPiston curPiston = (EntityMovingPiston)itPistons.next();
+				curPiston.extending = true;
+				curPiston.xmove = dx;
+				curPiston.ymove = dy;
+				curPiston.zmove = dz;
+				curPiston.start();
 			}
 
 			return true;
 		}
 	}
 
-	public static void buildRetractingPistons(World world0, int i1, int i2, int i3, int i4, int i5, int i6, int i7, boolean z8) {
-		int i9 = i4 - i1;
-		int i10 = i5 - i2;
-		int i11 = i6 - i3;
-		EntityMovingPiston movingPiston12 = new EntityMovingPiston(world0, i1, i2, i3, z8);
-		movingPiston12.xmove = i9;
-		movingPiston12.ymove = i10;
-		movingPiston12.zmove = i11;
-		movingPiston12.extending = false;
-		movingPiston12.data = i7;
-		world0.spawnEntityInWorld(movingPiston12);
+	public static void buildRetractingPistons(World world, int xH, int yH, int zH, int x, int y, int z, int data, boolean sticky) {
+		int dx = x - xH;
+		int dy = y - yH;
+		int dz = z - zH;
+		EntityMovingPiston piston = new EntityMovingPiston(world, xH, yH, zH, sticky);
+		piston.xmove = dx;
+		piston.ymove = dy;
+		piston.zmove = dz;
+		piston.extending = false;
+		piston.data = data;
+		world.spawnEntityInWorld(piston);
 
-		while(z8) {
-			i1 -= i9;
-			i2 -= i10;
-			i3 -= i11;
-			z8 = false;
-			int i13 = world0.getBlockId(i1, i2, i3);
-			if(i13 == 0) {
+		while(sticky) {
+			xH -= dx;
+			yH -= dy;
+			zH -= dz;
+			sticky = false;
+			int blockHeadID = world.getBlockId(xH, yH, zH);
+			if(blockHeadID == 0) {
 				return;
 			}
 
-			Block block14 = Block.blocksList[i13];
-			if(!isNormalBlock(block14) && i13 != Block.fence.blockID && !(block14 instanceof BlockStep) && i13 != Block.cake.blockID && !(block14 instanceof BlockStairs) && !(block14 instanceof BlockRail)) {
+			Block blockHead = Block.blocksList[blockHeadID];
+			if(!isNormalBlock(blockHead) && blockHeadID != Block.fence.blockID && !(blockHead instanceof BlockStep) && blockHeadID != Block.cake.blockID && !(blockHead instanceof BlockStairs) && !(blockHead instanceof BlockRail)) {
 				return;
 			}
 
-			if(i13 == Block.bedrock.blockID || i13 == Block.obsidian.blockID || i13 == Block.classicPiston.blockID || i13 == Block.classicStickyPiston.blockID) {
+			if(blockHeadID == Block.bedrock.blockID || blockHeadID == Block.obsidian.blockID || blockHeadID == Block.classicPiston.blockID || blockHeadID == Block.classicStickyPiston.blockID) {
 				return;
 			}
 
-			int i15 = world0.getBlockMetadata(i1, i2, i3);
-			if(i13 == Block.classicPistonBase.blockID || i13 == Block.classicStickyPistonBase.blockID) {
-				if((i15 & 8) != 0) {
+			int metaHead = world.getBlockMetadata(xH, yH, zH);
+			if(blockHeadID == Block.classicPistonBase.blockID || blockHeadID == Block.classicStickyPistonBase.blockID) {
+				if((metaHead & 8) != 0) {
 					return;
 				}
 
-				if(i13 == Block.classicStickyPistonBase.blockID && i15 == (i7 & 7)) {
-					z8 = true;
+				if(blockHeadID == Block.classicStickyPistonBase.blockID && metaHead == (data & 7)) {
+					sticky = true;
 				}
 			}
 
-			movingPiston12 = new EntityMovingPiston(world0, i1, i2, i3, i13);
-			movingPiston12.xmove = i9;
-			movingPiston12.ymove = i10;
-			movingPiston12.zmove = i11;
-			movingPiston12.extending = false;
-			movingPiston12.data = i15;
-			movingPiston12.tileEntity = getTileEntity(world0, i1, i2, i3);
-			world0.spawnEntityInWorld(movingPiston12);
-			world0.setBlockWithNotify(i1, i2, i3, 0);
+			piston = new EntityMovingPiston(world, xH, yH, zH, blockHeadID);
+			piston.xmove = dx;
+			piston.ymove = dy;
+			piston.zmove = dz;
+			piston.extending = false;
+			piston.data = metaHead;
+			piston.tileEntity = getTileEntity(world, xH, yH, zH);
+			world.spawnEntityInWorld(piston);
+			if(!world.isRemote) world.setBlockWithNotify(xH, yH, zH, 0);
 		}
 
 	}
@@ -303,7 +316,7 @@ public class EntityMovingPiston extends Entity {
 	}
 
 	public void onUpdate() {
-		if(this.blockid == 0) {
+		if(this.blockID == 0) {
 			this.setDead();
 		} else {
 			this.prevPosX = this.posX;
@@ -314,26 +327,29 @@ public class EntityMovingPiston extends Entity {
 			this.posX += (double)this.xmove * (double)0.24F;
 			this.posY += (double)this.ymove * (double)0.24F;
 			this.posZ += (double)this.zmove * (double)0.24F;
-			int i1 = MathHelper.floor_double(this.posX + (double)(this.xmove >= 0 ? -0.5F : 0.5F));
-			int i2 = MathHelper.floor_double(this.posY + (double)(this.ymove >= 0 ? -0.5F : 0.5F));
-			int i3 = MathHelper.floor_double(this.posZ + (double)(this.zmove >= 0 ? -0.5F : 0.5F));
-			if(i1 == this.xstart + this.xmove && i2 == this.ystart + this.ymove && i3 == this.zstart + this.zmove) {
-				boolean z4 = this.blockid == Block.classicPiston.blockID || this.blockid == Block.classicStickyPiston.blockID;
-				if(!this.extending && z4) {
-					int i8 = this.worldObj.getBlockMetadata(i1, i2, i3);
-					this.worldObj.setBlockMetadataWithNotify(i1, i2, i3, i8 & 7);
-					this.worldObj.markBlockAsNeedsUpdate(i1, i2, i3);
+			int x = MathHelper.floor_double(this.posX + (double)(this.xmove >= 0 ? -0.5F : 0.5F));
+			int y = MathHelper.floor_double(this.posY + (double)(this.ymove >= 0 ? -0.5F : 0.5F));
+			int z = MathHelper.floor_double(this.posZ + (double)(this.zmove >= 0 ? -0.5F : 0.5F));
+			
+			if(x == this.xstart + this.xmove && y == this.ystart + this.ymove && z == this.zstart + this.zmove) {
+				boolean isPiston = this.blockID == Block.classicPiston.blockID || this.blockID == Block.classicStickyPiston.blockID;
+				if(!this.extending && isPiston) {
+					if(!this.worldObj.isRemote)	{
+						int meta = this.worldObj.getBlockMetadata(x, y, z);
+						this.worldObj.setBlockMetadataWithNotify(x, y, z, meta & 7);
+						this.worldObj.markBlockAsNeedsUpdate(x, y, z);
+					}
 				} else {
-					this.end(i1, i2, i3, !z4);
-					if(this.blockid == Block.classicPistonBase.blockID || this.blockid == Block.classicStickyPistonBase.blockID) {
-						((BlockPistonBase)Block.blocksList[this.blockid]).onPistonPushed(this.worldObj, i1, i2, i3);
+					this.end(x, y, z, !isPiston);
+					if(this.blockID == Block.classicPistonBase.blockID || this.blockID == Block.classicStickyPistonBase.blockID) {
+						((BlockPistonBase)Block.blocksList[this.blockID]).onPistonPushed(this.worldObj, x, y, z);
 					}
 
-					List<Entity> list5 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, AxisAlignedBB.getBoundingBoxFromPool((double)i1, (double)(i2 + 1), (double)i3, (double)(i1 + 1), (double)i2 + 1.1D, (double)(i3 + 1)));
+					List<Entity> entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, AxisAlignedBB.getBoundingBoxFromPool((double)x, (double)(y + 1), (double)z, (double)(x + 1), (double)y + 1.1D, (double)(z + 1)));
 
-					Entity entity7;
-					for(Iterator<Entity> iterator6 = list5.iterator(); iterator6.hasNext(); entity7.motionY += 0.05D) {
-						entity7 = (Entity)iterator6.next();
+					Entity entity;
+					for(Iterator<Entity> itEntities = entities.iterator(); itEntities.hasNext(); entity.motionY += 0.05D) {
+						entity = (Entity)itEntities.next();
 					}
 				}
 
@@ -350,23 +366,26 @@ public class EntityMovingPiston extends Entity {
 		boolean z6 = Block.blocksList[i5] == null ? false : isNormalBlock(Block.blocksList[i5]);
 		if(z6) {
 			if(z4) {
-				Block.blocksList[this.blockid].dropBlockAsItem(this.worldObj, i1, i2, i3, 0, 0);
-				this.worldObj.setBlockWithNotify(i1, i2, i3, 0);
+				if(!this.worldObj.isRemote) {
+					Block.blocksList[this.blockID].dropBlockAsItem(this.worldObj, i1, i2, i3, 0, 0);
+					this.worldObj.setBlockWithNotify(i1, i2, i3, 0);
+				}
 			} else {
-				boolean z7 = this.blockid == Block.classicStickyPiston.blockID;
+				boolean z7 = this.blockID == Block.classicStickyPiston.blockID;
 				buildRetractingPistons(this.worldObj, i1, i2, i3, this.xstart, this.ystart, this.zstart, this.worldObj.getBlockMetadata(i1, i2, i3), z7);
 			}
 
 		} else {
-			this.worldObj.setBlockWithNotify(i1, i2, i3, this.blockid);
-			if(this.data != 0) {
-				this.worldObj.setBlockMetadataWithNotify(i1, i2, i3, this.data);
+			if (!this.worldObj.isRemote) {
+				this.worldObj.setBlockWithNotify(i1, i2, i3, this.blockID);
+				if(this.data != 0) {
+					this.worldObj.setBlockMetadataWithNotify(i1, i2, i3, this.data);
+				}
+	
+				if(this.tileEntity != null) {
+					this.worldObj.setBlockTileEntity(i1, i2, i3, this.tileEntity);
+				}
 			}
-
-			if(this.tileEntity != null) {
-				this.worldObj.setBlockTileEntity(i1, i2, i3, this.tileEntity);
-			}
-
 		}
 	}
 
@@ -377,7 +396,7 @@ public class EntityMovingPiston extends Entity {
 		nBTTagCompound1.setInteger("xstart", this.xstart);
 		nBTTagCompound1.setInteger("ystart", this.ystart);
 		nBTTagCompound1.setInteger("zstart", this.zstart);
-		nBTTagCompound1.setByte("Block", (byte)this.blockid);
+		nBTTagCompound1.setByte("Block", (byte)this.blockID);
 		nBTTagCompound1.setByte("Data", (byte)this.data);
 		nBTTagCompound1.setBoolean("Extending", this.extending);
 	}
@@ -389,7 +408,7 @@ public class EntityMovingPiston extends Entity {
 		this.xstart = nBTTagCompound1.getInteger("xstart");
 		this.ystart = nBTTagCompound1.getInteger("ystart");
 		this.zstart = nBTTagCompound1.getInteger("zstart");
-		this.blockid = nBTTagCompound1.getByte("Block") & 255;
+		this.blockID = nBTTagCompound1.getByte("Block") & 255;
 		this.data = nBTTagCompound1.getByte("Data") & 255;
 		this.extending = nBTTagCompound1.getBoolean("Extending");
 		this.timeout = 0;

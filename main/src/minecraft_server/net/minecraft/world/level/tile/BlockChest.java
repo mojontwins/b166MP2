@@ -68,13 +68,13 @@ public class BlockChest extends BlockContainer {
 
 	}
 
-	public void onBlockPlacedBy(World world1, int i2, int i3, int i4, EntityLiving entityLiving5) {
+	public void onBlockPlacedBy(World world1, int i2, int i3, int i4, EntityLiving entityLiving) {
 		int i6 = world1.getBlockId(i2, i3, i4 - 1);
 		int i7 = world1.getBlockId(i2, i3, i4 + 1);
 		int i8 = world1.getBlockId(i2 - 1, i3, i4);
 		int i9 = world1.getBlockId(i2 + 1, i3, i4);
 		byte b10 = 0;
-		int i11 = MathHelper.floor_double((double)(entityLiving5.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		int i11 = MathHelper.floor_double((double)(entityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 		if(i11 == 0) {
 			b10 = 2;
 		}

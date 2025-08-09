@@ -76,6 +76,7 @@ import net.minecraft.network.packet.Packet61DoorChange;
 import net.minecraft.network.packet.Packet6SpawnPosition;
 import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.network.packet.Packet71Weather;
+import net.minecraft.network.packet.Packet88MovingPiston;
 import net.minecraft.network.packet.Packet89SetArmor;
 import net.minecraft.network.packet.Packet8UpdateHealth;
 import net.minecraft.network.packet.Packet90ArmoredMobSpawn;
@@ -92,6 +93,7 @@ import net.minecraft.world.entity.item.EntityBoat;
 import net.minecraft.world.entity.item.EntityFallingSand;
 import net.minecraft.world.entity.item.EntityItem;
 import net.minecraft.world.entity.item.EntityMinecart;
+import net.minecraft.world.entity.item.EntityMovingPiston;
 import net.minecraft.world.entity.item.EntityTNTPrimed;
 import net.minecraft.world.entity.monster.EntityArmoredMob;
 import net.minecraft.world.entity.monster.IArmoredMob;
@@ -173,85 +175,98 @@ public class NetClientHandler extends NetHandler {
 		this.worldClient.addEntityToWorld(packet21PickupSpawn1.entityId, entityItem8);
 	}
 
-	public void handleVehicleSpawn(Packet23VehicleSpawn packet23VehicleSpawn1) {
-		double d2 = (double)packet23VehicleSpawn1.xPosition / 32.0D;
-		double d4 = (double)packet23VehicleSpawn1.yPosition / 32.0D;
-		double d6 = (double)packet23VehicleSpawn1.zPosition / 32.0D;
-		Object object8 = null;
-		if(packet23VehicleSpawn1.type == 10) {
-			object8 = new EntityMinecart(this.worldClient, d2, d4, d6, 0);
+	public void handleVehicleSpawn(Packet23VehicleSpawn packet) {
+		double x = (double)packet.xPosition / 32.0D;
+		double y = (double)packet.yPosition / 32.0D;
+		double z = (double)packet.zPosition / 32.0D;
+		Entity entity = null;
+		
+		if(packet.type == 10) {
+			entity = new EntityMinecart(this.worldClient, x, y, z, 0);
 			
-		} else if(packet23VehicleSpawn1.type == 11) {
-			object8 = new EntityMinecart(this.worldClient, d2, d4, d6, 1);
+		} else if(packet.type == 11) {
+			entity = new EntityMinecart(this.worldClient, x, y, z, 1);
 			
-		} else if(packet23VehicleSpawn1.type == 12) {
-			object8 = new EntityMinecart(this.worldClient, d2, d4, d6, 2);
+		} else if(packet.type == 12) {
+			entity = new EntityMinecart(this.worldClient, x, y, z, 2);
 			
-		} else if(packet23VehicleSpawn1.type == 90) {
-			object8 = new EntityFishHook(this.worldClient, d2, d4, d6);
+		} else if(packet.type == 90) {
+			entity = new EntityFishHook(this.worldClient, x, y, z);
 			
-		} else if(packet23VehicleSpawn1.type == 60) {
-			object8 = new EntityArrow(this.worldClient, d2, d4, d6);
+		} else if(packet.type == 60) {
+			entity = new EntityArrow(this.worldClient, x, y, z);
 			
-		} else if(packet23VehicleSpawn1.type == 61) {
-			object8 = new EntitySnowball(this.worldClient, d2, d4, d6);
+		} else if(packet.type == 61) {
+			entity = new EntitySnowball(this.worldClient, x, y, z);
 
-		} else if(packet23VehicleSpawn1.type == 63) {
-			object8 = new EntityFireball(this.worldClient, d2, d4, d6, (double)packet23VehicleSpawn1.speedX / 8000.0D, (double)packet23VehicleSpawn1.speedY / 8000.0D, (double)packet23VehicleSpawn1.speedZ / 8000.0D);
-			packet23VehicleSpawn1.throwerEntityId = 0;
+		} else if(packet.type == 63) {
+			entity = new EntityFireball(this.worldClient, x, y, z, (double)packet.speedX / 8000.0D, (double)packet.speedY / 8000.0D, (double)packet.speedZ / 8000.0D);
+			packet.throwerEntityId = 0;
 			
-		} else if(packet23VehicleSpawn1.type == 64) {
-			object8 = new EntitySmallFireball(this.worldClient, d2, d4, d6, (double)packet23VehicleSpawn1.speedX / 8000.0D, (double)packet23VehicleSpawn1.speedY / 8000.0D, (double)packet23VehicleSpawn1.speedZ / 8000.0D);
-			packet23VehicleSpawn1.throwerEntityId = 0;
+		} else if(packet.type == 64) {
+			entity = new EntitySmallFireball(this.worldClient, x, y, z, (double)packet.speedX / 8000.0D, (double)packet.speedY / 8000.0D, (double)packet.speedZ / 8000.0D);
+			packet.throwerEntityId = 0;
 			
-		} else if(packet23VehicleSpawn1.type == 62) {
-			object8 = new EntityEgg(this.worldClient, d2, d4, d6);
+		} else if(packet.type == 62) {
+			entity = new EntityEgg(this.worldClient, x, y, z);
 			
-		} else if(packet23VehicleSpawn1.type == 1) {
-			object8 = new EntityBoat(this.worldClient, d2, d4, d6);
+		} else if(packet.type == 1) {
+			entity = new EntityBoat(this.worldClient, x, y, z);
 			
-		} else if(packet23VehicleSpawn1.type == 50) {
-			object8 = new EntityTNTPrimed(this.worldClient, d2, d4, d6);
+		} else if(packet.type == 50) {
+			entity = new EntityTNTPrimed(this.worldClient, x, y, z);
 	
-		} else if(packet23VehicleSpawn1.type == 70) {
-			object8 = new EntityFallingSand(this.worldClient, d2, d4, d6, Block.sand.blockID);
+		} else if(packet.type == 70) {
+			entity = new EntityFallingSand(this.worldClient, x, y, z, Block.sand.blockID);
 			
-		} else if(packet23VehicleSpawn1.type == 71) {
-			object8 = new EntityFallingSand(this.worldClient, d2, d4, d6, Block.gravel.blockID);
+		} else if(packet.type == 71) {
+			entity = new EntityFallingSand(this.worldClient, x, y, z, Block.gravel.blockID);
 			
 		} 
 
-		if(object8 != null) {
-			((Entity)object8).serverPosX = packet23VehicleSpawn1.xPosition;
-			((Entity)object8).serverPosY = packet23VehicleSpawn1.yPosition;
-			((Entity)object8).serverPosZ = packet23VehicleSpawn1.zPosition;
-			((Entity)object8).rotationYaw = 0.0F;
-			((Entity)object8).rotationPitch = 0.0F;
-			Entity[] entity9 = ((Entity)object8).getParts();
+		if(entity != null) {
+			((Entity)entity).serverPosX = packet.xPosition;
+			((Entity)entity).serverPosY = packet.yPosition;
+			((Entity)entity).serverPosZ = packet.zPosition;
+			((Entity)entity).rotationYaw = 0.0F;
+			((Entity)entity).rotationPitch = 0.0F;
+			Entity[] entity9 = ((Entity)entity).getParts();
 			if(entity9 != null) {
-				int i10 = packet23VehicleSpawn1.entityId - ((Entity)object8).entityId;
+				int i10 = packet.entityId - ((Entity)entity).entityId;
 
 				for(int i11 = 0; i11 < entity9.length; ++i11) {
 					entity9[i11].entityId += i10;
 				}
 			}
 
-			((Entity)object8).entityId = packet23VehicleSpawn1.entityId;
-			this.worldClient.addEntityToWorld(packet23VehicleSpawn1.entityId, (Entity)object8);
-			if(packet23VehicleSpawn1.throwerEntityId > 0) {
-				if(packet23VehicleSpawn1.type == 60 || packet23VehicleSpawn1.type == 105) {
-					Entity entity12 = this.getEntityByID(packet23VehicleSpawn1.throwerEntityId);
+			((Entity)entity).entityId = packet.entityId;
+			this.worldClient.addEntityToWorld(packet.entityId, (Entity)entity);
+			if(packet.throwerEntityId > 0) {
+				if(packet.type == 60 || packet.type == 105) {
+					Entity entity12 = this.getEntityByID(packet.throwerEntityId);
 					if(entity12 instanceof EntityLiving) {
-						((EntityArrow)object8).shootingEntity = (EntityLiving)entity12;
+						((EntityArrow)entity).shootingEntity = (EntityLiving)entity12;
 					}
 				}
 
-				((Entity)object8).setVelocity((double)packet23VehicleSpawn1.speedX / 8000.0D, (double)packet23VehicleSpawn1.speedY / 8000.0D, (double)packet23VehicleSpawn1.speedZ / 8000.0D);
+				((Entity)entity).setVelocity((double)packet.speedX / 8000.0D, (double)packet.speedY / 8000.0D, (double)packet.speedZ / 8000.0D);
 			}
 		}
 
 	}
+	
+	@Override
+	public void handleMovingPiston(Packet88MovingPiston packet) {
+		EntityMovingPiston piston = new EntityMovingPiston(this.worldClient, packet.x, packet.y, packet.z, packet.sticky);
+		piston.xmove = packet.xmove;
+		piston.ymove = packet.ymove;
+		piston.zmove = packet.zmove;
+		piston.data = packet.data;
+		piston.entityId = packet.entityId;
+		this.worldClient.addEntityToWorld(packet.entityId, (Entity)piston);
+	}
 
+	@Override
 	public void handleWeather(Packet71Weather packet71Weather1) {
 		double d2 = (double)packet71Weather1.posX / 32.0D;
 		double d4 = (double)packet71Weather1.posY / 32.0D;

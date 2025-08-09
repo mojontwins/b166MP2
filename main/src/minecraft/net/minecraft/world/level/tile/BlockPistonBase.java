@@ -10,138 +10,175 @@ import net.minecraft.world.level.material.Material;
 public class BlockPistonBase extends Block {
 	private boolean sticky;
 
-	public BlockPistonBase(int i1, int i2, boolean z3) {
-		super(i1, Material.iron);
-		this.sticky = z3;
-		this.blockIndexInTexture = i2;
+	public BlockPistonBase(int id, int blockIndexInTexture, boolean sticky) {
+		super(id, Material.iron);
+		this.sticky = sticky;
+		this.blockIndexInTexture = blockIndexInTexture;
 	}
 
-	private void toggleBlock(World world1, int i2, int i3, int i4, boolean z5) {
-		int i6 = world1.getBlockMetadata(i2, i3, i4);
-		if((i6 & 8) == 0) {
-			if(!z5) {
+	private void toggleBlock(World world, int x, int y, int z, boolean powered) {
+		int meta = world.getBlockMetadata(x, y, z);
+
+		// Failsafe. meta & 8 means the piston is already extended.
+
+		if((meta & 8) == 0) {
+			if(!powered) {
 				return;
 			}
-		} else if(z5) {
+		} else if(powered) {
 			return;
 		}
 
-		i6 &= 7;
-		int i7 = i2;
-		int i8 = i3;
-		int i9 = i4;
-		if(i6 == 0) {
-			i8 = i3 - 1;
+		meta &= 7;
+
+		int xH = x;
+		int yH = y;
+		int zH = z;
+
+		// meta & 7 tells us in which direction it extended.
+
+		if(meta == 0) {
+			yH = y - 1;
 		}
 
-		if(i6 == 1) {
-			++i8;
+		if(meta == 1) {
+			++yH;
 		}
 
-		if(i6 == 2) {
-			i9 = i4 - 1;
+		if(meta == 2) {
+			zH = z - 1;
 		}
 
-		if(i6 == 3) {
-			++i9;
+		if(meta == 3) {
+			++zH;
 		}
 
-		if(i6 == 4) {
-			i7 = i2 - 1;
+		if(meta == 4) {
+			xH = x - 1;
 		}
 
-		if(i6 == 5) {
-			++i7;
+		if(meta == 5) {
+			++xH;
 		}
 
-		int i10 = world1.getBlockId(i7, i8, i9);
-		if((i10 == Block.classicPiston.blockID || i10 == Block.classicStickyPiston.blockID) && !z5) {
+		int blockID = world.getBlockId(xH, yH, zH);
+
+		if((blockID == Block.classicPiston.blockID || blockID == Block.classicStickyPiston.blockID) && !powered) {
+			// If the head position has a piston head and we are here means that such piston is extended.
+			// And that it should retract.
+
 			BlockPiston.resetBase = false;
-			EntityMovingPiston.buildRetractingPistons(world1, i7, i8, i9, i2, i3, i4, i6, this.sticky);
-			world1.setBlockWithNotify(i7, i8, i9, 0);
+			
+			// retract head from (xH, yH, zH) to base (x, y, z).
+			EntityMovingPiston.buildRetractingPistons(world, xH, yH, zH, x, y, z, meta, this.sticky);
+			world.setBlockWithNotify(xH, yH, zH, 0);
+
 			BlockPiston.resetBase = true;
-		} else if(z5) {
-			EntityMovingPiston movingPiston11 = new EntityMovingPiston(world1, i2, i3, i4, this.sticky);
-			if(!EntityMovingPiston.buildPistons(movingPiston11, i7, i8, i9, i6)) {
+		} else if(powered) {
+			// in this case, extend the piston
+
+			EntityMovingPiston piston = new EntityMovingPiston(world, x, y, z, this.sticky);
+			if(!EntityMovingPiston.buildPistons(piston, xH, yH, zH, meta)) {
 				return;
 			}
 
-			world1.setBlockMetadataWithNotify(i2, i3, i4, i6 | 8);
-			world1.markBlockAsNeedsUpdate(i2, i3, i4);
+			// meta | 8 means extended.
+			world.setBlockMetadataWithNotify(x, y, z, meta | 8);
+			world.markBlockAsNeedsUpdate(x, y, z);
 		}
 
 	}
 
-	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
-		if(i5 > 0 && Block.blocksList[i5].canProvidePower()) {
-			boolean z6 = world1.isBlockIndirectlyGettingPowered(i2, i3, i4) || world1.isBlockIndirectlyGettingPowered(i2, i3 + 1, i4);
-			this.toggleBlock(world1, i2, i3, i4, z6);
+	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, int blockID) {
+		if(blockID > 0 && Block.blocksList[blockID].canProvidePower()) {
+			boolean powered = world.isBlockIndirectlyGettingPowered(x, y, z) || world.isBlockIndirectlyGettingPowered(x, y + 1, z);
+			this.toggleBlock(world, x, y, z, powered);
 		}
 	}
 
+	@Override
 	public boolean isOpaqueCube() {
 		return false;
 	}
 
+	@Override
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
 
+	@Override
 	public int getRenderType() {
 		return 109;
 	}
 
-	private int getData(World world1, int i2, int i3, int i4, EntityLiving entityLiving5) {
-		if(MathHelper.abs((float)entityLiving5.posX - (float)i2) < 2.0F && MathHelper.abs((float)entityLiving5.posZ - (float)i4) < 2.0F) {
-			if(entityLiving5.posY - (double)i3 > 2.0D) {
+	private int getData(World world, int x, int y, int z, EntityLiving entityLiving) {
+		// TODO: This sets meta depending only on angle. I have to change this, so if 
+		// the player clicks the ground or a celing the orientations are correctly set to 0/1.
+		
+		if(
+				MathHelper.abs((float)entityLiving.posX - (float)x) < 2.0F && 
+				MathHelper.abs((float)entityLiving.posZ - (float)z) < 2.0F
+		) {
+			if(entityLiving.posY - (double)y > 2.0D) {
 				return 1;
 			}
 
-			if((double)i3 - entityLiving5.posY > 0.0D) {
+			if((double)y - entityLiving.posY > 0.0D) {
 				return 0;
 			}
 		}
 
-		int i6 = MathHelper.floor_double((double)(entityLiving5.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-		if(i6 == 0) {
+		int angle = MathHelper.floor_double((double)(entityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		if(angle == 0) {
 			return 2;
-		} else if(i6 == 1) {
+		} else if(angle == 1) {
 			return 5;
-		} else if(i6 == 2) {
+		} else if(angle == 2) {
 			return 3;
-		} else if(i6 == 3) {
+		} else if(angle == 3) {
 			return 4;
 		} else {
 			throw new IllegalStateException("Impossible values!");
 		}
 	}
 
-	public boolean blockActivated(World world1, int i2, int i3, int i4, EntityPlayer entityPlayer5) {
-		if(world1.isRemote) {
+	/*
+	@Override
+	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer thePlayer) {
+		if(world.isRemote) {
 			return true;
 		} else {
-			int i6 = world1.getBlockMetadata(i2, i3, i4);
-			if((i6 & 8) != 0) {
+			int meta = world.getBlockMetadata(x, y, z);
+			if((meta & 8) != 0) {
 				return false;
 			} else {
-				int i7 = this.getData(world1, i2, i3, i4, entityPlayer5);
-				if(i7 == i6) {
+				int data = this.getData(world, x, y, z, thePlayer);
+				if(data == meta) {
 					return false;
 				} else {
-					world1.setBlockMetadataWithNotify(i2, i3, i4, i7);
-					world1.markBlockAsNeedsUpdate(i2, i3, i4);
+					world.setBlockMetadataWithNotify(x, y, z, data);
+					world.markBlockAsNeedsUpdate(x, y, z);
 					return true;
 				}
 			}
 		}
 	}
-
-	public void onBlockPlacedBy(World world1, int i2, int i3, int i4, EntityLiving entityLiving5) {
-		world1.setBlockMetadata(i2, i3, i4, this.getData(world1, i2, i3, i4, entityLiving5));
-		this.onNeighborBlockChange(world1, i2, i3, i4, Block.redstoneWire.blockID);
+	*/
+	
+	@Override
+	public void onBlockPlaced(World world, int x, int y, int z, int face, float xWithinFace, float yWithinFace, float zWithinFace, boolean keyPressed) {
+		world.setBlockMetadata(x, y, z, face);
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entityLiving) {
+		//world.setBlockMetadata(x, y, z, this.getData(world, x, y, z, entityLiving));
+		this.onNeighborBlockChange(world, x, y, z, Block.redstoneWire.blockID);
 	}
 
-	public void onPistonPushed(World world1, int i2, int i3, int i4) {
-		this.onNeighborBlockChange(world1, i2, i3, i4, Block.redstoneWire.blockID);
+	public void onPistonPushed(World world, int x, int y, int z) {
+		this.onNeighborBlockChange(world, x, y, z, Block.redstoneWire.blockID);
 	}
+
 }

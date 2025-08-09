@@ -789,7 +789,7 @@ public class Block implements ITextureProvider {
 		return true;
 	}
 
-	public void onBlockPlacedBy(World world1, int i2, int i3, int i4, EntityLiving entityLiving5) {
+	public void onBlockPlacedBy(World world1, int i2, int i3, int i4, EntityLiving entityLiving) {
 	}
 
 	public Block setBlockName(String string1) {

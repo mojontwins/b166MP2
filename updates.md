@@ -154,13 +154,30 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 
 # b16.6.6
 
-* [ ] Expand atlases to 256x512.
+* [X] Expand atlases to 256x512.
 * [X] Add a means to get cocoa seeds in a custom tree.
 	* Cocoa tree = normal tree with hanging cocoa pod blocks.
 		* Added a `BlockTreeFruit` which will contain all fruits that hang from trees. 
 			* meta = 0 -> Cocoa pods.
 		* Added a `withFruit(id)` to add fruit to normal trees.
-* [ ] Colored sheep spawning.
+* [X] Colored sheep spawning.
+* [X] Hippoplatimus pistons
+
+# b16.6.6_1
+
+* [ ] Goblins
+	[ ] Add new blocks and items.
+	[ ] Check the villages out. How are they generated? Could they be rewritten as normal features (i.e. are they less than 31x31 and fit in 2x2 chunks?) or, should they be rewritten in my own feature system?
+	[ ] Add Entities.
+
+# b16.6.6_2
+
+* [ ] Nethercraft
+
+# b16.6.6_3
+
+* [ ] IC1?
+
 
 ## Diary
 
@@ -171,10 +188,19 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 * Added BlockTreeFruit which will contain all types of hanging fruit from trees. Meta 0 is cocoa pods which will drop cocoa beans.
 * Added the ability for normal vanilla trees to receive a Blockstate and a chance so they can grow hanging fruit (only on generation).
 
+#### 20250807
+
+* Added all the classes for the pistons mod. Does sand needs modifications? I can't seem to propel it upwards. Need to change how orientation is decided when placing. EntityFallingSand in beta was different -> a tiny `else` breaks compatibility. I guess the else is to get some oomph if Sand is just supposed to be falling. I've commented it but I better softlock it using a new `GameRule`. So pistons are working
+* Pistons work in SMP, but the animation is of course not shown in teh client. Have to think about how I should do this.
+
+#### 20250808
+
+* I've been struggling for a while to make animations server->client. I'm trying to do this via the entity tracker. Problem is, extending or retracting pistons do create & spawn entities in the world to make the animation. That fires up the tracker. `EntityMovingPiston` `onUpdate` method moves the piston using its xmove, ymove, zmove from the position it was created at. I'm using this as a second alternative: i'll store x, y, z and xmove, ymove, zmove in the packet and will try to recreate the entity client-side just like that. And THAT DID IT! YAY! This was hard.
+
 # Credits
 
-* Chocolate Mod by X8xScoutx8X
-
+* Chocolate Mod (just the inspiration for now, sorry) by X8xScoutx8X
+* Pistons Mod by Hyppoplatimus.
 
 # To transfer to sister projects ...
 

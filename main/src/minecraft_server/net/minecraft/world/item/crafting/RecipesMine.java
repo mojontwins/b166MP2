@@ -9,6 +9,9 @@ public class RecipesMine {
 		cm.addRecipe(new ItemStack(Block.blockCoal, 1), new Object[] {"###", "###", "###", '#', Item.coal});
 		cm.addRecipe(new ItemStack(Item.coal, 9), new Object[] {"#", '#', Block.blockCoal});
 		
+		cm.addRecipe(new ItemStack(Block.classicPistonBase, 1), new Object[]{" X ", "X#X", "XXX", 'X', Item.ingotIron, '#', Item.redstone});
+		cm.addRecipe(new ItemStack(Block.classicStickyPistonBase, 1), new Object[]{" X ", "X#X", "XXX", 'X', Item.ingotGold, '#', Item.redstone});
+		
 		cm.addShapelessRecipe(new ItemStack(Item.recipeBook, 1), new Object[]{Item.book, new ItemStack(Item.dyePowder, 1, 0)});
 		
 	}

@@ -152,8 +152,8 @@ public class BlockRedstoneRepeater extends BlockDirectional {
 		return true;
 	}
 
-	public void onBlockPlacedBy(World world, int i2, int i3, int i4, EntityLiving entityLiving5) {
-		int i6 = ((MathHelper.floor_double((double)(entityLiving5.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) + 2) % 4;
+	public void onBlockPlacedBy(World world, int i2, int i3, int i4, EntityLiving entityLiving) {
+		int i6 = ((MathHelper.floor_double((double)(entityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) + 2) % 4;
 		world.setBlockMetadataWithNotify(i2, i3, i4, i6);
 		boolean z7 = this.ignoreTick(world, i2, i3, i4, i6);
 		if(z7) {

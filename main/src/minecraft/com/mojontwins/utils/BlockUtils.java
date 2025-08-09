@@ -36,14 +36,14 @@ public class BlockUtils {
 	}
 
 	public static short metaBlockAsEncodedShort(MetaBlock metaBlock) {
-		return (short)(metaBlock.blockId() | (metaBlock.metadata() << 8));
+		return (short)(metaBlock.blockID() | (metaBlock.metadata() << 8));
 	}
 
-	public static boolean isBlockFreezable(int blockId) {
-		return blockId == Block.waterMoving.blockID || blockId == Block.waterStill.blockID;
+	public static boolean isBlockFreezable(int blockID) {
+		return blockID == Block.waterMoving.blockID || blockID == Block.waterStill.blockID;
 	}
 
-	public static boolean isNetherSoil(int blockId) {
+	public static boolean isNetherSoil(int blockID) {
 		return false;
 	}
 	

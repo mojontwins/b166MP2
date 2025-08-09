@@ -20,6 +20,7 @@ public class BiomeGenBaseBeta extends BiomeGenBase {
 		return new BiomeDecoratorBeta(this);
 	}
 	
+	@Override
 	public void replaceBlocksForBiome(
 			IChunkProvider generator, World world, Random rand, 
 			int chunkX, int chunkZ, int x, int z, 
@@ -101,4 +102,5 @@ public class BiomeGenBaseBeta extends BiomeGenBase {
 			}
 		}
 	}
+
 }

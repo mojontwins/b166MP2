@@ -20,6 +20,7 @@ import net.minecraft.world.entity.item.EntityBoat;
 import net.minecraft.world.entity.item.EntityFallingSand;
 import net.minecraft.world.entity.item.EntityItem;
 import net.minecraft.world.entity.item.EntityMinecart;
+import net.minecraft.world.entity.item.EntityMovingPiston;
 import net.minecraft.world.entity.item.EntityTNTPrimed;
 import net.minecraft.world.entity.monster.EntityClassicSkeleton;
 import net.minecraft.world.entity.monster.EntityClassicZombie;
@@ -175,6 +176,8 @@ public class EntityList {
 		addMapping(EntityOcelot.class, "Ozelot", 98, 15720061, 5653556);
 		addMapping(EntityIronGolem.class, "VillagerGolem", 99);
 		addMapping(EntityVillager.class, "Villager", 120, 5651507, 12422002);
+		
+		addMapping(EntityMovingPiston.class, "MovingPiston", 119);
 		
 		addMapping(EntityClassicZombie.class, "ZombieClassic", 150);
 		addMapping(EntityClassicSkeleton.class, "SkeletonClassic", 151);

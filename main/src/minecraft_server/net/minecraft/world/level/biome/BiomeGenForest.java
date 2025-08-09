@@ -5,9 +5,9 @@ import java.util.Random;
 import net.minecraft.world.entity.animal.EntityWolf;
 import net.minecraft.world.level.SpawnListEntry;
 import net.minecraft.world.level.levelgen.feature.WorldGenBigTree;
-import net.minecraft.world.level.levelgen.feature.WorldGenForest;
-import net.minecraft.world.level.levelgen.feature.WorldGenTrees;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenForest;
+import net.minecraft.world.level.levelgen.feature.trees.WorldGenTrees;
 
 public class BiomeGenForest extends BiomeGenBaseBeta {
 	public BiomeGenForest(int biomeID) {

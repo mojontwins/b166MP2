@@ -15,18 +15,79 @@
 			"file": "updates.md",
 			"settings":
 			{
-				"buffer_size": 3243,
+				"buffer_size": 7549,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "\tpublic void setChunkData(byte[] chunkData, int usedSubChunks, int blockMSBSubchunks, boolean includeInitialize) {\n\t\tint byteOffs = 0;\n\n\t\tint i;\n\t\tfor(i = 0; i < this.storageArrays.length; ++i) {\n\t\t\tif((usedSubChunks & 1 << i) != 0) {\n\t\t\t\tif(this.storageArrays[i] == null) {\n\t\t\t\t\tthis.storageArrays[i] = new ExtendedBlockStorage(i << 4);\n\t\t\t\t}\n\n\t\t\t\tbyte[] byteArray = this.storageArrays[i].getBlockLSBArray();\n\t\t\t\tSystem.arraycopy(chunkData, byteOffs, byteArray, 0, byteArray.length);\n\t\t\t\tbyteOffs += byteArray.length;\n\t\t\t} else if(includeInitialize && this.storageArrays[i] != null) {\n\t\t\t\tthis.storageArrays[i] = null;\n\t\t\t}\n\t\t}\n\n\t\tNibbleArray nibbles;\n\t\tfor(i = 0; i < this.storageArrays.length; ++i) {\n\t\t\tif((usedSubChunks & 1 << i) != 0 && this.storageArrays[i] != null) {\n\t\t\t\tnibbles = this.storageArrays[i].getMetadataArray();\n\t\t\t\tSystem.arraycopy(chunkData, byteOffs, nibbles.data, 0, nibbles.data.length);\n\t\t\t\tbyteOffs += nibbles.data.length;\n\t\t\t}\n\t\t}\n\n\t\tfor(i = 0; i < this.storageArrays.length; ++i) {\n\t\t\tif((usedSubChunks & 1 << i) != 0 && this.storageArrays[i] != null) {\n\t\t\t\tnibbles = this.storageArrays[i].getBlocklightArray();\n\t\t\t\tSystem.arraycopy(chunkData, byteOffs, nibbles.data, 0, nibbles.data.length);\n\t\t\t\tbyteOffs += nibbles.data.length;\n\t\t\t}\n\t\t}\n\n\t\tfor(i = 0; i < this.storageArrays.length; ++i) {\n\t\t\tif((usedSubChunks & 1 << i) != 0 && this.storageArrays[i] != null) {\n\t\t\t\tnibbles = this.storageArrays[i].getSkylightArray();\n\t\t\t\tSystem.arraycopy(chunkData, byteOffs, nibbles.data, 0, nibbles.data.length);\n\t\t\t\tbyteOffs += nibbles.data.length;\n\t\t\t}\n\t\t}\n\n\t\tfor(i = 0; i < this.storageArrays.length; ++i) {\n\t\t\tif((blockMSBSubchunks & 1 << i) != 0) {\n\t\t\t\tif(this.storageArrays[i] == null) {\n\t\t\t\t\tbyteOffs += 2048;\n\t\t\t\t} else {\n\t\t\t\t\tnibbles = this.storageArrays[i].getBlockMSBArray();\n\t\t\t\t\tif(nibbles == null) {\n\t\t\t\t\t\tnibbles = this.storageArrays[i].createBlockMSBArray();\n\t\t\t\t\t}\n\n\t\t\t\t\tSystem.arraycopy(chunkData, byteOffs, nibbles.data, 0, nibbles.data.length);\n\t\t\t\t\tbyteOffs += nibbles.data.length;\n\t\t\t\t}\n\t\t\t} else if(includeInitialize && this.storageArrays[i] != null && this.storageArrays[i].getBlockMSBArray() != null) {\n\t\t\t\tthis.storageArrays[i].resetMSBarray();\n\t\t\t}\n\t\t}\n\n\t\tif(includeInitialize) {\n\t\t\tSystem.arraycopy(chunkData, byteOffs, this.blockBiomeArray, 0, this.blockBiomeArray.length);\n\t\t}\n\n\t\tfor(i = 0; i < this.storageArrays.length; ++i) {\n\t\t\tif(this.storageArrays[i] != null && (usedSubChunks & 1 << i) != 0) {\n\t\t\t\tthis.storageArrays[i].cleanupAndUpdateCounters();\n\t\t\t}\n\t\t}\n\n\t\tthis.generateHeightMap();\n\t\tIterator<TileEntity> iterator10 = this.chunkTileEntityMap.values().iterator();\n\n\t\twhile(iterator10.hasNext()) {\n\t\t\tTileEntity tileEntity9 = (TileEntity)iterator10.next();\n\t\t\ttileEntity9.updateContainingBlockInfo();\n\t\t}\n\n\t}",
+			"file": "main/src/minecraft/net/minecraft/world/entity/item/EntityFallingSand.java",
 			"settings":
 			{
-				"buffer_size": 2763,
+				"buffer_size": 2830,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/Git/mk1v4/games_zx/hobbit/dev/pantallas.h",
+			"settings":
+			{
+				"buffer_size": 4195,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "main/src/minecraft/net/minecraft/world/level/biome/BiomeGenBaseBeta.java",
+			"settings":
+			{
+				"buffer_size": 3122,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "\tprivate boolean canSmelt() {\n\t\tif(this.furnaceItemStacks[0] == null) {\n\t\t\treturn false;\n\t\t} else {\n\t\t\tItemStack stack = FurnaceRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0].getItem().shiftedIndex);\n\t\t\treturn stack == null ? false : (this.furnaceItemStacks[2] == null ? true : (!this.furnaceItemStacks[2].isItemEqual(stack) ? false : (this.furnaceItemStacks[2].stackSize < this.getInventoryStackLimit() && this.furnaceItemStacks[2].stackSize < this.furnaceItemStacks[2].getMaxStackSize() ? true : this.furnaceItemStacks[2].stackSize < stack.getMaxStackSize())));\n\t\t}\n\t}",
+			"settings":
+			{
+				"buffer_size": 586,
 				"line_ending": "Windows",
-				"name": "public void setChunkData(byte[] chunkData, int us"
+				"name": "private boolean canSmelt() {"
+			}
+		},
+		{
+			"contents": "\tpublic void setInventorySlotContents(int slotId, ItemStack stack) {\n\t\tthis.furnaceItemStacks[slotId] = stack;\n\t\tif(stack != null && stack.stackSize > this.getInventoryStackLimit()) {\n\t\t\tstack.stackSize = this.getInventoryStackLimit();\n\t\t}\n\n\t}",
+			"settings":
+			{
+				"buffer_size": 243,
+				"line_ending": "Windows",
+				"name": "public void setInventorySlotContents(int slotId,"
+			}
+		},
+		{
+			"file": "/D/Git/MC_Mods/pages/mystyle.css",
+			"settings":
+			{
+				"buffer_size": 332,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/Git/MC_Mods/index.html",
+			"settings":
+			{
+				"buffer_size": 459,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "\t// Skeletons call this method after shooting to adjust the heading so they \n\t// can target other entities.\n\tpublic void setArrowHeading(double dx, double dy, double dz, float n, float n2) {\n\t\tfloat distance = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);\n\t\tdx /= distance;\n\t\tdy /= distance;\n\t\tdz /= distance;\n\n\t\tdx += this.rand.nextGaussian() * 0.0075F * n2;\n\t\tdy += this.rand.nextGaussian() * 0.0075F * n2;\n\t\tdz += this.rand.nextGaussian() * 0.0075F * n2;\n\n\t\tdx *= n;\n\t\tdy *= n;\n\t\tdz *= n;\n\n\t\tthis.motionX = dx;\n\t\tthis.motionY = dy;\n\t\tthis.motionZ = dz;\n\n\t\tfloat hypotenuse = MathHelper.sqrt_double(dx * dx + dz * dz);\n\n\t\tthis.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(dx, dz) * 180.0D / (float)Math.PI);\n\t\tthis.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(dy, hypotenuse) * 180.0D / (float)Math.PI);\n\t\t\n\t\tthis.ticksInGround = 0;\n\t}",
+			"settings":
+			{
+				"buffer_size": 870,
+				"line_ending": "Windows",
+				"name": "// Skeletons call this method after shooting to a"
 			}
 		},
 		{
@@ -43,6 +104,54 @@
 			"settings":
 			{
 				"buffer_size": 324,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/Cosas/RMCP_tests/b1.2_02-20110517/net/minecraft/world/entity/projectile/Arrow.java",
+			"settings":
+			{
+				"buffer_size": 10728,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<html>\n<head>\n\t<title>Minecraft Inslands for b1.7.3</title>\n\t<link rel=\"stylesheet\" href=\"mystyle.css\">\n</head>\n<body>\n\t<div id=\"content\">\n\t\t<img src=\"img/logo.png\" />\n\t\t<h1>Intro</h1>\n\t\t<p><strong>Minecraft Inslands</strong> started as en experiments. I wanted to be able to play minecraft in really dated or limited hardware, specially hardware with slow storage, such as the early Asus Eee PC or Atom based laptops with MicroSDs cards on slow USB-like connections. Indev generated the whole world in memory once and played from there, but such an old version was not very well optimized and lacked many features I personally miss. So I had the idea on writing a custom WorldProvider for <strong>b1.7.3</strong> that created limited size worlds at once and stored them complete in RAM, so it could take advantage of a chunked world for better processing but it didn't have to rely on reading and writing new chunks to disk.</p>\n\t\t<p><strong>Inslands</strong> generates a finite world (3 sizes available) and terraforms it so it forms an island surrounded by ocean, or a set of floating islands. Sometimes you get a big bunch of land, sometimes you just get a tiny archipielago.</p>\n\t\t<p>Then I found it suitable to bring back the original Indev level themes and try to expand from there. When <strong>Inslands</strong> is complete, each level theme will have specific gameplay items and different experiences.</p>\n\t\t<p><strong>Inslands</strong> is far for complete but I've decided to release a new build everytime I complete a set of features.</p>\n\t\t<p>To play Inslands open b1.7.3's minecraft.jar and/or minecraft_server.jar with a file archiver, delete META_INF, and copy all files in the zips inside, or use the \"add to jar\" feature available in some launchers.</p>\n\t\t<p><strong>This mod will be eventually released as open source if form of patches</strong>, but if you are really interested get to contact me so I can invite you to the private github repo right now.</p>\n\t\t<p>This mod includes modified portions of these mods: Twilight Forest (for b1.7.3 & r1.3), Deadly Mosters, Better Dungeons (for b1.8 & r1.0.0), Hippoplatimus pistons and a couple of BOP trees (currently as placeholders).</p>\n\t\t<h2>Themes in the server</h2>\n\t\tTo select a level theme in the server use <tt>theme=Normal</tt>, <tt>Hell</tt>, <tt>Paradise</tt> or <tt>Forest</tt> in server.properties.\n\t\t<h1>Releases (latest first)</h1>\n\t\t<h2>v240825 - Preliminary nether</h2>\n\t\t<img src=\"img/2024-06-30_12.14.47.png\" />\n\t\t<p>I just forgot to update the site for a while so there are some in-dev versions missing. Most things have been tweaked, content and engine. This should perform even better. Than before. Limited world size is now taken in account for generation, spawning, block ticking, etc.</p>\n\t\t<ul><li>You can go to the nether!</li>\n\t\t<li>Supported: level themes affect the nether, but there's only personalization in the forest theme nether right now.</li>\n\t\t<li>A bunch of enhancements. Complex themes such as the forest theme should have less problems to actually generate a \"good\" island.</li>\n\t\t<li>Can't remember and can't be bothered XD</li>\n\t\t</ul>\n\t\t<p><a href=\"zip/inslands-v240825--client.zip\">v240625 client</a> | <a href=\"zip/inslands-v240825--server.zip\">v240825 server</a></p>\n\t\t<h2>v240625 - Theme forest features and engine boost!</h2>\n\t\t<img src=\"img/2024-06-26_16.20.00.png\" />\n\t\t<p>This update took longer than expected 'cause midway I adapted a mixture of optifine for b1.7.3 and optifine for r1.2.5. I also modified the way World updates entities so only entities in range are updated. This engine never unloads chunks so this is mandatory. The game is now very playable in old and weak hardware, which was one of the goals.</p>\n\t\t<ul><li>Optifine! That means you can tweak for speed, get free mipmaps, and a much faster chunk renderer and tessellator.</li>\n\t\t<li>Paradise theme is always at noon, mid-summer.</li>\n\t\t<li>Forest theme is now a permanent twilight. Seasons do hapen, tho.</li>\n\t\t<li>Configurable sunset/sunrise colours per theme basis. Activated for the Forest theme.</li>\n\t\t<li>Underhill, hedge and minotaur mazes for the Forest theme. Minor features from beta TF also added</li>\n\t\t<li>Twilight animals (from beta TF) and baddies (from 1.10) for the Forest theme.</li>\t\n\t\t<li>New level theme test: multi-biome, using beta-like ramps and colourizers. All cached, so it shoudln't impact performance. Works better on the Alpha (in fact, InfHell2's) world generator.</ul>\n\t\t<h3>Known problems</h3>\n\t\t<p>Hedge mazes don't hollow out the space so portions of them may not be accesible. Will be fixed for next release</p>\n\t\t<p><a href=\"zip/inslands-v240625--client.zip\">v240625 client</a> | <a href=\"zip/inslands-v240625--server.zip\">v240625 server</a></p>\n\t\t<h2>v240607 - Theme paradise features</h2>\n\t\t<img src=\"img/2024-06-05_16.27.56.png\" />\n\t\t<ul><li>Selecting theme paradise pre-selects the sky generator if no world type was selected.</li>\n\t\t<li>Sky generator works again. Noise gen has been slightly modified so land chunks are thicker so they can contain more dungeons.</li>\n\t\t<li>Falling into the void works again.</li>\n\t\t<li>Aerclouds for paradise floating islands (from Aether).</li>\n\t\t<li>Aether Bronze dungeons adapted to the fact that levels are small and they have to spawn more often, to allow for hollower sections.</li>\n\t\t<li>Find crying obsidian, obsidian wands and saddles in Bronze Dungeons.</li>\n\t\t<li>Substituted most vanilla animals for Aether variants. Fly to other islands using saddled pigs or cows.</li>\n\t\t<li>Small fixes</li></ul>\n\t\t<h3>Known problems</h3>\n\t\t<p>Still using b1.7.3 netcode, a situation which won't change for a while. So still wobbly server.</p>\n\t\t<p><a href=\"zip/inslands-v240607--client.zip\">v240607 client</a> | <a href=\"zip/inslands-v240607--server.zip\">v240607 server</a></p>\n\t\t<h2>v240602 - Theme hell features</h2>\n\t\t<img src=\"img/2024-06-03_15.46.11.png\" />\n\t\t<p>Very few trees have an actual canopy, so you must find a way to make wood renewable. Also, seeds only drop from tall grass and there's no grass. Luckily, there's plenty of fossils.\n\t\t<ul><li>Plant acorn on tilled field, fertilize to get new sapling.</li>\n\t\t<li>You can fertilize dead dirt to get new grass (small chance) or mushrooms.</li>\n\t\t<li>Big mushroom blocks can be smelted into charcoal. Charcoal and sticks gives you two torches.</li>\n\t\t<li>Craft an iron boat with 6 iron ingots.\n\t\t<li>Added achievements for all the above.</li>\n\t\t<li>Eating animation.</li>\n\t\t<li>Small fixes.</li></ul>\n\t\t<h3>Known problems</h3>\n\t\t<p>Wobbly server, need to do some proper review or port r125 netcode like in <strong>Infhell</strong>. Will leave for later (next?).</p>\n\t\t<p><a href=\"zip/inslands-v240602--client.zip\">v240602 client</a> | <a href=\"zip/inslands-v240602--server.zip\">v240602 server</a></p>\n\t</div>\n</body>",
+			"file": "/D/Cosas/Inslands/web/index.html",
+			"file_size": 6915,
+			"file_write_time": 133690915111014288,
+			"settings":
+			{
+				"buffer_size": 6847,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Searching 8108 files for \"cocoa\" (whole word)\n\nD:\\Cosas\\b166MP2\\en_US.lang:\n  656  item.dyePowder.red.name=Rose Red\n  657  item.dyePowder.green.name=Cactus Green\n  658: item.dyePowder.brown.name=Cocoa Beans\n  659  item.dyePowder.blue.name=Lapis Lazuli\n  660  item.dyePowder.purple.name=Purple Dye\n\nD:\\Cosas\\b166MP2\\main\\src\\minecraft\\lang\\en_US.lang:\n  656  item.dyePowder.red.name=Rose Red\n  657  item.dyePowder.green.name=Cactus Green\n  658: item.dyePowder.brown.name=Cocoa Beans\n  659  item.dyePowder.blue.name=Lapis Lazuli\n  660  item.dyePowder.purple.name=Purple Dye\n\nD:\\Cosas\\b166MP2\\main\\src\\minecraft_server\\lang\\en_US.lang:\n  532  item.dyePowder.green.name=Cactus Green\n  533  item.dyePowder.green.desc=\n  534: item.dyePowder.brown.name=Cocoa Beans\n  535  item.dyePowder.brown.desc=\n  536  item.dyePowder.blue.name=Lapis Lazuli\n\nD:\\Cosas\\b166MP2\\main\\workspace\\Client\\bin\\lang\\en_US.lang:\n  656  item.dyePowder.red.name=Rose Red\n  657  item.dyePowder.green.name=Cactus Green\n  658: item.dyePowder.brown.name=Cocoa Beans\n  659  item.dyePowder.blue.name=Lapis Lazuli\n  660  item.dyePowder.purple.name=Purple Dye\n\nD:\\Cosas\\b166MP2\\main\\workspace\\Server\\bin\\lang\\en_US.lang:\n  532  item.dyePowder.green.name=Cactus Green\n  533  item.dyePowder.green.desc=\n  534: item.dyePowder.brown.name=Cocoa Beans\n  535  item.dyePowder.brown.desc=\n  536  item.dyePowder.blue.name=Lapis Lazuli\n\nD:\\Cosas\\b166MP2\\updates.md:\n  155  # b16.6.6\n  156  \n  157: * Add a means to get cocoa seeds in a custom tree.\n  158  \t* [1.0.0] Chocolate Mod [v2.2] Over 3000 downloads! !!!! https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/1278267-1-0-0-chocolate-mod-v2-2-over-3000-downloads \n  159: \t\t* Took the idea of the tree wheree you can get cocoa seeds, \n  160  * Colored sheep spawning.\n  161  \n\nD:\\Cosas\\b166MP2\\vanilla\\jars\\lang\\en_US.lang:\n  532  item.dyePowder.green.name=Cactus Green\n  533  item.dyePowder.green.desc=\n  534: item.dyePowder.brown.name=Cocoa Beans\n  535  item.dyePowder.brown.desc=\n  536  item.dyePowder.blue.name=Lapis Lazuli\n\n8 matches across 7 files\n",
+			"settings":
+			{
+				"buffer_size": 2091,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"contents": "package net.minecraft.world.level.biome;\n\nimport java.util.Random;\n\nimport net.minecraft.world.level.Weather;\nimport net.minecraft.world.level.World;\nimport net.minecraft.world.level.chunk.IChunkProvider;\nimport net.minecraft.world.level.levelgen.ChunkProviderSky;\nimport net.minecraft.world.level.tile.Block;\n\npublic class BiomeGenBaseBeta extends BiomeGenBase {\n\n\tprotected boolean genBeaches = true;\n\t\n\tpublic BiomeGenBaseBeta(int id) {\n\t\tsuper(id);\n\t}\n\n\tprotected BiomeDecorator createBiomeDecorator() {\n\t\treturn new BiomeDecoratorBeta(this);\n\t}\n\t\n\t@Override\n\tpublic void replaceBlocksForBiome(\n\t\t\tIChunkProvider generator, World world, Random rand, \n\t\t\tint chunkX, int chunkZ, int x, int z, \n\t\t\tbyte[] blocks, byte[] metadata, int seaLevel, \n\t\t\tdouble sandNoise, double gravelNoise, double stoneNoise\n\t\t) {\n\t\t\n\t\tboolean generateSand = sandNoise + rand.nextDouble() * 0.2D > 0.0D;\n\t\tboolean generateGravel = gravelNoise + rand.nextDouble() * 0.2D > 3.0D;\n\t\tint height = (int)(stoneNoise / 3.0D + 3.0D + rand.nextDouble() * 0.25D);\n\t\tint monolithNoise = (int)(stoneNoise / 3.0D + 3.0D + rand.nextDouble() * 0.5D);\n\n\t\tint stoneHeight = -1;\n\t\tbyte topBlock = this.getTopBlock(rand);\n\t\tbyte fillerBlock = this.fillerBlock;\n\n\t\tfor(int y = 127; y >= 0; --y) {\n\t\t\tint index = x << 11 | z << 7 | y; // (x * 16 + z) * 128 + y\n\t\t\t\n\t\t\tif (y > 127 - monolithNoise) {\n\t\t\t\tblocks[index] = (byte)0;\n\t\t\t\tstoneHeight = -1;\n\t\t\t} else if(y <= 0 + rand.nextInt(5) && !(generator instanceof ChunkProviderSky)) {\n\t\t\t\tblocks[index] = (byte)Block.bedrock.blockID;\n\t\t\t} else {\n\t\t\t\tbyte blockID = blocks[index];\n\t\t\t\tbyte meta = metadata[index];\n\t\t\t\tif(blockID == 0) {\n\t\t\t\t\tstoneHeight = -1;\n\t\t\t\t} else if(blockID == Block.stone.blockID && meta == 0) {\n\t\t\t\t\tif(stoneHeight == -1) {\n\t\t\t\t\t\tif(height <= 0) {\n\t\t\t\t\t\t\ttopBlock = 0;\n\t\t\t\t\t\t\tfillerBlock = (byte)Block.stone.blockID;\n\t\t\t\t\t\t} else if(y >= seaLevel - 4 && y <= seaLevel + 1) {\n\t\t\t\t\t\t\ttopBlock = this.topBlock;\n\t\t\t\t\t\t\tfillerBlock = this.fillerBlock;\n\t\t\t\t\t\t\tif(generateGravel) {\n\t\t\t\t\t\t\t\ttopBlock = 0;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\tif(this.genBeaches ) {\n\t\t\t\t\t\t\t\tif(generateGravel) {\n\t\t\t\t\t\t\t\t\tfillerBlock = (byte)Block.gravel.blockID;\n\t\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\t\tif(generateSand) {\n\t\t\t\t\t\t\t\t\ttopBlock = (byte)Block.sand.blockID;\n\t\t\t\t\t\t\t\t\tfillerBlock = (byte)Block.sand.blockID;\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tif(y < seaLevel && topBlock == 0) {\n\t\t\t\t\t\t\tif(this.weather == Weather.cold) {\n\t\t\t\t\t\t\t\ttopBlock = (byte)Block.ice.blockID;\n\t\t\t\t\t\t\t} else {\n\t\t\t\t\t\t\t\ttopBlock = (byte)Block.waterStill.blockID;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tstoneHeight = height;\n\t\t\t\t\t\tif(y >= seaLevel - 1) {\n\t\t\t\t\t\t\tblocks[index] = topBlock;\n\t\t\t\t\t\t} else {\n\t\t\t\t\t\t\tblocks[index] = fillerBlock;\n\t\t\t\t\t\t}\n\t\t\t\t\t} else if(stoneHeight > 0) {\n\t\t\t\t\t\t--stoneHeight;\n\t\t\t\t\t\tblocks[index] = fillerBlock;\n\t\t\t\t\t\tif(stoneHeight == 0 && fillerBlock == this.sandstoneGenTriggerer()) {\n\t\t\t\t\t\t\tstoneHeight = rand.nextInt(4);\n\t\t\t\t\t\t\tfillerBlock = this.sandstoneGenBlock();\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t} else if(blockID == Block.waterStill.blockID && y == seaLevel - 1 && this.weather == Weather.cold) {\n\t\t\t\t\tblocks[index] = (byte)Block.ice.blockID;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\n}\n",
+			"settings":
+			{
+				"buffer_size": 3122,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "package net.minecraft.src;\n\npublic class EntityFallingSand extends Entity {\n\tpublic int blockID;\n\tpublic int fallTime = 0;\n\n\tpublic EntityFallingSand(World world1) {\n\t\tsuper(world1);\n\t}\n\n\tpublic EntityFallingSand(World world1, double d2, double d4, double d6, int i8) {\n\t\tsuper(world1);\n\t\tthis.blockID = i8;\n\t\tthis.preventEntitySpawning = true;\n\t\tthis.setSize(0.98F, 0.98F);\n\t\tthis.yOffset = this.height / 2.0F;\n\t\tthis.setPosition(d2, d4, d6);\n\t\tthis.motionX = 0.0D;\n\t\tthis.motionY = 0.0D;\n\t\tthis.motionZ = 0.0D;\n\t\tthis.prevPosX = d2;\n\t\tthis.prevPosY = d4;\n\t\tthis.prevPosZ = d6;\n\t}\n\n\tprotected boolean canTriggerWalking() {\n\t\treturn false;\n\t}\n\n\tprotected void entityInit() {\n\t}\n\n\tpublic boolean canBeCollidedWith() {\n\t\treturn !this.isDead;\n\t}\n\n\tpublic void onUpdate() {\n\t\tif(this.blockID == 0) {\n\t\t\tthis.setEntityDead();\n\t\t} else {\n\t\t\tthis.prevPosX = this.posX;\n\t\t\tthis.prevPosY = this.posY;\n\t\t\tthis.prevPosZ = this.posZ;\n\n\t\t\t++this.fallTime;\n\n\t\t\tthis.motionY -= (double)0.04F;\n\t\t\tthis.moveEntity(this.motionX, this.motionY, this.motionZ);\n\n\t\t\tthis.motionX *= (double)0.98F;\n\t\t\tthis.motionY *= (double)0.98F;\n\t\t\tthis.motionZ *= (double)0.98F;\n\n\t\t\tint i1 = MathHelper.floor_double(this.posX);\n\t\t\tint i2 = MathHelper.floor_double(this.posY);\n\t\t\tint i3 = MathHelper.floor_double(this.posZ);\n\n\t\t\tif(this.worldObj.getBlockId(i1, i2, i3) == this.blockID) {\n\t\t\t\tthis.worldObj.setBlockWithNotify(i1, i2, i3, 0);\n\t\t\t}\n\n\t\t\tif(this.onGround) {\n\t\t\t\tthis.motionX *= (double)0.7F;\n\t\t\t\tthis.motionZ *= (double)0.7F;\n\t\t\t\tthis.motionY *= -0.5D;\n\n\t\t\t\tthis.setEntityDead();\n\n\t\t\t\tif(\n\t\t\t\t\t(\n\t\t\t\t\t\t!this.worldObj.canBlockBePlacedAt(this.blockID, i1, i2, i3, true, 1) ||\n\t\t\t\t\t\tBlockSand.canFallBelow(this.worldObj, i1, i2 - 1, i3) || \n\t\t\t\t\t\t!this.worldObj.setBlockWithNotify(i1, i2, i3, this.blockID)\n\t\t\t\t\t) && !this.worldObj.multiplayerWorld\n\t\t\t\t) {\n\t\t\t\t\tthis.dropItem(this.blockID, 1);\n\t\t\t\t}\n\t\t\t} else if(this.fallTime > 100 && !this.worldObj.multiplayerWorld) {\n\t\t\t\tthis.dropItem(this.blockID, 1);\n\t\t\t\tthis.setEntityDead();\n\t\t\t}\n\n\t\t}\n\t}\n\n\tprotected void writeEntityToNBT(NBTTagCompound nBTTagCompound1) {\n\t\tnBTTagCompound1.setByte(\"Tile\", (byte)this.blockID);\n\t}\n\n\tprotected void readEntityFromNBT(NBTTagCompound nBTTagCompound1) {\n\t\tthis.blockID = nBTTagCompound1.getByte(\"Tile\") & 255;\n\t}\n\n\tpublic float getShadowSize() {\n\t\treturn 0.0F;\n\t}\n\n\tpublic World getWorld() {\n\t\treturn this.worldObj;\n\t}\n}\n",
+			"file": "vanilla/src/minecraft/net/minecraft/src/EntityFallingSand.java",
+			"file_size": 2424,
+			"file_write_time": 133984355378681626,
+			"settings":
+			{
+				"buffer_size": 2380,
 				"line_ending": "Windows"
 			}
 		}
@@ -95,10 +204,26 @@
 	},
 	"expanded_folders":
 	[
-		"/D/Cosas/b166MP2"
+		"/D/Cosas/b166MP2",
+		"/D/Cosas/b166MP2/main",
+		"/D/Cosas/b166MP2/main/src",
+		"/D/Cosas/b166MP2/main/src/minecraft",
+		"/D/Cosas/b166MP2/main/src/minecraft/net",
+		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft",
+		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft/world",
+		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft/world/entity",
+		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft/world/entity/item",
+		"/D/Cosas/b166MP2/vanilla",
+		"/D/Cosas/b166MP2/vanilla/src",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft/net",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src"
 	],
 	"file_history":
 	[
+		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src/BiomeGenForest.java",
+		"/D/Cosas/b166MP2/main/src/minecraft/lang/en_US.lang",
 		"/D/Cosas/MP125/main/src/minecraft/net/minecraft/src/Packet131MapData.java",
 		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft/world/level/levelgen/ChunkProviderBeta.java",
 		"/D/Cosas/postalpha/NSSS_de/decompiled/com/mojang/minecraft/gui/GuiSelectWorld.java",
@@ -224,9 +349,7 @@
 		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Requests/SignOutRequest.php",
 		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/ReservationWriteWebService.php",
 		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/Controllers/ReservationSaveController.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/ResourcesWriteWebService.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/SchedulesWebService.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/UsersWebService.php"
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/WebServices/ResourcesWriteWebService.php"
 	],
 	"find":
 	{
@@ -237,6 +360,7 @@
 		"height": 134.0,
 		"where_history":
 		[
+			"D:\\Cosas\\b166MP2",
 			"D:\\Cosas\\b166MP2\\vanilla\\src\\minecraft\\net\\minecraft\\src",
 			"D:\\Cosas\\b166MP2\\vanilla",
 			"C:\\Lair\\cosas\\mc\\1.6.6\\vanilla\\src",
@@ -269,6 +393,32 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"i8",
+			"d6",
+			"d4",
+			"d2",
+			"world1",
+			"itemStack1",
+			"z2",
+			"z1",
+			"itemStack2",
+			"i1",
+			"slot",
+			"itemStack2",
+			"i1",
+			"i2",
+			"i1",
+			"cocoa",
+			"f8",
+			"f7",
+			"n",
+			"(double)",
+			"f10",
+			"f9",
+			"d5",
+			"d3",
+			"d1",
+			"f3",
 			"%2F",
 			"byteSize",
 			"nibbleArray8",
@@ -370,33 +520,7 @@
 			"GetResourceMirroredResourcesCommand",
 			"AddBlackout",
 			"dateHelper",
-			"Recurrence",
-			"repeat",
-			"recur",
-			"repeat",
-			"colorbox",
-			"cbox",
-			"status",
-			"update",
-			"UpdateBlackout",
-			"perfilId",
-			"log",
-			"INSUFFICIENT_PERMISSIONS",
-			"InsufficientPermissionsError",
-			"No tienes permiso para acceder a este Recurso",
-			"new ReservationResourceBinder",
-			"IReservationComponentBinder",
-			"ReservationResourceBinder",
-			"ReservationInitializerFactory",
-			"ReservationResourceBinder",
-			"INSUFFICIENT_PERMISSIONS",
-			"click",
-			"clickres",
-			"setresources",
-			"Resources",
-			"schedule.tpl",
-			"->IsHidden",
-			"invisible"
+			"Recurrence"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -404,6 +528,29 @@
 		"regex": false,
 		"replace_history":
 		[
+			"blockID",
+			"z",
+			"y",
+			"x",
+			"world",
+			"stack",
+			"inventoryChanged",
+			"wasBurning",
+			"stack",
+			"slotId",
+			"stack",
+			"slotId",
+			"amount",
+			"slot",
+			"n2",
+			"n",
+			"",
+			"hypotenuse",
+			"distance",
+			"dz",
+			"dy",
+			"dx",
+			"multiplier",
 			"/",
 			"byteOffs",
 			"nibbles",
@@ -499,13 +646,13 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": false,
+		"whole_word": true,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -514,15 +661,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3243,
+						"buffer_size": 7549,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2944,
-								2944
+								7296,
+								7225
 							]
 						],
 						"settings":
@@ -531,18 +678,105 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 650.0,
+						"translation.y": 2119.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "main/src/minecraft/net/minecraft/world/entity/item/EntityFallingSand.java",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2763,
+						"buffer_size": 2830,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1751,
+								1751
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 351.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/D/Git/mk1v4/games_zx/hobbit/dev/pantallas.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4195,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1970,
+								1970
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C Improved/C Improved.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1196.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "main/src/minecraft/net/minecraft/world/level/biome/BiomeGenBaseBeta.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								833,
+								833
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 741.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 586,
 						"regions":
 						{
 						},
@@ -550,12 +784,12 @@
 						[
 							[
 								0,
-								2763
+								586
 							]
 						],
 						"settings":
 						{
-							"auto_name": "public void setChunkData(byte[] chunkData, int us",
+							"auto_name": "private boolean canSmelt() {",
 							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
@@ -563,17 +797,132 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 243,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								243
+							]
+						],
+						"settings":
+						{
+							"auto_name": "public void setInventorySlotContents(int slotId,",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/D/Git/MC_Mods/pages/mystyle.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 332,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								36,
+								36
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/D/Git/MC_Mods/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 459,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								439,
+								439
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 870,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								870
+							]
+						],
+						"settings":
+						{
+							"auto_name": "// Skeletons call this method after shooting to a",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 1,
+			"selected": 6,
 			"sheets":
 			[
 				{
-					"buffer": 2,
+					"buffer": 9,
 					"semi_transient": false,
 					"settings":
 					{
@@ -598,11 +947,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 10,
 					"file": "/C/Users/na_th/AppData/Local/Temp/7zO8F7110EE/Read-Me.txt",
 					"semi_transient": false,
 					"settings":
@@ -626,7 +975,197 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/D/Cosas/RMCP_tests/b1.2_02-20110517/net/minecraft/world/entity/projectile/Arrow.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10728,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								504,
+								504
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 819.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/D/Cosas/Inslands/web/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6847,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								807,
+								807
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2091,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										195,
+										200
+									],
+									[
+										470,
+										475
+									],
+									[
+										746,
+										751
+									],
+									[
+										1017,
+										1022
+									],
+									[
+										1293,
+										1298
+									],
+									[
+										1467,
+										1472
+									],
+									[
+										1758,
+										1763
+									],
+									[
+										1974,
+										1979
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								1219,
+								1219
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2594,
+								2594
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 741.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "vanilla/src/minecraft/net/minecraft/src/EntityFallingSand.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2380,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1825,
+								1825
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 351.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -716,7 +1255,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
@@ -724,7 +1263,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 336.0,
+	"side_bar_width": 335.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
