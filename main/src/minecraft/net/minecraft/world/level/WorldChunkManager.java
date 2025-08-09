@@ -183,8 +183,8 @@ public class WorldChunkManager {
 		for(int i = 0; i < biomeIDs.length; ++i) {
 			int rx = x1 + i % w << 2;
 			int rz = z1 + i / w << 2;
-			BiomeGenBase biomeGenBase18 = BiomeGenBase.biomeList[biomeIDs[i]];
-			if(goodBiomes.contains(biomeGenBase18) && (pos == null || rand.nextInt(attempts + 1) == 0)) {
+			BiomeGenBase biome = BiomeGenBase.biomeList[biomeIDs[i]];
+			if(goodBiomes.contains(biome) && (pos == null || rand.nextInt(attempts + 1) == 0)) {
 				pos = new ChunkPosition(rx, 0, rz);
 				++attempts;
 			}

@@ -23,72 +23,72 @@ public class ChunkProviderFlat implements IChunkProvider {
 	// Multi-chunk features	
 	public FeatureProvider featureProvider;
 	
-	public ChunkProviderFlat(World world1, long j2, boolean z4) {
-		this.worldObj = world1;
-		this.useStructures = z4;
-		this.random = new Random(j2);
+	public ChunkProviderFlat(World world, long seed, boolean useStructures) {
+		this.worldObj = world;
+		this.useStructures = useStructures;
+		this.random = new Random(seed);
 		
 		this.featureProvider = new FeatureProvider(worldObj, this);
 	}
 
-	private void generate(byte[] b1) {
-		int i2 = b1.length / 256;
+	private void generate(byte[] blocks) {
+		int h = blocks.length / 256;
 
-		for(int i3 = 0; i3 < 16; ++i3) {
-			for(int i4 = 0; i4 < 16; ++i4) {
-				for(int i5 = 0; i5 < i2; ++i5) {
-					int i6 = 0;
-					if(i5 == 0) {
-						i6 = Block.bedrock.blockID;
-					} else if(i5 <= 2) {
-						i6 = Block.dirt.blockID;
-					} else if(i5 == 3) {
-						i6 = Block.grass.blockID;
+		for(int x = 0; x < 16; ++x) {
+			for(int z = 0; z < 16; ++z) {
+				for(int y = 0; y < h; ++y) {
+					int b = 0;
+					if(y == 0) {
+						b = Block.bedrock.blockID;
+					} else if(y <= 2) {
+						b = Block.dirt.blockID;
+					} else if(y == 3) {
+						b = Block.grass.blockID;
 					}
 
-					b1[i3 << 11 | i4 << 7 | i5] = (byte)i6;
+					blocks[x << 11 | z << 7 | y] = (byte)b;
 				}
 			}
 		}
 
 	}
 
-	public Chunk loadChunk(int i1, int i2) {
-		return this.provideChunk(i1, i2);
+	public Chunk loadChunk(int x, int z) {
+		return this.provideChunk(x, z);
 	}
 
-	public Chunk provideChunk(int i1, int i2) {
-		byte[] b3 = new byte[32768];
-		this.generate(b3);
-		Chunk chunk4 = new Chunk(this.worldObj, b3, i1, i2);
-		this.featureProvider.getNearestFeatures(i1, i2, chunk4);
+	public Chunk provideChunk(int x, int z) {
+		byte[] blocks = new byte[32768];
+		this.generate(blocks);
+		Chunk chunk = new Chunk(this.worldObj, blocks, x, z);
+		this.featureProvider.getNearestFeatures(x, z, chunk);
 		 
 		if(this.useStructures) {
 		}
 
-		BiomeGenBase[] biomeGenBase5 = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, i1 * 16, i2 * 16, 16, 16);
-		byte[] b6 = chunk4.getBiomeArray();
+		BiomeGenBase[] biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, x * 16, z * 16, 16, 16);
+		byte[] biomeMap = chunk.getBiomeArray();
 
-		for(int i7 = 0; i7 < b6.length; ++i7) {
-			b6[i7] = (byte)biomeGenBase5[i7].biomeID;
+		for(int i = 0; i < biomeMap.length; ++i) {
+			biomeMap[i] = (byte)biomesForGeneration[i].biomeID;
 		}
 
-		chunk4.generateSkylightMap();
-		return chunk4;
+		chunk.generateSkylightMap();
+		return chunk;
 	}
 	
-	public Chunk justGenerate(int posX, int posZ) {
-		byte[] b3 = new byte[32768];
-		this.generate(b3);
-		Chunk chunk4 = new Chunk(this.worldObj, b3, posX, posZ);
-		return chunk4;
+	public Chunk justGenerate(int x, int z) {
+		byte[] blocks = new byte[32768];
+		this.generate(blocks);
+		Chunk chunk = new Chunk(this.worldObj, blocks, x, z);
+		return chunk;
 	}
 
-	public boolean chunkExists(int i1, int i2) {
+	public boolean chunkExists(int x, int z) {
 		return true;
 	}
 
-	public void populate(IChunkProvider iChunkProvider1, int chunkX, int chunkZ) {
+	public void populate(IChunkProvider provider, int chunkX, int chunkZ) {
 		//int x0 = chunkX * 16;
 		//int z0 = chunkZ * 16;
 		//BiomeGenBase biomeGenBase6 = this.worldObj.getBiomeGenForCoords(x0 + 16, z0 + 16);
@@ -104,7 +104,7 @@ public class ChunkProviderFlat implements IChunkProvider {
 
 	}
 
-	public boolean saveChunks(boolean z1, IProgressUpdate iProgressUpdate2) {
+	public boolean saveChunks(boolean z1, IProgressUpdate progress) {
 		return true;
 	}
 
@@ -120,12 +120,12 @@ public class ChunkProviderFlat implements IChunkProvider {
 		return "FlatLevelSource";
 	}
 
-	public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType enumCreatureType1, int i2, int i3, int i4) {
-		BiomeGenBase biomeGenBase5 = this.worldObj.getBiomeGenForCoords(i2, i4);
-		return biomeGenBase5 == null ? null : biomeGenBase5.getSpawnableList(enumCreatureType1);
+	public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, int x, int y, int z) {
+		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x, z);
+		return biome == null ? null : biome.getSpawnableList(creatureType);
 	}
 
-	public ChunkPosition findClosestStructure(World world1, String string2, int i3, int i4, int i5) {
+	public ChunkPosition findClosestStructure(World world, String string, int x, int y, int z) {
 		return null;
 	}
 }

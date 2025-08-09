@@ -148,11 +148,12 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 
 	* [X] Are seasons OFF in the server?
 	* [/] seeds not consistent? revise beta gen -- almost.
+	* [ ] FLAT is not generating! (freezes?)
 
 * and now we are ready for...
 
 
-# b16.6.6
+# b16.6.6 r1
 
 * [X] Expand atlases to 256x512.
 * [X] Add a means to get cocoa seeds in a custom tree.
@@ -162,19 +163,20 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 		* Added a `withFruit(id)` to add fruit to normal trees.
 * [X] Colored sheep spawning.
 * [X] Hippoplatimus pistons
+* [ ] Fix all bugs.
 
-# b16.6.6_1
+# b16.6.6 r2
 
 * [ ] Goblins
 	[ ] Add new blocks and items.
 	[ ] Check the villages out. How are they generated? Could they be rewritten as normal features (i.e. are they less than 31x31 and fit in 2x2 chunks?) or, should they be rewritten in my own feature system?
 	[ ] Add Entities.
 
-# b16.6.6_2
+# b16.6.6 r3
 
 * [ ] Nethercraft
 
-# b16.6.6_3
+# b16.6.6 r4
 
 * [ ] IC1?
 

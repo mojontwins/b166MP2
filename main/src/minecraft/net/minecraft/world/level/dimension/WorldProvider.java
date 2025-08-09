@@ -57,9 +57,9 @@ public abstract class WorldProvider {
 		return this.worldObj.getWorldInfo().getTerrainType().getChunkGenerator(this.worldObj);
 	}
 
-	public boolean canCoordinateBeSpawn(int i1, int i2) {
-		int i3 = this.worldObj.getFirstUncoveredBlock(i1, i2);
-		return i3 == Block.grass.blockID;
+	public boolean canCoordinateBeSpawn(int x, int z) {
+		int blockID = this.worldObj.getFirstUncoveredBlock(x, z);
+		return blockID == Block.grass.blockID;
 	}
 
 	public float calculateCelestialAngle(long worldTime, float renderPartialTick) {
@@ -284,6 +284,7 @@ public abstract class WorldProvider {
 
 	public static WorldProvider getProviderForTerrainType(WorldType terrainType) {
 		if(terrainType == WorldType.SKY) return new WorldProviderSkyClassic(); 
+		if(terrainType == WorldType.FLAT) return new WorldProviderSurface(); 
 		return new WorldProviderSurfaceClassic();
 	}
 	
@@ -510,25 +511,25 @@ public abstract class WorldProvider {
 		int spawnY = this.getAverageGroundLevel();
 		int spawnZ = 0;
 
-		WorldChunkManager worldChunkManager1 = this.worldChunkMgr;
-		List<BiomeGenBase> list2 = worldChunkManager1.getBiomesToSpawnIn();
+		WorldChunkManager chunkManager = this.worldChunkMgr;
+		List<BiomeGenBase> goodBiomes = chunkManager.getBiomesToSpawnIn();
+
+		ChunkPosition pos = chunkManager.findBiomePosition(0, 0, 256, goodBiomes, rand);
 		
-		ChunkPosition chunkPosition4 = worldChunkManager1.findBiomePosition(0, 0, 256, list2, rand);
-		
-		if(chunkPosition4 != null) {
-			spawnX = chunkPosition4.x;
-			spawnZ = chunkPosition4.z;
+		if(pos != null) {
+			spawnX = pos.x;
+			spawnZ = pos.z;
 		} else {
 			System.out.println("Unable to find spawn biome");
 		}
 
-		int i8 = 0;
+		int attempts = 0;
 
 		while(!this.canCoordinateBeSpawn(spawnX, spawnZ)) {
 			spawnX += rand.nextInt(64) - rand.nextInt(64);
 			spawnZ += rand.nextInt(64) - rand.nextInt(64);
-			++i8;
-			if(i8 == 1000) {
+			++attempts;
+			if(attempts == 1000) {
 				break;
 			}
 		}

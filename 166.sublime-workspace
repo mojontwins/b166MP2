@@ -15,7 +15,7 @@
 			"file": "updates.md",
 			"settings":
 			{
-				"buffer_size": 8827,
+				"buffer_size": 8895,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -677,15 +677,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8827,
+						"buffer_size": 8895,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6358,
-								6358
+								6034,
+								6034
 							]
 						],
 						"settings":
@@ -694,7 +694,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1911.0,
+						"translation.y": 1722.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

@@ -1874,10 +1874,6 @@ public class World implements IBlockAccess {
 		}
 	}
 
-	public Entity func_4085_a(Class<?> class1) {
-		return null;
-	}
-
 	public String getDebugLoadedEntities() {
 		return "All: " + this.loadedEntityList.size();
 	}

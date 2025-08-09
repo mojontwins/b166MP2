@@ -482,19 +482,19 @@ public abstract class Minecraft implements Runnable {
 				if(this.downloadResourcesThread != null) {
 					this.downloadResourcesThread.closeMinecraft();
 				}
-			} catch (Exception exception9) {
+			} catch (Exception e) {
 			}
 
 			System.out.println("Stopping!");
 
 			try {
-				this.changeWorld1((World)null);
-			} catch (Throwable throwable8) {
+				this.changeWorld((World)null);
+			} catch (Throwable e) {
 			}
 
 			try {
 				GLAllocation.deleteTexturesAndDisplayLists();
-			} catch (Throwable throwable7) {
+			} catch (Throwable e) {
 			}
 
 			this.sndManager.closeMinecraft();
@@ -526,11 +526,13 @@ public abstract class Minecraft implements Runnable {
 			while(this.running) {
 				try {
 					this.runGameLoop();
-				} catch (MinecraftException minecraftException9) {
+				} catch (MinecraftException e) {
+					e.printStackTrace();
 					this.theWorld = null;
-					this.changeWorld1((World)null);
+					this.changeWorld((World)null);
 					this.displayGuiScreen(new GuiConflictWarning());
-				} catch (OutOfMemoryError outOfMemoryError10) {
+				} catch (OutOfMemoryError e) {
+					e.printStackTrace();
 					this.freeMemory();
 					this.displayGuiScreen(new GuiMemoryErrorScreen());
 					System.gc();
@@ -573,7 +575,7 @@ public abstract class Minecraft implements Runnable {
 					this.runTick();
 				} catch (MinecraftException minecraftException5) {
 					this.theWorld = null;
-					this.changeWorld1((World)null);
+					this.changeWorld((World)null);
 					this.displayGuiScreen(new GuiConflictWarning());
 				}
 			}
@@ -664,7 +666,7 @@ public abstract class Minecraft implements Runnable {
 
 		try {
 			System.gc();
-			this.changeWorld1((World)null);
+			this.changeWorld((World)null);
 		} catch (Throwable throwable2) {
 		}
 
@@ -1163,7 +1165,7 @@ public abstract class Minecraft implements Runnable {
 	}
 
 	public void startWorld(String saveName, String displayName, WorldSettings worldSettings) { 
-		this.changeWorld1((World)null);
+		this.changeWorld((World)null);
 		System.gc();
 		if(this.saveLoader.isOldMapFormat(saveName)) {
 			this.convertMapFormat(saveName, displayName);
@@ -1180,12 +1182,11 @@ public abstract class Minecraft implements Runnable {
 			
 			// When loading a world from disk, worldSettings == null!
 			world = new World(saveHandler, displayName, worldSettings);
-		
 			
 			if(world.isNewWorld) {
-				this.changeWorld2(world, Translator.translateToLocal("menu.generatingLevel"));
+				this.changeWorld(world, Translator.translateToLocal("menu.generatingLevel"));
 			} else {
-				this.changeWorld2(world, Translator.translateToLocal("menu.loadingLevel"));
+				this.changeWorld(world, Translator.translateToLocal("menu.loadingLevel"));
 			}
 		}
 
@@ -1255,21 +1256,21 @@ public abstract class Minecraft implements Runnable {
 
 	public void exitToMainMenu(String string1) {
 		this.theWorld = null;
-		this.changeWorld2((World)null, string1);
+		this.changeWorld((World)null, string1);
 	}
 
-	public void changeWorld1(World world1) {
-		this.changeWorld2(world1, "");
+	public void changeWorld(World world) {
+		this.changeWorld(world, "");
 	}
 
-	public void changeWorld2(World world1, String string2) {
-		this.changeWorld(world1, string2, (EntityPlayer)null);
+	public void changeWorld(World world, String message) {
+		this.changeWorld(world, message, (EntityPlayer)null);
 	}
 
-	public void changeWorld(World world1, String string2, EntityPlayer entityPlayer3) {
+	public void changeWorld(World world, String message, EntityPlayer entityPlayer3) {
 		this.renderViewEntity = null;
 		if(this.loadingScreen != null) {
-			this.loadingScreen.printText(string2);
+			this.loadingScreen.printText(message);
 			this.loadingScreen.displayLoadingString("");
 		}
 
@@ -1278,50 +1279,50 @@ public abstract class Minecraft implements Runnable {
 			this.theWorld.saveWorldIndirectly(this.loadingScreen);
 		}
 
-		this.theWorld = world1;
-		if(world1 != null) {
+		this.theWorld = world;
+		if(world != null) {
 			if(this.playerController != null) {
-				this.playerController.onWorldChange(world1);
+				this.playerController.onWorldChange(world);
 			}
-
+			
 			if(!this.isMultiplayerWorld()) {
 				if(entityPlayer3 == null) {
-					this.thePlayer = (EntityPlayerSP)world1.func_4085_a(EntityPlayerSP.class);
+					this.thePlayer = null;
 				}
 			} else if(this.thePlayer != null) {
 				this.thePlayer.preparePlayerToSpawn();
-				if(world1 != null) {
-					world1.spawnEntityInWorld(this.thePlayer);
+				if(world != null) {
+					world.spawnEntityInWorld(this.thePlayer);
 				}
 			}
 
-			if(!world1.isRemote) {
-				this.preloadWorld(string2);
+			if(!world.isRemote) {
+				this.preloadWorld(message);
 			}
 
 			if(this.thePlayer == null) {
-				this.thePlayer = (EntityPlayerSP)this.playerController.createPlayer(world1);
+				this.thePlayer = (EntityPlayerSP)this.playerController.createPlayer(world);	
 				this.thePlayer.preparePlayerToSpawn();
 				this.playerController.flipPlayer(this.thePlayer);
 			}
 
 			this.thePlayer.movementInput = new MovementInputFromOptions();
 			if(this.renderGlobal != null) {
-				this.renderGlobal.changeWorld(world1);
+				this.renderGlobal.changeWorld(world);
 			}
 
 			if(this.effectRenderer != null) {
-				this.effectRenderer.clearEffects(world1);
+				this.effectRenderer.clearEffects(world);
 			}
 
 			if(entityPlayer3 != null) {
-				world1.func_6464_c();
+				world.func_6464_c();
 			}
 
-			world1.spawnPlayerWithLoadedChunks(this.thePlayer);
+			world.spawnPlayerWithLoadedChunks(this.thePlayer);
 			this.playerController.func_6473_b(this.thePlayer);
-			if(world1.isNewWorld) {
-				world1.saveWorldIndirectly(this.loadingScreen);
+			if(world.isNewWorld) {
+				world.saveWorldIndirectly(this.loadingScreen);
 			}
 
 			this.renderViewEntity = this.thePlayer;
@@ -1331,7 +1332,6 @@ public abstract class Minecraft implements Runnable {
 		}
 
 		System.gc();
-		this.systemTime = 0L;
 	}
 
 	private void convertMapFormat(String saveName, String displayName) {

@@ -13,7 +13,7 @@ public class GuiConnecting extends GuiScreen {
 
 	public GuiConnecting(Minecraft mc, String string2, int i3) {
 		System.out.println("Connecting to " + string2 + ", " + i3);
-		mc.changeWorld1((World)null);
+		mc.changeWorld((World)null);
 		(new ThreadConnectToServer(this, mc, string2, i3)).start();
 	}
 

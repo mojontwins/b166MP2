@@ -16,7 +16,7 @@ public class WorldType {
 	public static final WorldType AMPLIFIED = new WorldType(3, "amplified", 1, 0);	
 	public static final WorldType HELL = (new WorldType(4, "hell", 1, -1)).setCanBeCreated(false).disableCreatePortalToTheNether();
 	public static final WorldType DEBUG = new WorldType(9, "debug", 1, 0).setCanBeCreated(false);
-	public static final WorldType OCEAN = new WorldType(10, "ocean", 1, 0);
+	public static final WorldType OCEAN = new WorldType(10, "ocean", 1, 0).setCanBeCreated(false);
 	
 	private final String worldType;
 	private final int generatorVersion;
@@ -40,6 +40,24 @@ public class WorldType {
 		
 		// This is not used in this build but I'll leave it just in case.
 		switch(i1) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			// This is only used so world type PLAIN doesn't break...
+			this.biomesForWorldType = new BiomeGenBase[] {
+					BiomeGenBase.plains,
+					BiomeGenBase.forest,
+					BiomeGenBase.savanna,
+					BiomeGenBase.rainforest,
+					BiomeGenBase.shrubland,
+					BiomeGenBase.taiga,
+					BiomeGenBase.seasonalForest,
+					BiomeGenBase.iceDesert,
+					BiomeGenBase.tundra,
+					BiomeGenBase.swampland
+			};
+			break;
 		case 4:
 			// This is hell. Add hell biomes here! They will be picked up at random by teh Genlayer
 			this.biomesForWorldType = new BiomeGenBase[] {

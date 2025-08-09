@@ -152,7 +152,7 @@ public class NetClientHandler extends NetHandler {
 		this.mc.playerController = new PlayerControllerMP(this.mc, this);
 		this.worldClient = new WorldClient(this, new WorldSettings(0L, packet.serverMode, false, false, packet.enableSeasons, packet.terrainType), packet.dimension, packet.difficultySetting);
 		this.worldClient.isRemote = true;
-		this.mc.changeWorld1(this.worldClient);
+		this.mc.changeWorld(this.worldClient);
 		this.mc.thePlayer.dimension = packet.dimension;
 		this.mc.displayGuiScreen(new GuiDownloadTerrain(this));
 		this.mc.thePlayer.entityId = packet.protocolVersion;
@@ -466,7 +466,7 @@ public class NetClientHandler extends NetHandler {
 	public void handleKickDisconnect(Packet255KickDisconnect packet255KickDisconnect1) {
 		this.netManager.networkShutdown("disconnect.kicked", new Object[0]);
 		this.disconnected = true;
-		this.mc.changeWorld1((World)null);
+		this.mc.changeWorld((World)null);
 		this.mc.displayGuiScreen(new GuiDisconnected("disconnect.disconnected", "disconnect.genericReason", 
 				new Object[]{packet255KickDisconnect1.reason}));
 	}
@@ -474,7 +474,7 @@ public class NetClientHandler extends NetHandler {
 	public void handleErrorMessage(String string1, Object[] object2) {
 		if(!this.disconnected) {
 			this.disconnected = true;
-			this.mc.changeWorld1((World)null);
+			this.mc.changeWorld((World)null);
 			this.mc.displayGuiScreen(new GuiDisconnected("disconnect.lost", string1, object2));
 		}
 	}
@@ -758,7 +758,7 @@ public class NetClientHandler extends NetHandler {
 				packet9Respawn1.difficulty
 			);
 			this.worldClient.isRemote = true;
-			this.mc.changeWorld1(this.worldClient);
+			this.mc.changeWorld(this.worldClient);
 			this.mc.thePlayer.dimension = packet9Respawn1.respawnDimension;
 			this.mc.displayGuiScreen(new GuiDownloadTerrain(this));
 		}
