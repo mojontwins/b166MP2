@@ -1,9 +1,7 @@
 package net.minecraft.world.level.tile;
 
-import net.minecraft.src.MathHelper;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.item.EntityMovingPiston;
-import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.material.Material;
 
@@ -112,6 +110,7 @@ public class BlockPistonBase extends Block {
 		return 109;
 	}
 
+	/*
 	private int getData(World world, int x, int y, int z, EntityLiving entityLiving) {
 		// TODO: This sets meta depending only on angle. I have to change this, so if 
 		// the player clicks the ground or a celing the orientations are correctly set to 0/1.
@@ -143,7 +142,6 @@ public class BlockPistonBase extends Block {
 		}
 	}
 
-	/*
 	@Override
 	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer thePlayer) {
 		if(world.isRemote) {

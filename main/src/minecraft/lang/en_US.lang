@@ -79,6 +79,7 @@ generator.infdev=Infdev
 generator.caves=Caves
 generator.amplified=Amplificado
 generator.ocean=Ocean
+generator.sky=Floating Islands
 
 selectServer.title=Select Server
 selectServer.empty=empty

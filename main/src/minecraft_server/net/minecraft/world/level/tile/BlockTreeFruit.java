@@ -3,7 +3,6 @@ package net.minecraft.world.level.tile;
 import java.util.Random;
 
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.material.Material;
 

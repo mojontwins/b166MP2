@@ -27,6 +27,7 @@ public class BiomeGenHell extends BiomeGenBase {
 	}
 	
 	public int getBiomeFogColor() {
-		return 0x330808;
+		return 0x220404;
+		//return 0x330808;
 	}
 }

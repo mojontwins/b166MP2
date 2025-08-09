@@ -5,3 +5,5 @@
 */workspace/.metadata/.plugins/*
 */jars/saves/*
 */reobf/*
+fiddle
+*.class

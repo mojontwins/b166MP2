@@ -6,6 +6,7 @@ import net.minecraft.src.MathHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.level.World;
+import net.minecraft.world.level.WorldType;
 import net.minecraft.world.phys.Vec3D;
 
 public class WorldProviderSurfaceClassic extends WorldProvider {
@@ -36,7 +37,7 @@ public class WorldProviderSurfaceClassic extends WorldProvider {
 	}
 	
 	public float getCloudHeight() {
-		return 108;
+		return this.terrainType != WorldType.AMPLIFIED ? 108.0F : 240F;
 	}
 	
 	public boolean isSkyColored() {
