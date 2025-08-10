@@ -17,6 +17,8 @@ import com.mojang.nbt.NBTTagByte;
 import com.mojang.nbt.NBTTagCompound;
 import com.mojang.nbt.NBTTagInt;
 
+import net.minecraft.world.entity.monster.EntityClassicZombie;
+import net.minecraft.world.entity.monster.EntityZombie;
 import net.minecraft.world.level.WorldType;
 import net.minecraft.world.level.levelgen.genlayer.GenLayer;
 import net.minecraft.world.level.levelgen.genlayer.GenLayerAlpha;
@@ -220,5 +222,12 @@ public class GameRules {
 		gameRules.forEach((k, v) -> {
 			((GameRule)v).refresh();
 		});
+	}
+
+	public static Class<?> getDefaultZombieClass() {
+		return GameRules.boolRule("smarterMobs") ? 
+				EntityZombie.class 
+			:
+				EntityClassicZombie.class;
 	}
 }

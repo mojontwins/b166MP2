@@ -152,7 +152,9 @@ public final class SpawnerAnimals {
 
 											EntityLiving entityToSpawn;
 											try {
-												entityToSpawn = (EntityLiving)spawnClass.entityClass.getConstructor(new Class[]{World.class}).newInstance(new Object[]{world});
+												entityToSpawn = (EntityLiving)spawnClass.entityClass
+														.getConstructor(new Class[]{World.class})
+														.newInstance(new Object[]{world});
 											} catch (Exception e) {
 												e.printStackTrace();
 												return totalSpawned;

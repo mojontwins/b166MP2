@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.TreeMap;
 
 import net.minecraft.src.MathHelper;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.entity.EnumCreatureType;
 import net.minecraft.world.entity.animal.EntityChicken;
 import net.minecraft.world.entity.animal.EntityCow;
@@ -18,7 +19,6 @@ import net.minecraft.world.entity.monster.EntityCreeper;
 import net.minecraft.world.entity.monster.EntitySkeleton;
 import net.minecraft.world.entity.monster.EntitySlime;
 import net.minecraft.world.entity.monster.EntitySpider;
-import net.minecraft.world.entity.monster.EntityZombie;
 import net.minecraft.world.level.SpawnListEntry;
 import net.minecraft.world.level.Weather;
 import net.minecraft.world.level.World;
@@ -99,7 +99,7 @@ public abstract class BiomeGenBase {
 		
 		this.spawnableMonsterList.add(new SpawnListEntry(EntitySpider.class, 10, 4, 4));
 		
-		this.spawnableMonsterList.add(new SpawnListEntry(EntityZombie.class, 10, 4, 4));
+		this.spawnableMonsterList.add(new SpawnListEntry(GameRules.getDefaultZombieClass(), 10, 4, 4));
 		this.spawnableMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 10, 4, 4));
 
 		this.spawnableMonsterList.add(new SpawnListEntry(EntityCreeper.class, 10, 4, 4));

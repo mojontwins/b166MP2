@@ -2,7 +2,10 @@ package net.minecraft.world.level.biome;
 
 import java.util.Random;
 
+import net.minecraft.world.entity.animal.EntityBoar;
+import net.minecraft.world.entity.animal.EntityPig;
 import net.minecraft.world.entity.animal.EntityWolf;
+import net.minecraft.world.entity.monster.EntityOgre;
 import net.minecraft.world.level.SpawnListEntry;
 import net.minecraft.world.level.levelgen.feature.WorldGenBigTree;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
@@ -13,6 +16,15 @@ public class BiomeGenForest extends BiomeGenBaseBeta {
 	public BiomeGenForest(int biomeID) {
 		super(biomeID);
 		this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 2, 4, 6));
+		this.spawnableCreatureList.replaceAll(
+				e -> 
+					e.entityClass == EntityPig.class ? 
+							new SpawnListEntry(EntityBoar.class, 10, 4, 4) 
+						: 
+							e
+		);
+		
+		this.spawnableMonsterList.add(new SpawnListEntry(EntityOgre.class, 1, 1, 1));
 		
 		// And some tweaks...
 		this.biomeDecorator.extraTreesPerChunk = 5;

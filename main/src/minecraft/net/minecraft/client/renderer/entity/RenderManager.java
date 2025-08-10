@@ -12,6 +12,8 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.model.ModelCow;
 import net.minecraft.client.model.ModelOcelot;
+import net.minecraft.client.model.ModelOgre1;
+import net.minecraft.client.model.ModelOgre2;
 import net.minecraft.client.model.ModelPig;
 import net.minecraft.client.model.ModelSheep1;
 import net.minecraft.client.model.ModelSheep2;
@@ -51,6 +53,7 @@ import net.minecraft.world.entity.monster.EntityCreeper;
 import net.minecraft.world.entity.monster.EntityGhast;
 import net.minecraft.world.entity.monster.EntityGiantZombie;
 import net.minecraft.world.entity.monster.EntityIronGolem;
+import net.minecraft.world.entity.monster.EntityOgre;
 import net.minecraft.world.entity.monster.EntitySkeleton;
 import net.minecraft.world.entity.monster.EntitySlime;
 import net.minecraft.world.entity.monster.EntitySnowman;
@@ -125,6 +128,8 @@ public class RenderManager {
 		this.entityRenderMap.put(EntityClassicSkeleton.class, new RenderBiped(new ModelSkeleton(), 0.5F));
 		
 		this.entityRenderMap.put(EntityMovingPiston.class, new RenderMovingPiston());
+		
+		this.entityRenderMap.put(EntityOgre.class, new RenderOgre(new ModelOgre2(), new ModelOgre1(), 1.5F));
 		
 		Iterator<Render> iterator1 = this.entityRenderMap.values().iterator();
 

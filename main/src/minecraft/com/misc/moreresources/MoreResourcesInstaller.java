@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 
 public class MoreResourcesInstaller {
 	Minecraft mc;
+	private final String resourceDirectory = "/resources/sounds";
 	
 	public MoreResourcesInstaller(Minecraft mc) {
 		this.mc = mc;
@@ -16,7 +17,11 @@ public class MoreResourcesInstaller {
 		try {
 			// Load custom resources
 			
-			// this.mc.installResourceURL("sound/mob/betterdungeons/pirate.ogg", this.getURLfromResource("com/misc/moreresources/sounds/pirate_speak.ogg"));
+			this.mc.installResourceURL("sound/mob/ogre/ogre0.ogg", this.getURLfromResource(this.resourceDirectory +"/ogre1.ogg"));
+			this.mc.installResourceURL("sound/mob/ogre/ogre1.ogg", this.getURLfromResource(this.resourceDirectory +"/ogre2.ogg"));
+			this.mc.installResourceURL("sound/mob/ogre/ogre2.ogg", this.getURLfromResource(this.resourceDirectory +"/ogre3.ogg"));
+			this.mc.installResourceURL("sound/mob/ogre/death.ogg", this.getURLfromResource(this.resourceDirectory +"/ogredying.ogg"));
+			this.mc.installResourceURL("sound/mob/ogre/hurt.ogg", this.getURLfromResource(this.resourceDirectory +"/ogrehurt1.ogg"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -25,29 +30,30 @@ public class MoreResourcesInstaller {
 	
 	public File getFileFromResource(String fileName) throws URISyntaxException{
 
-        ClassLoader classLoader = this.getClass().getClassLoader();
-        java.net.URL resource = classLoader.getResource(fileName);
-        if (resource == null) {
-            throw new IllegalArgumentException("file not found! " + fileName);
-        } else {
+		Class<?> classLoader = this.getClass();
+		java.net.URL resource = classLoader.getResource(fileName);
+		
+		if (resource == null) {
+			throw new IllegalArgumentException("file not found! " + fileName);
+		} else {
 
-            // failed if files have whitespace or special characters
-            //return new File(resource.getFile());
+			// failed if files have whitespace or special characters
+			//return new File(resource.getFile());
 
-            return new File(resource.toURI());
-        }
+			return new File(resource.toURI());
+		}
 
-    }
+	}
 	
 	public java.net.URL getURLfromResource(String fileName) throws URISyntaxException{
 
-        ClassLoader classLoader = this.getClass().getClassLoader();
-        java.net.URL resource = classLoader.getResource(fileName);
-        
-        if (resource == null) {
-            throw new IllegalArgumentException("file not found! " + fileName);
-        } else {
-        	return resource;
-        }
+		Class<?> classLoader = this.getClass();
+		java.net.URL resource = classLoader.getResource(fileName);
+		
+		if (resource == null) {
+			throw new IllegalArgumentException("file not found! " + fileName);
+		} else {
+			return resource;
+		}
 	}
 }

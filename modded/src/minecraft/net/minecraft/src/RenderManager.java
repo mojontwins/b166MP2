@@ -53,81 +53,82 @@ public class RenderManager {
 		this.entityRenderMap.put(EntityBoat.class, new RenderBoat());
 		this.entityRenderMap.put(EntityFish.class, new RenderFish());
 		this.entityRenderMap.put(EntityLightningBolt.class, new RenderLightningBolt());
-		Iterator iterator1 = this.entityRenderMap.values().iterator();
+		ModLoader.AddAllRenderers(this.entityRenderMap);
+		Iterator iterator2 = this.entityRenderMap.values().iterator();
 
-		while(iterator1.hasNext()) {
-			Render render2 = (Render)iterator1.next();
-			render2.setRenderManager(this);
+		while(iterator2.hasNext()) {
+			Render localbu = (Render)iterator2.next();
+			localbu.setRenderManager(this);
 		}
 
 	}
 
-	public Render getEntityClassRenderObject(Class class1) {
-		Render render2 = (Render)this.entityRenderMap.get(class1);
-		if(render2 == null && class1 != Entity.class) {
-			render2 = this.getEntityClassRenderObject(class1.getSuperclass());
-			this.entityRenderMap.put(class1, render2);
+	public Render getEntityClassRenderObject(Class paramClass) {
+		Render localbu = (Render)this.entityRenderMap.get(paramClass);
+		if(localbu == null && paramClass != Entity.class) {
+			localbu = this.getEntityClassRenderObject(paramClass.getSuperclass());
+			this.entityRenderMap.put(paramClass, localbu);
 		}
 
-		return render2;
+		return localbu;
 	}
 
-	public Render getEntityRenderObject(Entity entity1) {
-		return this.getEntityClassRenderObject(entity1.getClass());
+	public Render getEntityRenderObject(Entity paramsi) {
+		return this.getEntityClassRenderObject(paramsi.getClass());
 	}
 
-	public void cacheActiveRenderInfo(World world1, RenderEngine renderEngine2, FontRenderer fontRenderer3, EntityLiving entityLiving4, GameSettings gameSettings5, float f6) {
-		this.worldObj = world1;
-		this.renderEngine = renderEngine2;
-		this.options = gameSettings5;
-		this.livingPlayer = entityLiving4;
-		this.fontRenderer = fontRenderer3;
-		if(entityLiving4.isPlayerSleeping()) {
-			int i7 = world1.getBlockId(MathHelper.floor_double(entityLiving4.posX), MathHelper.floor_double(entityLiving4.posY), MathHelper.floor_double(entityLiving4.posZ));
-			if(i7 == Block.blockBed.blockID) {
-				int i8 = world1.getBlockMetadata(MathHelper.floor_double(entityLiving4.posX), MathHelper.floor_double(entityLiving4.posY), MathHelper.floor_double(entityLiving4.posZ));
-				int i9 = i8 & 3;
-				this.playerViewY = (float)(i9 * 90 + 180);
+	public void cacheActiveRenderInfo(World paramfb, RenderEngine paramjf, FontRenderer paramse, EntityLiving paramlo, GameSettings paramkr, float paramFloat) {
+		this.worldObj = paramfb;
+		this.renderEngine = paramjf;
+		this.options = paramkr;
+		this.livingPlayer = paramlo;
+		this.fontRenderer = paramse;
+		if(paramlo.isPlayerSleeping()) {
+			int i1 = paramfb.getBlockId(MathHelper.floor_double(paramlo.posX), MathHelper.floor_double(paramlo.posY), MathHelper.floor_double(paramlo.posZ));
+			if(i1 == Block.blockBed.blockID) {
+				int i2 = paramfb.getBlockMetadata(MathHelper.floor_double(paramlo.posX), MathHelper.floor_double(paramlo.posY), MathHelper.floor_double(paramlo.posZ));
+				int i3 = i2 & 3;
+				this.playerViewY = (float)(i3 * 90 + 180);
 				this.playerViewX = 0.0F;
 			}
 		} else {
-			this.playerViewY = entityLiving4.prevRotationYaw + (entityLiving4.rotationYaw - entityLiving4.prevRotationYaw) * f6;
-			this.playerViewX = entityLiving4.prevRotationPitch + (entityLiving4.rotationPitch - entityLiving4.prevRotationPitch) * f6;
+			this.playerViewY = paramlo.prevRotationYaw + (paramlo.rotationYaw - paramlo.prevRotationYaw) * paramFloat;
+			this.playerViewX = paramlo.prevRotationPitch + (paramlo.rotationPitch - paramlo.prevRotationPitch) * paramFloat;
 		}
 
-		this.field_1222_l = entityLiving4.lastTickPosX + (entityLiving4.posX - entityLiving4.lastTickPosX) * (double)f6;
-		this.field_1221_m = entityLiving4.lastTickPosY + (entityLiving4.posY - entityLiving4.lastTickPosY) * (double)f6;
-		this.field_1220_n = entityLiving4.lastTickPosZ + (entityLiving4.posZ - entityLiving4.lastTickPosZ) * (double)f6;
+		this.field_1222_l = paramlo.lastTickPosX + (paramlo.posX - paramlo.lastTickPosX) * (double)paramFloat;
+		this.field_1221_m = paramlo.lastTickPosY + (paramlo.posY - paramlo.lastTickPosY) * (double)paramFloat;
+		this.field_1220_n = paramlo.lastTickPosZ + (paramlo.posZ - paramlo.lastTickPosZ) * (double)paramFloat;
 	}
 
-	public void renderEntity(Entity entity1, float f2) {
-		double d3 = entity1.lastTickPosX + (entity1.posX - entity1.lastTickPosX) * (double)f2;
-		double d5 = entity1.lastTickPosY + (entity1.posY - entity1.lastTickPosY) * (double)f2;
-		double d7 = entity1.lastTickPosZ + (entity1.posZ - entity1.lastTickPosZ) * (double)f2;
-		float f9 = entity1.prevRotationYaw + (entity1.rotationYaw - entity1.prevRotationYaw) * f2;
-		float f10 = entity1.getEntityBrightness(f2);
-		GL11.glColor3f(f10, f10, f10);
-		this.renderEntityWithPosYaw(entity1, d3 - renderPosX, d5 - renderPosY, d7 - renderPosZ, f9, f2);
+	public void renderEntity(Entity paramsi, float paramFloat) {
+		double d1 = paramsi.lastTickPosX + (paramsi.posX - paramsi.lastTickPosX) * (double)paramFloat;
+		double d2 = paramsi.lastTickPosY + (paramsi.posY - paramsi.lastTickPosY) * (double)paramFloat;
+		double d3 = paramsi.lastTickPosZ + (paramsi.posZ - paramsi.lastTickPosZ) * (double)paramFloat;
+		float f1 = paramsi.prevRotationYaw + (paramsi.rotationYaw - paramsi.prevRotationYaw) * paramFloat;
+		float f2 = paramsi.getEntityBrightness(paramFloat);
+		GL11.glColor3f(f2, f2, f2);
+		this.renderEntityWithPosYaw(paramsi, d1 - renderPosX, d2 - renderPosY, d3 - renderPosZ, f1, paramFloat);
 	}
 
-	public void renderEntityWithPosYaw(Entity entity1, double d2, double d4, double d6, float f8, float f9) {
-		Render render10 = this.getEntityRenderObject(entity1);
-		if(render10 != null) {
-			render10.doRender(entity1, d2, d4, d6, f8, f9);
-			render10.doRenderShadowAndFire(entity1, d2, d4, d6, f8, f9);
+	public void renderEntityWithPosYaw(Entity paramsi, double paramDouble1, double paramDouble2, double paramDouble3, float paramFloat1, float paramFloat2) {
+		Render localbu = this.getEntityRenderObject(paramsi);
+		if(localbu != null) {
+			localbu.doRender(paramsi, paramDouble1, paramDouble2, paramDouble3, paramFloat1, paramFloat2);
+			localbu.doRenderShadowAndFire(paramsi, paramDouble1, paramDouble2, paramDouble3, paramFloat1, paramFloat2);
 		}
 
 	}
 
-	public void func_852_a(World world1) {
-		this.worldObj = world1;
+	public void func_852_a(World paramfb) {
+		this.worldObj = paramfb;
 	}
 
-	public double func_851_a(double d1, double d3, double d5) {
-		double d7 = d1 - this.field_1222_l;
-		double d9 = d3 - this.field_1221_m;
-		double d11 = d5 - this.field_1220_n;
-		return d7 * d7 + d9 * d9 + d11 * d11;
+	public double func_851_a(double paramDouble1, double paramDouble2, double paramDouble3) {
+		double d1 = paramDouble1 - this.field_1222_l;
+		double d2 = paramDouble2 - this.field_1221_m;
+		double d3 = paramDouble3 - this.field_1220_n;
+		return d1 * d1 + d2 * d2 + d3 * d3;
 	}
 
 	public FontRenderer getFontRenderer() {

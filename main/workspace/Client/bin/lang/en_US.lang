@@ -916,6 +916,9 @@ entity.Boat.name=Boat
 entity.Arrow.name=arrow
 entity.generic.name=unknown
 
+entity.boar.name=Boar
+
+
 death.inFire=%1$s went up in flames
 death.onFire=%1$s burned to death
 death.lava=%1$s tried to swim in lava

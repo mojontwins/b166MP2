@@ -196,7 +196,7 @@ public class WorldGenDungeons extends WorldGenerator {
 					worldGenCobweb.generate(world, rand, x + rand.nextInt(8) - 4, y + rand.nextInt(3), z + rand.nextInt(8) - 4);
 				}
 			}
-			System.out.println ("Dungeon Spawner @ " + x + " " + y + " " + z + " tier " + this.minDungeonTier + "-" + this.maxDungeonTier + " Dungeon class " + this.getClass().toString());
+			//System.out.println ("Dungeon Spawner @ " + x + " " + y + " " + z + " tier " + this.minDungeonTier + "-" + this.maxDungeonTier + " Dungeon class " + this.getClass().toString());
 			return true;
 		} else return false;
 	}

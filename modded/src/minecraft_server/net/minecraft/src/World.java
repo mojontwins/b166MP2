@@ -1332,10 +1332,10 @@ public class World implements IBlockAccess {
 		} else {
 			++this.field_4265_J;
 
-			boolean z2;
 			try {
 				int i1 = 500;
 
+				boolean z2;
 				while(this.field_821_y.size() > 0) {
 					--i1;
 					if(i1 <= 0) {
@@ -1347,11 +1347,10 @@ public class World implements IBlockAccess {
 				}
 
 				z2 = false;
+				return z2;
 			} finally {
 				--this.field_4265_J;
 			}
-
-			return z2;
 		}
 	}
 
@@ -1370,35 +1369,35 @@ public class World implements IBlockAccess {
 
 				int i9 = (i5 + i2) / 2;
 				int i10 = (i7 + i4) / 2;
-				if(!this.blockExists(i9, 64, i10)) {
-					return;
-				}
-
-				if(this.getChunkFromBlockCoords(i9, i10).func_21101_g()) {
-					return;
-				}
-
-				int i11 = this.field_821_y.size();
-				int i12;
-				if(z8) {
-					i12 = 5;
-					if(i12 > i11) {
-						i12 = i11;
+				if(this.blockExists(i9, 64, i10)) {
+					if(this.getChunkFromBlockCoords(i9, i10).func_21101_g()) {
+						return;
 					}
 
-					for(int i13 = 0; i13 < i12; ++i13) {
-						MetadataChunkBlock metadataChunkBlock14 = (MetadataChunkBlock)this.field_821_y.get(this.field_821_y.size() - i13 - 1);
-						if(metadataChunkBlock14.field_957_a == enumSkyBlock1 && metadataChunkBlock14.func_692_a(i2, i3, i4, i5, i6, i7)) {
-							return;
+					int i11 = this.field_821_y.size();
+					int i12;
+					if(z8) {
+						i12 = 5;
+						if(i12 > i11) {
+							i12 = i11;
+						}
+
+						for(int i13 = 0; i13 < i12; ++i13) {
+							MetadataChunkBlock metadataChunkBlock14 = (MetadataChunkBlock)this.field_821_y.get(this.field_821_y.size() - i13 - 1);
+							if(metadataChunkBlock14.field_957_a == enumSkyBlock1 && metadataChunkBlock14.func_692_a(i2, i3, i4, i5, i6, i7)) {
+								return;
+							}
 						}
 					}
-				}
 
-				this.field_821_y.add(new MetadataChunkBlock(enumSkyBlock1, i2, i3, i4, i5, i6, i7));
-				i12 = 1000000;
-				if(this.field_821_y.size() > 1000000) {
-					System.out.println("More than " + i12 + " updates, aborting lighting updates");
-					this.field_821_y.clear();
+					this.field_821_y.add(new MetadataChunkBlock(enumSkyBlock1, i2, i3, i4, i5, i6, i7));
+					i12 = 1000000;
+					if(this.field_821_y.size() > 1000000) {
+						System.out.println("More than " + i12 + " updates, aborting lighting updates");
+						this.field_821_y.clear();
+					}
+
+					return;
 				}
 			} finally {
 				--field_4268_y;

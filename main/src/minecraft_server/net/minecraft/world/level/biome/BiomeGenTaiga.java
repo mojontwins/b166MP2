@@ -2,6 +2,8 @@ package net.minecraft.world.level.biome;
 
 import java.util.Random;
 
+import net.minecraft.world.entity.animal.EntityBoar;
+import net.minecraft.world.entity.animal.EntityPig;
 import net.minecraft.world.entity.animal.EntityWolf;
 import net.minecraft.world.level.SpawnListEntry;
 import net.minecraft.world.level.Weather;
@@ -16,6 +18,13 @@ public class BiomeGenTaiga extends BiomeGenBaseBeta {
 		this.weather = Weather.cold;
 		
 		this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 2, 6, 6));
+		this.spawnableCreatureList.replaceAll(
+				e -> 
+					e.entityClass == EntityPig.class ? 
+							new SpawnListEntry(EntityBoar.class, 10, 4, 4) 
+						: 
+							e
+		);
 		
 		// And some tweaks...
 		this.biomeDecorator.extraTreesPerChunk = 5;

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.mojang.nbt.NBTTagCompound;
 
+import net.minecraft.world.entity.animal.EntityBoar;
 import net.minecraft.world.entity.animal.EntityChicken;
 import net.minecraft.world.entity.animal.EntityCow;
 import net.minecraft.world.entity.animal.EntityMooshroom;
@@ -29,6 +30,7 @@ import net.minecraft.world.entity.monster.EntityGhast;
 import net.minecraft.world.entity.monster.EntityGiantZombie;
 import net.minecraft.world.entity.monster.EntityIronGolem;
 import net.minecraft.world.entity.monster.EntityMob;
+import net.minecraft.world.entity.monster.EntityOgre;
 import net.minecraft.world.entity.monster.EntityPigZombie;
 import net.minecraft.world.entity.monster.EntitySkeleton;
 import net.minecraft.world.entity.monster.EntitySlime;
@@ -142,6 +144,10 @@ public class EntityList {
 		while(it.hasNext()) result.add(it.next());
 		return result;
 	}
+	
+	public static String getNameByClass(Class<?> clazz) {
+		return classToStringMapping.get(clazz);
+	}
 
 
 	static {
@@ -178,6 +184,9 @@ public class EntityList {
 		addMapping(EntityVillager.class, "Villager", 120, 5651507, 12422002);
 		
 		addMapping(EntityMovingPiston.class, "MovingPiston", 119);
+		
+		addMapping(EntityBoar.class, "Boar", 120, 0x362119, 0x57453D);
+		addMapping(EntityOgre.class, "Ogre", 121, 0x209855, 0xB6A055);
 		
 		addMapping(EntityClassicZombie.class, "ZombieClassic", 150);
 		addMapping(EntityClassicSkeleton.class, "SkeletonClassic", 151);

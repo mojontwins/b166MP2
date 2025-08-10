@@ -148,10 +148,9 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 
 	* [X] Are seasons OFF in the server?
 	* [/] seeds not consistent? revise beta gen -- almost.
-	* [ ] FLAT is not generating! (freezes?)
+	* [X] FLAT is not generating! (freezes?)
 
 * and now we are ready for...
-
 
 # b16.6.6 r1
 
@@ -163,7 +162,18 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 		* Added a `withFruit(id)` to add fruit to normal trees.
 * [X] Colored sheep spawning.
 * [X] Hippoplatimus pistons
-* [ ] Fix all bugs.
+
+# b16.6.6 r1 - More animals!
+
+* [X] Boars
+* [ ] Ogre!
+	* I've always liked finding ogres in my old worlds but I'm wondering how they appear... I guess totally random. I'd spawn them in swamps very rarely maybe. 
+	* I don't think I'll be using the actual code. I'd rather have ogres be like my amazons, i.e. passive but can get angry.
+* [ ] Werefolf
+* [ ] Wraith
+* [ ] goats
+* [ ] cold cow
+* [ ] black duck.
 
 # b16.6.6 r2
 
@@ -199,10 +209,19 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 
 * I've been struggling for a while to make animations server->client. I'm trying to do this via the entity tracker. Problem is, extending or retracting pistons do create & spawn entities in the world to make the animation. That fires up the tracker. `EntityMovingPiston` `onUpdate` method moves the piston using its xmove, ymove, zmove from the position it was created at. I'm using this as a second alternative: i'll store x, y, z and xmove, ymove, zmove in the packet and will try to recreate the entity client-side just like that. And THAT DID IT! YAY! This was hard.
 
+#### 20250809
+
+* Spent too much time figuring out how to produce working jars for betacraft and MultiMC, and then it took too much time making SuperFlat to work... Even though the problem was REALLY STUPID.
+
+#### 20250810 
+
+* Added boars and ogres from Dr.Zhark's Mo'Creatures.
+
 # Credits
 
 * Chocolate Mod (just the inspiration for now, sorry) by X8xScoutx8X
 * Pistons Mod by Hyppoplatimus.
+* Some animals by Dr.Zark.
 
 # To transfer to sister projects ...
 

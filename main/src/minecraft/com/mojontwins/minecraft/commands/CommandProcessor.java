@@ -237,6 +237,7 @@ public class CommandProcessor {
 		registerCommand(CommandIf.class);
 		registerCommand(CommandPlayerHas.class);
 		registerCommand(CommandLet.class);
+		registerCommand(CommandSpawnableList.class);
 		//registerCommand(CommandEnable.class);
 		//registerCommand(CommandDisable.class);
 	}
