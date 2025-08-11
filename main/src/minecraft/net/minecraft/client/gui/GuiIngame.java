@@ -379,10 +379,16 @@ public class GuiIngame extends Gui {
 				this.drawString(fontRenderer8, string21, i6 - fontRenderer8.getStringWidth(string21) - 2, 42, 14737632);
 			}
 			
+			int yyy = 62;
 			if(Seasons.activated()) {
 				string21 = Seasons.getStringForGui() ;
 				this.drawString(fontRenderer8, string21, i6 - fontRenderer8.getStringWidth(string21) - 2, 52, 14737632);
-			}
+			} else yyy = 52;
+			this.drawString(
+					fontRenderer8, 
+					"T: " + (int)(100 * this.mc.theWorld.getWorldChunkManager().getTemperatureAt(x, z)) / 100F, 
+					i6 - fontRenderer8.getStringWidth(string21) - 2, yyy, 
+					14737632);
 				
 			GL11.glPopMatrix();
 		} else {

@@ -165,15 +165,44 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 
 # b16.6.6 r1 - More animals!
 
+* [X] Add `DataWatchers` with standard definitions for commonly used data watchers.
+* [ ] Add classic pig and cow (no AI) so Boar & ColdCow can extend it.
 * [X] Boars
-* [ ] Ogre!
-	* I've always liked finding ogres in my old worlds but I'm wondering how they appear... I guess totally random. I'd spawn them in swamps very rarely maybe. 
-	* I don't think I'll be using the actual code. I'd rather have ogres be like my amazons, i.e. passive but can get angry.
-* [ ] Werefolf
+* [X] Ogre!
+	* I've always liked finding ogres in my old worlds but I'm wondering how they appear... I guess totally random. I'd spawn them in swamps very rarely maybe. I've made them appear only in covered spots. Hope it works, we'll see.
+* [ ] goats - I'll reuse my port in Infhell. 
+* [ ] Werewolf
 * [ ] Wraith
-* [ ] goats
 * [ ] cold cow
 * [ ] black duck.
+* [ ] I'll also introduce the means to name animals and make them not despawn.
+	* ItemNametagSimple -> the item.
+	* GuiGiveName -> the gui.
+	* EntityCreature.setName -> the method to give name, and fired from `interact`: 
+
+```java
+	@Override
+	public boolean interact(EntityPlayer entityPlayer) {
+		ItemStack itemStack = entityPlayer.inventory.getCurrentItem();
+		if (itemStack != null && itemStack.itemID == Item.nametagSimple.shiftedIndex) {
+			if(!entityPlayer.isCreative) itemStack.stackSize --;
+			entityPlayer.displayGUIGiveName(this);
+			return true;
+		}
+		
+		return false;
+	}
+```
+
+	* Communication via the `DataWatcher` in creature:
+
+```java
+	public void setName(String name) {
+		if(name == null) name = "";
+		dataWatcher.updateObject(Datawatchers.DW_NAME, name);
+	}
+```
+
 
 # b16.6.6 r2
 
@@ -216,6 +245,11 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 #### 20250810 
 
 * Added boars and ogres from Dr.Zhark's Mo'Creatures.
+
+#### 20250811
+
+* Added DataWatchers to include generally used datawatcher types as common numbers.
+* Added Cold Cow, Chicken Black. Made Boars extend classic pigs. Added Boars to all kinds of forests, cold cows to cold biomes and black chickens to deserts.
 
 # Credits
 

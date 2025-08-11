@@ -7,6 +7,7 @@ import com.mojang.nbt.NBTTagCompound;
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.entity.DamageSource;
+import net.minecraft.world.entity.DataWatchers;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.IDyeableEntity;
@@ -103,7 +104,7 @@ public class EntitySheep extends EntityAnimal implements IDyeableEntity {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
+		this.dataWatcher.addObject(DataWatchers.DW_STATUS, Byte.valueOf((byte)0));
 	}
 
 	protected void dropFewItems(boolean z1, int i2) {
@@ -185,24 +186,24 @@ public class EntitySheep extends EntityAnimal implements IDyeableEntity {
 	}
 
 	public int getFleeceColor() {
-		return this.dataWatcher.getWatchableObjectByte(16) & 15;
+		return this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS) & 15;
 	}
 
 	public void setFleeceColor(int i1) {
-		byte b2 = this.dataWatcher.getWatchableObjectByte(16);
-		this.dataWatcher.updateObject(16, (byte)(b2 & 240 | i1 & 15));
+		byte b2 = this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS);
+		this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)(b2 & 240 | i1 & 15));
 	}
 
 	public boolean getSheared() {
-		return (this.dataWatcher.getWatchableObjectByte(16) & 16) != 0;
+		return (this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS) & 16) != 0;
 	}
 
 	public void setSheared(boolean z1) {
-		byte b2 = this.dataWatcher.getWatchableObjectByte(16);
+		byte b2 = this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS);
 		if(z1) {
-			this.dataWatcher.updateObject(16, (byte)(b2 | 16));
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)(b2 | 16));
 		} else {
-			this.dataWatcher.updateObject(16, (byte)(b2 & -17));
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)(b2 & -17));
 		}
 
 	}

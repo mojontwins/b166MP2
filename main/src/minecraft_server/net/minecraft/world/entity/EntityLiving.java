@@ -1201,6 +1201,14 @@ public abstract class EntityLiving extends Entity {
 		this.rotationPitch = -this.updateRotation(this.rotationPitch, f13, f3);
 		this.rotationYaw = this.updateRotation(this.rotationYaw, f12, f2);
 	}
+	
+	public boolean hasCurrentTarget() {
+		return this.currentTarget != null;
+	}
+
+	public Entity getCurrentTarget() {
+		return this.currentTarget;
+	}
 
 	private float updateRotation(float f1, float f2, float f3) {
 		float f4;

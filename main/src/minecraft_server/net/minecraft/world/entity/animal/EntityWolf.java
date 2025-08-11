@@ -5,6 +5,7 @@ import com.mojang.nbt.NBTTagCompound;
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.entity.DamageSource;
+import net.minecraft.world.entity.DataWatchers;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.EntityAIAttackOnCollide;
@@ -74,7 +75,7 @@ public class EntityWolf extends EntityTameable {
 	}
 
 	protected void updateAITick() {
-		this.dataWatcher.updateObject(18, this.getHealth());
+		this.dataWatcher.updateObject(DataWatchers.DW_HEALTH, this.getHealth());
 	}
 
 	public int getMaxHealth() {
@@ -83,7 +84,7 @@ public class EntityWolf extends EntityTameable {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(18, Integer.valueOf(this.getHealth()));
+		this.dataWatcher.addObject(DataWatchers.DW_HEALTH, Integer.valueOf(this.getHealth()));
 	}
 
 	protected boolean canTriggerWalking() {
@@ -109,7 +110,7 @@ public class EntityWolf extends EntityTameable {
 	}
 
 	protected String getLivingSound() {
-		return this.isAngry() ? "mob.wolf.growl" : (this.rand.nextInt(3) == 0 ? (this.isTamed() && this.dataWatcher.getWatchableObjectInt(18) < 10 ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
+		return this.isAngry() ? "mob.wolf.growl" : (this.rand.nextInt(3) == 0 ? (this.isTamed() && this.dataWatcher.getWatchableObjectInt(DataWatchers.DW_HEALTH) < 10 ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
 	}
 
 	protected String getHurtSound() {
@@ -264,7 +265,7 @@ public class EntityWolf extends EntityTameable {
 		} else {
 			if(itemStack2 != null && Item.itemsList[itemStack2.itemID] instanceof ItemFood) {
 				ItemFood itemFood3 = (ItemFood)Item.itemsList[itemStack2.itemID];
-				if(itemFood3.isWolfsFavoriteMeat() && this.dataWatcher.getWatchableObjectInt(18) < 20) {
+				if(itemFood3.isWolfsFavoriteMeat() && this.dataWatcher.getWatchableObjectInt(DataWatchers.DW_HEALTH) < 20) {
 					if(!entityPlayer1.capabilities.isCreativeMode) {
 						--itemStack2.stackSize;
 					}
@@ -300,7 +301,7 @@ public class EntityWolf extends EntityTameable {
 	}
 
 	public float getTailRotation() {
-		return this.isAngry() ? 1.5393804F : (this.isTamed() ? (0.55F - (float)(20 - this.dataWatcher.getWatchableObjectInt(18)) * 0.02F) * (float)Math.PI : 0.62831855F);
+		return this.isAngry() ? 1.5393804F : (this.isTamed() ? (0.55F - (float)(20 - this.dataWatcher.getWatchableObjectInt(DataWatchers.DW_HEALTH)) * 0.02F) * (float)Math.PI : 0.62831855F);
 	}
 
 	public boolean isWheat(ItemStack itemStack1) {
@@ -312,15 +313,15 @@ public class EntityWolf extends EntityTameable {
 	}
 
 	public boolean isAngry() {
-		return (this.dataWatcher.getWatchableObjectByte(16) & 2) != 0;
+		return (this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS) & 2) != 0;
 	}
 
 	public void setAngry(boolean z1) {
-		byte b2 = this.dataWatcher.getWatchableObjectByte(16);
+		byte b2 = this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS);
 		if(z1) {
-			this.dataWatcher.updateObject(16, (byte)(b2 | 2));
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)(b2 | 2));
 		} else {
-			this.dataWatcher.updateObject(16, (byte)(b2 & -3));
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)(b2 & -3));
 		}
 
 	}

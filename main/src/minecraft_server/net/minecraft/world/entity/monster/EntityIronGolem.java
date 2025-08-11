@@ -4,6 +4,7 @@ import com.mojang.nbt.NBTTagCompound;
 
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.entity.DamageSource;
+import net.minecraft.world.entity.DataWatchers;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.world.entity.ai.EntityAIDefendVillage;
@@ -46,7 +47,7 @@ public class EntityIronGolem extends EntityGolem {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(16, (byte)0);
+		this.dataWatcher.addObject(DataWatchers.DW_STATUS, (byte)0);
 	}
 
 	public boolean isAIEnabled() {
@@ -190,15 +191,15 @@ public class EntityIronGolem extends EntityGolem {
 	}
 
 	public boolean func_48112_E_() {
-		return (this.dataWatcher.getWatchableObjectByte(16) & 1) != 0;
+		return (this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS) & 1) != 0;
 	}
 
 	public void setCreatedByPlayer(boolean z1) {
-		byte b2 = this.dataWatcher.getWatchableObjectByte(16);
+		byte b2 = this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS);
 		if(z1) {
-			this.dataWatcher.updateObject(16, (byte)(b2 | 1));
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)(b2 | 1));
 		} else {
-			this.dataWatcher.updateObject(16, (byte)(b2 & -2));
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)(b2 & -2));
 		}
 
 	}

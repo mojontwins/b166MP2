@@ -375,7 +375,7 @@ public abstract class BiomeGenBase {
 						}
 
 						if(y < seaLevel && topBlock == 0) {
-							if(temperature < 0.15F) {
+							if(temperature < 0.2F) {
 								topBlock = (byte)Block.ice.blockID;
 							} else {
 								topBlock = (byte)Block.waterStill.blockID;

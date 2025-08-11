@@ -3,6 +3,7 @@ package net.minecraft.world.entity.monster;
 import com.mojang.nbt.NBTTagCompound;
 
 import net.minecraft.world.entity.DamageSource;
+import net.minecraft.world.entity.DataWatchers;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLightningBolt;
 import net.minecraft.world.entity.ai.EntityAIAttackOnCollide;
@@ -47,13 +48,13 @@ public class EntityCreeper extends EntityMob implements IMob {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(16, (byte)-1);
-		this.dataWatcher.addObject(17, (byte)0);
+		this.dataWatcher.addObject(DataWatchers.DW_STATUS, (byte)-1);
+		this.dataWatcher.addObject(DataWatchers.DW_TYPE, (byte)0);
 	}
 
 	public void writeEntityToNBT(NBTTagCompound compoundTag) {
 		super.writeEntityToNBT(compoundTag);
-		if(this.dataWatcher.getWatchableObjectByte(17) == 1) {
+		if(this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_TYPE) == 1) {
 			compoundTag.setBoolean("powered", true);
 		}
 
@@ -61,7 +62,7 @@ public class EntityCreeper extends EntityMob implements IMob {
 
 	public void readEntityFromNBT(NBTTagCompound compoundTag) {
 		super.readEntityFromNBT(compoundTag);
-		this.dataWatcher.updateObject(17, (byte)(compoundTag.getBoolean("powered") ? 1 : 0));
+		this.dataWatcher.updateObject(DataWatchers.DW_TYPE, (byte)(compoundTag.getBoolean("powered") ? 1 : 0));
 	}
 
 	public void onUpdate() {
@@ -115,7 +116,7 @@ public class EntityCreeper extends EntityMob implements IMob {
 	}
 
 	public boolean getPowered() {
-		return this.dataWatcher.getWatchableObjectByte(17) == 1;
+		return this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_TYPE) == 1;
 	}
 
 	public float setCreeperFlashTime(float f1) {
@@ -127,15 +128,15 @@ public class EntityCreeper extends EntityMob implements IMob {
 	}
 
 	public int getCreeperState() {
-		return this.dataWatcher.getWatchableObjectByte(16);
+		return this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS);
 	}
 
 	public void setCreeperState(int i1) {
-		this.dataWatcher.updateObject(16, (byte)i1);
+		this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)i1);
 	}
 
 	public void onStruckByLightning(EntityLightningBolt entityLightningBolt1) {
 		super.onStruckByLightning(entityLightningBolt1);
-		this.dataWatcher.updateObject(17, (byte)1);
+		this.dataWatcher.updateObject(DataWatchers.DW_TYPE, (byte)1);
 	}
 }

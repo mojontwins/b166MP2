@@ -1,4 +1,4 @@
-package net.minecraft.src;
+epackage net.minecraft.src;
 
 import java.awt.Color;
 import java.util.ArrayList;

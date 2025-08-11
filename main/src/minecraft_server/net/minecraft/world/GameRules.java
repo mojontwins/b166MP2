@@ -37,6 +37,8 @@ public class GameRules {
 	public static final boolean debug = false;
 	
 	public static HashMap<String, GameRule> gameRules = new HashMap<String, GameRule> ();
+
+	public static boolean completelyLockSeasons = true;
 	
 	public static final String catAesthetics = "Aesthetics";
 	public static final String catMobs = "Mobs";

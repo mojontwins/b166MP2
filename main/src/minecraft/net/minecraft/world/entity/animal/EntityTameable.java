@@ -2,6 +2,7 @@ package net.minecraft.world.entity.animal;
 
 import com.mojang.nbt.NBTTagCompound;
 
+import net.minecraft.world.entity.DataWatchers;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.ai.EntityAISit;
 import net.minecraft.world.level.World;
@@ -15,8 +16,8 @@ public abstract class EntityTameable extends EntityAnimal {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(16, (byte)0);
-		this.dataWatcher.addObject(17, "");
+		this.dataWatcher.addObject(DataWatchers.DW_STATUS, (byte)0);
+		this.dataWatcher.addObject(DataWatchers.DW_OWNER, "");
 	}
 
 	public void writeEntityToNBT(NBTTagCompound compoundTag) {
@@ -68,39 +69,39 @@ public abstract class EntityTameable extends EntityAnimal {
 	}
 
 	public boolean isTamed() {
-		return (this.dataWatcher.getWatchableObjectByte(16) & 4) != 0;
+		return (this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS) & 4) != 0;
 	}
 
 	public void setTamed(boolean z1) {
-		byte b2 = this.dataWatcher.getWatchableObjectByte(16);
+		byte b2 = this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS);
 		if(z1) {
-			this.dataWatcher.updateObject(16, (byte)(b2 | 4));
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)(b2 | 4));
 		} else {
-			this.dataWatcher.updateObject(16, (byte)(b2 & -5));
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)(b2 & -5));
 		}
 
 	}
 
 	public boolean isSitting() {
-		return (this.dataWatcher.getWatchableObjectByte(16) & 1) != 0;
+		return (this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS) & 1) != 0;
 	}
 
 	public void setSitting(boolean z1) {
-		byte b2 = this.dataWatcher.getWatchableObjectByte(16);
+		byte b2 = this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS);
 		if(z1) {
-			this.dataWatcher.updateObject(16, (byte)(b2 | 1));
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)(b2 | 1));
 		} else {
-			this.dataWatcher.updateObject(16, (byte)(b2 & -2));
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)(b2 & -2));
 		}
 
 	}
 
 	public String getOwnerName() {
-		return this.dataWatcher.getWatchableObjectString(17);
+		return this.dataWatcher.getWatchableObjectString(DataWatchers.DW_OWNER);
 	}
 
 	public void setOwner(String string1) {
-		this.dataWatcher.updateObject(17, string1);
+		this.dataWatcher.updateObject(DataWatchers.DW_OWNER, string1);
 	}
 
 	public EntityLiving getOwner() {

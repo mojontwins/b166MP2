@@ -5,6 +5,7 @@ import com.mojang.nbt.NBTTagCompound;
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.entity.DamageSource;
+import net.minecraft.world.entity.DataWatchers;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.world.entity.ai.EntityAIFollowOwner;
@@ -50,7 +51,7 @@ public class EntityOcelot extends EntityTameable {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(18, (byte)0);
+		this.dataWatcher.addObject(DataWatchers.DW_TYPE, (byte)0);
 		
 		// Make common cats spawn naturally
 		if(rand.nextInt(3) == 0) this.setCatType(1 + this.rand.nextInt(3));
@@ -211,11 +212,11 @@ public class EntityOcelot extends EntityTameable {
 	}
 
 	public int getCatType() {
-		return this.dataWatcher.getWatchableObjectByte(18);
+		return this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_TYPE);
 	}
 
 	public void setCatType(int i1) {
-		this.dataWatcher.updateObject(18, (byte)i1);
+		this.dataWatcher.updateObject(DataWatchers.DW_TYPE, (byte)i1);
 	}
 
 	public boolean getCanSpawnHere() {

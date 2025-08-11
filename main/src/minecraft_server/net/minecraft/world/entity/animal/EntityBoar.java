@@ -2,8 +2,6 @@ package net.minecraft.world.entity.animal;
 
 import java.util.List;
 
-import com.mojang.nbt.NBTTagCompound;
-
 import net.minecraft.world.entity.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLiving;
@@ -12,7 +10,7 @@ import net.minecraft.world.entity.monster.EntityMob;
 import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.level.World;
 
-public class EntityBoar extends EntityPig {
+public class EntityBoar extends EntityClassicPig {
 	protected int force;
 	protected double attackRange;
 
@@ -24,7 +22,13 @@ public class EntityBoar extends EntityPig {
 		this.force = 1;
 		this.attackRange = 1.0D;
 	}
+	
+	@Override
+	public boolean isAIEnabled() {
+		return false;
+	}
 
+	@Override
 	public void onLivingUpdate() {
 		if(this.worldObj.difficultySetting == 1) {
 			this.attackRange = 2.0D;
@@ -37,6 +41,7 @@ public class EntityBoar extends EntityPig {
 		super.onLivingUpdate();
 	}
 
+	@Override
 	protected Entity findPlayerToAttack() {
 		if(this.worldObj.difficultySetting > 0) {
 			EntityPlayer entityPlayer1 = this.worldObj.getClosestPlayerToEntity(this, this.attackRange);
@@ -72,6 +77,7 @@ public class EntityBoar extends EntityPig {
 		return entityLiving6;
 	}
 
+	@Override
 	public boolean attackEntityFrom(DamageSource source, int damage) {
 		if(super.attackEntityFrom(source, damage)) {
 			if(this.riddenByEntity != source.getEntity() && this.ridingEntity != source.getEntity()) {
@@ -88,6 +94,7 @@ public class EntityBoar extends EntityPig {
 		}
 	}
 
+	@Override
 	protected void attackEntity(Entity entity1, float f2) {
 		if((double)f2 < 2.5D && entity1.boundingBox.maxY > this.boundingBox.minY && entity1.boundingBox.minY < this.boundingBox.maxY) {
 			this.attackTime = 20;
@@ -112,18 +119,6 @@ public class EntityBoar extends EntityPig {
 			}
 		}
 
-	}
-
-	public void setEntityDead() {
-		super.setDead();
-	}
-
-	public void writeEntityToNBT(NBTTagCompound nBTTagCompound1) {
-		super.writeEntityToNBT(nBTTagCompound1);
-	}
-
-	public void readEntityFromNBT(NBTTagCompound nBTTagCompound1) {
-		super.readEntityFromNBT(nBTTagCompound1);
 	}
 
 }

@@ -4,6 +4,7 @@ import com.mojang.nbt.NBTTagCompound;
 
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.entity.DamageSource;
+import net.minecraft.world.entity.DataWatchers;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.item.Item;
@@ -27,11 +28,11 @@ public class EntitySlime extends EntityLiving implements IMob {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(16, Byte.valueOf((byte)1));
+		this.dataWatcher.addObject(DataWatchers.DW_TYPE, Byte.valueOf((byte)1));
 	}
 
 	public void setSlimeSize(int i1) {
-		this.dataWatcher.updateObject(16, Byte.valueOf((byte)i1));
+		this.dataWatcher.updateObject(DataWatchers.DW_TYPE, Byte.valueOf((byte)i1));
 		this.setSize(0.6F * (float)i1, 0.6F * (float)i1);
 		this.setPosition(this.posX, this.posY, this.posZ);
 		this.setEntityHealth(this.getMaxHealth());
@@ -44,7 +45,7 @@ public class EntitySlime extends EntityLiving implements IMob {
 	}
 
 	public int getSlimeSize() {
-		return this.dataWatcher.getWatchableObjectByte(16);
+		return this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_TYPE);
 	}
 
 	public void writeEntityToNBT(NBTTagCompound compoundTag) {

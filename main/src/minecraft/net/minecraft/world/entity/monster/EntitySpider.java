@@ -3,6 +3,7 @@ package net.minecraft.world.entity.monster;
 import com.mojang.nbt.NBTTagCompound;
 
 import net.minecraft.src.MathHelper;
+import net.minecraft.world.entity.DataWatchers;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EnumCreatureAttribute;
 import net.minecraft.world.item.Item;
@@ -18,7 +19,7 @@ public class EntitySpider extends EntityMob implements IMob {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
+		this.dataWatcher.addObject(DataWatchers.DW_STATUS, Byte.valueOf((byte)0));
 	}
 
 	public void onLivingUpdate() {
@@ -28,7 +29,7 @@ public class EntitySpider extends EntityMob implements IMob {
 	public void onUpdate() {
 		super.onUpdate();
 		if(!this.worldObj.isRemote) {
-			this.func_40148_a(this.isCollidedHorizontally);
+			this.collidedHorizontally(this.isCollidedHorizontally);
 		}
 
 	}
@@ -124,17 +125,17 @@ public class EntitySpider extends EntityMob implements IMob {
 	}
 
 	public boolean isCollidedHorizontally() {
-		return (this.dataWatcher.getWatchableObjectByte(16) & 1) != 0;
+		return (this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS) & 1) != 0;
 	}
 
-	public void func_40148_a(boolean z1) {
-		byte b2 = this.dataWatcher.getWatchableObjectByte(16);
+	public void collidedHorizontally(boolean z1) {
+		byte b2 = this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS);
 		if(z1) {
 			b2 = (byte)(b2 | 1);
 		} else {
 			b2 &= -2;
 		}
 
-		this.dataWatcher.updateObject(16, b2);
+		this.dataWatcher.updateObject(DataWatchers.DW_STATUS, b2);
 	}
 }

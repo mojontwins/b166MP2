@@ -3,6 +3,7 @@ package net.minecraft.world.entity.animal;
 import com.mojang.nbt.NBTTagCompound;
 
 import net.minecraft.world.GameRules;
+import net.minecraft.world.entity.DataWatchers;
 import net.minecraft.world.entity.EntityLightningBolt;
 import net.minecraft.world.entity.ai.EntityAIFollowParent;
 import net.minecraft.world.entity.ai.EntityAILookIdle;
@@ -46,7 +47,7 @@ public class EntityPig extends EntityAnimal {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(16, (byte)0);
+		this.dataWatcher.addObject(DataWatchers.DW_STATUS, (byte)0);
 	}
 
 	public void writeEntityToNBT(NBTTagCompound compoundTag) {
@@ -87,14 +88,14 @@ public class EntityPig extends EntityAnimal {
 	}
 
 	public boolean getSaddled() {
-		return (this.dataWatcher.getWatchableObjectByte(16) & 1) != 0;
+		return (this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS) & 1) != 0;
 	}
 
 	public void setSaddled(boolean z1) {
 		if(z1) {
-			this.dataWatcher.updateObject(16, (byte)1);
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)1);
 		} else {
-			this.dataWatcher.updateObject(16, (byte)0);
+			this.dataWatcher.updateObject(DataWatchers.DW_STATUS, (byte)0);
 		}
 
 	}

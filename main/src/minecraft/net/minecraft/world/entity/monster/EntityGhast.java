@@ -2,6 +2,7 @@ package net.minecraft.world.entity.monster;
 
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.entity.DamageSource;
+import net.minecraft.world.entity.DataWatchers;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.entity.projectile.EntityFireball;
@@ -39,7 +40,7 @@ public class EntityGhast extends EntityFlying implements IMob {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.dataWatcher.addObject(16, (byte)0);
+		this.dataWatcher.addObject(DataWatchers.DW_STATUS, (byte)0);
 	}
 
 	public int getMaxHealth() {
@@ -48,7 +49,7 @@ public class EntityGhast extends EntityFlying implements IMob {
 
 	public void onUpdate() {
 		super.onUpdate();
-		byte b1 = this.dataWatcher.getWatchableObjectByte(16);
+		byte b1 = this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS);
 		this.texture = b1 == 1 ? "/mob/ghast_fire.png" : "/mob/ghast.png";
 	}
 
@@ -127,10 +128,10 @@ public class EntityGhast extends EntityFlying implements IMob {
 		}
 
 		if(!this.worldObj.isRemote) {
-			byte b21 = this.dataWatcher.getWatchableObjectByte(16);
+			byte b21 = this.dataWatcher.getWatchableObjectByte(DataWatchers.DW_STATUS);
 			byte b12 = (byte)(this.attackCounter > 10 ? 1 : 0);
 			if(b21 != b12) {
-				this.dataWatcher.updateObject(16, b12);
+				this.dataWatcher.updateObject(DataWatchers.DW_STATUS, b12);
 			}
 		}
 

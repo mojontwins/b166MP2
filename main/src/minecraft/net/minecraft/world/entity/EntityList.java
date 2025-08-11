@@ -10,6 +10,8 @@ import com.mojang.nbt.NBTTagCompound;
 
 import net.minecraft.world.entity.animal.EntityBoar;
 import net.minecraft.world.entity.animal.EntityChicken;
+import net.minecraft.world.entity.animal.EntityChickenBlack;
+import net.minecraft.world.entity.animal.EntityColdCow;
 import net.minecraft.world.entity.animal.EntityCow;
 import net.minecraft.world.entity.animal.EntityMooshroom;
 import net.minecraft.world.entity.animal.EntityOcelot;
@@ -187,6 +189,8 @@ public class EntityList {
 		
 		addMapping(EntityBoar.class, "Boar", 120, 0x362119, 0x57453D);
 		addMapping(EntityOgre.class, "Ogre", 121, 0x209855, 0xB6A055);
+		addMapping(EntityColdCow.class, "ColdCow", 122, 0xA46A43, 0x39241B);
+		addMapping(EntityChickenBlack.class, "ChickenBlack", 123, 0x1D1D1D, 0x393939);
 		
 		addMapping(EntityClassicZombie.class, "ZombieClassic", 150);
 		addMapping(EntityClassicSkeleton.class, "SkeletonClassic", 151);

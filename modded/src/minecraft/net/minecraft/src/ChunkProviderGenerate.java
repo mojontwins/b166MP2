@@ -13,7 +13,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	public NoiseGeneratorOctaves field_921_b;
 	public NoiseGeneratorOctaves mobSpawnerNoise;
 	private World worldObj;
-	private double[] field_4180_q;
+	private double[] terrainNoise;
 	private double[] sandNoise = new double[256];
 	private double[] gravelNoise = new double[256];
 	private double[] stoneNoise = new double[256];
@@ -40,69 +40,72 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		this.mobSpawnerNoise = new NoiseGeneratorOctaves(this.rand, 8);
 	}
 
-	public void generateTerrain(int i1, int i2, byte[] b3, BiomeGenBase[] biomeGenBase4, double[] d5) {
-		byte b6 = 4;
-		byte b7 = 64;
-		int i8 = b6 + 1;
-		byte b9 = 17;
-		int i10 = b6 + 1;
-		this.field_4180_q = this.func_4061_a(this.field_4180_q, i1 * b6, 0, i2 * b6, i8, b9, i10);
+	public void generateTerrain(int chunkX, int chunkZ, byte[] blocks, BiomeGenBase[] biomeGenBase4, double[] d5) {
+		byte quadrantSize = 4;
+		byte seaLevel = 64;
+		int xSize = quadrantSize + 1;
+		byte ySize = 17;
+		int zSize = quadrantSize + 1;
+		this.terrainNoise = this.func_4061_a(this.terrainNoise, chunkX * quadrantSize, 0, chunkZ * quadrantSize, xSize, ySize, zSize);
 
-		for(int i11 = 0; i11 < b6; ++i11) {
-			for(int i12 = 0; i12 < b6; ++i12) {
-				for(int i13 = 0; i13 < 16; ++i13) {
-					double d14 = 0.125D;
-					double d16 = this.field_4180_q[((i11 + 0) * i10 + i12 + 0) * b9 + i13 + 0];
-					double d18 = this.field_4180_q[((i11 + 0) * i10 + i12 + 1) * b9 + i13 + 0];
-					double d20 = this.field_4180_q[((i11 + 1) * i10 + i12 + 0) * b9 + i13 + 0];
-					double d22 = this.field_4180_q[((i11 + 1) * i10 + i12 + 1) * b9 + i13 + 0];
-					double d24 = (this.field_4180_q[((i11 + 0) * i10 + i12 + 0) * b9 + i13 + 1] - d16) * d14;
-					double d26 = (this.field_4180_q[((i11 + 0) * i10 + i12 + 1) * b9 + i13 + 1] - d18) * d14;
-					double d28 = (this.field_4180_q[((i11 + 1) * i10 + i12 + 0) * b9 + i13 + 1] - d20) * d14;
-					double d30 = (this.field_4180_q[((i11 + 1) * i10 + i12 + 1) * b9 + i13 + 1] - d22) * d14;
+		for(int xSection = 0; xSection < quadrantSize; ++xSection) {
+			for(int zSection = 0; zSection < quadrantSize; ++zSection) {
+				for(int ySection = 0; ySection < 16; ++ySection) {
 
-					for(int i32 = 0; i32 < 8; ++i32) {
-						double d33 = 0.25D;
-						double d35 = d16;
-						double d37 = d18;
-						double d39 = (d20 - d16) * d33;
-						double d41 = (d22 - d18) * d33;
+					double noiseScale = 0.125D; // Which is 1/8
+					double densityMinXMinYMinZ = this.terrainNoise[((xSection + 0) * zSize + zSection + 0) * ySize + ySection + 0];
+					double densityMinXMinYMaxZ = this.terrainNoise[((xSection + 0) * zSize + zSection + 1) * ySize + ySection + 0];
+					double densityMaxXMinYMinZ = this.terrainNoise[((xSection + 1) * zSize + zSection + 0) * ySize + ySection + 0];
+					double densityMaxXMinYMaxZ = this.terrainNoise[((xSection + 1) * zSize + zSection + 1) * ySize + ySection + 0];
+					double yLerpAmountMinXMinZ = (this.terrainNoise[((xSection + 0) * zSize + zSection + 0) * ySize + ySection + 1] - densityMinXMinYMinZ) * noiseScale;
+					double yLerpAmountMinXMaxZ = (this.terrainNoise[((xSection + 0) * zSize + zSection + 1) * ySize + ySection + 1] - densityMinXMinYMaxZ) * noiseScale;
+					double yLerpAmountMaxXMinZ = (this.terrainNoise[((xSection + 1) * zSize + zSection + 0) * ySize + ySection + 1] - densityMaxXMinYMinZ) * noiseScale;
+					double yLerpAmountMaxXMaxZ = (this.terrainNoise[((xSection + 1) * zSize + zSection + 1) * ySize + ySection + 1] - densityMaxXMinYMaxZ) * noiseScale;
 
-						for(int i43 = 0; i43 < 4; ++i43) {
-							int i44 = i43 + i11 * 4 << 11 | 0 + i12 * 4 << 7 | i13 * 8 + i32;
-							short s45 = 128;
-							double d46 = 0.25D;
-							double d48 = d35;
-							double d50 = (d37 - d35) * d46;
+					for(int y = 0; y < 8; ++y) {
+						double scalingFactor = 0.25D; // Which is 1/4
+						double curDensityMinXMinYMinZ = densityMinXMinYMinZ;
+						double curDensityMinXMinYMaxZ = densityMinXMinYMaxZ;
+						double xLerpAmountMinZ = (densityMaxXMinYMinZ - densityMinXMinYMinZ) * scalingFactor;
+						double xLerpAmountMaxZ = (densityMaxXMinYMaxZ - densityMinXMinYMaxZ) * scalingFactor;
 
-							for(int i52 = 0; i52 < 4; ++i52) {
-								double d53 = d5[(i11 * 4 + i43) * 16 + i12 * 4 + i52];
-								int i55 = 0;
-								if(i13 * 8 + i32 < b7) {
-									if(d53 < 0.5D && i13 * 8 + i32 >= b7 - 1) {
-										i55 = Block.ice.blockID;
+						for(int x = 0; x < 4; ++x) {
+							int indexInBlockArray = x + xSection * 4 << 11 | 0 + zSection * 4 << 7 | ySection * 8 + y;
+							short heightShift = 128;
+							double densityVariationSpeed = 0.25D;
+							double density = curDensityMinXMinYMinZ;
+							double densityIncrement = (curDensityMinXMinYMaxZ - curDensityMinXMinYMinZ) * densityVariationSpeed;
+
+							for(int z = 0; z < 4; ++z) {
+								double t = d5[(xSec
+									tion * 4 + x) * 16 + zSection * 4 + z];
+								int blockID = 0;
+								if(ySection * 8 + y < seaLevel) {
+									if(t < 0.5D && ySection * 8 + y >= seaLevel - 1) {
+										blockID = Block.ice.blockID;
 									} else {
-										i55 = Block.waterStill.blockID;
+										blockID = Block.waterStill.blockID;
 									}
 								}
 
-								if(d48 > 0.0D) {
-									i55 = Block.stone.blockID;
+								if(density > 0.0D) {
+									blockID = Block.stone.blockID;
 								}
 
-								b3[i44] = (byte)i55;
-								i44 += s45;
-								d48 += d50;
+								blocks[indexInBlockArray] = (byte)blockID;
+								
+								indexInBlockArray += heightShift;
+								density += densityIncrement;
 							}
 
-							d35 += d39;
-							d37 += d41;
+							curDensityMinXMinYMinZ += xLerpAmountMinZ;
+							curDensityMinXMinYMaxZ += xLerpAmountMaxZ;
 						}
 
-						d16 += d24;
-						d18 += d26;
-						d20 += d28;
-						d22 += d30;
+						densityMinXMinYMinZ += yLerpAmountMinXMinZ;
+						densityMinXMinYMaxZ += yLerpAmountMinXMaxZ;
+						densityMaxXMinYMinZ += yLerpAmountMaxXMinZ;
+						densityMaxXMinYMaxZ += yLerpAmountMaxXMaxZ;
 					}
 				}
 			}

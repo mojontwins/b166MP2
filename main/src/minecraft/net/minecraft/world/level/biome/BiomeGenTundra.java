@@ -2,6 +2,9 @@ package net.minecraft.world.level.biome;
 
 import java.util.Random;
 
+import net.minecraft.world.entity.animal.EntityColdCow;
+import net.minecraft.world.entity.animal.EntityCow;
+import net.minecraft.world.level.SpawnListEntry;
 import net.minecraft.world.level.Weather;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 import net.minecraft.world.level.levelgen.feature.trees.WorldGenTaiga1;
@@ -11,6 +14,13 @@ public class BiomeGenTundra extends BiomeGenBaseBeta {
 
 	public BiomeGenTundra(int i1) {
 		super(i1);
+		this.spawnableCreatureList.replaceAll(
+				e -> 
+					e.entityClass == EntityCow.class ? 
+							new SpawnListEntry(EntityColdCow.class, 10, 4, 4) 
+						: 
+							e
+		);
 		
 		this.weather = Weather.cold;
 		

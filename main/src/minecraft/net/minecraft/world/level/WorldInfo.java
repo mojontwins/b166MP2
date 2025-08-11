@@ -36,7 +36,7 @@ public class WorldInfo {
 	private boolean hardcore = false;
 	private boolean enableCheats = false;
 	private boolean snowCovered = false;
-	private boolean enableSeasons = true;
+	private boolean enableSeasons = false;
 
 	public WorldInfo(NBTTagCompound nbt) {
 		this.randomSeed = nbt.getLong("RandomSeed");

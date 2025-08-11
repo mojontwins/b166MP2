@@ -43,9 +43,9 @@ public class ChunkProviderBeta extends ChunkProviderGenerate {
 	}
 	
 	public void generateTerrain(int chunkX, int chunkZ, byte[] blocks) {
-		double noiseScale = 0.125D;
-		double scalingFactor = 0.25D;
-		double densityVariationSpeed = 0.25D;
+		double noiseScale = 0.125D; 				// 1/8, increment in the Y section which is 8 tiles tall
+		double scalingFactor = 0.25D; 				// 1/4, increment in the X section which is 4 tiles tall
+		double densityVariationSpeed = 0.25D;		// 1/4, increment in the Z section which is 4 tiles tall.
 		int heightShift = 128;
 
 		byte quadrantSize = 4;
@@ -80,7 +80,7 @@ public class ChunkProviderBeta extends ChunkProviderGenerate {
 							int indexInBlockArray = x + xSection * 4 << 11 | 0 + zSection * 4 << 7 | ySection * 8 + y;
 							
 							double densityIncrement = (curDensityMinXMinYMaxZ - curDensityMinXMinYMinZ) * densityVariationSpeed;
-							double density = curDensityMinXMinYMinZ - densityIncrement;
+							double density = curDensityMinXMinYMinZ;
 
 							int yy = ySection * 8 + y;
 							for(int z = 0; z < 4; ++z) {

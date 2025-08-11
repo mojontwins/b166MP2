@@ -3,6 +3,8 @@ package net.minecraft.world.level.biome;
 import java.util.Random;
 
 import net.minecraft.world.entity.animal.EntityBoar;
+import net.minecraft.world.entity.animal.EntityColdCow;
+import net.minecraft.world.entity.animal.EntityCow;
 import net.minecraft.world.entity.animal.EntityPig;
 import net.minecraft.world.entity.animal.EntityWolf;
 import net.minecraft.world.level.SpawnListEntry;
@@ -23,7 +25,10 @@ public class BiomeGenTaiga extends BiomeGenBaseBeta {
 					e.entityClass == EntityPig.class ? 
 							new SpawnListEntry(EntityBoar.class, 10, 4, 4) 
 						: 
-							e
+							e.entityClass == EntityCow.class ?
+									new SpawnListEntry(EntityColdCow.class, 10, 4, 4)
+								:
+									e
 		);
 		
 		// And some tweaks...

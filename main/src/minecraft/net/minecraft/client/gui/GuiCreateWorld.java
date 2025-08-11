@@ -147,7 +147,14 @@ public class GuiCreateWorld extends GuiScreen {
 				}
 
 				this.mc.startWorld(this.folderName, this.textboxWorldName.getText(), 
-						new WorldSettings(j2, b9, this.generateStructures, this.hardcoreEnabled, this.enableCheats, WorldType.worldTypes[this.worldType]));
+						new WorldSettings(
+								j2, 
+								b9, 
+								this.generateStructures, 
+								this.hardcoreEnabled, 
+								this.enableCheats, 
+								false,
+								WorldType.worldTypes[this.worldType]));
 				this.mc.displayGuiScreen((GuiScreen)null);
 			} else if(guiButton1.id == 3) {
 				this.moreOptions = !this.moreOptions;

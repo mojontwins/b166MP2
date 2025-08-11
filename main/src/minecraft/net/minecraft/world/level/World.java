@@ -2388,9 +2388,8 @@ public class World implements IBlockAccess {
 	}
 
 	public boolean ambienceIsHot(int x, int z, BiomeGenBase biomeGen) {
-		float t = this.getWorldChunkManager().getTemperatureAt(x, z);
-		
 		if(GameRules.rampBasedTemperature) { 
+			float t = this.getWorldChunkManager().getTemperatureAt(x, z);
 			if(this.worldInfo.isEnableSeasons()) {
 				return t > .6F ||
 						t > .2 && Seasons.currentSeason != Seasons.WINTER ||
@@ -2462,21 +2461,13 @@ public class World implements IBlockAccess {
 	}
 	
 	public boolean canMeltSnow(int x, int y, int z, BiomeGenBase biomeGen) {
-		if(this.worldInfo.isEnableSeasons()) {
-			if(biomeGen.weather != Weather.cold && (Seasons.currentSeason != Seasons.WINTER || biomeGen.weather == Weather.desert)) {
-				return this.getBlockId(x, y, z) == Block.snow.blockID;
-			}
-		}
-		return false;
+		if(!this.ambienceIsHot(x, z, biomeGen)) return false;
+		return this.getBlockId(x, y, z) == Block.snow.blockID;
 	}
 	
 	public boolean canMeltIce(int x, int y, int z, BiomeGenBase biomeGen) {
-		if(this.worldInfo.isEnableSeasons()) {
-			if(biomeGen.weather != Weather.cold && (Seasons.currentSeason != Seasons.WINTER || biomeGen.weather == Weather.desert)) {
-				return this.getBlockId(x, y, z) == Block.ice.blockID;
-			}
-		}
-		return false;
+		if(!this.ambienceIsHot(x, z, biomeGen)) return false;
+		return this.getBlockId(x, y, z) == Block.ice.blockID;
 	}
 
 	public boolean tickUpdates(boolean z1) {
