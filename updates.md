@@ -166,19 +166,23 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 # b16.6.6 r1 - More animals!
 
 * [X] Add `DataWatchers` with standard definitions for commonly used data watchers.
-* [ ] Add classic pig and cow (no AI) so Boar & ColdCow can extend it.
+* [X] Add classic pig and cow (no AI) so Boar & ColdCow can extend it.
 * [X] Boars
 * [X] Ogre!
 	* I've always liked finding ogres in my old worlds but I'm wondering how they appear... I guess totally random. I'd spawn them in swamps very rarely maybe. I've made them appear only in covered spots. Hope it works, we'll see.
-* [ ] goats - I'll reuse my port in Infhell. 
+	* [ ] Add "or it's night and raining" to the spawn check.
+* [X] goats - I'll reuse my port in Infhell. 
+* [X] cold cow
+* [X] black duck.
 * [ ] Werewolf
+	* [ ] Spawn only on taigas. 
+	* [ ] Can I make them only turn on full moon? Is that a thing in beta? It looks like it doesn't turn into a human at all in this version? I know that WW in 1.2.5 does. Maybe I need that one.
 * [ ] Wraith
-* [ ] cold cow
-* [ ] black duck.
 * [ ] I'll also introduce the means to name animals and make them not despawn.
 	* ItemNametagSimple -> the item.
 	* GuiGiveName -> the gui.
 	* EntityCreature.setName -> the method to give name, and fired from `interact`: 
+* [ ] Baobabs and Acacias in Savannas. But with new wood and leaves types!
 
 ```java
 	@Override
@@ -203,6 +207,8 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 	}
 ```
 
+* [ ] BUGS
+	* [ ] Make sure the "add snow" is consistent with the methods that remove it when it's hot. Also this seems to be generating ice BUT NOT SNOW.
 
 # b16.6.6 r2
 
@@ -250,6 +256,7 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 
 * Added DataWatchers to include generally used datawatcher types as common numbers.
 * Added Cold Cow, Chicken Black. Made Boars extend classic pigs. Added Boars to all kinds of forests, cold cows to cold biomes and black chickens to deserts.
+* Added Goats to savannas and shrublads. Enabled shrubs in shrublands.
 
 # Credits
 

@@ -2,7 +2,9 @@ package net.minecraft.world.level.biome;
 
 import java.util.Random;
 
+import net.minecraft.world.entity.animal.EntityGoat;
 import net.minecraft.world.level.BlockState;
+import net.minecraft.world.level.SpawnListEntry;
 import net.minecraft.world.level.Weather;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 import net.minecraft.world.level.levelgen.feature.trees.WorldGenTrees;
@@ -13,6 +15,8 @@ public class BiomeGenSavanna extends BiomeGenBaseBeta {
 	public BiomeGenSavanna(int i1) {
 		super(i1);
 		this.weather = Weather.hot;
+		
+		this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 4, 4, 4));
 		
 		// And some tweaks...
 		this.biomeDecorator.extraTreesPerChunk = -2;

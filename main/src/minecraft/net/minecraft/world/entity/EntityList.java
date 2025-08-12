@@ -13,6 +13,7 @@ import net.minecraft.world.entity.animal.EntityChicken;
 import net.minecraft.world.entity.animal.EntityChickenBlack;
 import net.minecraft.world.entity.animal.EntityColdCow;
 import net.minecraft.world.entity.animal.EntityCow;
+import net.minecraft.world.entity.animal.EntityGoat;
 import net.minecraft.world.entity.animal.EntityMooshroom;
 import net.minecraft.world.entity.animal.EntityOcelot;
 import net.minecraft.world.entity.animal.EntityPig;
@@ -185,12 +186,13 @@ public class EntityList {
 		addMapping(EntityIronGolem.class, "VillagerGolem", 99);
 		addMapping(EntityVillager.class, "Villager", 120, 5651507, 12422002);
 		
-		addMapping(EntityMovingPiston.class, "MovingPiston", 119);
+		addMapping(EntityMovingPiston.class, "MovingPiston", 119); 
 		
 		addMapping(EntityBoar.class, "Boar", 120, 0x362119, 0x57453D);
 		addMapping(EntityOgre.class, "Ogre", 121, 0x209855, 0xB6A055);
 		addMapping(EntityColdCow.class, "ColdCow", 122, 0xA46A43, 0x39241B);
 		addMapping(EntityChickenBlack.class, "ChickenBlack", 123, 0x1D1D1D, 0x393939);
+		addMapping(EntityGoat.class, "Goat", 124, 0xDDD6CE, 0x4B4B4B);
 		
 		addMapping(EntityClassicZombie.class, "ZombieClassic", 150);
 		addMapping(EntityClassicSkeleton.class, "SkeletonClassic", 151);

@@ -11,6 +11,7 @@ import net.minecraft.client.gui.GameSettings;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.model.ModelCow;
+import net.minecraft.client.model.ModelGoat;
 import net.minecraft.client.model.ModelOcelot;
 import net.minecraft.client.model.ModelOgre1;
 import net.minecraft.client.model.ModelOgre2;
@@ -35,6 +36,7 @@ import net.minecraft.world.entity.EntityPainting;
 import net.minecraft.world.entity.EntityVillager;
 import net.minecraft.world.entity.animal.EntityChicken;
 import net.minecraft.world.entity.animal.EntityCow;
+import net.minecraft.world.entity.animal.EntityGoat;
 import net.minecraft.world.entity.animal.EntityMooshroom;
 import net.minecraft.world.entity.animal.EntityOcelot;
 import net.minecraft.world.entity.animal.EntityPig;
@@ -130,6 +132,7 @@ public class RenderManager {
 		this.entityRenderMap.put(EntityMovingPiston.class, new RenderMovingPiston());
 		
 		this.entityRenderMap.put(EntityOgre.class, new RenderOgre(new ModelOgre2(), new ModelOgre1(), 1.5F));
+		this.entityRenderMap.put(EntityGoat.class, new RenderGoat(new ModelGoat(), 0.7F));
 		
 		Iterator<Render> iterator1 = this.entityRenderMap.values().iterator();
 
