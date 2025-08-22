@@ -2224,7 +2224,8 @@ public class World implements IBlockAccess {
 		}
 	}
 
-	private void clearWeather() {
+	public void clearWeather() {
+		
 		this.worldInfo.setRainTime(0);
 		this.worldInfo.setRaining(false);
 		this.worldInfo.setThunderTime(0);

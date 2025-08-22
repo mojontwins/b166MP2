@@ -19,10 +19,10 @@ public class GuiStatsComponent extends JComponent {
 	private int[] memoryUse = new int[256];
 	private int updateCounter = 0;
 	private String[] displayStrings = new String[10];
-	private final MinecraftServer s_field_40572_e;
+	private final MinecraftServer minecraftServer;
 
 	public GuiStatsComponent(MinecraftServer minecraftServer1) {
-		this.s_field_40572_e = minecraftServer1;
+		this.minecraftServer = minecraftServer1;
 		this.setPreferredSize(new Dimension(356, 246));
 		this.setMinimumSize(new Dimension(356, 246));
 		this.setMaximumSize(new Dimension(356, 246));
@@ -35,19 +35,19 @@ public class GuiStatsComponent extends JComponent {
 		System.gc();
 		this.displayStrings[0] = "Memory use: " + j1 / 1024L / 1024L + " mb (" + Runtime.getRuntime().freeMemory() * 100L / Runtime.getRuntime().maxMemory() + "% free)";
 		this.displayStrings[1] = "Threads: " + NetworkManager.numReadThreads + " + " + NetworkManager.numWriteThreads;
-		this.displayStrings[2] = "Avg tick: " + s_field_40573_a.format(this.s_func_48551_a(this.s_field_40572_e.s_field_40027_f) * 1.0E-6D) + " ms";
-		this.displayStrings[3] = "Avg sent: " + (int)this.s_func_48551_a(this.s_field_40572_e.s_field_48080_u) + ", Avg size: " + (int)this.s_func_48551_a(this.s_field_40572_e.s_field_48079_v);
-		this.displayStrings[4] = "Avg rec: " + (int)this.s_func_48551_a(this.s_field_40572_e.s_field_48078_w) + ", Avg size: " + (int)this.s_func_48551_a(this.s_field_40572_e.s_field_48082_x);
-		if(this.s_field_40572_e.worldMngr != null) {
-			for(int i3 = 0; i3 < this.s_field_40572_e.worldMngr.length; ++i3) {
-				this.displayStrings[5 + i3] = "Lvl " + i3 + " tick: " + s_field_40573_a.format(this.s_func_48551_a(this.s_field_40572_e.s_field_40028_g[i3]) * 1.0E-6D) + " ms";
-				if(this.s_field_40572_e.worldMngr[i3] != null && this.s_field_40572_e.worldMngr[i3].chunkProviderServer != null) {
-					this.displayStrings[5 + i3] = this.displayStrings[5 + i3] + ", " + this.s_field_40572_e.worldMngr[i3].chunkProviderServer.s_func_46040_d();
+		this.displayStrings[2] = "Avg tick: " + s_field_40573_a.format(this.s_func_48551_a(this.minecraftServer.dispTime) * 1.0E-6D) + " ms";
+		this.displayStrings[3] = "Avg sent: " + (int)this.s_func_48551_a(this.minecraftServer.dispPacketsWritten) + ", Avg size: " + (int)this.s_func_48551_a(this.minecraftServer.dispBytesWritten);
+		this.displayStrings[4] = "Avg rec: " + (int)this.s_func_48551_a(this.minecraftServer.dispPacketsRead) + ", Avg size: " + (int)this.s_func_48551_a(this.minecraftServer.dispBytesRead);
+		if(this.minecraftServer.worldMngr != null) {
+			for(int i3 = 0; i3 < this.minecraftServer.worldMngr.length; ++i3) {
+				this.displayStrings[5 + i3] = "Lvl " + i3 + " tick: " + s_field_40573_a.format(this.s_func_48551_a(this.minecraftServer.s_field_40028_g[i3]) * 1.0E-6D) + " ms";
+				if(this.minecraftServer.worldMngr[i3] != null && this.minecraftServer.worldMngr[i3].chunkProviderServer != null) {
+					this.displayStrings[5 + i3] = this.displayStrings[5 + i3] + ", " + this.minecraftServer.worldMngr[i3].chunkProviderServer.s_func_46040_d();
 				}
 			}
 		}
 
-		this.memoryUse[this.updateCounter++ & 255] = (int)(this.s_func_48551_a(this.s_field_40572_e.s_field_48079_v) * 100.0D / 12500.0D);
+		this.memoryUse[this.updateCounter++ & 255] = (int)(this.s_func_48551_a(this.minecraftServer.dispBytesWritten) * 100.0D / 12500.0D);
 		this.repaint();
 	}
 

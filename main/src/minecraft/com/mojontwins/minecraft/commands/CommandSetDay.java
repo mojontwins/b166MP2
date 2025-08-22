@@ -38,13 +38,14 @@ public class CommandSetDay extends CommandBase {
 			Seasons.updateSeasonCounters();
 			
 			for(int i5 = 0; i5 < theWorld.worldAccesses.size(); ++i5) {
-				((IWorldAccess)theWorld.worldAccesses).updateAllRenderers();
+				((IWorldAccess)theWorld.worldAccesses.get(i5)).updateAllRenderers();
 			}
 			
 			this.theCommandSender.printMessage(theWorld, "Day set to " + dayWithinYear + ": " + Seasons.seasonNames[Seasons.currentSeason] + ", day " + Seasons.dayOfTheSeason);
 			
 			res = dayWithinYear;
 		} catch (Exception e) {
+			System.out.println (e);
 			this.theCommandSender.printMessage(theWorld, "Wrong day");
 		}
 		

@@ -72,14 +72,14 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 	public boolean allowFlight;
 	public String motd;
 	public int buildLimit;
-	private long s_field_48074_E;
-	private long s_field_48075_F;
-	private long s_field_48076_G;
-	private long s_field_48077_H;
-	public long[] s_field_48080_u = new long[100];
-	public long[] s_field_48079_v = new long[100];
-	public long[] s_field_48078_w = new long[100];
-	public long[] s_field_48082_x = new long[100];
+	private long packetsWritten;
+	private long bytesWritten;
+	private long packetsRead;
+	private long bytesRead;
+	public long[] dispPacketsWritten = new long[100];
+	public long[] dispBytesWritten = new long[100];
+	public long[] dispPacketsRead = new long[100];
+	public long[] dispBytesRead = new long[100];
 	private RConThreadQuery rconQueryThread;
 	private RConThreadMain rconMainThread;
 
@@ -457,15 +457,15 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 			logger.log(Level.WARNING, "Unexpected exception while parsing console command", exception8);
 		}
 
-		this.s_field_40027_f[this.deathTime % 100] = System.nanoTime() - millis;
-		this.s_field_48080_u[this.deathTime % 100] = Packet.packetsWritten - this.s_field_48074_E;
-		this.s_field_48074_E = Packet.packetsWritten;
-		this.s_field_48079_v[this.deathTime % 100] = Packet.bytesWritten - this.s_field_48075_F;
-		this.s_field_48075_F = Packet.bytesWritten;
-		this.s_field_48078_w[this.deathTime % 100] = Packet.packetsRead - this.s_field_48076_G;
-		this.s_field_48076_G = Packet.packetsRead;
-		this.s_field_48082_x[this.deathTime % 100] = Packet.bytesRead - this.s_field_48077_H;
-		this.s_field_48077_H = Packet.bytesRead;
+		this.dispTime[this.deathTime % 100] = System.nanoTime() - millis;
+		this.dispPacketsWritten[this.deathTime % 100] = Packet.packetsWritten - this.packetsWritten;
+		this.packetsWritten = Packet.packetsWritten;
+		this.dispBytesWritten[this.deathTime % 100] = Packet.bytesWritten - this.bytesWritten;
+		this.bytesWritten = Packet.bytesWritten;
+		this.dispPacketsRead[this.deathTime % 100] = Packet.packetsRead - this.packetsRead;
+		this.packetsRead = Packet.packetsRead;
+		this.dispBytesRead[this.deathTime % 100] = Packet.bytesRead - this.bytesRead;
+		this.bytesRead = Packet.bytesRead;
 	}
 
 	public void addCommand(ComplexCommand complexCommand, ICommandListener iCommandListener2) {
