@@ -28,11 +28,6 @@ public class BlockLeavesEx1 extends BlockLeaves implements IBlockWithSubtypes {
 	public int getIndexInTextureFromMeta(int meta) {
 		return this.getBlockTextureFromSideAndMetadata(2, meta);
 	}
-
-	@Override
-	public int getBlockColor() {
-		return 0xFFFFFF;
-	}
 	
 	@Override
 	public int getRenderColor(int meta) {

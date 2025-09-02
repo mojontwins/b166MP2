@@ -23,6 +23,7 @@ public abstract class Block3Axes extends Block {
 		world.setBlockMetadata(x, y, z, meta);
 	}
 	
+	// Note that if you make meta & 12 == 12 you get a full sides log
 	public int getBlockTextureFromSideAndMetadata(int face, int metadata) {
 		int orientation = GameRules.boolRule("renderAllBlocksStraight") ? 0 : (metadata & 12); 	
 		

@@ -4,6 +4,9 @@ import com.mojang.nbt.NBTTagCompound;
 
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.entity.item.EntityItem;
+import net.minecraft.world.entity.player.EntityPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.pathfinder.PathEntity;
 import net.minecraft.world.phys.Vec3D;
@@ -239,5 +242,17 @@ public abstract class EntityCreature extends EntityLiving {
 	@Override
 	protected boolean canDespawn() {
 		return this.getName() == null;
+	}
+	
+	@Override
+	public boolean interact(EntityPlayer entityPlayer) {
+		ItemStack itemStack = entityPlayer.inventory.getCurrentItem();
+		if (itemStack != null && itemStack.itemID == Item.nametagSimple.shiftedIndex) {
+			if(!entityPlayer.capabilities.isCreativeMode) itemStack.stackSize --;
+			entityPlayer.displayGUIGiveName(this);
+			return true;
+		}
+		
+		return false;
 	}
 }

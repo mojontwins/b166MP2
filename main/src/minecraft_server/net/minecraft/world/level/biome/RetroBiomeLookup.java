@@ -8,53 +8,59 @@ public class RetroBiomeLookup {
 		return temperature < 0.1F ? 
 				BiomeGenBase.tundra 
 			: 
-				(
-						humidity < 0.2F ? 
-					(
-							temperature < 0.5F ? 
-									BiomeGenBase.tundra 
-								: 
-									(
-											temperature < 0.95F ? 
-													BiomeGenBase.savanna 
-												: 
-													BiomeGenBase.desert
-									)
-					) 
-				: 
-					(
-							humidity > 0.5F && temperature < 0.7F ? 
-									BiomeGenBase.swampland 
-								: 
-									(
-											temperature < 0.5F ? 
-													BiomeGenBase.taiga 
-												: 
-													(
-															temperature < 0.97F ? 
-																	(
-																			humidity < 0.35F ? 
-																					BiomeGenBase.shrubland 
-																				: 
-																					BiomeGenBase.forest
-																	) 
-																: 
-																	(
-																			humidity < 0.45F ? 
-																					BiomeGenBase.plains 
-																				: 
-																					(
-																							humidity < 0.9F ? 
-																									BiomeGenBase.seasonalForest 
-																								: 
-																									BiomeGenBase.rainforest
-																					)
-																	)
-													)
+				(humidity < 0.2F ? 
+						(temperature < 0.5F ? 
+								BiomeGenBase.tundra 
+							: 
+								(temperature < 0.95F ? 
+										(temperature > 0.75F ?
+												BiomeGenBase.shrubland
+											:
+												BiomeGenBase.savanna
 										)
-					)
-		);
-	}
+									: 
+										BiomeGenBase.desert
+								)
+						) 
+					: 
+						(humidity > 0.5F && temperature < 0.7F ? 
+								BiomeGenBase.swampland 
+							: 
+								// Here we moved the t cap to .55, so we have snowless taigas for a bit as a transition
+								(temperature < 0.55F ? 
+										// This is also new: a super taiga, with more & bigger trees, is generated for h. humidity
+										(humidity < .4F ? 
+												BiomeGenBase.taiga 
+											:
+												BiomeGenBase.superTaiga
+										)
+									: 
+										(temperature < 0.97F ? 
+												(humidity < 0.35F ? 
+														BiomeGenBase.shrubland 
+													: 
+														// New birch forest
+														(temperature < .7F ?
+																BiomeGenBase.birchForest
+															:
+																BiomeGenBase.forest
+														)
+												) 
+											: 
+												(humidity < 0.45F ? 
+														BiomeGenBase.plains 
+													: 
+														(humidity < 0.9F ? 
+																BiomeGenBase.seasonalForest 
+															: 
+																BiomeGenBase.rainforest
+														)
+												)
+										)
+								)
+						)
+				);
+}
 	
 	public static BiomeGenBase getBiomeFromLookup(double temperature, double humidity) {
 		int i4 = (int)(temperature * 63.0D);

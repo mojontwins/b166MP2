@@ -56,6 +56,8 @@ public abstract class BiomeGenBase {
 	public static final BiomeGenBase iceDesert = (new BiomeGenDesert(10)).setColor(16772499).setBiomeName("Ice Desert").setEnableSnow().setDisableRain().setGrassColor(12899129);
 	public static final BiomeGenBase tundra = (new BiomeGenTundra(11)).setColor(5762041).setBiomeName("Tundra").setEnableSnow().setGrassColor(12899129);
 	public static final BiomeGenBase hell = (new BiomeGenHell(12)).setColor(16711680).setBiomeName("Hell").setDisableRain();
+	public static final BiomeGenBase superTaiga = (new BiomeGenSuperTaiga(13)).setColor(353825).setBiomeName("Supertaiga").setGrassColor(5159473);
+	public static final BiomeGenBase birchForest = (new BiomeGenBirchForest(14)).setColor(353825).setBiomeName("Birch Forest").setGrassColor(5159473);
 	
 	public String biomeName;
 	public int color;

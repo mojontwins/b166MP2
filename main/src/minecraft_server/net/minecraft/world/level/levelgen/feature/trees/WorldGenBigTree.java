@@ -9,13 +9,11 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.tile.Block;
 
 public class WorldGenBigTree extends WorldGenerator {
-	
-	EnumTreeType tree = EnumTreeType.OAK;
-	
-	private final int leavesID = tree.leaves.getBlock().blockID;
-	private final int leavesMeta = tree.leaves.getMetadata();
-	private final int trunkID = tree.wood.getBlock().blockID;
-	private final int trunkMeta = tree.wood.getMetadata();
+		
+	private final int leavesID;
+	private final int leavesMeta;
+	private final int trunkID;
+	private final int trunkMeta;
 	
 	static final byte[] otherCoordPairs = new byte[]{(byte)2, (byte)0, (byte)0, (byte)1, (byte)2, (byte)1};
 	Random rand = new Random();
@@ -36,8 +34,16 @@ public class WorldGenBigTree extends WorldGenerator {
 
 	boolean checkIfItFits = true;
 	
-	public WorldGenBigTree(boolean z1) {
+	public WorldGenBigTree(boolean z1, EnumTreeType tree) {
 		super(z1);
+		this.leavesID = tree.leaves.getBlock().blockID;
+		this.leavesMeta = tree.leaves.getMetadata();
+		this.trunkID = tree.wood.getBlock().blockID;
+		this.trunkMeta = tree.wood.getMetadata();
+	}
+	
+	public WorldGenBigTree(boolean z1) {
+		this(z1, EnumTreeType.OAK);
 	}
 
 	void generateLeafNodeList() {
@@ -352,7 +358,7 @@ public class WorldGenBigTree extends WorldGenerator {
 		if(!(block != null && block.canGrowPlants())) return false;
 		
 		if(this.checkIfItFits) {
-			int[] i1 = new int[]{this.basePos[0], this.basePos[1], this.basePos[2]};
+			int[] i1 = new int[]{this.basePos[0], this.basePos[1] + 1, this.basePos[2]};
 			int[] i2 = new int[]{this.basePos[0], this.basePos[1] + this.heightLimit - 1, this.basePos[2]};
 			int i4 = this.checkBlockLine(i1, i2);
 			if(i4 == -1) {

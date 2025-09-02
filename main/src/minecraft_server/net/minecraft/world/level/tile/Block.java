@@ -188,9 +188,14 @@ public class Block implements ITextureProvider {
 	
 	// Ids used by vanilla items ~ 256 to ~ 512, 2256 onwards for 256 disks, so...
 	public static final Block treeFruit = (new BlockTreeFruit(512).setHardness(0.1F)).setCreativeTab(CreativeTabs.tabDeco);	
+	
 	public static final Block woodEx1 = (new BlockLogEx1(513)).setHardness(2.0F).setStepSound(soundWoodFootstep).setRequiresSelfNotify();
 	public static final BlockLeaves leavesEx1 = (BlockLeavesEx1)(new BlockLeavesEx1(514)).setHardness(0.2F).setLightOpacity(1).setStepSound(soundGrassFootstep).setRequiresSelfNotify();
 	public static final Block saplingEx1 = (new BlockSaplingEx1(515)).setHardness(0.0F).setStepSound(soundGrassFootstep).setRequiresSelfNotify();
+	
+	public static final Block woodEx2 = (new BlockLogEx2(516)).setHardness(2.0F).setStepSound(soundWoodFootstep).setRequiresSelfNotify();
+	public static final BlockLeaves leavesEx2 = (BlockLeavesEx2)(new BlockLeavesEx2(517)).setHardness(0.2F).setLightOpacity(1).setStepSound(soundGrassFootstep).setRequiresSelfNotify();
+	public static final Block saplingEx2 = (new BlockSaplingEx2(518)).setHardness(0.0F).setStepSound(soundGrassFootstep).setRequiresSelfNotify();
 	
 	
 	public int blockIndexInTexture;

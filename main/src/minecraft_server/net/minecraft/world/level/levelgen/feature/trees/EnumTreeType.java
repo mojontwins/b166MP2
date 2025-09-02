@@ -7,21 +7,23 @@ import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 import net.minecraft.world.level.tile.Block;
 import net.minecraft.world.level.tile.BlockLeaves;
 import net.minecraft.world.level.tile.BlockLeavesEx1;
+import net.minecraft.world.level.tile.BlockLeavesEx2;
 import net.minecraft.world.level.tile.BlockLog;
 import net.minecraft.world.level.tile.BlockLogEx1;
+import net.minecraft.world.level.tile.BlockLogEx2;
 
 public enum EnumTreeType {
 	OAK("Oak", new BlockState(Block.leaves, BlockLeaves.OakMetadata), new BlockState(Block.wood, BlockLog.OakMetadata), new BlockState(Block.sapling, BlockLeaves.OakMetadata)) {
 		@Override
 		public WorldGenerator getGen(Random rand) {
-			return rand.nextInt(8) == 0 ? new WorldGenBigTree(false) : new WorldGenTrees(false);
+			return rand.nextInt(8) == 0 ? new WorldGenBigTree(true) : new WorldGenTrees(true);
 		}
 	},
 	
 	BIRCH("Birch", new BlockState(Block.leaves, BlockLeaves.BirchMetadata), new BlockState(Block.wood, BlockLog.BirchMetadata), new BlockState(Block.sapling, BlockLeaves.BirchMetadata)) {
 		@Override
 		public WorldGenerator getGen(Random rand) {
-			return new WorldGenForest(false);
+			return new WorldGenForest(true);
 		}
 	},
 	
@@ -64,6 +66,34 @@ public enum EnumTreeType {
 		@Override
 		public WorldGenerator getGen(Random rand) {
 			return new WorldGenAcacia(true);
+		}
+	},
+	
+	ALDER("Alder", new BlockState(Block.leavesEx2, BlockLeavesEx2.AlderMetadata), new BlockState(Block.woodEx2, BlockLogEx2.AlderMetadata), new BlockState(Block.saplingEx2, BlockLeavesEx2.AlderMetadata)) {
+		@Override
+		public WorldGenerator getGen(Random rand) {
+			return new WorldGenAlder(6 + rand.nextInt(3), 5, 4);
+		}
+	},
+	
+	ASPEN("Aspen", new BlockState(Block.leavesEx2, BlockLeavesEx2.AspenMetadata), new BlockState(Block.woodEx2, BlockLogEx2.AspenMetadata), new BlockState(Block.saplingEx2, BlockLeavesEx2.AspenMetadata)) {
+		@Override
+		public WorldGenerator getGen(Random rand) {
+			return new WorldGenAspen(8 + rand.nextInt(3));
+		}
+	},
+	
+	EUCALYPTUS("Eucalyptus", new BlockState(Block.leavesEx2, BlockLeavesEx2.EucalyptusMetadata), new BlockState(Block.woodEx2, BlockLogEx2.EucalyptusMetadata), new BlockState(Block.saplingEx2, BlockLeavesEx2.EucalyptusMetadata), true) {
+		@Override
+		public WorldGenerator getGen(Random rand) {
+			return new WorldGenEucalyptusBig(true);
+		}
+	},
+	
+	CHERRYTREE("CherryTree", new BlockState(Block.leavesEx2, BlockLeavesEx2.CherryTreeMetadata), new BlockState(Block.woodEx2, BlockLogEx2.CherryTreeMetadata), new BlockState(Block.saplingEx2, BlockLeavesEx2.CherryTreeMetadata)) {
+		@Override
+		public WorldGenerator getGen(Random rand) {
+			return new WorldGenBigTree(true, this);
 		}
 	},
 	;
