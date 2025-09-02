@@ -29,7 +29,7 @@ import net.minecraft.server.network.NetworkListenThread;
 import net.minecraft.server.rcon.RConConsoleSource;
 import net.minecraft.server.rcon.RConThreadMain;
 import net.minecraft.server.rcon.RConThreadQuery;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.Version;
 import net.minecraft.world.level.Seasons;

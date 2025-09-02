@@ -1,6 +1,6 @@
 package net.minecraft.world.entity.monster;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.tile.Block;

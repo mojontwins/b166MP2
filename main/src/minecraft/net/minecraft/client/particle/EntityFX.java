@@ -3,7 +3,7 @@ package net.minecraft.client.particle;
 import com.mojang.nbt.NBTTagCompound;
 
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.World;
 

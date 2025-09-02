@@ -1,6 +1,6 @@
 package net.minecraft.client.model;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 
 public class ModelOgre2 extends ModelBiped {
 	public ModelOgre2() {

@@ -2,7 +2,7 @@ package net.minecraft.world.entity.animal;
 
 import com.mojang.nbt.NBTTagCompound;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.entity.IWaterMob;
 import net.minecraft.world.entity.player.EntityPlayer;

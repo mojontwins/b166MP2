@@ -6,7 +6,7 @@ import java.util.Random;
 import com.mojontwins.minecraft.worldedit.ItemMagicWand;
 import com.risugami.recipebook.ItemRecipeBook;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.StringTranslate;
 import net.minecraft.util.Translator;
 import net.minecraft.world.entity.Entity;

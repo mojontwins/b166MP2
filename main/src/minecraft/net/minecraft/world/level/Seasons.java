@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 
 public class Seasons {
 	public static final int WINTER = 0;

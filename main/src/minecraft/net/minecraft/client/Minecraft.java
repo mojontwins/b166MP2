@@ -77,7 +77,7 @@ import net.minecraft.client.skins.TexturePackList;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.title.GuiMainMenu;
 import net.minecraft.network.packet.Packet3Chat;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.MinecraftException;
 import net.minecraft.util.StringTranslate;
 import net.minecraft.util.Translator;

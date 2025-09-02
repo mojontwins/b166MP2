@@ -1,6 +1,6 @@
 package net.minecraft.client.model;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.Entity;
 
 public class ModelSnowMan extends ModelBase {

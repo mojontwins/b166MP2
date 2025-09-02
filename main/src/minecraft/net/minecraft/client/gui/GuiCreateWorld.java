@@ -6,8 +6,8 @@ import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.player.PlayerControllerCreative;
 import net.minecraft.client.player.PlayerControllerSP;
-import net.minecraft.src.MathHelper;
 import net.minecraft.util.ChatAllowedCharacters;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.StringTranslate;
 import net.minecraft.util.Translator;
 import net.minecraft.world.level.WorldSettings;

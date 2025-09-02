@@ -2,7 +2,7 @@ package net.minecraft.world.level.levelgen.synth;
 
 import java.util.Random;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 
 public class NoiseGeneratorPerlinInfdev extends NoiseGenerator {
 	private int[] permutations;

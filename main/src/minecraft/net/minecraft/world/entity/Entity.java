@@ -9,7 +9,7 @@ import com.mojang.nbt.NBTTagFloat;
 import com.mojang.nbt.NBTTagList;
 
 import net.minecraft.network.DataWatcher;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.Translator;
 import net.minecraft.world.entity.item.EntityItem;
 import net.minecraft.world.entity.player.EntityPlayer;

@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL12;
 
 import net.minecraft.client.GameSettingsValues;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.EntityFishHook;
 import net.minecraft.world.phys.Vec3D;

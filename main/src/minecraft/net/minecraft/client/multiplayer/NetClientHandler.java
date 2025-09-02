@@ -84,7 +84,7 @@ import net.minecraft.network.packet.Packet91UpdateCommandBlock;
 import net.minecraft.network.packet.Packet93UpdateAnimalName;
 import net.minecraft.network.packet.Packet95UpdateDayOfTheYear;
 import net.minecraft.network.packet.Packet9Respawn;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityCreature;
 import net.minecraft.world.entity.EntityLightningBolt;

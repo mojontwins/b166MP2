@@ -1,4 +1,4 @@
-package net.minecraft.src;
+package net.minecraft.util;
 
 import java.util.Random;
 

@@ -1,6 +1,6 @@
 package net.minecraft.world.phys;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 
 public class Vec3i {
 	public static final Vec3i NULL_VECTOR = new Vec3i(0, 0, 0);

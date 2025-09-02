@@ -679,7 +679,6 @@ public class ServerConfigurationManager implements IServerConfigManager {
 
 	public void updateTimeAndWeather(EntityPlayerMP thePlayer, WorldServer world) {
 		thePlayer.playerNetServerHandler.sendPacket(new Packet4UpdateTime(world.getWorldTime()));
-		System.out.println ("Sending time = " + world.getWorldTime());
 		thePlayer.playerNetServerHandler.sendPacket(new Packet70GameEvent(world.isRaining(), world.isSnowing(), world.isThundering()));
 
 	}

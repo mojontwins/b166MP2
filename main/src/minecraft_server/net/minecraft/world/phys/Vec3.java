@@ -1,6 +1,6 @@
 package net.minecraft.world.phys;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 
 public class Vec3 {
 	private static final ThreadLocal<?> myVec3LocalPool = new Vec3LocalPool();

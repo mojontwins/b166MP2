@@ -1,6 +1,6 @@
 package net.minecraft.world.level;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.phys.Vec3D;
 
 public class ChunkPosition {

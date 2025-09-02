@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.mojontwins.minecraft.feature.FeatureProvider;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.EnumCreatureType;
 import net.minecraft.world.level.ChunkPosition;
 import net.minecraft.world.level.SpawnListEntry;

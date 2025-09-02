@@ -1,6 +1,6 @@
 package net.minecraft.client.player;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.DamageSource;
 import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.item.Item;

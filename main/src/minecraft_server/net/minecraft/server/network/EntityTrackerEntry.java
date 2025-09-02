@@ -25,7 +25,7 @@ import net.minecraft.network.packet.Packet5PlayerInventory;
 import net.minecraft.network.packet.Packet88MovingPiston;
 import net.minecraft.network.packet.Packet90ArmoredMobSpawn;
 import net.minecraft.server.player.EntityPlayerMP;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.EntityPainting;

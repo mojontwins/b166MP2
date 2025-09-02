@@ -8,7 +8,7 @@ import java.util.List;
 import net.minecraft.network.DataWatcher;
 import net.minecraft.network.NetHandler;
 import net.minecraft.network.WatchableObject;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.EntityList;
 import net.minecraft.world.entity.EntityLiving;
 

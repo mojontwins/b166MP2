@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.tile.Block;

@@ -3,7 +3,7 @@ package net.minecraft.world.phys;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 
 public class Vec3D {
 	private static List<Vec3D> vectorList = new ArrayList<Vec3D>();

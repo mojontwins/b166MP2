@@ -231,7 +231,6 @@ public class BlockFire extends Block {
 	}
 
 	public void onBlockAdded(World world, int i2, int i3, int i4) {
-		// The commented part is what creates the portal.
 		if(
 				!world.worldProvider.canCreatePortalToTheNether() || 
 				world.getBlockId(i2, i3 - 1, i4) != Block.obsidian.blockID || 

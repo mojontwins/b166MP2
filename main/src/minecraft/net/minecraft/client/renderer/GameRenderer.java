@@ -19,7 +19,7 @@ import net.minecraft.client.particle.EntitySmokeFX;
 import net.minecraft.client.player.EntityPlayerSP;
 import net.minecraft.client.renderer.culling.ClippingHelperImpl;
 import net.minecraft.client.renderer.culling.Frustrum;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLiving;

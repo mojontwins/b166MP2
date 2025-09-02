@@ -1,6 +1,6 @@
 package net.minecraft.world.level.pathfinder;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 
 public class PathPoint {
 	public final int xCoord;

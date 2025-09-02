@@ -1,6 +1,6 @@
 package net.minecraft.world.level.pathfinder;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IntHashMap;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.IBlockAccess;

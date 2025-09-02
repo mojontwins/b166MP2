@@ -14,7 +14,7 @@ import java.util.TreeSet;
 import com.mojang.nbt.NBTTagCompound;
 
 import ca.spottedleaf.starlight.StarlightEngine;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityLightningBolt;

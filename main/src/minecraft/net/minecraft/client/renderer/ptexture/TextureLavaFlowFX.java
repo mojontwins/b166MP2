@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer.ptexture;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.level.tile.Block;
 
 public class TextureLavaFlowFX extends TextureFX {

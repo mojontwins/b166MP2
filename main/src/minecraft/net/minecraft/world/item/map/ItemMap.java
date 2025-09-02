@@ -2,7 +2,7 @@ package net.minecraft.world.item.map;
 
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet131MapData;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.item.Item;

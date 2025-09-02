@@ -9,7 +9,7 @@ import com.mojontwins.utils.TextureAtlasSize;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tile.RenderBlockClassicPiston;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.Direction;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.level.IBlockAccess;

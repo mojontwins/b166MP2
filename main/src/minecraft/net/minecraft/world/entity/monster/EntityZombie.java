@@ -1,6 +1,6 @@
 package net.minecraft.world.entity.monster;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.EntityVillager;
 import net.minecraft.world.entity.EnumCreatureAttribute;
 import net.minecraft.world.entity.ai.EntityAIAttackOnCollide;

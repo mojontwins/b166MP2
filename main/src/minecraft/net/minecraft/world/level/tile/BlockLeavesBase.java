@@ -26,5 +26,5 @@ public class BlockLeavesBase extends Block implements iLeaves {
 		if(graphicsLevel) return true;
 		return super.shouldSideBeRendered(iBlockAccess1, i2, i3, i4, i5);
 	}
-	
+
 }

@@ -2,7 +2,7 @@ package net.minecraft.world.entity.ai;
 
 import java.util.Random;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.EntityCreature;
 import net.minecraft.world.phys.Vec3D;
 

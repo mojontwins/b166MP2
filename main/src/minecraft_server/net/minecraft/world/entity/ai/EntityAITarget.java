@@ -1,6 +1,6 @@
 package net.minecraft.world.entity.ai;
 
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.entity.EntityLiving;
 import net.minecraft.world.entity.animal.EntityTameable;
 import net.minecraft.world.entity.player.EntityPlayer;

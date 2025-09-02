@@ -8,7 +8,7 @@ import net.minecraft.network.packet.Packet54PlayNoteBlock;
 import net.minecraft.network.packet.Packet60Explosion;
 import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.network.packet.Packet71Weather;
-import net.minecraft.src.MathHelper;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IntHashMap;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.INpc;
