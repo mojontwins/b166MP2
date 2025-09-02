@@ -7,10 +7,15 @@ import com.mojontwins.utils.BlockUtils;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 import net.minecraft.world.level.tile.Block;
-import net.minecraft.world.level.tile.BlockLeaves;
-import net.minecraft.world.level.tile.BlockLog;
 
 public class WorldGenForest extends WorldGenerator {
+	EnumTreeType tree = EnumTreeType.BIRCH;
+	
+	private final int leavesID = tree.leaves.getBlock().blockID;
+	private final int leavesMeta = tree.leaves.getMetadata();
+	private final int trunkID = tree.wood.getBlock().blockID;
+	private final int trunkMeta = tree.wood.getMetadata();
+	
 	public WorldGenForest(boolean notify) {
 		super(notify);
 	}
@@ -56,7 +61,7 @@ public class WorldGenForest extends WorldGenerator {
 				for(int z = z0 - cRadius; z <= z0 + cRadius; ++z) {
 					int dz = Math.abs(z - z0);
 					if((dx != cRadius || dz != cRadius || rand.nextInt(2) != 0 && yy != 0) && !Block.opaqueCubeLookup[world.getBlockId(x, y, z)]) {
-						this.setBlockAndMetadata(world, x, y, z, Block.leaves.blockID, BlockLeaves.BirchMetadata);
+						this.setBlockAndMetadata(world, x, y, z, this.leavesID, this.leavesMeta);
 					}
 				}
 			}
@@ -64,7 +69,7 @@ public class WorldGenForest extends WorldGenerator {
 
 		for(int y = 0; y < height; ++y) {
 			if(BlockUtils.canBeReplacedByWood(world.getBlockId(x0, y0 + y, z0))) {
-				this.setBlockAndMetadata(world, x0, y0 + y, z0, Block.wood.blockID, BlockLog.BirchMetadata);
+				this.setBlockAndMetadata(world, x0, y0 + y, z0, this.trunkID, this.trunkMeta);
 			}
 		}
 

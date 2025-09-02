@@ -63,6 +63,7 @@ import net.minecraft.network.packet.Packet89SetArmor;
 import net.minecraft.network.packet.Packet8UpdateHealth;
 import net.minecraft.network.packet.Packet90ArmoredMobSpawn;
 import net.minecraft.network.packet.Packet91UpdateCommandBlock;
+import net.minecraft.network.packet.Packet93UpdateAnimalName;
 import net.minecraft.network.packet.Packet95UpdateDayOfTheYear;
 import net.minecraft.network.packet.Packet9Respawn;
 
@@ -309,6 +310,10 @@ public abstract class NetHandler {
 	}
 	
 	public void handleUpdateDayOfTheYear(Packet95UpdateDayOfTheYear packet) {
+		this.registerPacket(packet);
+	}
+
+	public void handleUpdateAnimalName(Packet93UpdateAnimalName packet) {
 		this.registerPacket(packet);
 	}
 	

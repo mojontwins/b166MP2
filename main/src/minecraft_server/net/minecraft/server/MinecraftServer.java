@@ -53,7 +53,7 @@ public class MinecraftServer implements Runnable, ICommandListener, IServer {
 	public NetworkListenThread networkServer;
 	public PropertyManager propertyManagerObj;
 	public WorldServer[] worldMngr;
-	public long[] s_field_40027_f = new long[100];
+	public long[] dispTime = new long[100];
 	public long[][] s_field_40028_g;
 	public ServerConfigurationManager configManager;
 	private ConsoleCommandHandler commandHandler;

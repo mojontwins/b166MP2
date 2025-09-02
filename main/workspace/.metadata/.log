@@ -3021,3 +3021,2056 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.equinox.log.ExtendedL
 	at org.eclipse.oomph.internal.ui.EarlyStart.run(EarlyStart.java:122)
 	at org.eclipse.oomph.internal.ui.EarlyStart$1.run(EarlyStart.java:97)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2025-08-29 15:06:42.706
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to class org.eclipse.jdt.core.dom.IVariableBinding (org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding and org.eclipse.jdt.core.dom.IVariableBinding are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @71891d6b)
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1358)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:987)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:634)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:592)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2025-08-29 15:06:43.056
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to class org.eclipse.jdt.core.dom.IVariableBinding (org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding and org.eclipse.jdt.core.dom.IVariableBinding are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @71891d6b)
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1358)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:987)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:634)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:592)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2025-09-01 07:19:47.200 -----------------------------------------------
+eclipse.buildId=4.18.0.I20201202-1800
+java.version=15.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2025-09-01 07:19:52.564
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jface 2 0 2025-09-01 07:19:58.518
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2025-09-01 07:19:58.518
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@53918b5e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5366575d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-09-01 07:20:05.428
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\na_th'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2025-09-01 14:08:55.338 -----------------------------------------------
+eclipse.buildId=4.18.0.I20201202-1800
+java.version=15.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -data D:\Cosas\b166MP2\main\workspace -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.jface 2 0 2025-09-01 14:09:05.898
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2025-09-01 14:09:05.898
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@14ca88bc,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@f01fc6d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-09-01 14:09:11.844
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\na_th'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2025-09-01 15:46:20.974 -----------------------------------------------
+eclipse.buildId=4.18.0.I20201202-1800
+java.version=15.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -data D:\Cosas\b166MP2\main\workspace -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.jface 2 0 2025-09-01 15:46:23.545
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2025-09-01 15:46:23.545
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2ce24a1a,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@26bce60d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-09-01 15:46:27.754
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\na_th'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jface.text 2 0 2025-09-02 11:44:38.230
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to class org.eclipse.jdt.core.dom.IVariableBinding (org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding and org.eclipse.jdt.core.dom.IVariableBinding are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @1b82f62a)
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1358)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:987)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:634)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:592)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2025-09-02 11:44:38.617
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to class org.eclipse.jdt.core.dom.IVariableBinding (org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding and org.eclipse.jdt.core.dom.IVariableBinding are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @1b82f62a)
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1358)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:987)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:634)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:592)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2025-09-02 11:44:40.057
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: class org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to class org.eclipse.jdt.core.dom.IVariableBinding (org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding and org.eclipse.jdt.core.dom.IVariableBinding are in unnamed module of loader org.eclipse.osgi.internal.loader.EquinoxClassLoader @1b82f62a)
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1358)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:987)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:634)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:592)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core 4 4 2025-09-02 12:04:39.055
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package net.minecraft.world.level.tile;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import net.minecraft.world.level.IBlockAccess;
+import net.minecraft.world.level.World;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.AxisAlignedBB;
+
+public class BlockFire extends Block {
+	private Map<Class<? extends Block>, Integer> propagators = new HashMap<>();
+	private Map<Class<? extends Block>, Integer> flamability = new HashMap<>();
+	
+	protected BlockFire(int i1, int i2) {
+		super(i1, i2, Material.fire);
+		this.setTickRandomly(true);
+	}
+
+	public void initializeBlock() {
+		this.setBurnRate(Block.planks.blockID, 5, 20);
+		this.setBurnRate(Block.fence.blockID, 5, 20);
+		this.setBurnRate(Block.stairCompactPlanks.blockID, 5, 20);
+		
+		this.setBurnRate(Block.wood.blockID, 5, 5);
+		this.setBurnRate(Block.sapling.blockID, 5, 20);
+		this.setBurnRate(Block.leaves.blockID, 30, 60);
+		
+		this.setBurnRate(Block.bookShelf.blockID, 30, 20);
+		this.setBurnRate(Block.tnt.blockID, 15, 100);
+		//this.setBurnRate(Block.tallGrass.blockID, 60, 100);
+		this.setBurnRate(Block.cloth.blockID, 30, 60);
+		//this.setBurnRate(Block.vine.blockID, 15, 100);
+	}
+	
+	/*
+	private void setBurnRate(int i1, int i2, int i3) {
+		this.chanceToEncourageFire[i1] = i2;
+		this.abilityToCatchFire[i1] = i3;
+	}
+	*/
+	private void setBurnRate()
+
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world1, int i2, int i3, int i4) {
+		return null;
+	}
+
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+
+	public int getRenderType() {
+		return 3;
+	}
+
+	public int quantityDropped(Random random1) {
+		return 0;
+	}
+
+	public int tickRate() {
+		return 30;
+	}
+
+	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
+		int bid = world1.getBlockId(i2, i3 - 1, i4);
+		boolean z6 = bid == Block.netherrack.blockID || bid == Block.blockCoal.blockID;
+		
+		if(!this.canPlaceBlockAt(world1, i2, i3, i4)) {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+
+		if(z6 || !world1.isRaining() || !world1.canLightningStrikeAt(i2, i3, i4) && !world1.canLightningStrikeAt(i2 - 1, i3, i4) && !world1.canLightningStrikeAt(i2 + 1, i3, i4) && !world1.canLightningStrikeAt(i2, i3, i4 - 1) && !world1.canLightningStrikeAt(i2, i3, i4 + 1)) {
+			int i7 = world1.getBlockMetadata(i2, i3, i4);
+			if(i7 < 15) {
+				world1.setBlockMetadata(i2, i3, i4, i7 + random5.nextInt(3) / 2);
+			}
+
+			world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate() + random5.nextInt(10));
+			if(!z6 && !this.canNeighborBurn(world1, i2, i3, i4)) {
+				if(!world1.isBlockNormalCube(i2, i3 - 1, i4) || i7 > 3) {
+					world1.setBlockWithNotify(i2, i3, i4, 0);
+				}
+
+			} else if(!z6 && !this.canBlockCatchFire(world1, i2, i3 - 1, i4) && i7 == 15 && random5.nextInt(4) == 0) {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			} else {
+				boolean z8 = world1.isBlockHighHumidity(i2, i3, i4);
+				byte b9 = 0;
+				if(z8) {
+					b9 = -50;
+				}
+
+				this.tryToCatchBlockOnFire(world1, i2 + 1, i3, i4, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2 - 1, i3, i4, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3 - 1, i4, 250 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3 + 1, i4, 250 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3, i4 - 1, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3, i4 + 1, 300 + b9, random5, i7);
+
+				for(int i10 = i2 - 1; i10 <= i2 + 1; ++i10) {
+					for(int i11 = i4 - 1; i11 <= i4 + 1; ++i11) {
+						for(int i12 = i3 - 1; i12 <= i3 + 4; ++i12) {
+							if(i10 != i2 || i12 != i3 || i11 != i4) {
+								int i13 = 100;
+								if(i12 > i3 + 1) {
+									i13 += (i12 - (i3 + 1)) * 100;
+								}
+
+								int i14 = this.getChanceOfNeighborsEncouragingFire(world1, i10, i12, i11);
+								if(i14 > 0) {
+									int i15 = (i14 + 40) / (i7 + 30);
+									if(z8) {
+										i15 /= 2;
+									}
+
+									if(i15 > 0 && random5.nextInt(i13) <= i15 && (!world1.isRaining() || !world1.canLightningStrikeAt(i10, i12, i11)) && !world1.canLightningStrikeAt(i10 - 1, i12, i4) && !world1.canLightningStrikeAt(i10 + 1, i12, i11) && !world1.canLightningStrikeAt(i10, i12, i11 - 1) && !world1.canLightningStrikeAt(i10, i12, i11 + 1)) {
+										int i16 = i7 + random5.nextInt(5) / 4;
+										if(i16 > 15) {
+											i16 = 15;
+										}
+
+										world1.setBlockAndMetadataWithNotify(i10, i12, i11, this.blockID, i16);
+									}
+								}
+							}
+						}
+					}
+				}
+
+			}
+		} else {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+	}
+
+	private void tryToCatchBlockOnFire(World world1, int i2, int i3, int i4, int i5, Random random6, int i7) {
+		int i8 = this.abilityToCatchFire[world1.getBlockId(i2, i3, i4)];
+		if(random6.nextInt(i5) < i8) {
+			boolean z9 = world1.getBlockId(i2, i3, i4) == Block.tnt.blockID;
+			if(random6.nextInt(i7 + 10) < 5 && !world1.canLightningStrikeAt(i2, i3, i4)) {
+				int i10 = i7 + random6.nextInt(5) / 4;
+				if(i10 > 15) {
+					i10 = 15;
+				}
+
+				world1.setBlockAndMetadataWithNotify(i2, i3, i4, this.blockID, i10);
+			} else {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			}
+
+			if(z9) {
+				Block.tnt.onBlockDestroyedByPlayer(world1, i2, i3, i4, 1);
+			}
+		}
+
+	}
+
+	private boolean canNeighborBurn(World world1, int i2, int i3, int i4) {
+		return this.canBlockCatchFire(world1, i2 + 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2 - 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 - 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 + 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3, i4 - 1) ? true : this.canBlockCatchFire(world1, i2, i3, i4 + 1)))));
+	}
+
+	private int getChanceOfNeighborsEncouragingFire(World world1, int i2, int i3, int i4) {
+		byte b5 = 0;
+		if(!world1.isAirBlock(i2, i3, i4)) {
+			return 0;
+		} else {
+			int i6 = this.getChanceToEncourageFire(world1, i2 + 1, i3, i4, b5);
+			i6 = this.getChanceToEncourageFire(world1, i2 - 1, i3, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3 - 1, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3 + 1, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3, i4 - 1, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3, i4 + 1, i6);
+			return i6;
+		}
+	}
+
+	public boolean isCollidable() {
+		return false;
+	}
+
+	public boolean canBlockCatchFire(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
+		return this.chanceToEncourageFire[iBlockAccess1.getBlockId(i2, i3, i4)] > 0;
+	}
+
+	public int getChanceToEncourageFire(World world1, int i2, int i3, int i4, int i5) {
+		int i6 = this.chanceToEncourageFire[world1.getBlockId(i2, i3, i4)];
+		return i6 > i5 ? i6 : i5;
+	}
+
+	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
+		return world1.isBlockNormalCube(i2, i3 - 1, i4) || this.canNeighborBurn(world1, i2, i3, i4);
+	}
+
+	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
+		if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.canNeighborBurn(world1, i2, i3, i4)) {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+	}
+
+	public void onBlockAdded(World world1, int i2, int i3, int i4) {
+		// The commented part is what creates the portal.
+		if(
+				!world1.worldProvider.canCreatePortalToTheNether() || 
+				world1.getBlockId(i2, i3 - 1, i4) != Block.obsidian.blockID || 
+				!Block.portal.tryToCreatePortal(world1, i2, i3, i4)
+		) {
+			if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.canNeighborBurn(world1, i2, i3, i4)) {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			} else {
+				world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate() + world1.rand.nextInt(10));
+			}
+		}
+
+	}
+
+	public void randomDisplayTick(World world1, int i2, int i3, int i4, Random random5) {
+		if(random5.nextInt(24) == 0) {
+			world1.playSoundEffect((double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F), "fire.fire", 1.0F + random5.nextFloat(), random5.nextFloat() * 0.7F + 0.3F);
+		}
+
+		int i6;
+		float f7;
+		float f8;
+		float f9;
+		if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !Block.fire.canBlockCatchFire(world1, i2, i3 - 1, i4)) {
+			if(Block.fire.canBlockCatchFire(world1, i2 - 1, i3, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat() * 0.1F;
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2 + 1, i3, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)(i2 + 1) - random5.nextFloat() * 0.1F;
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3, i4 - 1)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat() * 0.1F;
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3, i4 + 1)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)(i4 + 1) - random5.nextFloat() * 0.1F;
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3 + 1, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)(i3 + 1) - random5.nextFloat() * 0.1F;
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+		} else {
+			for(i6 = 0; i6 < 3; ++i6) {
+				f7 = (float)i2 + random5.nextFloat();
+				f8 = (float)i3 + random5.nextFloat() * 0.5F + 0.5F;
+				f9 = (float)i4 + random5.nextFloat();
+				world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+			}
+		}
+
+	}
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2025-09-02 12:04:39.056
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2025-09-02 12:04:39.057
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2025-09-02 12:04:56.086
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package net.minecraft.world.level.tile;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import net.minecraft.world.level.IBlockAccess;
+import net.minecraft.world.level.World;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.AxisAlignedBB;
+
+public class BlockFire extends Block {
+	private Map<Class<? extends Block>, Integer> propagators = new HashMap<>();
+	private Map<Class<? extends Block>, Integer> flamability = new HashMap<>();
+	
+	protected BlockFire(int i1, int i2) {
+		super(i1, i2, Material.fire);
+		this.setTickRandomly(true);
+	}
+
+	public void initializeBlock() {
+		this.setBurnRate(Block.planks.blockID, 5, 20);
+		this.setBurnRate(Block.fence.blockID, 5, 20);
+		this.setBurnRate(Block.stairCompactPlanks.blockID, 5, 20);
+		
+		this.setBurnRate(Block.wood.blockID, 5, 5);
+		this.setBurnRate(Block.sapling.blockID, 5, 20);
+		this.setBurnRate(Block.leaves.blockID, 30, 60);
+		
+		this.setBurnRate(Block.bookShelf.blockID, 30, 20);
+		this.setBurnRate(Block.tnt.blockID, 15, 100);
+		//this.setBurnRate(Block.tallGrass.blockID, 60, 100);
+		this.setBurnRate(Block.cloth.blockID, 30, 60);
+		//this.setBurnRate(Block.vine.blockID, 15, 100);
+	}
+	
+	/*
+	private void setBurnRate(int i1, int i2, int i3) {
+		this.chanceToEncourageFire[i1] = i2;
+		this.abilityToCatchFire[i1] = i3;
+	}
+	*/
+	private void setBurnRate(Class<? extends Block> blockClass, )
+
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world1, int i2, int i3, int i4) {
+		return null;
+	}
+
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+
+	public int getRenderType() {
+		return 3;
+	}
+
+	public int quantityDropped(Random random1) {
+		return 0;
+	}
+
+	public int tickRate() {
+		return 30;
+	}
+
+	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
+		int bid = world1.getBlockId(i2, i3 - 1, i4);
+		boolean z6 = bid == Block.netherrack.blockID || bid == Block.blockCoal.blockID;
+		
+		if(!this.canPlaceBlockAt(world1, i2, i3, i4)) {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+
+		if(z6 || !world1.isRaining() || !world1.canLightningStrikeAt(i2, i3, i4) && !world1.canLightningStrikeAt(i2 - 1, i3, i4) && !world1.canLightningStrikeAt(i2 + 1, i3, i4) && !world1.canLightningStrikeAt(i2, i3, i4 - 1) && !world1.canLightningStrikeAt(i2, i3, i4 + 1)) {
+			int i7 = world1.getBlockMetadata(i2, i3, i4);
+			if(i7 < 15) {
+				world1.setBlockMetadata(i2, i3, i4, i7 + random5.nextInt(3) / 2);
+			}
+
+			world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate() + random5.nextInt(10));
+			if(!z6 && !this.canNeighborBurn(world1, i2, i3, i4)) {
+				if(!world1.isBlockNormalCube(i2, i3 - 1, i4) || i7 > 3) {
+					world1.setBlockWithNotify(i2, i3, i4, 0);
+				}
+
+			} else if(!z6 && !this.canBlockCatchFire(world1, i2, i3 - 1, i4) && i7 == 15 && random5.nextInt(4) == 0) {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			} else {
+				boolean z8 = world1.isBlockHighHumidity(i2, i3, i4);
+				byte b9 = 0;
+				if(z8) {
+					b9 = -50;
+				}
+
+				this.tryToCatchBlockOnFire(world1, i2 + 1, i3, i4, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2 - 1, i3, i4, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3 - 1, i4, 250 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3 + 1, i4, 250 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3, i4 - 1, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3, i4 + 1, 300 + b9, random5, i7);
+
+				for(int i10 = i2 - 1; i10 <= i2 + 1; ++i10) {
+					for(int i11 = i4 - 1; i11 <= i4 + 1; ++i11) {
+						for(int i12 = i3 - 1; i12 <= i3 + 4; ++i12) {
+							if(i10 != i2 || i12 != i3 || i11 != i4) {
+								int i13 = 100;
+								if(i12 > i3 + 1) {
+									i13 += (i12 - (i3 + 1)) * 100;
+								}
+
+								int i14 = this.getChanceOfNeighborsEncouragingFire(world1, i10, i12, i11);
+								if(i14 > 0) {
+									int i15 = (i14 + 40) / (i7 + 30);
+									if(z8) {
+										i15 /= 2;
+									}
+
+									if(i15 > 0 && random5.nextInt(i13) <= i15 && (!world1.isRaining() || !world1.canLightningStrikeAt(i10, i12, i11)) && !world1.canLightningStrikeAt(i10 - 1, i12, i4) && !world1.canLightningStrikeAt(i10 + 1, i12, i11) && !world1.canLightningStrikeAt(i10, i12, i11 - 1) && !world1.canLightningStrikeAt(i10, i12, i11 + 1)) {
+										int i16 = i7 + random5.nextInt(5) / 4;
+										if(i16 > 15) {
+											i16 = 15;
+										}
+
+										world1.setBlockAndMetadataWithNotify(i10, i12, i11, this.blockID, i16);
+									}
+								}
+							}
+						}
+					}
+				}
+
+			}
+		} else {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+	}
+
+	private void tryToCatchBlockOnFire(World world1, int i2, int i3, int i4, int i5, Random random6, int i7) {
+		int i8 = this.abilityToCatchFire[world1.getBlockId(i2, i3, i4)];
+		if(random6.nextInt(i5) < i8) {
+			boolean z9 = world1.getBlockId(i2, i3, i4) == Block.tnt.blockID;
+			if(random6.nextInt(i7 + 10) < 5 && !world1.canLightningStrikeAt(i2, i3, i4)) {
+				int i10 = i7 + random6.nextInt(5) / 4;
+				if(i10 > 15) {
+					i10 = 15;
+				}
+
+				world1.setBlockAndMetadataWithNotify(i2, i3, i4, this.blockID, i10);
+			} else {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			}
+
+			if(z9) {
+				Block.tnt.onBlockDestroyedByPlayer(world1, i2, i3, i4, 1);
+			}
+		}
+
+	}
+
+	private boolean canNeighborBurn(World world1, int i2, int i3, int i4) {
+		return this.canBlockCatchFire(world1, i2 + 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2 - 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 - 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 + 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3, i4 - 1) ? true : this.canBlockCatchFire(world1, i2, i3, i4 + 1)))));
+	}
+
+	private int getChanceOfNeighborsEncouragingFire(World world1, int i2, int i3, int i4) {
+		byte b5 = 0;
+		if(!world1.isAirBlock(i2, i3, i4)) {
+			return 0;
+		} else {
+			int i6 = this.getChanceToEncourageFire(world1, i2 + 1, i3, i4, b5);
+			i6 = this.getChanceToEncourageFire(world1, i2 - 1, i3, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3 - 1, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3 + 1, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3, i4 - 1, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3, i4 + 1, i6);
+			return i6;
+		}
+	}
+
+	public boolean isCollidable() {
+		return false;
+	}
+
+	public boolean canBlockCatchFire(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
+		return this.chanceToEncourageFire[iBlockAccess1.getBlockId(i2, i3, i4)] > 0;
+	}
+
+	public int getChanceToEncourageFire(World world1, int i2, int i3, int i4, int i5) {
+		int i6 = this.chanceToEncourageFire[world1.getBlockId(i2, i3, i4)];
+		return i6 > i5 ? i6 : i5;
+	}
+
+	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
+		return world1.isBlockNormalCube(i2, i3 - 1, i4) || this.canNeighborBurn(world1, i2, i3, i4);
+	}
+
+	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
+		if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.canNeighborBurn(world1, i2, i3, i4)) {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+	}
+
+	public void onBlockAdded(World world1, int i2, int i3, int i4) {
+		// The commented part is what creates the portal.
+		if(
+				!world1.worldProvider.canCreatePortalToTheNether() || 
+				world1.getBlockId(i2, i3 - 1, i4) != Block.obsidian.blockID || 
+				!Block.portal.tryToCreatePortal(world1, i2, i3, i4)
+		) {
+			if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.canNeighborBurn(world1, i2, i3, i4)) {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			} else {
+				world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate() + world1.rand.nextInt(10));
+			}
+		}
+
+	}
+
+	public void randomDisplayTick(World world1, int i2, int i3, int i4, Random random5) {
+		if(random5.nextInt(24) == 0) {
+			world1.playSoundEffect((double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F), "fire.fire", 1.0F + random5.nextFloat(), random5.nextFloat() * 0.7F + 0.3F);
+		}
+
+		int i6;
+		float f7;
+		float f8;
+		float f9;
+		if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !Block.fire.canBlockCatchFire(world1, i2, i3 - 1, i4)) {
+			if(Block.fire.canBlockCatchFire(world1, i2 - 1, i3, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat() * 0.1F;
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2 + 1, i3, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)(i2 + 1) - random5.nextFloat() * 0.1F;
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3, i4 - 1)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat() * 0.1F;
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3, i4 + 1)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)(i4 + 1) - random5.nextFloat() * 0.1F;
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3 + 1, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)(i3 + 1) - random5.nextFloat() * 0.1F;
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+		} else {
+			for(i6 = 0; i6 < 3; ++i6) {
+				f7 = (float)i2 + random5.nextFloat();
+				f8 = (float)i3 + random5.nextFloat() * 0.5F + 0.5F;
+				f9 = (float)i4 + random5.nextFloat();
+				world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+			}
+		}
+
+	}
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2025-09-02 12:04:56.087
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2025-09-02 12:04:56.088
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2025-09-02 12:05:02.605
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package net.minecraft.world.level.tile;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import net.minecraft.world.level.IBlockAccess;
+import net.minecraft.world.level.World;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.AxisAlignedBB;
+
+public class BlockFire extends Block {
+	private Map<Class<? extends Block>, Integer> propagators = new HashMap<>();
+	private Map<Class<? extends Block>, Integer> flamability = new HashMap<>();
+	
+	protected BlockFire(int i1, int i2) {
+		super(i1, i2, Material.fire);
+		this.setTickRandomly(true);
+	}
+
+	public void initializeBlock() {
+		this.setBurnRate(Block.planks.blockID, 5, 20);
+		this.setBurnRate(Block.fence.blockID, 5, 20);
+		this.setBurnRate(Block.stairCompactPlanks.blockID, 5, 20);
+		
+		this.setBurnRate(Block.wood.blockID, 5, 5);
+		this.setBurnRate(Block.sapling.blockID, 5, 20);
+		this.setBurnRate(Block.leaves.blockID, 30, 60);
+		
+		this.setBurnRate(Block.bookShelf.blockID, 30, 20);
+		this.setBurnRate(Block.tnt.blockID, 15, 100);
+		//this.setBurnRate(Block.tallGrass.blockID, 60, 100);
+		this.setBurnRate(Block.cloth.blockID, 30, 60);
+		//this.setBurnRate(Block.vine.blockID, 15, 100);
+	}
+	
+	/*
+	private void setBurnRate(int i1, int i2, int i3) {
+		this.chanceToEncourageFire[i1] = i2;
+		this.abilityToCatchFire[i1] = i3;
+	}
+	*/
+	private void setBurnRate(Class<? extends Block> blockClass, int propagativity, )
+
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world1, int i2, int i3, int i4) {
+		return null;
+	}
+
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+
+	public int getRenderType() {
+		return 3;
+	}
+
+	public int quantityDropped(Random random1) {
+		return 0;
+	}
+
+	public int tickRate() {
+		return 30;
+	}
+
+	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
+		int bid = world1.getBlockId(i2, i3 - 1, i4);
+		boolean z6 = bid == Block.netherrack.blockID || bid == Block.blockCoal.blockID;
+		
+		if(!this.canPlaceBlockAt(world1, i2, i3, i4)) {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+
+		if(z6 || !world1.isRaining() || !world1.canLightningStrikeAt(i2, i3, i4) && !world1.canLightningStrikeAt(i2 - 1, i3, i4) && !world1.canLightningStrikeAt(i2 + 1, i3, i4) && !world1.canLightningStrikeAt(i2, i3, i4 - 1) && !world1.canLightningStrikeAt(i2, i3, i4 + 1)) {
+			int i7 = world1.getBlockMetadata(i2, i3, i4);
+			if(i7 < 15) {
+				world1.setBlockMetadata(i2, i3, i4, i7 + random5.nextInt(3) / 2);
+			}
+
+			world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate() + random5.nextInt(10));
+			if(!z6 && !this.canNeighborBurn(world1, i2, i3, i4)) {
+				if(!world1.isBlockNormalCube(i2, i3 - 1, i4) || i7 > 3) {
+					world1.setBlockWithNotify(i2, i3, i4, 0);
+				}
+
+			} else if(!z6 && !this.canBlockCatchFire(world1, i2, i3 - 1, i4) && i7 == 15 && random5.nextInt(4) == 0) {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			} else {
+				boolean z8 = world1.isBlockHighHumidity(i2, i3, i4);
+				byte b9 = 0;
+				if(z8) {
+					b9 = -50;
+				}
+
+				this.tryToCatchBlockOnFire(world1, i2 + 1, i3, i4, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2 - 1, i3, i4, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3 - 1, i4, 250 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3 + 1, i4, 250 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3, i4 - 1, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3, i4 + 1, 300 + b9, random5, i7);
+
+				for(int i10 = i2 - 1; i10 <= i2 + 1; ++i10) {
+					for(int i11 = i4 - 1; i11 <= i4 + 1; ++i11) {
+						for(int i12 = i3 - 1; i12 <= i3 + 4; ++i12) {
+							if(i10 != i2 || i12 != i3 || i11 != i4) {
+								int i13 = 100;
+								if(i12 > i3 + 1) {
+									i13 += (i12 - (i3 + 1)) * 100;
+								}
+
+								int i14 = this.getChanceOfNeighborsEncouragingFire(world1, i10, i12, i11);
+								if(i14 > 0) {
+									int i15 = (i14 + 40) / (i7 + 30);
+									if(z8) {
+										i15 /= 2;
+									}
+
+									if(i15 > 0 && random5.nextInt(i13) <= i15 && (!world1.isRaining() || !world1.canLightningStrikeAt(i10, i12, i11)) && !world1.canLightningStrikeAt(i10 - 1, i12, i4) && !world1.canLightningStrikeAt(i10 + 1, i12, i11) && !world1.canLightningStrikeAt(i10, i12, i11 - 1) && !world1.canLightningStrikeAt(i10, i12, i11 + 1)) {
+										int i16 = i7 + random5.nextInt(5) / 4;
+										if(i16 > 15) {
+											i16 = 15;
+										}
+
+										world1.setBlockAndMetadataWithNotify(i10, i12, i11, this.blockID, i16);
+									}
+								}
+							}
+						}
+					}
+				}
+
+			}
+		} else {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+	}
+
+	private void tryToCatchBlockOnFire(World world1, int i2, int i3, int i4, int i5, Random random6, int i7) {
+		int i8 = this.abilityToCatchFire[world1.getBlockId(i2, i3, i4)];
+		if(random6.nextInt(i5) < i8) {
+			boolean z9 = world1.getBlockId(i2, i3, i4) == Block.tnt.blockID;
+			if(random6.nextInt(i7 + 10) < 5 && !world1.canLightningStrikeAt(i2, i3, i4)) {
+				int i10 = i7 + random6.nextInt(5) / 4;
+				if(i10 > 15) {
+					i10 = 15;
+				}
+
+				world1.setBlockAndMetadataWithNotify(i2, i3, i4, this.blockID, i10);
+			} else {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			}
+
+			if(z9) {
+				Block.tnt.onBlockDestroyedByPlayer(world1, i2, i3, i4, 1);
+			}
+		}
+
+	}
+
+	private boolean canNeighborBurn(World world1, int i2, int i3, int i4) {
+		return this.canBlockCatchFire(world1, i2 + 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2 - 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 - 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 + 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3, i4 - 1) ? true : this.canBlockCatchFire(world1, i2, i3, i4 + 1)))));
+	}
+
+	private int getChanceOfNeighborsEncouragingFire(World world1, int i2, int i3, int i4) {
+		byte b5 = 0;
+		if(!world1.isAirBlock(i2, i3, i4)) {
+			return 0;
+		} else {
+			int i6 = this.getChanceToEncourageFire(world1, i2 + 1, i3, i4, b5);
+			i6 = this.getChanceToEncourageFire(world1, i2 - 1, i3, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3 - 1, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3 + 1, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3, i4 - 1, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3, i4 + 1, i6);
+			return i6;
+		}
+	}
+
+	public boolean isCollidable() {
+		return false;
+	}
+
+	public boolean canBlockCatchFire(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
+		return this.chanceToEncourageFire[iBlockAccess1.getBlockId(i2, i3, i4)] > 0;
+	}
+
+	public int getChanceToEncourageFire(World world1, int i2, int i3, int i4, int i5) {
+		int i6 = this.chanceToEncourageFire[world1.getBlockId(i2, i3, i4)];
+		return i6 > i5 ? i6 : i5;
+	}
+
+	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
+		return world1.isBlockNormalCube(i2, i3 - 1, i4) || this.canNeighborBurn(world1, i2, i3, i4);
+	}
+
+	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
+		if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.canNeighborBurn(world1, i2, i3, i4)) {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+	}
+
+	public void onBlockAdded(World world1, int i2, int i3, int i4) {
+		// The commented part is what creates the portal.
+		if(
+				!world1.worldProvider.canCreatePortalToTheNether() || 
+				world1.getBlockId(i2, i3 - 1, i4) != Block.obsidian.blockID || 
+				!Block.portal.tryToCreatePortal(world1, i2, i3, i4)
+		) {
+			if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.canNeighborBurn(world1, i2, i3, i4)) {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			} else {
+				world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate() + world1.rand.nextInt(10));
+			}
+		}
+
+	}
+
+	public void randomDisplayTick(World world1, int i2, int i3, int i4, Random random5) {
+		if(random5.nextInt(24) == 0) {
+			world1.playSoundEffect((double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F), "fire.fire", 1.0F + random5.nextFloat(), random5.nextFloat() * 0.7F + 0.3F);
+		}
+
+		int i6;
+		float f7;
+		float f8;
+		float f9;
+		if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !Block.fire.canBlockCatchFire(world1, i2, i3 - 1, i4)) {
+			if(Block.fire.canBlockCatchFire(world1, i2 - 1, i3, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat() * 0.1F;
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2 + 1, i3, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)(i2 + 1) - random5.nextFloat() * 0.1F;
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3, i4 - 1)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat() * 0.1F;
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3, i4 + 1)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)(i4 + 1) - random5.nextFloat() * 0.1F;
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3 + 1, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)(i3 + 1) - random5.nextFloat() * 0.1F;
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+		} else {
+			for(i6 = 0; i6 < 3; ++i6) {
+				f7 = (float)i2 + random5.nextFloat();
+				f8 = (float)i3 + random5.nextFloat() * 0.5F + 0.5F;
+				f9 = (float)i4 + random5.nextFloat();
+				world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+			}
+		}
+
+	}
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2025-09-02 12:05:02.606
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2025-09-02 12:05:02.606
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2025-09-02 12:05:04.622
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package net.minecraft.world.level.tile;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import net.minecraft.world.level.IBlockAccess;
+import net.minecraft.world.level.World;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.AxisAlignedBB;
+
+public class BlockFire extends Block {
+	private Map<Class<? extends Block>, Integer> propagators = new HashMap<>();
+	private Map<Class<? extends Block>, Integer> flamability = new HashMap<>();
+	
+	protected BlockFire(int i1, int i2) {
+		super(i1, i2, Material.fire);
+		this.setTickRandomly(true);
+	}
+
+	public void initializeBlock() {
+		this.setBurnRate(Block.planks.blockID, 5, 20);
+		this.setBurnRate(Block.fence.blockID, 5, 20);
+		this.setBurnRate(Block.stairCompactPlanks.blockID, 5, 20);
+		
+		this.setBurnRate(Block.wood.blockID, 5, 5);
+		this.setBurnRate(Block.sapling.blockID, 5, 20);
+		this.setBurnRate(Block.leaves.blockID, 30, 60);
+		
+		this.setBurnRate(Block.bookShelf.blockID, 30, 20);
+		this.setBurnRate(Block.tnt.blockID, 15, 100);
+		//this.setBurnRate(Block.tallGrass.blockID, 60, 100);
+		this.setBurnRate(Block.cloth.blockID, 30, 60);
+		//this.setBurnRate(Block.vine.blockID, 15, 100);
+	}
+	
+	/*
+	private void setBurnRate(int i1, int i2, int i3) {
+		this.chanceToEncourageFire[i1] = i2;
+		this.abilityToCatchFire[i1] = i3;
+	}
+	*/
+	private void setBurnRate(Class<? extends Block> blockClass, int propagativity, int )
+
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world1, int i2, int i3, int i4) {
+		return null;
+	}
+
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+
+	public int getRenderType() {
+		return 3;
+	}
+
+	public int quantityDropped(Random random1) {
+		return 0;
+	}
+
+	public int tickRate() {
+		return 30;
+	}
+
+	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
+		int bid = world1.getBlockId(i2, i3 - 1, i4);
+		boolean z6 = bid == Block.netherrack.blockID || bid == Block.blockCoal.blockID;
+		
+		if(!this.canPlaceBlockAt(world1, i2, i3, i4)) {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+
+		if(z6 || !world1.isRaining() || !world1.canLightningStrikeAt(i2, i3, i4) && !world1.canLightningStrikeAt(i2 - 1, i3, i4) && !world1.canLightningStrikeAt(i2 + 1, i3, i4) && !world1.canLightningStrikeAt(i2, i3, i4 - 1) && !world1.canLightningStrikeAt(i2, i3, i4 + 1)) {
+			int i7 = world1.getBlockMetadata(i2, i3, i4);
+			if(i7 < 15) {
+				world1.setBlockMetadata(i2, i3, i4, i7 + random5.nextInt(3) / 2);
+			}
+
+			world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate() + random5.nextInt(10));
+			if(!z6 && !this.canNeighborBurn(world1, i2, i3, i4)) {
+				if(!world1.isBlockNormalCube(i2, i3 - 1, i4) || i7 > 3) {
+					world1.setBlockWithNotify(i2, i3, i4, 0);
+				}
+
+			} else if(!z6 && !this.canBlockCatchFire(world1, i2, i3 - 1, i4) && i7 == 15 && random5.nextInt(4) == 0) {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			} else {
+				boolean z8 = world1.isBlockHighHumidity(i2, i3, i4);
+				byte b9 = 0;
+				if(z8) {
+					b9 = -50;
+				}
+
+				this.tryToCatchBlockOnFire(world1, i2 + 1, i3, i4, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2 - 1, i3, i4, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3 - 1, i4, 250 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3 + 1, i4, 250 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3, i4 - 1, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3, i4 + 1, 300 + b9, random5, i7);
+
+				for(int i10 = i2 - 1; i10 <= i2 + 1; ++i10) {
+					for(int i11 = i4 - 1; i11 <= i4 + 1; ++i11) {
+						for(int i12 = i3 - 1; i12 <= i3 + 4; ++i12) {
+							if(i10 != i2 || i12 != i3 || i11 != i4) {
+								int i13 = 100;
+								if(i12 > i3 + 1) {
+									i13 += (i12 - (i3 + 1)) * 100;
+								}
+
+								int i14 = this.getChanceOfNeighborsEncouragingFire(world1, i10, i12, i11);
+								if(i14 > 0) {
+									int i15 = (i14 + 40) / (i7 + 30);
+									if(z8) {
+										i15 /= 2;
+									}
+
+									if(i15 > 0 && random5.nextInt(i13) <= i15 && (!world1.isRaining() || !world1.canLightningStrikeAt(i10, i12, i11)) && !world1.canLightningStrikeAt(i10 - 1, i12, i4) && !world1.canLightningStrikeAt(i10 + 1, i12, i11) && !world1.canLightningStrikeAt(i10, i12, i11 - 1) && !world1.canLightningStrikeAt(i10, i12, i11 + 1)) {
+										int i16 = i7 + random5.nextInt(5) / 4;
+										if(i16 > 15) {
+											i16 = 15;
+										}
+
+										world1.setBlockAndMetadataWithNotify(i10, i12, i11, this.blockID, i16);
+									}
+								}
+							}
+						}
+					}
+				}
+
+			}
+		} else {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+	}
+
+	private void tryToCatchBlockOnFire(World world1, int i2, int i3, int i4, int i5, Random random6, int i7) {
+		int i8 = this.abilityToCatchFire[world1.getBlockId(i2, i3, i4)];
+		if(random6.nextInt(i5) < i8) {
+			boolean z9 = world1.getBlockId(i2, i3, i4) == Block.tnt.blockID;
+			if(random6.nextInt(i7 + 10) < 5 && !world1.canLightningStrikeAt(i2, i3, i4)) {
+				int i10 = i7 + random6.nextInt(5) / 4;
+				if(i10 > 15) {
+					i10 = 15;
+				}
+
+				world1.setBlockAndMetadataWithNotify(i2, i3, i4, this.blockID, i10);
+			} else {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			}
+
+			if(z9) {
+				Block.tnt.onBlockDestroyedByPlayer(world1, i2, i3, i4, 1);
+			}
+		}
+
+	}
+
+	private boolean canNeighborBurn(World world1, int i2, int i3, int i4) {
+		return this.canBlockCatchFire(world1, i2 + 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2 - 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 - 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 + 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3, i4 - 1) ? true : this.canBlockCatchFire(world1, i2, i3, i4 + 1)))));
+	}
+
+	private int getChanceOfNeighborsEncouragingFire(World world1, int i2, int i3, int i4) {
+		byte b5 = 0;
+		if(!world1.isAirBlock(i2, i3, i4)) {
+			return 0;
+		} else {
+			int i6 = this.getChanceToEncourageFire(world1, i2 + 1, i3, i4, b5);
+			i6 = this.getChanceToEncourageFire(world1, i2 - 1, i3, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3 - 1, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3 + 1, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3, i4 - 1, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3, i4 + 1, i6);
+			return i6;
+		}
+	}
+
+	public boolean isCollidable() {
+		return false;
+	}
+
+	public boolean canBlockCatchFire(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
+		return this.chanceToEncourageFire[iBlockAccess1.getBlockId(i2, i3, i4)] > 0;
+	}
+
+	public int getChanceToEncourageFire(World world1, int i2, int i3, int i4, int i5) {
+		int i6 = this.chanceToEncourageFire[world1.getBlockId(i2, i3, i4)];
+		return i6 > i5 ? i6 : i5;
+	}
+
+	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
+		return world1.isBlockNormalCube(i2, i3 - 1, i4) || this.canNeighborBurn(world1, i2, i3, i4);
+	}
+
+	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
+		if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.canNeighborBurn(world1, i2, i3, i4)) {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+	}
+
+	public void onBlockAdded(World world1, int i2, int i3, int i4) {
+		// The commented part is what creates the portal.
+		if(
+				!world1.worldProvider.canCreatePortalToTheNether() || 
+				world1.getBlockId(i2, i3 - 1, i4) != Block.obsidian.blockID || 
+				!Block.portal.tryToCreatePortal(world1, i2, i3, i4)
+		) {
+			if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.canNeighborBurn(world1, i2, i3, i4)) {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			} else {
+				world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate() + world1.rand.nextInt(10));
+			}
+		}
+
+	}
+
+	public void randomDisplayTick(World world1, int i2, int i3, int i4, Random random5) {
+		if(random5.nextInt(24) == 0) {
+			world1.playSoundEffect((double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F), "fire.fire", 1.0F + random5.nextFloat(), random5.nextFloat() * 0.7F + 0.3F);
+		}
+
+		int i6;
+		float f7;
+		float f8;
+		float f9;
+		if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !Block.fire.canBlockCatchFire(world1, i2, i3 - 1, i4)) {
+			if(Block.fire.canBlockCatchFire(world1, i2 - 1, i3, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat() * 0.1F;
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2 + 1, i3, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)(i2 + 1) - random5.nextFloat() * 0.1F;
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3, i4 - 1)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat() * 0.1F;
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3, i4 + 1)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)(i4 + 1) - random5.nextFloat() * 0.1F;
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3 + 1, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)(i3 + 1) - random5.nextFloat() * 0.1F;
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+		} else {
+			for(i6 = 0; i6 < 3; ++i6) {
+				f7 = (float)i2 + random5.nextFloat();
+				f8 = (float)i3 + random5.nextFloat() * 0.5F + 0.5F;
+				f9 = (float)i4 + random5.nextFloat();
+				world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+			}
+		}
+
+	}
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2025-09-02 12:05:04.623
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2025-09-02 12:05:04.623
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.core 4 4 2025-09-02 12:05:07.138
+!MESSAGE Exception occurred during compilation unit conversion:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package net.minecraft.world.level.tile;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import net.minecraft.world.level.IBlockAccess;
+import net.minecraft.world.level.World;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.AxisAlignedBB;
+
+public class BlockFire extends Block {
+	private Map<Class<? extends Block>, Integer> propagators = new HashMap<>();
+	private Map<Class<? extends Block>, Integer> flamability = new HashMap<>();
+	
+	protected BlockFire(int i1, int i2) {
+		super(i1, i2, Material.fire);
+		this.setTickRandomly(true);
+	}
+
+	public void initializeBlock() {
+		this.setBurnRate(Block.planks.blockID, 5, 20);
+		this.setBurnRate(Block.fence.blockID, 5, 20);
+		this.setBurnRate(Block.stairCompactPlanks.blockID, 5, 20);
+		
+		this.setBurnRate(Block.wood.blockID, 5, 5);
+		this.setBurnRate(Block.sapling.blockID, 5, 20);
+		this.setBurnRate(Block.leaves.blockID, 30, 60);
+		
+		this.setBurnRate(Block.bookShelf.blockID, 30, 20);
+		this.setBurnRate(Block.tnt.blockID, 15, 100);
+		//this.setBurnRate(Block.tallGrass.blockID, 60, 100);
+		this.setBurnRate(Block.cloth.blockID, 30, 60);
+		//this.setBurnRate(Block.vine.blockID, 15, 100);
+	}
+	
+	/*
+	private void setBurnRate(int i1, int i2, int i3) {
+		this.chanceToEncourageFire[i1] = i2;
+		this.abilityToCatchFire[i1] = i3;
+	}
+	*/
+	private void setBurnRate(Class<? extends Block> blockClass, int propagativity, int flamability)
+
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world1, int i2, int i3, int i4) {
+		return null;
+	}
+
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+
+	public int getRenderType() {
+		return 3;
+	}
+
+	public int quantityDropped(Random random1) {
+		return 0;
+	}
+
+	public int tickRate() {
+		return 30;
+	}
+
+	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
+		int bid = world1.getBlockId(i2, i3 - 1, i4);
+		boolean z6 = bid == Block.netherrack.blockID || bid == Block.blockCoal.blockID;
+		
+		if(!this.canPlaceBlockAt(world1, i2, i3, i4)) {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+
+		if(z6 || !world1.isRaining() || !world1.canLightningStrikeAt(i2, i3, i4) && !world1.canLightningStrikeAt(i2 - 1, i3, i4) && !world1.canLightningStrikeAt(i2 + 1, i3, i4) && !world1.canLightningStrikeAt(i2, i3, i4 - 1) && !world1.canLightningStrikeAt(i2, i3, i4 + 1)) {
+			int i7 = world1.getBlockMetadata(i2, i3, i4);
+			if(i7 < 15) {
+				world1.setBlockMetadata(i2, i3, i4, i7 + random5.nextInt(3) / 2);
+			}
+
+			world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate() + random5.nextInt(10));
+			if(!z6 && !this.canNeighborBurn(world1, i2, i3, i4)) {
+				if(!world1.isBlockNormalCube(i2, i3 - 1, i4) || i7 > 3) {
+					world1.setBlockWithNotify(i2, i3, i4, 0);
+				}
+
+			} else if(!z6 && !this.canBlockCatchFire(world1, i2, i3 - 1, i4) && i7 == 15 && random5.nextInt(4) == 0) {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			} else {
+				boolean z8 = world1.isBlockHighHumidity(i2, i3, i4);
+				byte b9 = 0;
+				if(z8) {
+					b9 = -50;
+				}
+
+				this.tryToCatchBlockOnFire(world1, i2 + 1, i3, i4, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2 - 1, i3, i4, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3 - 1, i4, 250 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3 + 1, i4, 250 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3, i4 - 1, 300 + b9, random5, i7);
+				this.tryToCatchBlockOnFire(world1, i2, i3, i4 + 1, 300 + b9, random5, i7);
+
+				for(int i10 = i2 - 1; i10 <= i2 + 1; ++i10) {
+					for(int i11 = i4 - 1; i11 <= i4 + 1; ++i11) {
+						for(int i12 = i3 - 1; i12 <= i3 + 4; ++i12) {
+							if(i10 != i2 || i12 != i3 || i11 != i4) {
+								int i13 = 100;
+								if(i12 > i3 + 1) {
+									i13 += (i12 - (i3 + 1)) * 100;
+								}
+
+								int i14 = this.getChanceOfNeighborsEncouragingFire(world1, i10, i12, i11);
+								if(i14 > 0) {
+									int i15 = (i14 + 40) / (i7 + 30);
+									if(z8) {
+										i15 /= 2;
+									}
+
+									if(i15 > 0 && random5.nextInt(i13) <= i15 && (!world1.isRaining() || !world1.canLightningStrikeAt(i10, i12, i11)) && !world1.canLightningStrikeAt(i10 - 1, i12, i4) && !world1.canLightningStrikeAt(i10 + 1, i12, i11) && !world1.canLightningStrikeAt(i10, i12, i11 - 1) && !world1.canLightningStrikeAt(i10, i12, i11 + 1)) {
+										int i16 = i7 + random5.nextInt(5) / 4;
+										if(i16 > 15) {
+											i16 = 15;
+										}
+
+										world1.setBlockAndMetadataWithNotify(i10, i12, i11, this.blockID, i16);
+									}
+								}
+							}
+						}
+					}
+				}
+
+			}
+		} else {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+	}
+
+	private void tryToCatchBlockOnFire(World world1, int i2, int i3, int i4, int i5, Random random6, int i7) {
+		int i8 = this.abilityToCatchFire[world1.getBlockId(i2, i3, i4)];
+		if(random6.nextInt(i5) < i8) {
+			boolean z9 = world1.getBlockId(i2, i3, i4) == Block.tnt.blockID;
+			if(random6.nextInt(i7 + 10) < 5 && !world1.canLightningStrikeAt(i2, i3, i4)) {
+				int i10 = i7 + random6.nextInt(5) / 4;
+				if(i10 > 15) {
+					i10 = 15;
+				}
+
+				world1.setBlockAndMetadataWithNotify(i2, i3, i4, this.blockID, i10);
+			} else {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			}
+
+			if(z9) {
+				Block.tnt.onBlockDestroyedByPlayer(world1, i2, i3, i4, 1);
+			}
+		}
+
+	}
+
+	private boolean canNeighborBurn(World world1, int i2, int i3, int i4) {
+		return this.canBlockCatchFire(world1, i2 + 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2 - 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 - 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 + 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3, i4 - 1) ? true : this.canBlockCatchFire(world1, i2, i3, i4 + 1)))));
+	}
+
+	private int getChanceOfNeighborsEncouragingFire(World world1, int i2, int i3, int i4) {
+		byte b5 = 0;
+		if(!world1.isAirBlock(i2, i3, i4)) {
+			return 0;
+		} else {
+			int i6 = this.getChanceToEncourageFire(world1, i2 + 1, i3, i4, b5);
+			i6 = this.getChanceToEncourageFire(world1, i2 - 1, i3, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3 - 1, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3 + 1, i4, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3, i4 - 1, i6);
+			i6 = this.getChanceToEncourageFire(world1, i2, i3, i4 + 1, i6);
+			return i6;
+		}
+	}
+
+	public boolean isCollidable() {
+		return false;
+	}
+
+	public boolean canBlockCatchFire(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
+		return this.chanceToEncourageFire[iBlockAccess1.getBlockId(i2, i3, i4)] > 0;
+	}
+
+	public int getChanceToEncourageFire(World world1, int i2, int i3, int i4, int i5) {
+		int i6 = this.chanceToEncourageFire[world1.getBlockId(i2, i3, i4)];
+		return i6 > i5 ? i6 : i5;
+	}
+
+	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
+		return world1.isBlockNormalCube(i2, i3 - 1, i4) || this.canNeighborBurn(world1, i2, i3, i4);
+	}
+
+	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
+		if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.canNeighborBurn(world1, i2, i3, i4)) {
+			world1.setBlockWithNotify(i2, i3, i4, 0);
+		}
+	}
+
+	public void onBlockAdded(World world1, int i2, int i3, int i4) {
+		// The commented part is what creates the portal.
+		if(
+				!world1.worldProvider.canCreatePortalToTheNether() || 
+				world1.getBlockId(i2, i3 - 1, i4) != Block.obsidian.blockID || 
+				!Block.portal.tryToCreatePortal(world1, i2, i3, i4)
+		) {
+			if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.canNeighborBurn(world1, i2, i3, i4)) {
+				world1.setBlockWithNotify(i2, i3, i4, 0);
+			} else {
+				world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate() + world1.rand.nextInt(10));
+			}
+		}
+
+	}
+
+	public void randomDisplayTick(World world1, int i2, int i3, int i4, Random random5) {
+		if(random5.nextInt(24) == 0) {
+			world1.playSoundEffect((double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F), "fire.fire", 1.0F + random5.nextFloat(), random5.nextFloat() * 0.7F + 0.3F);
+		}
+
+		int i6;
+		float f7;
+		float f8;
+		float f9;
+		if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !Block.fire.canBlockCatchFire(world1, i2, i3 - 1, i4)) {
+			if(Block.fire.canBlockCatchFire(world1, i2 - 1, i3, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat() * 0.1F;
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2 + 1, i3, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)(i2 + 1) - random5.nextFloat() * 0.1F;
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3, i4 - 1)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)i4 + random5.nextFloat() * 0.1F;
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3, i4 + 1)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)i3 + random5.nextFloat();
+					f9 = (float)(i4 + 1) - random5.nextFloat() * 0.1F;
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+
+			if(Block.fire.canBlockCatchFire(world1, i2, i3 + 1, i4)) {
+				for(i6 = 0; i6 < 2; ++i6) {
+					f7 = (float)i2 + random5.nextFloat();
+					f8 = (float)(i3 + 1) - random5.nextFloat() * 0.1F;
+					f9 = (float)i4 + random5.nextFloat();
+					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				}
+			}
+		} else {
+			for(i6 = 0; i6 < 3; ++i6) {
+				f7 = (float)i2 + random5.nextFloat();
+				f8 = (float)i3 + random5.nextFloat() * 0.5F + 0.5F;
+				f9 = (float)i4 + random5.nextFloat();
+				world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+			}
+		}
+
+	}
+}
+
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 2 2025-09-02 12:05:07.139
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+
+!ENTRY org.eclipse.jdt.ui 4 0 2025-09-02 12:05:07.139
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+	at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:3146)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:725)
+	at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:208)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:3316)
+	at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1513)
+	at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:474)
+	at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:200)
+	at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:266)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:596)
+	at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1141)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:173)
+	at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:94)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:740)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:806)
+	at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1318)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:131)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:113)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:93)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:90)
+	at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:157)
+	at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:94)
+	at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:107)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)

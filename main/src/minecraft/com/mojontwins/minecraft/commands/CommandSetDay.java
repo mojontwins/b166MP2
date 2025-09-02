@@ -45,7 +45,7 @@ public class CommandSetDay extends CommandBase {
 			
 			res = dayWithinYear;
 		} catch (Exception e) {
-			System.out.println (e);
+			e.printStackTrace();
 			this.theCommandSender.printMessage(theWorld, "Wrong day");
 		}
 		

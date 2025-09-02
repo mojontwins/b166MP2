@@ -81,10 +81,12 @@ import net.minecraft.network.packet.Packet89SetArmor;
 import net.minecraft.network.packet.Packet8UpdateHealth;
 import net.minecraft.network.packet.Packet90ArmoredMobSpawn;
 import net.minecraft.network.packet.Packet91UpdateCommandBlock;
+import net.minecraft.network.packet.Packet93UpdateAnimalName;
 import net.minecraft.network.packet.Packet95UpdateDayOfTheYear;
 import net.minecraft.network.packet.Packet9Respawn;
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityCreature;
 import net.minecraft.world.entity.EntityLightningBolt;
 import net.minecraft.world.entity.EntityList;
 import net.minecraft.world.entity.EntityLiving;
@@ -861,6 +863,15 @@ public class NetClientHandler extends NetHandler {
 			}
 		}
 
+	}
+	
+	public void handleUpdateAnimalName(Packet93UpdateAnimalName packet) {
+		Entity entity = this.getEntityByID(packet.entityId);
+		if(entity == null || !(entity instanceof EntityCreature)) {
+			// System.out.println ("Received name " + packet.name + " for non existing creature " + packet.entityId);
+		} else {
+			((EntityCreature) entity).setName(packet.name);
+		}
 	}
 
 	public void handleTileEntityData(Packet132TileEntityData packet132TileEntityData1) {

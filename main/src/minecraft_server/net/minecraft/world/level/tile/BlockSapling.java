@@ -3,19 +3,20 @@ package net.minecraft.world.level.tile;
 import java.util.List;
 import java.util.Random;
 
-import com.mojontwins.utils.WorldGenUtils;
-
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockState;
 import net.minecraft.world.level.Seasons;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.creative.CreativeTabs;
-import net.minecraft.world.level.levelgen.feature.WorldGenBigTree;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
-import net.minecraft.world.level.levelgen.feature.trees.WorldGenForest;
-import net.minecraft.world.level.levelgen.feature.trees.WorldGenHugeTrees;
-import net.minecraft.world.level.levelgen.feature.trees.WorldGenTrees;
+import net.minecraft.world.level.levelgen.feature.trees.EnumTreeType;
 
 public class BlockSapling extends BlockFlower {
+	
+	public int textureId[] = new int[] {
+			15, 63, 79, 260
+	};
+	
 	protected BlockSapling(int i1, int i2) {
 		super(i1, i2);
 		float f3 = 0.4F;
@@ -49,72 +50,55 @@ public class BlockSapling extends BlockFlower {
 		}
 	}
 
-	public int getBlockTextureFromSideAndMetadata(int i1, int i2) {
-		i2 &= 3;
-		return i2 == 1 ? 63 : (i2 == 2 ? 79 : (i2 == 3 ? 30 : super.getBlockTextureFromSideAndMetadata(i1, i2)));
+	public int getBlockTextureFromSideAndMetadata(int side, int meta) {
+		return this.textureId[meta & 3];
 	}
 
-	public void growTree(World world1, int i2, int i3, int i4, Random random5) {
-		int i6 = world1.getBlockMetadata(i2, i3, i4) & 3;
-		Object object7 = null;
-		int i8 = 0;
-		int i9 = 0;
-		boolean z10 = false;
-		if(i6 == 1) {
-			object7 = WorldGenUtils.getWorldGenTaiga(random5);
-		} else if(i6 == 2) {
-			object7 = new WorldGenForest(true);
-		} else if(i6 == 3) {
-			for(i8 = 0; i8 >= -1; --i8) {
-				for(i9 = 0; i9 >= -1; --i9) {
-					if(this.func_50076_f(world1, i2 + i8, i3, i4 + i9, 3) && this.func_50076_f(world1, i2 + i8 + 1, i3, i4 + i9, 3) && this.func_50076_f(world1, i2 + i8, i3, i4 + i9 + 1, 3) && this.func_50076_f(world1, i2 + i8 + 1, i3, i4 + i9 + 1, 3)) {
-						object7 = new WorldGenHugeTrees(true, 10 + random5.nextInt(20), 3, 3);
-						z10 = true;
+	public void growTree(World world, int x, int y, int z, Random rand) {
+		int saplingId = world.getBlockId(x, y, z);
+		int meta = world.getBlockMetadata(x, y, z) & 3;
+		
+		EnumTreeType tree = EnumTreeType.findTreeTypeFromSapling(new BlockState(Block.blocksList[saplingId], meta));
+		WorldGenerator worldGen = tree.getGen(rand);
+		
+		if (tree.needsFourSaplings) {
+			// Check for 4 saplings
+			for(int dx = 0; dx >= -1; dx --) {
+				for(int dz = 0; dz >= -1; dz --) {
+					if(
+						this.sameSapling(world, x + dx, y, z + dz, saplingId, meta) &&
+						this.sameSapling(world, x + dx + 1, y, z + dz, saplingId, meta) &&
+						this.sameSapling(world, x + dx, y, z + dz + 1, saplingId, meta) && 
+						this.sameSapling(world, x + dx + 1, y, z + dz + 1, saplingId, meta)) {
+						
+						world.setBlock(x + dx, y, z + dz, 0);
+						world.setBlock(x + dx + 1, y, z + dz, 0);
+						world.setBlock(x + dx, y, z + dz + 1, 0);
+						world.setBlock(x + dx + 1, y, z + dz + 1, 0);
+						
+						if(worldGen == null || !worldGen.generate(world, rand, x + dx, y, z + dz)) {
+							world.setBlockAndMetadata(x + dx, y, z + dz, saplingId, meta);
+							world.setBlockAndMetadata(x + dx + 1, y, z + dz, saplingId, meta);
+							world.setBlockAndMetadata(x + dx, y, z + dz + 1, saplingId, meta);
+							world.setBlockAndMetadata(x + dx + 1, y, z + dz + 1, saplingId, meta);
+						}
+						
 						break;
 					}
 				}
-
-				if(object7 != null) {
-					break;
-				}
-			}
-
-			if(object7 == null) {
-				i9 = 0;
-				i8 = 0;
-				object7 = new WorldGenTrees(true, 4 + random5.nextInt(7), 3, 3, false);
 			}
 		} else {
-			object7 = new WorldGenTrees(true);
-			if(random5.nextInt(10) == 0) {
-				object7 = new WorldGenBigTree(true);
-			}
-		}
-
-		if(z10) {
-			world1.setBlock(i2 + i8, i3, i4 + i9, 0);
-			world1.setBlock(i2 + i8 + 1, i3, i4 + i9, 0);
-			world1.setBlock(i2 + i8, i3, i4 + i9 + 1, 0);
-			world1.setBlock(i2 + i8 + 1, i3, i4 + i9 + 1, 0);
-		} else {
-			world1.setBlock(i2, i3, i4, 0);
-		}
-
-		if(!((WorldGenerator)object7).generate(world1, random5, i2 + i8, i3, i4 + i9)) {
-			if(z10) {
-				world1.setBlockAndMetadata(i2 + i8, i3, i4 + i9, this.blockID, i6);
-				world1.setBlockAndMetadata(i2 + i8 + 1, i3, i4 + i9, this.blockID, i6);
-				world1.setBlockAndMetadata(i2 + i8, i3, i4 + i9 + 1, this.blockID, i6);
-				world1.setBlockAndMetadata(i2 + i8 + 1, i3, i4 + i9 + 1, this.blockID, i6);
-			} else {
-				world1.setBlockAndMetadata(i2, i3, i4, this.blockID, i6);
+			world.setBlock(x, y, z, 0);
+			if(worldGen == null || !worldGen.generate(world, rand, x, y, z)) {
+				world.setBlockAndMetadata(x, y, z, saplingId, meta);
 			}
 		}
 
 	}
 
-	public boolean func_50076_f(World world1, int i2, int i3, int i4, int i5) {
-		return world1.getBlockId(i2, i3, i4) == this.blockID && (world1.getBlockMetadata(i2, i3, i4) & 3) == i5;
+	public boolean sameSapling(World world, int x, int y, int z, int saplingId, int meta) {
+		return world.getBlockId(x, y, z) == saplingId &&
+				world.getBlockMetadata(x, y, z) == meta;
 	}
 
 	public int damageDropped(int i1) {
@@ -125,6 +109,7 @@ public class BlockSapling extends BlockFlower {
 		par3List.add(new ItemStack(par1, 1, 0));
 		par3List.add(new ItemStack(par1, 1, 1));
 		par3List.add(new ItemStack(par1, 1, 2));
+		par3List.add(new ItemStack(par1, 1, 3));
 	}
 	
 	protected boolean canThisPlantGrowOnThisBlockID(int i1) {

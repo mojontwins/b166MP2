@@ -16,6 +16,10 @@ public class BlockLog extends Block3Axes implements IGetNameBasedOnMeta {
 	public static final int BirchMetadata = 2;
 	public static final int JungleMetadata = 3;
 	
+	public int textureId[] = new int[] {
+			20, 116, 117, 259
+	};
+	
 	// This strings will be used by ItemMetadata thru IGetNameBasedOnBeta
 	// to produce tile.[name].name to give custom names to different metadata.
 	public static final String[] logNames = new String[] {
@@ -33,10 +37,6 @@ public class BlockLog extends Block3Axes implements IGetNameBasedOnMeta {
 		return 1;
 	}
 
-	public int idDropped(int i1, Random random2, int i3) {
-		return Block.wood.blockID;
-	}
-
 	public void harvestBlock(World world1, EntityPlayer entityPlayer2, int i3, int i4, int i5, int i6) {
 		super.harvestBlock(world1, entityPlayer2, i3, i4, i5, i6);
 	}
@@ -48,8 +48,8 @@ public class BlockLog extends Block3Axes implements IGetNameBasedOnMeta {
 			for(int i7 = -b5; i7 <= b5; ++i7) {
 				for(int i8 = -b5; i8 <= b5; ++i8) {
 					for(int i9 = -b5; i9 <= b5; ++i9) {
-						int i10 = world1.getBlockId(i2 + i7, i3 + i8, i4 + i9);
-						if(i10 == Block.leaves.blockID) {
+						Block b = world1.getBlock(i2 + i7, i3 + i8, i4 + i9);
+						if(b instanceof BlockLeaves) {
 							int i11 = world1.getBlockMetadata(i2 + i7, i3 + i8, i4 + i9);
 							if((i11 & 8) == 0) {
 								world1.setBlockMetadata(i2 + i7, i3 + i8, i4 + i9, i11 | 8);
@@ -63,12 +63,7 @@ public class BlockLog extends Block3Axes implements IGetNameBasedOnMeta {
 	}
 	
 	public int getTextureSides(int metadata) {
-		switch(this.getWoodType(metadata)) {
-			case 1: return 116;
-			case 2: return 117;
-			case 3: return 153;
-			default: return 20;
-		}
+		return this.textureId[this.getWoodType(metadata)];
 	}
 	
 	public int getTextureEnds(int metadata) {
@@ -79,10 +74,11 @@ public class BlockLog extends Block3Axes implements IGetNameBasedOnMeta {
 		par3List.add(new ItemStack(par1, 1, 0));
 		par3List.add(new ItemStack(par1, 1, 1));
 		par3List.add(new ItemStack(par1, 1, 2));
+		par3List.add(new ItemStack(par1, 1, 3));
 	}
 	
 	public int getWoodType(int meta) {
-		return meta & 0xf3;
+		return meta & 0x3;
 	}
 
 	@Override

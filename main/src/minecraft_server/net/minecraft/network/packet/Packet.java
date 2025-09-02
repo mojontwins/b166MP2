@@ -240,6 +240,7 @@ public abstract class Packet {
 		addIdClassMapping(89, true, false, Packet89SetArmor.class);
 		addIdClassMapping(90, true, false, Packet90ArmoredMobSpawn.class);
 		addIdClassMapping(91, true, true, Packet91UpdateCommandBlock.class);
+		addIdClassMapping(93, true, true, Packet93UpdateAnimalName.class);
 		addIdClassMapping(95, true, false, Packet95UpdateDayOfTheYear.class);
 		addIdClassMapping(100, true, false, Packet100OpenWindow.class);
 		addIdClassMapping(101, true, true, Packet101CloseWindow.class);

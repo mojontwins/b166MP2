@@ -2224,7 +2224,8 @@ public class World implements IBlockAccess {
 		}
 	}
 
-	private void clearWeather() {
+	public void clearWeather() {
+		
 		this.worldInfo.setRainTime(0);
 		this.worldInfo.setRaining(false);
 		this.worldInfo.setThunderTime(0);
@@ -2395,7 +2396,7 @@ public class World implements IBlockAccess {
 						t > .2 && Seasons.currentSeason != Seasons.WINTER ||
 						t > .1 && Seasons.currentSeason == Seasons.SUMMER;
 				
-			} else return t >= .2F;
+			} else return t >= .5F;
 		} else {
 			if(this.worldInfo.isEnableSeasons()) {
 				return

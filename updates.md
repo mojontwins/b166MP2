@@ -174,15 +174,25 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 * [X] goats - I'll reuse my port in Infhell. 
 * [X] cold cow
 * [X] black duck.
-* [ ] Werewolf
-	* [ ] Spawn only on taigas. 
-	* [ ] Can I make them only turn on full moon? Is that a thing in beta? It looks like it doesn't turn into a human at all in this version? I know that WW in 1.2.5 does. Maybe I need that one.
-* [ ] Wraith
-* [ ] I'll also introduce the means to name animals and make them not despawn.
+* [X] Werewolf
+	* [X] Spawn only on forests. 
+	* [X] Can I make them only turn on full moon? Is that a thing in beta? It looks like it doesn't turn into a human at all in this version? I know that WW in 1.2.5 does. Maybe I need that one.
+* [X] Wraith
+* [X] I'll also introduce the means to name animals and make them not despawn.
 	* ItemNametagSimple -> the item.
 	* GuiGiveName -> the gui.
 	* EntityCreature.setName -> the method to give name, and fired from `interact`: 
-* [ ] Baobabs and Acacias in Savannas. But with new wood and leaves types!
+* [X] Baobabs and Acacias in Savannas. But with new wood and leaves types!
+	* [X] Adapt system from Inslands - EnumTreeType, but only for new tree types and using new LogEx1, SaplingEx1, LeavesEx1 and add 4 variants per class so I can keep using 4bit metas.
+		* [/] First need to add the IBlockWithSubtypes shit and convert all blocks with subtypes. I.e. lazy conversion = when needed.
+		* [X] Write correct info for vanilla values for Oak, Birch, Taiga, Huge.
+		* [X] Use treegens from Inslands for Oak, Birch, Taiga, Huge.
+		* [X] Add itemStackDropped new logic to Block.
+		* [X] Adapt log, leaves, sapling to EnumTreeTypes for vanilla trees.
+		* [X] Add new log, leaves, sapling classes starting with "Swamp". Add Swamp to EnumTreeTypes. Add the gen from Inslands.
+* [X] Baobab, Acacia, Swamp, Pine, Alder, Aspen, Eucalyptus & Cherry Tree.
+* [X] Light biome enhancements.
+
 
 ```java
 	@Override
@@ -207,8 +217,8 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 	}
 ```
 
-* [ ] BUGS
-	* [ ] Make sure the "add snow" is consistent with the methods that remove it when it's hot. Also this seems to be generating ice BUT NOT SNOW.
+* [X] BUGS
+	* [X] Make sure the "add snow" is consistent with the methods that remove it when it's hot. Also this seems to be generating ice BUT NOT SNOW.
 
 # b16.6.6 r2
 
@@ -270,3 +280,4 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 * [ ] RailDetector is needed for circuits (Block, BlockDetectorRail, CraftingManager, ItemPickaxe)
 * [ ] Move trees to .trees 
 * [ ] ItemMetadata, names & stuff - wood type names in BlockLog, IGetNameBasedOnMeta, ILeaves, LeavesBase.
+* [ ] New EnumTreeType logic, adapt vanilla tree types, IBlockWithSubtypes, etc.

@@ -18,11 +18,11 @@ public class MoreResourcesInstaller {
 			// Load custom resources
 			
 			// Dr. Zhark's Ogre
-			this.mc.installResourceURL("sound/mob/ogre/ogre0.ogg", this.getURLfromResource(this.resourceDirectory + "/ogre1.ogg"));
-			this.mc.installResourceURL("sound/mob/ogre/ogre1.ogg", this.getURLfromResource(this.resourceDirectory + "/ogre2.ogg"));
-			this.mc.installResourceURL("sound/mob/ogre/ogre2.ogg", this.getURLfromResource(this.resourceDirectory + "/ogre3.ogg"));
-			this.mc.installResourceURL("sound/mob/ogre/death.ogg", this.getURLfromResource(this.resourceDirectory + "/ogredying.ogg"));
-			this.mc.installResourceURL("sound/mob/ogre/hurt.ogg", this.getURLfromResource(this.resourceDirectory + "/ogrehurt1.ogg"));
+			this.mc.installResourceURL("sound/mocreatures/ogre0.ogg", this.getURLfromResource(this.resourceDirectory + "/ogre1.ogg"));
+			this.mc.installResourceURL("sound/mocreatures/ogre1.ogg", this.getURLfromResource(this.resourceDirectory + "/ogre2.ogg"));
+			this.mc.installResourceURL("sound/mocreatures/ogre2.ogg", this.getURLfromResource(this.resourceDirectory + "/ogre3.ogg"));
+			this.mc.installResourceURL("sound/mocreatures/ogredeath.ogg", this.getURLfromResource(this.resourceDirectory + "/ogredying.ogg"));
+			this.mc.installResourceURL("sound/mocreatures/ogrehurt.ogg", this.getURLfromResource(this.resourceDirectory + "/ogrehurt1.ogg"));
 
 			// Dr. Zhark's Goat			
 			this.mc.installResourceURL("sound/mocreatures/goateating.ogg", this.getURLfromResource(this.resourceDirectory + "/goateating.ogg"));
@@ -50,6 +50,15 @@ public class MoreResourcesInstaller {
 			this.mc.installResourceURL("sound/mocreatures/werewolfgrunt3.ogg", this.getURLfromResource(this.resourceDirectory + "/werewolfgrunt4.ogg"));
 			this.mc.installResourceURL("sound/mocreatures/werewolfhurt0.ogg", this.getURLfromResource(this.resourceDirectory + "/werewolfhurt1.ogg"));
 			this.mc.installResourceURL("sound/mocreatures/werewolfhurt1.ogg", this.getURLfromResource(this.resourceDirectory + "/werewolfhurt2.ogg"));
+			
+			// Dr. Zhark's Wraith
+			this.mc.installResourceURL("sound/mocreatures/wraithdying0.ogg", this.getURLfromResource(this.resourceDirectory + "/wraithdying1.ogg"));
+			this.mc.installResourceURL("sound/mocreatures/wraithdying1.ogg", this.getURLfromResource(this.resourceDirectory + "/wraithdying2.ogg"));
+			this.mc.installResourceURL("sound/mocreatures/wraithhurt0.ogg", this.getURLfromResource(this.resourceDirectory + "/wraithhurt1.ogg"));
+			this.mc.installResourceURL("sound/mocreatures/wraithhurt1.ogg", this.getURLfromResource(this.resourceDirectory + "/wraithhurt2.ogg"));
+			this.mc.installResourceURL("sound/mocreatures/wraith1.ogg", this.getURLfromResource(this.resourceDirectory + "/wraith1.ogg"));
+			this.mc.installResourceURL("sound/mocreatures/wraith2.ogg", this.getURLfromResource(this.resourceDirectory + "/wraith2.ogg"));
+			this.mc.installResourceURL("sound/mocreatures/wraith3.ogg", this.getURLfromResource(this.resourceDirectory + "/wraith3.ogg"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();

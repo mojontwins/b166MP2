@@ -6,6 +6,7 @@ import net.minecraft.world.entity.animal.EntityBoar;
 import net.minecraft.world.entity.animal.EntityPig;
 import net.minecraft.world.entity.animal.EntityWolf;
 import net.minecraft.world.entity.monster.EntityOgre;
+import net.minecraft.world.entity.monster.EntityWerewolf;
 import net.minecraft.world.level.SpawnListEntry;
 import net.minecraft.world.level.levelgen.feature.WorldGenBigTree;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
@@ -25,6 +26,7 @@ public class BiomeGenForest extends BiomeGenBaseBeta {
 		);
 		
 		this.spawnableMonsterList.add(new SpawnListEntry(EntityOgre.class, 1, 1, 1));
+		this.spawnableMonsterList.add(new SpawnListEntry(EntityWerewolf.class, 1, 1, 1));
 		
 		// And some tweaks...
 		this.biomeDecorator.extraTreesPerChunk = 5;

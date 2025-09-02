@@ -15,111 +15,66 @@
 			"file": "updates.md",
 			"settings":
 			{
-				"buffer_size": 11344,
+				"buffer_size": 12120,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "modded/src/minecraft/net/minecraft/src/EntityWWolf.java",
+			"file": "main/src/minecraft/net/minecraft/world/item/ItemShears.java",
 			"settings":
 			{
-				"buffer_size": 3907,
+				"buffer_size": 1326,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "package net.minecraft.src;\n\nimport java.util.Random;\n\npublic class ChunkProviderGenerate implements IChunkProvider {\n\tprivate Random rand;\n\tprivate NoiseGeneratorOctaves field_912_k;\n\tprivate NoiseGeneratorOctaves field_911_l;\n\tprivate NoiseGeneratorOctaves field_910_m;\n\tprivate NoiseGeneratorOctaves field_909_n;\n\tprivate NoiseGeneratorOctaves field_908_o;\n\tpublic NoiseGeneratorOctaves field_922_a;\n\tpublic NoiseGeneratorOctaves field_921_b;\n\tpublic NoiseGeneratorOctaves mobSpawnerNoise;\n\tprivate World worldObj;\n\tprivate double[] terrainNoise;\n\tprivate double[] sandNoise = new double[256];\n\tprivate double[] gravelNoise = new double[256];\n\tprivate double[] stoneNoise = new double[256];\n\tprivate MapGenBase field_902_u = new MapGenCaves();\n\tprivate BiomeGenBase[] biomesForGeneration;\n\tdouble[] field_4185_d;\n\tdouble[] field_4184_e;\n\tdouble[] field_4183_f;\n\tdouble[] field_4182_g;\n\tdouble[] field_4181_h;\n\tint[][] field_914_i = new int[32][32];\n\tprivate double[] generatedTemperatures;\n\n\tpublic ChunkProviderGenerate(World world1, long j2) {\n\t\tthis.worldObj = world1;\n\t\tthis.rand = new Random(j2);\n\t\tthis.field_912_k = new NoiseGeneratorOctaves(this.rand, 16);\n\t\tthis.field_911_l = new NoiseGeneratorOctaves(this.rand, 16);\n\t\tthis.field_910_m = new NoiseGeneratorOctaves(this.rand, 8);\n\t\tthis.field_909_n = new NoiseGeneratorOctaves(this.rand, 4);\n\t\tthis.field_908_o = new NoiseGeneratorOctaves(this.rand, 4);\n\t\tthis.field_922_a = new NoiseGeneratorOctaves(this.rand, 10);\n\t\tthis.field_921_b = new NoiseGeneratorOctaves(this.rand, 16);\n\t\tthis.mobSpawnerNoise = new NoiseGeneratorOctaves(this.rand, 8);\n\t}\n\n\tpublic void generateTerrain(int chunkX, int chunkZ, byte[] blocks, BiomeGenBase[] biomeGenBase4, double[] d5) {\n\t\tbyte quadrantSize = 4;\n\t\tbyte seaLevel = 64;\n\t\tint xSize = quadrantSize + 1;\n\t\tbyte ySize = 17;\n\t\tint zSize = quadrantSize + 1;\n\t\tthis.terrainNoise = this.func_4061_a(this.terrainNoise, chunkX * quadrantSize, 0, chunkZ * quadrantSize, xSize, ySize, zSize);\n\n\t\tfor(int xSection = 0; xSection < quadrantSize; ++xSection) {\n\t\t\tfor(int zSection = 0; zSection < quadrantSize; ++zSection) {\n\t\t\t\tfor(int ySection = 0; ySection < 16; ++ySection) {\n\n\t\t\t\t\tdouble noiseScale = 0.125D; // Which is 1/8\n\t\t\t\t\tdouble densityMinXMinYMinZ = this.terrainNoise[((xSection + 0) * zSize + zSection + 0) * ySize + ySection + 0];\n\t\t\t\t\tdouble densityMinXMinYMaxZ = this.terrainNoise[((xSection + 0) * zSize + zSection + 1) * ySize + ySection + 0];\n\t\t\t\t\tdouble densityMaxXMinYMinZ = this.terrainNoise[((xSection + 1) * zSize + zSection + 0) * ySize + ySection + 0];\n\t\t\t\t\tdouble densityMaxXMinYMaxZ = this.terrainNoise[((xSection + 1) * zSize + zSection + 1) * ySize + ySection + 0];\n\t\t\t\t\tdouble yLerpAmountMinXMinZ = (this.terrainNoise[((xSection + 0) * zSize + zSection + 0) * ySize + ySection + 1] - densityMinXMinYMinZ) * noiseScale;\n\t\t\t\t\tdouble yLerpAmountMinXMaxZ = (this.terrainNoise[((xSection + 0) * zSize + zSection + 1) * ySize + ySection + 1] - densityMinXMinYMaxZ) * noiseScale;\n\t\t\t\t\tdouble yLerpAmountMaxXMinZ = (this.terrainNoise[((xSection + 1) * zSize + zSection + 0) * ySize + ySection + 1] - densityMaxXMinYMinZ) * noiseScale;\n\t\t\t\t\tdouble yLerpAmountMaxXMaxZ = (this.terrainNoise[((xSection + 1) * zSize + zSection + 1) * ySize + ySection + 1] - densityMaxXMinYMaxZ) * noiseScale;\n\n\t\t\t\t\tfor(int y = 0; y < 8; ++y) {\n\t\t\t\t\t\tdouble scalingFactor = 0.25D; // Which is 1/4\n\t\t\t\t\t\tdouble curDensityMinXMinYMinZ = densityMinXMinYMinZ;\n\t\t\t\t\t\tdouble curDensityMinXMinYMaxZ = densityMinXMinYMaxZ;\n\t\t\t\t\t\tdouble xLerpAmountMinZ = (densityMaxXMinYMinZ - densityMinXMinYMinZ) * scalingFactor;\n\t\t\t\t\t\tdouble xLerpAmountMaxZ = (densityMaxXMinYMaxZ - densityMinXMinYMaxZ) * scalingFactor;\n\n\t\t\t\t\t\tfor(int x = 0; x < 4; ++x) {\n\t\t\t\t\t\t\tint indexInBlockArray = x + xSection * 4 << 11 | 0 + zSection * 4 << 7 | ySection * 8 + y;\n\t\t\t\t\t\t\tshort heightShift = 128;\n\t\t\t\t\t\t\tdouble densityVariationSpeed = 0.25D;\n\t\t\t\t\t\t\tdouble density = curDensityMinXMinYMinZ;\n\t\t\t\t\t\t\tdouble densityIncrement = (curDensityMinXMinYMaxZ - curDensityMinXMinYMinZ) * densityVariationSpeed;\n\n\t\t\t\t\t\t\tfor(int z = 0; z < 4; ++z) {\n\t\t\t\t\t\t\t\tdouble t = d5[(xSec\n\t\t\t\t\t\t\t\t\ttion * 4 + x) * 16 + zSection * 4 + z];\n\t\t\t\t\t\t\t\tint blockID = 0;\n\t\t\t\t\t\t\t\tif(ySection * 8 + y < seaLevel) {\n\t\t\t\t\t\t\t\t\tif(t < 0.5D && ySection * 8 + y >= seaLevel - 1) {\n\t\t\t\t\t\t\t\t\t\tblockID = Block.ice.blockID;\n\t\t\t\t\t\t\t\t\t} else {\n\t\t\t\t\t\t\t\t\t\tblockID = Block.waterStill.blockID;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\t\tif(density > 0.0D) {\n\t\t\t\t\t\t\t\t\tblockID = Block.stone.blockID;\n\t\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\t\tblocks[indexInBlockArray] = (byte)blockID;\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\tindexInBlockArray += heightShift;\n\t\t\t\t\t\t\t\tdensity += densityIncrement;\n\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\tcurDensityMinXMinYMinZ += xLerpAmountMinZ;\n\t\t\t\t\t\t\tcurDensityMinXMinYMaxZ += xLerpAmountMaxZ;\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tdensityMinXMinYMinZ += yLerpAmountMinXMinZ;\n\t\t\t\t\t\tdensityMinXMinYMaxZ += yLerpAmountMinXMaxZ;\n\t\t\t\t\t\tdensityMaxXMinYMinZ += yLerpAmountMaxXMinZ;\n\t\t\t\t\t\tdensityMaxXMinYMaxZ += yLerpAmountMaxXMaxZ;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t}\n\n\tpublic void replaceBlocksForBiome(int i1, int i2, byte[] b3, BiomeGenBase[] biomeGenBase4) {\n\t\tbyte b5 = 64;\n\t\tdouble d6 = 8.0D / 256D;\n\t\tthis.sandNoise = this.field_909_n.generateNoiseOctaves(this.sandNoise, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d6, d6, 1.0D);\n\t\tthis.gravelNoise = this.field_909_n.generateNoiseOctaves(this.gravelNoise, (double)(i1 * 16), 109.0134D, (double)(i2 * 16), 16, 1, 16, d6, 1.0D, d6);\n\t\tthis.stoneNoise = this.field_908_o.generateNoiseOctaves(this.stoneNoise, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d6 * 2.0D, d6 * 2.0D, d6 * 2.0D);\n\n\t\tfor(int i8 = 0; i8 < 16; ++i8) {\n\t\t\tfor(int i9 = 0; i9 < 16; ++i9) {\n\t\t\t\tBiomeGenBase biomeGenBase10 = biomeGenBase4[i8 + i9 * 16];\n\t\t\t\tboolean z11 = this.sandNoise[i8 + i9 * 16] + this.rand.nextDouble() * 0.2D > 0.0D;\n\t\t\t\tboolean z12 = this.gravelNoise[i8 + i9 * 16] + this.rand.nextDouble() * 0.2D > 3.0D;\n\t\t\t\tint i13 = (int)(this.stoneNoise[i8 + i9 * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);\n\t\t\t\tint i14 = -1;\n\t\t\t\tbyte b15 = biomeGenBase10.topBlock;\n\t\t\t\tbyte b16 = biomeGenBase10.fillerBlock;\n\n\t\t\t\tfor(int i17 = 127; i17 >= 0; --i17) {\n\t\t\t\t\tint i18 = (i9 * 16 + i8) * 128 + i17;\n\t\t\t\t\tif(i17 <= 0 + this.rand.nextInt(5)) {\n\t\t\t\t\t\tb3[i18] = (byte)Block.bedrock.blockID;\n\t\t\t\t\t} else {\n\t\t\t\t\t\tbyte b19 = b3[i18];\n\t\t\t\t\t\tif(b19 == 0) {\n\t\t\t\t\t\t\ti14 = -1;\n\t\t\t\t\t\t} else if(b19 == Block.stone.blockID) {\n\t\t\t\t\t\t\tif(i14 == -1) {\n\t\t\t\t\t\t\t\tif(i13 <= 0) {\n\t\t\t\t\t\t\t\t\tb15 = 0;\n\t\t\t\t\t\t\t\t\tb16 = (byte)Block.stone.blockID;\n\t\t\t\t\t\t\t\t} else if(i17 >= b5 - 4 && i17 <= b5 + 1) {\n\t\t\t\t\t\t\t\t\tb15 = biomeGenBase10.topBlock;\n\t\t\t\t\t\t\t\t\tb16 = biomeGenBase10.fillerBlock;\n\t\t\t\t\t\t\t\t\tif(z12) {\n\t\t\t\t\t\t\t\t\t\tb15 = 0;\n\t\t\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\t\t\tif(z12) {\n\t\t\t\t\t\t\t\t\t\tb16 = (byte)Block.gravel.blockID;\n\t\t\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\t\t\tif(z11) {\n\t\t\t\t\t\t\t\t\t\tb15 = (byte)Block.sand.blockID;\n\t\t\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\t\t\tif(z11) {\n\t\t\t\t\t\t\t\t\t\tb16 = (byte)Block.sand.blockID;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\t\tif(i17 < b5 && b15 == 0) {\n\t\t\t\t\t\t\t\t\tb15 = (byte)Block.waterStill.blockID;\n\t\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\t\ti14 = i13;\n\t\t\t\t\t\t\t\tif(i17 >= b5 - 1) {\n\t\t\t\t\t\t\t\t\tb3[i18] = b15;\n\t\t\t\t\t\t\t\t} else {\n\t\t\t\t\t\t\t\t\tb3[i18] = b16;\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t} else if(i14 > 0) {\n\t\t\t\t\t\t\t\t--i14;\n\t\t\t\t\t\t\t\tb3[i18] = b16;\n\t\t\t\t\t\t\t\tif(i14 == 0 && b16 == Block.sand.blockID) {\n\t\t\t\t\t\t\t\t\ti14 = this.rand.nextInt(4);\n\t\t\t\t\t\t\t\t\tb16 = (byte)Block.sandStone.blockID;\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t}\n\n\tpublic Chunk func_538_d(int i1, int i2) {\n\t\treturn this.provideChunk(i1, i2);\n\t}\n\n\tpublic Chunk provideChunk(int i1, int i2) {\n\t\tthis.rand.setSeed((long)i1 * 341873128712L + (long)i2 * 132897987541L);\n\t\tbyte[] b3 = new byte[32768];\n\t\tChunk chunk4 = new Chunk(this.worldObj, b3, i1, i2);\n\t\tthis.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, i1 * 16, i2 * 16, 16, 16);\n\t\tdouble[] d5 = this.worldObj.getWorldChunkManager().temperature;\n\t\tthis.generateTerrain(i1, i2, b3, this.biomesForGeneration, d5);\n\t\tthis.replaceBlocksForBiome(i1, i2, b3, this.biomesForGeneration);\n\t\tthis.field_902_u.func_867_a(this, this.worldObj, i1, i2, b3);\n\t\tchunk4.func_1024_c();\n\t\treturn chunk4;\n\t}\n\n\tprivate double[] func_4061_a(double[] densityMapArray, int x, int y, int z, int xSize, int ySize, int zSize) {\n\t\tif(densityMapArray == null) {\n\t\t\tdensityMapArray = new double[xSize * ySize * zSize];\n\t\t}\n\n\t\tdouble scaleXZ = 684.412D;\n\t\tdouble scaleY = 684.412D;\n\t\tdouble[] temperatureArray = this.worldObj.getWorldChunkManager().temperature;\n\t\tdouble[] humidityArray = this.worldObj.getWorldChunkManager().humidity;\n\t\tthis.scaleArray = this.field_922_a.func_4109_a(this.scaleArray, x, z, xSize, zSize, 1.121D, 1.121D, 0.5D);\n\t\tthis.depthArray = this.field_921_b.func_4109_a(this.depthArray, x, z, xSize, zSize, 200.0D, 200.0D, 0.5D);\n\t\tthis.mainArray = this.field_910_m.generateNoiseOctaves(this.mainArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ / 80.0D, scaleY / 160.0D, scaleXZ / 80.0D);\n\t\tthis.minLimitArray = this.field_912_k.generateNoiseOctaves(this.minLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);\n\t\tthis.maxLimitArray = this.field_911_l.generateNoiseOctaves(this.maxLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);\n\t\tint mainIndex = 0;\n\t\tint depthScaleIndex = 0;\n\t\tint quadrantSize = 16 / xSize;\n\n\t\tfor(int dx = 0; dx < xSize; ++dx) {\n\t\t\tint thX = dx * quadrantSize + quadrantSize / 2;\n\n\t\t\tfor(int dz = 0; dz < zSize; ++dz) {\n\t\t\t\tint thZ = dz * quadrantSize + quadrantSize / 2;\n\n\t\t\t\tdouble t = temperatureArray[thX * 16 + thZ];\n\t\t\t\tdouble h = humidityArray[thX * 16 + thZ] * t;\n\n\t\t\t\tdouble hInv = 1.0D - h;\n\t\t\t\thInv *= hInv;\n\t\t\t\thInv *= hInv;\n\t\t\t\thInv = 1.0D - hInv;\n\t\t\t\tdouble scale = (this.scaleArray[depthScaleIndex] + 256.0D) / 512.0D;\n\t\t\t\tscale *= hInv;\n\t\t\t\tif(scale > 1.0D) {\n\t\t\t\t\tscale = 1.0D;\n\t\t\t\t}\n\n\t\t\t\tdouble depth = this.depthArray[depthScaleIndex] / 8000.0D;\n\t\t\t\tif(depth < 0.0D) {\n\t\t\t\t\tdepth = -depth * 0.3D;\n\t\t\t\t}\n\n\t\t\t\tdepth = depth * 3.0D - 2.0D;\n\t\t\t\tif(depth < 0.0D) {\n\t\t\t\t\tdepth /= 2.0D;\n\t\t\t\t\tif(depth < -1.0D) {\n\t\t\t\t\t\tdepth = -1.0D;\n\t\t\t\t\t}\n\n\t\t\t\t\tdepth /= 1.4D;\n\t\t\t\t\tdepth /= 2.0D;\n\t\t\t\t\tscale = 0.0D;\n\t\t\t\t} else {\n\t\t\t\t\tif(depth > 1.0D) {\n\t\t\t\t\t\tdepth = 1.0D;\n\t\t\t\t\t}\n\n\t\t\t\t\tdepth /= 8.0D;\n\t\t\t\t}\n\n\t\t\t\tif(scale < 0.0D) {\n\t\t\t\t\tscale = 0.0D;\n\t\t\t\t}\n\n\t\t\t\tscale += 0.5D;\n\t\t\t\tdepth = depth * (double)ySize / 16.0D;\n\t\t\t\tdouble offsetY = (double)ySize / 2.0D + depth * 4.0D;\n\t\t\t\t++depthScaleIndex;\n\n\t\t\t\tfor(int dy = 0; dy < ySize; ++dy) {\n\t\t\t\t\tdouble density = 0.0D;\n\t\t\t\t\tdouble densityOffset = ((double)dy - offsetY) * 12.0D / scale;\n\t\t\t\t\t\n\t\t\t\t\tif(densityOffset < 0.0D) {\n\t\t\t\t\t\tdensityOffset *= 4.0D;\n\t\t\t\t\t}\n\n\t\t\t\t\tdouble minDensity = this.minLimitArray[mainIndex] / 512.0D;\n\t\t\t\t\tdouble maxDensity = this.maxLimitArray[mainIndex] / 512.0D;\n\t\t\t\t\tdouble mainDensity = (this.mainArray[mainIndex] / 10.0D + 1.0D) / 2.0D;\n\t\t\t\t\tif(mainDensity < 0.0D) {\n\t\t\t\t\t\tdensity = minDensity;\n\t\t\t\t\t} else if(mainDensity > 1.0D) {\n\t\t\t\t\t\tdensity = maxDensity;\n\t\t\t\t\t} else {\n\t\t\t\t\t\tdensity = minDensity + (maxDensity - minDensity) * mainDensity;\n\t\t\t\t\t}\n\n\t\t\t\t\tdensity -= densityOffset;\n\t\t\t\t\tif(dy > ySize - 4) {\n\t\t\t\t\t\tdouble d44 = (double)((float)(dy - (ySize - 4)) / 3.0F);\n\t\t\t\t\t\tdensity = density * (1.0D - d44) + -10.0D * d44;\n\t\t\t\t\t}\n\n\t\t\t\t\tdensityMapArray[mainIndex] = density;\n\t\t\t\t\t++mainIndex;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\treturn densityMapArray;\n\t}\n\n\tpublic boolean chunkExists(int i1, int i2) {\n\t\treturn true;\n\t}\n\n\tpublic void populate(IChunkProvider iChunkProvider1, int i2, int i3) {\n\t\tBlockSand.fallInstantly = true;\n\t\tint i4 = i2 * 16;\n\t\tint i5 = i3 * 16;\n\t\tBiomeGenBase biomeGenBase6 = this.worldObj.getWorldChunkManager().getBiomeGenAt(i4 + 16, i5 + 16);\n\t\tthis.rand.setSeed(this.worldObj.getRandomSeed());\n\t\tlong j7 = this.rand.nextLong() / 2L * 2L + 1L;\n\t\tlong j9 = this.rand.nextLong() / 2L * 2L + 1L;\n\t\tthis.rand.setSeed((long)i2 * j7 + (long)i3 * j9 ^ this.worldObj.getRandomSeed());\n\t\tdouble d11 = 0.25D;\n\t\tint i13;\n\t\tint i14;\n\t\tint i15;\n\t\tif(this.rand.nextInt(4) == 0) {\n\t\t\ti13 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti14 = this.rand.nextInt(128);\n\t\t\ti15 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenLakes(Block.waterStill.blockID)).generate(this.worldObj, this.rand, i13, i14, i15);\n\t\t}\n\n\t\tif(this.rand.nextInt(8) == 0) {\n\t\t\ti13 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti14 = this.rand.nextInt(this.rand.nextInt(120) + 8);\n\t\t\ti15 = i5 + this.rand.nextInt(16) + 8;\n\t\t\tif(i14 < 64 || this.rand.nextInt(10) == 0) {\n\t\t\t\t(new WorldGenLakes(Block.lavaStill.blockID)).generate(this.worldObj, this.rand, i13, i14, i15);\n\t\t\t}\n\t\t}\n\n\t\tint i16;\n\t\tfor(i13 = 0; i13 < 8; ++i13) {\n\t\t\ti14 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti15 = this.rand.nextInt(128);\n\t\t\ti16 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenDungeons()).generate(this.worldObj, this.rand, i14, i15, i16);\n\t\t}\n\n\t\tfor(i13 = 0; i13 < 10; ++i13) {\n\t\t\ti14 = i4 + this.rand.nextInt(16);\n\t\t\ti15 = this.rand.nextInt(128);\n\t\t\ti16 = i5 + this.rand.nextInt(16);\n\t\t\t(new WorldGenClay(32)).generate(this.worldObj, this.rand, i14, i15, i16);\n\t\t}\n\n\t\tfor(i13 = 0; i13 < 20; ++i13) {\n\t\t\ti14 = i4 + this.rand.nextInt(16);\n\t\t\ti15 = this.rand.nextInt(128);\n\t\t\ti16 = i5 + this.rand.nextInt(16);\n\t\t\t(new WorldGenMinable(Block.dirt.blockID, 32)).generate(this.worldObj, this.rand, i14, i15, i16);\n\t\t}\n\n\t\tfor(i13 = 0; i13 < 10; ++i13) {\n\t\t\ti14 = i4 + this.rand.nextInt(16);\n\t\t\ti15 = this.rand.nextInt(128);\n\t\t\ti16 = i5 + this.rand.nextInt(16);\n\t\t\t(new WorldGenMinable(Block.gravel.blockID, 32)).generate(this.worldObj, this.rand, i14, i15, i16);\n\t\t}\n\n\t\tfor(i13 = 0; i13 < 20; ++i13) {\n\t\t\ti14 = i4 + this.rand.nextInt(16);\n\t\t\ti15 = this.rand.nextInt(128);\n\t\t\ti16 = i5 + this.rand.nextInt(16);\n\t\t\t(new WorldGenMinable(Block.oreCoal.blockID, 16)).generate(this.worldObj, this.rand, i14, i15, i16);\n\t\t}\n\n\t\tfor(i13 = 0; i13 < 20; ++i13) {\n\t\t\ti14 = i4 + this.rand.nextInt(16);\n\t\t\ti15 = this.rand.nextInt(64);\n\t\t\ti16 = i5 + this.rand.nextInt(16);\n\t\t\t(new WorldGenMinable(Block.oreIron.blockID, 8)).generate(this.worldObj, this.rand, i14, i15, i16);\n\t\t}\n\n\t\tfor(i13 = 0; i13 < 2; ++i13) {\n\t\t\ti14 = i4 + this.rand.nextInt(16);\n\t\t\ti15 = this.rand.nextInt(32);\n\t\t\ti16 = i5 + this.rand.nextInt(16);\n\t\t\t(new WorldGenMinable(Block.oreGold.blockID, 8)).generate(this.worldObj, this.rand, i14, i15, i16);\n\t\t}\n\n\t\tfor(i13 = 0; i13 < 8; ++i13) {\n\t\t\ti14 = i4 + this.rand.nextInt(16);\n\t\t\ti15 = this.rand.nextInt(16);\n\t\t\ti16 = i5 + this.rand.nextInt(16);\n\t\t\t(new WorldGenMinable(Block.oreRedstone.blockID, 7)).generate(this.worldObj, this.rand, i14, i15, i16);\n\t\t}\n\n\t\tfor(i13 = 0; i13 < 1; ++i13) {\n\t\t\ti14 = i4 + this.rand.nextInt(16);\n\t\t\ti15 = this.rand.nextInt(16);\n\t\t\ti16 = i5 + this.rand.nextInt(16);\n\t\t\t(new WorldGenMinable(Block.oreDiamond.blockID, 7)).generate(this.worldObj, this.rand, i14, i15, i16);\n\t\t}\n\n\t\tfor(i13 = 0; i13 < 1; ++i13) {\n\t\t\ti14 = i4 + this.rand.nextInt(16);\n\t\t\ti15 = this.rand.nextInt(16) + this.rand.nextInt(16);\n\t\t\ti16 = i5 + this.rand.nextInt(16);\n\t\t\t(new WorldGenMinable(Block.oreLapis.blockID, 6)).generate(this.worldObj, this.rand, i14, i15, i16);\n\t\t}\n\n\t\td11 = 0.5D;\n\t\ti13 = (int)((this.mobSpawnerNoise.func_806_a((double)i4 * d11, (double)i5 * d11) / 8.0D + this.rand.nextDouble() * 4.0D + 4.0D) / 3.0D);\n\t\ti14 = 0;\n\t\tif(this.rand.nextInt(10) == 0) {\n\t\t\t++i14;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.forest) {\n\t\t\ti14 += i13 + 5;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.rainforest) {\n\t\t\ti14 += i13 + 5;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.seasonalForest) {\n\t\t\ti14 += i13 + 2;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.taiga) {\n\t\t\ti14 += i13 + 5;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.desert) {\n\t\t\ti14 -= 20;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.tundra) {\n\t\t\ti14 -= 20;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.plains) {\n\t\t\ti14 -= 20;\n\t\t}\n\n\t\tint i17;\n\t\tfor(i15 = 0; i15 < i14; ++i15) {\n\t\t\ti16 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti17 = i5 + this.rand.nextInt(16) + 8;\n\t\t\tWorldGenerator worldGenerator18 = biomeGenBase6.getRandomWorldGenForTrees(this.rand);\n\t\t\tworldGenerator18.func_517_a(1.0D, 1.0D, 1.0D);\n\t\t\tworldGenerator18.generate(this.worldObj, this.rand, i16, this.worldObj.getHeightValue(i16, i17), i17);\n\t\t}\n\n\t\tbyte b27 = 0;\n\t\tif(biomeGenBase6 == BiomeGenBase.forest) {\n\t\t\tb27 = 2;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.seasonalForest) {\n\t\t\tb27 = 4;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.taiga) {\n\t\t\tb27 = 2;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.plains) {\n\t\t\tb27 = 3;\n\t\t}\n\n\t\tint i19;\n\t\tint i25;\n\t\tfor(i16 = 0; i16 < b27; ++i16) {\n\t\t\ti17 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti25 = this.rand.nextInt(128);\n\t\t\ti19 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenFlowers(Block.plantYellow.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);\n\t\t}\n\n\t\tbyte b28 = 0;\n\t\tif(biomeGenBase6 == BiomeGenBase.forest) {\n\t\t\tb28 = 2;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.rainforest) {\n\t\t\tb28 = 10;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.seasonalForest) {\n\t\t\tb28 = 2;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.taiga) {\n\t\t\tb28 = 1;\n\t\t}\n\n\t\tif(biomeGenBase6 == BiomeGenBase.plains) {\n\t\t\tb28 = 10;\n\t\t}\n\n\t\tint i20;\n\t\tint i21;\n\t\tfor(i17 = 0; i17 < b28; ++i17) {\n\t\t\tbyte b26 = 1;\n\t\t\tif(biomeGenBase6 == BiomeGenBase.rainforest && this.rand.nextInt(3) != 0) {\n\t\t\t\tb26 = 2;\n\t\t\t}\n\n\t\t\ti19 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti20 = this.rand.nextInt(128);\n\t\t\ti21 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenTallGrass(Block.tallGrass.blockID, b26)).generate(this.worldObj, this.rand, i19, i20, i21);\n\t\t}\n\n\t\tb28 = 0;\n\t\tif(biomeGenBase6 == BiomeGenBase.desert) {\n\t\t\tb28 = 2;\n\t\t}\n\n\t\tfor(i17 = 0; i17 < b28; ++i17) {\n\t\t\ti25 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti19 = this.rand.nextInt(128);\n\t\t\ti20 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenDeadBush(Block.deadBush.blockID)).generate(this.worldObj, this.rand, i25, i19, i20);\n\t\t}\n\n\t\tif(this.rand.nextInt(2) == 0) {\n\t\t\ti17 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti25 = this.rand.nextInt(128);\n\t\t\ti19 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenFlowers(Block.plantRed.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);\n\t\t}\n\n\t\tif(this.rand.nextInt(4) == 0) {\n\t\t\ti17 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti25 = this.rand.nextInt(128);\n\t\t\ti19 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenFlowers(Block.mushroomBrown.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);\n\t\t}\n\n\t\tif(this.rand.nextInt(8) == 0) {\n\t\t\ti17 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti25 = this.rand.nextInt(128);\n\t\t\ti19 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.rand, i17, i25, i19);\n\t\t}\n\n\t\tfor(i17 = 0; i17 < 10; ++i17) {\n\t\t\ti25 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti19 = this.rand.nextInt(128);\n\t\t\ti20 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenReed()).generate(this.worldObj, this.rand, i25, i19, i20);\n\t\t}\n\n\t\tif(this.rand.nextInt(32) == 0) {\n\t\t\ti17 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti25 = this.rand.nextInt(128);\n\t\t\ti19 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenPumpkin()).generate(this.worldObj, this.rand, i17, i25, i19);\n\t\t}\n\n\t\ti17 = 0;\n\t\tif(biomeGenBase6 == BiomeGenBase.desert) {\n\t\t\ti17 += 10;\n\t\t}\n\n\t\tfor(i25 = 0; i25 < i17; ++i25) {\n\t\t\ti19 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti20 = this.rand.nextInt(128);\n\t\t\ti21 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenCactus()).generate(this.worldObj, this.rand, i19, i20, i21);\n\t\t}\n\n\t\tfor(i25 = 0; i25 < 50; ++i25) {\n\t\t\ti19 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti20 = this.rand.nextInt(this.rand.nextInt(120) + 8);\n\t\t\ti21 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenLiquids(Block.waterMoving.blockID)).generate(this.worldObj, this.rand, i19, i20, i21);\n\t\t}\n\n\t\tfor(i25 = 0; i25 < 20; ++i25) {\n\t\t\ti19 = i4 + this.rand.nextInt(16) + 8;\n\t\t\ti20 = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(112) + 8) + 8);\n\t\t\ti21 = i5 + this.rand.nextInt(16) + 8;\n\t\t\t(new WorldGenLiquids(Block.lavaMoving.blockID)).generate(this.worldObj, this.rand, i19, i20, i21);\n\t\t}\n\n\t\tthis.generatedTemperatures = this.worldObj.getWorldChunkManager().getTemperatures(this.generatedTemperatures, i4 + 8, i5 + 8, 16, 16);\n\n\t\tfor(i25 = i4 + 8; i25 < i4 + 8 + 16; ++i25) {\n\t\t\tfor(i19 = i5 + 8; i19 < i5 + 8 + 16; ++i19) {\n\t\t\t\ti20 = i25 - (i4 + 8);\n\t\t\t\ti21 = i19 - (i5 + 8);\n\t\t\t\tint i22 = this.worldObj.findTopSolidBlock(i25, i19);\n\t\t\t\tdouble d23 = this.generatedTemperatures[i20 * 16 + i21] - (double)(i22 - 64) / 64.0D * 0.3D;\n\t\t\t\tif(d23 < 0.5D && i22 > 0 && i22 < 128 && this.worldObj.isAirBlock(i25, i22, i19) && this.worldObj.getBlockMaterial(i25, i22 - 1, i19).getIsSolid() && this.worldObj.getBlockMaterial(i25, i22 - 1, i19) != Material.ice) {\n\t\t\t\t\tthis.worldObj.setBlockWithNotify(i25, i22, i19, Block.snow.blockID);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\tBlockSand.fallInstantly = false;\n\t}\n\n\tpublic boolean saveChunks(boolean z1, IProgressUpdate iProgressUpdate2) {\n\t\treturn true;\n\t}\n\n\tpublic boolean func_532_a() {\n\t\treturn false;\n\t}\n\n\tpublic boolean func_536_b() {\n\t\treturn true;\n\t}\n\n\tpublic String makeString() {\n\t\treturn \"RandomLevelSource\";\n\t}\n}\n",
-			"file": "modded/src/minecraft/net/minecraft/src/ChunkProviderGenerate.java",
-			"file_size": 20970,
-			"file_write_time": 133993971683469219,
+			"file": "main/src/minecraft/net/minecraft/world/level/tile/BlockTallGrass.java",
 			"settings":
 			{
-				"buffer_size": 20893,
+				"buffer_size": 2414,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "\tprivate double[] func_4061_a(double[] densityMapArray, int x, int y, int z, int xSize, int ySize, int zSize) {\n\t\tif(densityMapArray == null) {\n\t\t\tdensityMapArray = new double[xSize * ySize * zSize];\n\t\t}\n\n\t\tdouble scaleXZ = 684.412D;\n\t\tdouble scaleY = 684.412D;\n\t\tdouble[] temperatureArray = this.worldObj.getWorldChunkManager().temperature;\n\t\tdouble[] humidityArray = this.worldObj.getWorldChunkManager().humidity;\n\t\tthis.scaleArray = this.field_922_a.func_4109_a(this.scaleArray, x, z, xSize, zSize, 1.121D, 1.121D, 0.5D);\n\t\tthis.depthArray = this.field_921_b.func_4109_a(this.depthArray, x, z, xSize, zSize, 200.0D, 200.0D, 0.5D);\n\t\tthis.mainArray = this.field_910_m.generateNoiseOctaves(this.mainArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ / 80.0D, scaleY / 160.0D, scaleXZ / 80.0D);\n\t\tthis.minLimitArray = this.field_912_k.generateNoiseOctaves(this.minLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);\n\t\tthis.maxLimitArray = this.field_911_l.generateNoiseOctaves(this.maxLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);\n\t\tint mainIndex = 0;\n\t\tint depthScaleIndex = 0;\n\t\tint quadrantSize = 16 / xSize;\n\n\t\tfor(int dx = 0; dx < xSize; ++dx) {\n\t\t\tint thX = dx * quadrantSize + quadrantSize / 2;\n\n\t\t\tfor(int dz = 0; dz < zSize; ++dz) {\n\t\t\t\tint thZ = dz * quadrantSize + quadrantSize / 2;\n\n\t\t\t\tdouble t = temperatureArray[thX * 16 + thZ];\n\t\t\t\tdouble h = humidityArray[thX * 16 + thZ] * t;\n\n\t\t\t\tdouble hInv = 1.0D - h;\n\t\t\t\thInv *= hInv;\n\t\t\t\thInv *= hInv;\n\t\t\t\thInv = 1.0D - hInv;\n\t\t\t\tdouble scale = (this.scaleArray[depthScaleIndex] + 256.0D) / 512.0D;\n\t\t\t\tscale *= hInv;\n\t\t\t\tif(scale > 1.0D) {\n\t\t\t\t\tscale = 1.0D;\n\t\t\t\t}\n\n\t\t\t\tdouble depth = this.depthArray[depthScaleIndex] / 8000.0D;\n\t\t\t\tif(depth < 0.0D) {\n\t\t\t\t\tdepth = -depth * 0.3D;\n\t\t\t\t}\n\n\t\t\t\tdepth = depth * 3.0D - 2.0D;\n\t\t\t\tif(depth < 0.0D) {\n\t\t\t\t\tdepth /= 2.0D;\n\t\t\t\t\tif(depth < -1.0D) {\n\t\t\t\t\t\tdepth = -1.0D;\n\t\t\t\t\t}\n\n\t\t\t\t\tdepth /= 1.4D;\n\t\t\t\t\tdepth /= 2.0D;\n\t\t\t\t\tscale = 0.0D;\n\t\t\t\t} else {\n\t\t\t\t\tif(depth > 1.0D) {\n\t\t\t\t\t\tdepth = 1.0D;\n\t\t\t\t\t}\n\n\t\t\t\t\tdepth /= 8.0D;\n\t\t\t\t}\n\n\t\t\t\tif(scale < 0.0D) {\n\t\t\t\t\tscale = 0.0D;\n\t\t\t\t}\n\n\t\t\t\tscale += 0.5D;\n\t\t\t\tdepth = depth * (double)ySize / 16.0D;\n\t\t\t\tdouble offsetY = (double)ySize / 2.0D + depth * 4.0D;\n\t\t\t\t++depthScaleIndex;\n\n\t\t\t\tfor(int dy = 0; dy < ySize; ++dy) {\n\t\t\t\t\tdouble density = 0.0D;\n\t\t\t\t\tdouble densityOffset = ((double)dy - offsetY) * 12.0D / scale;\n\t\t\t\t\t\n\t\t\t\t\tif(densityOffset < 0.0D) {\n\t\t\t\t\t\tdensityOffset *= 4.0D;\n\t\t\t\t\t}\n\n\t\t\t\t\tdouble minDensity = this.minLimitArray[mainIndex] / 512.0D;\n\t\t\t\t\tdouble maxDensity = this.maxLimitArray[mainIndex] / 512.0D;\n\t\t\t\t\tdouble mainDensity = (this.mainArray[mainIndex] / 10.0D + 1.0D) / 2.0D;\n\t\t\t\t\tif(mainDensity < 0.0D) {\n\t\t\t\t\t\tdensity = minDensity;\n\t\t\t\t\t} else if(mainDensity > 1.0D) {\n\t\t\t\t\t\tdensity = maxDensity;\n\t\t\t\t\t} else {\n\t\t\t\t\t\tdensity = minDensity + (maxDensity - minDensity) * mainDensity;\n\t\t\t\t\t}\n\n\t\t\t\t\tdensity -= densityOffset;\n\t\t\t\t\tif(dy > ySize - 4) {\n\t\t\t\t\t\tdouble d44 = (double)((float)(dy - (ySize - 4)) / 3.0F);\n\t\t\t\t\t\tdensity = density * (1.0D - d44) + -10.0D * d44;\n\t\t\t\t\t}\n\n\t\t\t\t\tdensityMapArray[mainIndex] = density;\n\t\t\t\t\t++mainIndex;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\treturn densityMapArray;\n\t}",
+			"file": "main/src/minecraft/net/minecraft/world/level/tile/BlockWeb.java",
 			"settings":
 			{
-				"buffer_size": 3246,
+				"buffer_size": 990,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "\tpublic void generateTerrain(int chunkX, int chunkZ, byte[] blocks, BiomeGenBase[] biomeGenBase4, double[] d5) {\n\t\tbyte quadrantSize = 4;\n\t\tbyte seaLevel = 64;\n\t\tint xSize = quadrantSize + 1;\n\t\tbyte ySize = 17;\n\t\tint zSize = quadrantSize + 1;\n\t\tthis.terrainNoise = this.func_4061_a(this.terrainNoise, chunkX * quadrantSize, 0, chunkZ * quadrantSize, xSize, ySize, zSize);\n\n\t\tfor(int xSection = 0; xSection < quadrantSize; ++xSection) {\n\t\t\tfor(int zSection = 0; zSection < quadrantSize; ++zSection) {\n\t\t\t\tfor(int ySection = 0; ySection < 16; ++ySection) {\n\n\t\t\t\t\tdouble noiseScale = 0.125D; // Which is 1/8\n\t\t\t\t\tdouble densityMinXMinYMinZ = this.terrainNoise[((xSection + 0) * zSize + zSection + 0) * ySize + ySection + 0];\n\t\t\t\t\tdouble densityMinXMinYMaxZ = this.terrainNoise[((xSection + 0) * zSize + zSection + 1) * ySize + ySection + 0];\n\t\t\t\t\tdouble densityMaxXMinYMinZ = this.terrainNoise[((xSection + 1) * zSize + zSection + 0) * ySize + ySection + 0];\n\t\t\t\t\tdouble densityMaxXMinYMaxZ = this.terrainNoise[((xSection + 1) * zSize + zSection + 1) * ySize + ySection + 0];\n\t\t\t\t\tdouble yLerpAmountMinXMinZ = (this.terrainNoise[((xSection + 0) * zSize + zSection + 0) * ySize + ySection + 1] - densityMinXMinYMinZ) * noiseScale;\n\t\t\t\t\tdouble yLerpAmountMinXMaxZ = (this.terrainNoise[((xSection + 0) * zSize + zSection + 1) * ySize + ySection + 1] - densityMinXMinYMaxZ) * noiseScale;\n\t\t\t\t\tdouble yLerpAmountMaxXMinZ = (this.terrainNoise[((xSection + 1) * zSize + zSection + 0) * ySize + ySection + 1] - densityMaxXMinYMinZ) * noiseScale;\n\t\t\t\t\tdouble yLerpAmountMaxXMaxZ = (this.terrainNoise[((xSection + 1) * zSize + zSection + 1) * ySize + ySection + 1] - densityMaxXMinYMaxZ) * noiseScale;\n\n\t\t\t\t\tfor(int y = 0; y < 8; ++y) {\n\t\t\t\t\t\tdouble scalingFactor = 0.25D; // Which is 1/4\n\t\t\t\t\t\tdouble curDensityMinXMinYMinZ = densityMinXMinYMinZ;\n\t\t\t\t\t\tdouble curDensityMinXMinYMaxZ = densityMinXMinYMaxZ;\n\t\t\t\t\t\tdouble xLerpAmountMinZ = (densityMaxXMinYMinZ - densityMinXMinYMinZ) * scalingFactor;\n\t\t\t\t\t\tdouble xLerpAmountMaxZ = (densityMaxXMinYMaxZ - densityMinXMinYMaxZ) * scalingFactor;\n\n\t\t\t\t\t\tfor(int x = 0; x < 4; ++x) {\n\t\t\t\t\t\t\tint indexInBlockArray = x + xSection * 4 << 11 | 0 + zSection * 4 << 7 | ySection * 8 + y;\n\t\t\t\t\t\t\tshort heightShift = 128;\n\t\t\t\t\t\t\tdouble densityVariationSpeed = 0.25D;\n\t\t\t\t\t\t\tdouble density = curDensityMinXMinYMinZ;\n\t\t\t\t\t\t\tdouble densityIncrement = (curDensityMinXMinYMaxZ - curDensityMinXMinYMinZ) * densityVariationSpeed;\n\n\t\t\t\t\t\t\tfor(int z = 0; z < 4; ++z) {\n\t\t\t\t\t\t\t\tdouble t = d5[(xSec\n\t\t\t\t\t\t\t\t\ttion * 4 + x) * 16 + zSection * 4 + z];\n\t\t\t\t\t\t\t\tint blockID = 0;\n\t\t\t\t\t\t\t\tif(ySection * 8 + y < seaLevel) {\n\t\t\t\t\t\t\t\t\tif(t < 0.5D && ySection * 8 + y >= seaLevel - 1) {\n\t\t\t\t\t\t\t\t\t\tblockID = Block.ice.blockID;\n\t\t\t\t\t\t\t\t\t} else {\n\t\t\t\t\t\t\t\t\t\tblockID = Block.waterStill.blockID;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\t\tif(density > 0.0D) {\n\t\t\t\t\t\t\t\t\tblockID = Block.stone.blockID;\n\t\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\t\tblocks[indexInBlockArray] = (byte)blockID;\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\tindexInBlockArray += heightShift;\n\t\t\t\t\t\t\t\tdensity += densityIncrement;\n\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t\tcurDensityMinXMinYMinZ += xLerpAmountMinZ;\n\t\t\t\t\t\t\tcurDensityMinXMinYMaxZ += xLerpAmountMaxZ;\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tdensityMinXMinYMinZ += yLerpAmountMinXMinZ;\n\t\t\t\t\t\tdensityMinXMinYMaxZ += yLerpAmountMinXMaxZ;\n\t\t\t\t\t\tdensityMaxXMinYMinZ += yLerpAmountMaxXMinZ;\n\t\t\t\t\t\tdensityMaxXMinYMaxZ += yLerpAmountMaxXMaxZ;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t}",
+			"file": "/D/Cosas/Inslands/Main/src/minecraft/net/minecraft/world/level/levelgen/feature/trees/EnumTreeType.java",
 			"settings":
 			{
-				"buffer_size": 3374,
+				"buffer_size": 5667,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/na_th/Downloads/EntityCow.java",
+			"file": "/D/Cosas/Inslands/Main/src/minecraft/net/minecraft/world/level/tile/Block.java",
 			"settings":
 			{
-				"buffer_size": 1108,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "modded/src/minecraft/net/minecraft/src/BiomeGenBase.java",
-			"settings":
-			{
-				"buffer_size": 5401,
-				"encoding": "UTF-8",
+				"buffer_size": 53320,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "modded/src/minecraft/net/minecraft/src/EntityOgre.java",
+			"file": "/D/Cosas/MP125/modded/src/minecraft/net/minecraft/src/mod_mocreatures.java",
 			"settings":
 			{
-				"buffer_size": 3502,
+				"buffer_size": 89965,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "modded/src/minecraft/net/minecraft/src/ModelBiped.java",
+			"contents": "\tpublic void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int meta) {\n\t\tif(!world.isRemote && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == Item.shears.shiftedIndex) {\n\t\t\tthis.dropBlockAsItem_do(world, x, y, z, new ItemStack(world.getBlock(x, y, z), 1, meta & 3));\n\t\t} else {\n\t\t\tsuper.harvestBlock(world, player, x, y, z, meta);\n\t\t}\n\n\t}",
 			"settings":
 			{
-				"buffer_size": 6680,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "modded/src/minecraft/net/minecraft/src/mod_mocreatures.java",
-			"settings":
-			{
-				"buffer_size": 26392,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "\tpublic double[] initializeNoiseField(double[] densityMapArray, int x, int y, int z, int xSize, int ySize, int zSize) {\n\t\tif(densityMapArray == null) {\n\t\t\tdensityMapArray = new double[xSize * ySize * zSize];\n\t\t}\n\n\t\tdouble scaleXZ = 684.412D;\n\t\tdouble scaleY = 684.412D;\n\t\t\t\t\n\t\tdouble[] temperatureArray = ((WorldChunkManagerBeta)this.worldObj.getWorldChunkManager()).temperature;\n\t\tdouble[] humidityArray = ((WorldChunkManagerBeta)this.worldObj.getWorldChunkManager()).humidity;\n\n\t\tthis.scaleArray = this.scaleNoiseB.generateNoiseOctaves(this.scaleArray, x, z, xSize, zSize, 1.121D, 1.121D, 0.5D);\n\t\tthis.depthArray = this.depthNoiseB.generateNoiseOctaves(this.depthArray, x, z, xSize, zSize, 200.0D, 200.0D, 0.5D);\n\t\tthis.mainArray = this.mainNoiseB.generateNoiseOctaves(this.mainArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ / 80.0D, scaleY / 160.0D, scaleXZ / 80.0D);\n\t\tthis.minLimitArray = this.minLimitNoiseB.generateNoiseOctaves(this.minLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);\n\t\tthis.maxLimitArray = this.maxLimitNoiseB.generateNoiseOctaves(this.maxLimitArray, (double)x, (double)y, (double)z, xSize, ySize, zSize, scaleXZ, scaleY, scaleXZ);\n\t\t\n\t\tint mainIndex = 0;\n\t\tint depthScaleIndex = 0;\n\t\tint quadrantSize = 16 / xSize;\n\n\t\tfor(int dx = 0; dx < xSize; ++dx) {\n\t\t\t/*\n\t\t\t * 0->1\n\t\t\t * 1->4\n\t\t\t * 2->7\n\t\t\t * 3->10\n\t\t\t * 4->13\n\t\t\t */\n\t\t\tint thX = dx * quadrantSize + quadrantSize / 2;\n\t\t\t\n\t\t\tfor(int dz = 0; dz < zSize; ++dz) {\n\t\t\t\tint thZ = dz * quadrantSize + quadrantSize / 2;\n\t\t\t\t\n\t\t\t\t// In beta, scale array is affected by biome t/h\n\n\t\t\t\tdouble t = temperatureArray[thX * 16 + thZ];\n\t\t\t\tdouble h = humidityArray[thX * 16 + thZ] * t;\n\n\t\t\t\tdouble hInv = 1.0D - h;\n\t\t\t\thInv *= hInv;\n\t\t\t\thInv *= hInv;\n\t\t\t\thInv = 1.0D - hInv;\n\t\t\t\tdouble scale = (this.scaleArray[depthScaleIndex] + 256.0D) / 512.0D;\n\t\t\t\tscale *= hInv;\n\t\t\t\tif(scale > 1.0D) {\n\t\t\t\t\tscale = 1.0D;\n\t\t\t\t}\n\t\t\t\t\n\t\t\t\t//\n\t\t\t\t\n\t\t\t\tdouble depth = this.depthArray[depthScaleIndex] / 8000.0D;\n\t\t\t\tif(depth < 0.0D) {\n\t\t\t\t\tdepth = -depth * 0.3D;\n\t\t\t\t}\n\n\t\t\t\tdepth = depth * 3.0D - 2.0D;\n\t\t\t\tif(depth < 0.0D) {\n\t\t\t\t\tdepth /= 2.0D;\n\t\t\t\t\tif(depth < -1.0D) {\n\t\t\t\t\t\tdepth = -1.0D;\n\t\t\t\t\t}\n\n\t\t\t\t\tdepth /= 1.4D;\n\t\t\t\t\tdepth /= 2.0D;\n\t\t\t\t\tscale = 0.0D;\n\t\t\t\t} else {\n\t\t\t\t\tif(depth > 1.0D) {\n\t\t\t\t\t\tdepth = 1.0D;\n\t\t\t\t\t}\n\n\t\t\t\t\tdepth /= 8.0D;\n\t\t\t\t}\n\n\t\t\t\t// This removes monoliths\n\t\t\t\tif(scale < 0.0D) {\n\t\t\t\t\tscale = 0.0D;\n\t\t\t\t}\n\n\t\t\t\tscale += 0.5D;\n\n\t\t\t\tdepth = depth * (double)ySize / 16.0D;\n\t\t\t\tdouble offsetY = (double)ySize / 2.0D + depth * 4.0D;\n\t\t\t\t\n\t\t\t\t++depthScaleIndex;\n\n\t\t\t\tfor(int dy = 0; dy < ySize; ++dy) {\n\t\t\t\t\tdouble density = 0.0D;\n\t\t\t\t\tdouble densityOffset = ((double)dy - offsetY) * 12.0D / scale;\n\t\t\t\t\t\n\t\t\t\t\tif(densityOffset < 0.0D) {\n\t\t\t\t\t\tdensityOffset *= 4.0D;\n\t\t\t\t\t}\n\n\t\t\t\t\tdouble minDensity = this.minLimitArray[mainIndex] / 512.0D;\n\t\t\t\t\tdouble maxDensity = this.maxLimitArray[mainIndex] / 512.0D;\n\t\t\t\t\tdouble mainDensity = (this.mainArray[mainIndex] / 10.0D + 1.0D) / 2.0D;\n\t\t\t\t\tif(mainDensity < 0.0D) {\n\t\t\t\t\t\tdensity = minDensity;\n\t\t\t\t\t} else if(mainDensity > 1.0D) {\n\t\t\t\t\t\tdensity = maxDensity;\n\t\t\t\t\t} else {\n\t\t\t\t\t\tdensity = minDensity + (maxDensity - minDensity) * mainDensity;\n\t\t\t\t\t}\n\n\t\t\t\t\tdensity -= densityOffset;\n\t\t\t\t\tif(dy > ySize - 4) {\n\t\t\t\t\t\tdouble d40 = (double)((float)(dy - (ySize - 4)) / 3.0F);\n\t\t\t\t\t\tdensity = density * (1.0D - d40) + -10.0D * d40;\n\t\t\t\t\t}\n\n\t\t\t\t\tdensityMapArray[mainIndex] = density;\n\t\t\t\t\t++mainIndex;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\treturn densityMapArray;\n\t}",
-			"settings":
-			{
-				"buffer_size": 3519,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "Searching 773 files for \"field_1279_h\" (whole word)\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\ModelBiped.java:\n   11  \tpublic ModelRenderer bipedEars;\n   12  \tpublic ModelRenderer bipedCloak;\n   13: \tpublic boolean field_1279_h;\n   14  \tpublic boolean field_1278_i;\n   15  \tpublic boolean isSneak;\n   ..\n   24  \n   25  \tpublic ModelBiped(float f1, float f2) {\n   26: \t\tthis.field_1279_h = false;\n   27  \t\tthis.field_1278_i = false;\n   28  \t\tthis.isSneak = false;\n   ..\n   89  \t\t}\n   90  \n   91: \t\tif(this.field_1279_h) {\n   92  \t\t\tthis.bipedLeftArm.rotateAngleX = this.bipedLeftArm.rotateAngleX * 0.5F - 0.31415927F;\n   93  \t\t}\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\ModelOgre1.java:\n   61  \t\t}\n   62  \n   63: \t\tif(this.field_1279_h) {\n   64  \t\t\tthis.bipedLeftArm.rotateAngleX = this.bipedLeftArm.rotateAngleX * 0.5F - 0.314159F;\n   65  \t\t}\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\ModelOgre2.java:\n   66  \t\t}\n   67  \n   68: \t\tif(this.field_1279_h) {\n   69  \t\t\tthis.bipedLeftArm.rotateAngleX = this.bipedLeftArm.rotateAngleX * 0.5F - 0.314159F;\n   70  \t\t}\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\ModelWraith.java:\n    4  \tpublic ModelWraith() {\n    5  \t\tsuper(12.0F, 0.0F);\n    6: \t\tthis.field_1279_h = false;\n    7  \t\tthis.field_1278_i = false;\n    8  \t\tthis.isSneak = false;\n\n6 matches across 4 files\n\n\nSearching 1050 files for \"field_1278_i\" (whole word)\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\ModelBiped.java:\n   12  \tpublic ModelRenderer bipedCloak;\n   13  \tpublic boolean field_1279_h;\n   14: \tpublic boolean field_1278_i;\n   15  \tpublic boolean isSneak;\n   16  \n   ..\n   25  \tpublic ModelBiped(float f1, float f2) {\n   26  \t\tthis.field_1279_h = false;\n   27: \t\tthis.field_1278_i = false;\n   28  \t\tthis.isSneak = false;\n   29  \t\tthis.bipedCloak = new ModelRenderer(0, 0);\n   ..\n   93  \t\t}\n   94  \n   95: \t\tif(this.field_1278_i) {\n   96  \t\t\tthis.bipedRightArm.rotateAngleX = this.bipedRightArm.rotateAngleX * 0.5F - 0.31415927F;\n   97  \t\t}\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\ModelOgre1.java:\n   65  \t\t}\n   66  \n   67: \t\tif(this.field_1278_i) {\n   68  \t\t\tthis.bipedRightArm.rotateAngleX = this.bipedRightArm.rotateAngleX * 0.5F - 0.314159F;\n   69  \t\t}\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\ModelOgre2.java:\n   70  \t\t}\n   71  \n   72: \t\tif(this.field_1278_i) {\n   73  \t\t\tthis.bipedRightArm.rotateAngleX = this.bipedRightArm.rotateAngleX * 0.5F - 0.314159F;\n   74  \t\t}\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\ModelWraith.java:\n    5  \t\tsuper(12.0F, 0.0F);\n    6  \t\tthis.field_1279_h = false;\n    7: \t\tthis.field_1278_i = false;\n    8  \t\tthis.isSneak = false;\n    9  \t\tthis.bipedHead = new ModelRenderer(0, 40);\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\RenderPlayer.java:\n   40  \tpublic void func_188_a(EntityPlayer entityPlayer1, double d2, double d4, double d6, float f8, float f9) {\n   41  \t\tItemStack itemStack10 = entityPlayer1.inventory.getCurrentItem();\n   42: \t\tthis.modelArmorChestplate.field_1278_i = this.modelArmor.field_1278_i = this.modelBipedMain.field_1278_i = itemStack10 != null;\n   43  \t\tthis.modelArmorChestplate.isSneak = this.modelArmor.isSneak = this.modelBipedMain.isSneak = entityPlayer1.isSneaking();\n   44  \t\tdouble d11 = d4 - (double)entityPlayer1.yOffset;\n   ..\n   49  \t\tsuper.doRenderLiving(entityPlayer1, d2, d11, d6, f8, f9);\n   50  \t\tthis.modelArmorChestplate.isSneak = this.modelArmor.isSneak = this.modelBipedMain.isSneak = false;\n   51: \t\tthis.modelArmorChestplate.field_1278_i = this.modelArmor.field_1278_i = this.modelBipedMain.field_1278_i = false;\n   52  \t}\n   53  \n\n12 matches across 5 files\n\n\nSearching 773 files for \"func_22012_b\" (whole word)\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\RenderLiving.java:\n   36  \t\t\tfloat f11 = entityLiving1.prevRotationYaw + (entityLiving1.rotationYaw - entityLiving1.prevRotationYaw) * f9;\n   37  \t\t\tfloat f12 = entityLiving1.prevRotationPitch + (entityLiving1.rotationPitch - entityLiving1.prevRotationPitch) * f9;\n   38: \t\t\tthis.func_22012_b(entityLiving1, d2, d4, d6);\n   39  \t\t\tfloat f13 = this.func_170_d(entityLiving1, f9);\n   40  \t\t\tthis.rotateCorpse(entityLiving1, f13, f10, f9);\n   ..\n  116  \t}\n  117  \n  118: \tprotected void func_22012_b(EntityLiving entityLiving1, double d2, double d4, double d6) {\n  119  \t\tGL11.glTranslatef((float)d2, (float)d4, (float)d6);\n  120  \t}\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\RenderOgre.java:\n   41  \t\t\tfloat f12 = entityLiving1.prevRotationYaw + (entityLiving1.rotationYaw - entityLiving1.prevRotationYaw) * f9;\n   42  \t\t\tfloat f13 = entityLiving1.prevRotationPitch + (entityLiving1.rotationPitch - entityLiving1.prevRotationPitch) * f9;\n   43: \t\t\tthis.func_22012_b(entityLiving1, d2, d4, d6);\n   44  \t\t\tfloat f14 = this.func_170_d(entityLiving1, f9);\n   45  \t\t\tthis.rotateCorpse(entityLiving1, f14, f11, f9);\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\RenderPlayer.java:\n  230  \tprotected void func_22016_b(EntityPlayer entityPlayer1, double d2, double d4, double d6) {\n  231  \t\tif(entityPlayer1.isEntityAlive() && entityPlayer1.isPlayerSleeping()) {\n  232: \t\t\tsuper.func_22012_b(entityPlayer1, d2 + (double)entityPlayer1.field_22063_x, d4 + (double)entityPlayer1.field_22062_y, d6 + (double)entityPlayer1.field_22061_z);\n  233  \t\t} else {\n  234: \t\t\tsuper.func_22012_b(entityPlayer1, d2, d4, d6);\n  235  \t\t}\n  236  \n  ...\n  268  \t}\n  269  \n  270: \tprotected void func_22012_b(EntityLiving entityLiving1, double d2, double d4, double d6) {\n  271  \t\tthis.func_22016_b((EntityPlayer)entityLiving1, d2, d4, d6);\n  272  \t}\n\nD:\\Cosas\\b166MP2\\modded\\src\\minecraft\\net\\minecraft\\src\\RenderWerewolf.java:\n   47  \t\t\t\tfloat f13 = entityLiving1.prevRotationYaw + (entityLiving1.rotationYaw - entityLiving1.prevRotationYaw) * f9;\n   48  \t\t\t\tfloat f14 = entityLiving1.prevRotationPitch + (entityLiving1.rotationPitch - entityLiving1.prevRotationPitch) * f9;\n   49: \t\t\t\tthis.func_22012_b(entityLiving1, d2, d4, d6);\n   50  \t\t\t\tfloat f15 = this.func_170_d(entityLiving1, f9);\n   51  \t\t\t\tthis.rotateCorpse(entityLiving1, f15, f12, f9);\n\n7 matches across 4 files\n",
-			"settings":
-			{
-				"buffer_size": 6176,
+				"buffer_size": 398,
 				"line_ending": "Windows",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "modded/src/minecraft/net/minecraft/src/RenderLiving.java",
-			"settings":
-			{
-				"buffer_size": 8015,
-				"line_ending": "Windows"
+				"name": "public void harvestBlock(World world, EntityPlaye"
 			}
 		}
 	],
@@ -172,26 +127,39 @@
 	"expanded_folders":
 	[
 		"/D/Cosas/b166MP2",
-		"/D/Cosas/b166MP2/modded",
-		"/D/Cosas/b166MP2/modded/src",
-		"/D/Cosas/b166MP2/modded/src/minecraft",
-		"/D/Cosas/b166MP2/modded/src/minecraft/de",
-		"/D/Cosas/b166MP2/modded/src/minecraft/net",
-		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft",
-		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src"
+		"/D/Cosas/b166MP2/main",
+		"/D/Cosas/b166MP2/main/src",
+		"/D/Cosas/b166MP2/main/src/minecraft",
+		"/D/Cosas/b166MP2/main/src/minecraft/net",
+		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft",
+		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft/world",
+		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft/world/item",
+		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft/world/level",
+		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft/world/level/tile"
 	],
 	"file_history":
 	[
+		"/D/Cosas/New Orange/KMS/giffb.bas",
+		"/D/Cosas/MP125/modded/src/minecraft/net/minecraft/src/MoCEntityFlyerMob.java",
+		"/D/Cosas/b166MP2/updates.md",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src/ChunkProviderGenerate.java",
+		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src/WorldChunkManagerHell.java",
+		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/ModelBiped.java",
+		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/mod_mocreatures.java",
+		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/RenderLiving.java",
+		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/EntityWWolf.java",
+		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/ChunkProviderGenerate.java",
+		"/C/Users/na_th/Downloads/EntityCow.java",
+		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/BiomeGenBase.java",
+		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/EntityOgre.java",
 		"/D/Cosas/InfHell/infhell2/src/minecraft/com/drzhark/mocreatures/EntityGoat.java",
 		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/Destroyer.java",
-		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/mod_mocreatures.java",
 		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/EntityFireOgre.java",
 		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/EntityCaveOgre.java",
 		"/C/Users/na_th/AppData/Local/Temp/7zO8F7110EE/Read-Me.txt",
 		"/D/Cosas/RMCP_tests/b1.2_02-20110517/net/minecraft/world/entity/projectile/Arrow.java",
 		"/D/Cosas/Inslands/web/index.html",
 		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src/EntityFallingSand.java",
-		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/EntityOgre.java",
 		"/D/Cosas/b166MP2/main/src/minecraft/com/misc/moreresources/MoreResourcesInstaller.java",
 		"/D/Cosas/b166MP2/modded/src/minecraft/net/minecraft/src/EntityBoar.java",
 		"/D/Games/UltimMC/instances/beta 1.6.6.6 r0/patches/org.multimc.jarmod.d6ba339f-9796-496c-aef4-e529404ff571.json",
@@ -211,7 +179,6 @@
 		"/D/Cosas/postalpha/NSSS_de/decompiled/com/mojang/minecraft/gui/GuiSelectWorld.java",
 		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src/MapGenBase.java",
 		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src/BlockDetectorRail.java",
-		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src/ChunkProviderGenerate.java",
 		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src/Block.java",
 		"/D/Cosas/b166MP2/vanilla/src/minecraft/net/minecraft/src/ChunkProviderSky.java",
 		"/D/Cosas/b166MP2/main/src/minecraft/net/minecraft/world/level/levelgen/MapGenCaves.java",
@@ -299,17 +266,7 @@
 		"/C/Users/jcastano/Desktop/pikapika.txt",
 		"/C/Proyectos/2025/20250612 - Admdir 1.60.0.0 - Renombrado de edificios con comunicación a Reservas/instrucciones.txt",
 		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Web/Services/index.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Web/admin/manage_users.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Pages/Admin/AdminPage.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Server/Server.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/WebService/Slim/SlimWebServiceRegistryCategory.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/WebService/Slim/SlimServiceRegistration.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/ReservationService.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/ReservationListing.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/ReservationListItem.php",
-		"/C/Users/jcastano/AppData/Local/Temp/pid-17260/userfilter.txt",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Application/Schedule/BlackoutSlot.php",
-		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/lib/Database/Commands/Commands.php"
+		"/C/Proyectos/remote/corres04/reserva.juntadeandalucia.es/Web/admin/manage_users.php"
 	],
 	"find":
 	{
@@ -356,6 +313,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"i6",
+			"i5",
+			"i4",
+			"i3",
+			"entityPlayer2",
+			"world1",
+			"i0",
+			"werewolffreq",
+			"MoCEntityWerewolf",
+			"wolf",
 			"d42",
 			"d40",
 			"d38",
@@ -473,17 +440,7 @@
 			"x",
 			"y",
 			"d6",
-			"d4",
-			"d2",
-			"entity1",
-			"world0",
-			"func_22012_b",
-			"field_1278_i",
-			"field_1279_h",
-			"ogre",
-			"ogreboolean",
-			"entity1",
-			"i2"
+			"d4"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -491,6 +448,13 @@
 		"regex": false,
 		"replace_history":
 		[
+			"meta",
+			"z",
+			"y",
+			"x",
+			"player",
+			"world",
+			"id",
 			"mainDensity",
 			"maxDensity",
 			"minDensity",
@@ -611,25 +575,18 @@
 			"entity",
 			"world",
 			"source",
-			"damage",
-			"metaHead",
-			"blockHead",
-			"blockHeadID",
-			"sticky",
-			"piston",
-			"dz",
-			"dy"
+			"damage"
 		],
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -638,15 +595,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11344,
+						"buffer_size": 12120,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7268,
-								7268
+								7509,
+								7509
 							]
 						],
 						"settings":
@@ -655,133 +612,19 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2081.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "modded/src/minecraft/net/minecraft/src/EntityWWolf.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3907,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2544,
-								2544
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 156.0,
+						"translation.y": 2475.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "modded/src/minecraft/net/minecraft/src/ChunkProviderGenerate.java",
+					"buffer": 1,
+					"file": "main/src/minecraft/net/minecraft/world/item/ItemShears.java",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20893,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1612,
-								4986
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1027.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3246,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								3246
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 36.0,
-						"translation.y": 390.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3374,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								3374
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/C/Users/na_th/Downloads/EntityCow.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1108,
+						"buffer_size": 1326,
 						"regions":
 						{
 						},
@@ -801,24 +644,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "modded/src/minecraft/net/minecraft/src/BiomeGenBase.java",
+					"buffer": 2,
+					"file": "main/src/minecraft/net/minecraft/world/level/tile/BlockTallGrass.java",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5401,
+						"buffer_size": 2414,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2459,
-								2459
+								2182,
+								1761
 							]
 						],
 						"settings":
@@ -830,24 +673,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "modded/src/minecraft/net/minecraft/src/EntityOgre.java",
+					"buffer": 3,
+					"file": "main/src/minecraft/net/minecraft/world/level/tile/BlockWeb.java",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3502,
+						"buffer_size": 990,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								88,
-								3499
+								0,
+								0
 							]
 						],
 						"settings":
@@ -856,273 +699,132 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 819.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/D/Cosas/Inslands/Main/src/minecraft/net/minecraft/world/level/levelgen/feature/trees/EnumTreeType.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5667,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2420,
+								2171
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 315.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/D/Cosas/Inslands/Main/src/minecraft/net/minecraft/world/level/tile/Block.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 53320,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 11958.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/D/Cosas/MP125/modded/src/minecraft/net/minecraft/src/mod_mocreatures.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 89965,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								44599,
+								44519
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 10754.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
-					"buffer": 8,
-					"file": "modded/src/minecraft/net/minecraft/src/ModelBiped.java",
+					"buffer": 7,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6680,
+						"buffer_size": 398,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3520,
-								3518
+								0,
+								398
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
+							"auto_name": "public void harvestBlock(World world, EntityPlaye",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 748.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "modded/src/minecraft/net/minecraft/src/mod_mocreatures.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 26392,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								21018,
-								21018
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4375.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3519,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2951,
-								2962
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 624.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6176,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										230,
-										242
-									],
-									[
-										389,
-										401
-									],
-									[
-										520,
-										532
-									],
-									[
-										753,
-										765
-									],
-									[
-										984,
-										996
-									],
-									[
-										1254,
-										1266
-									],
-									[
-										1599,
-										1611
-									],
-									[
-										1757,
-										1769
-									],
-									[
-										1904,
-										1916
-									],
-									[
-										2139,
-										2151
-									],
-									[
-										2372,
-										2384
-									],
-									[
-										2649,
-										2661
-									],
-									[
-										3054,
-										3066
-									],
-									[
-										3085,
-										3097
-									],
-									[
-										3120,
-										3132
-									],
-									[
-										3559,
-										3571
-									],
-									[
-										3590,
-										3602
-									],
-									[
-										3625,
-										3637
-									],
-									[
-										4083,
-										4095
-									],
-									[
-										4287,
-										4299
-									],
-									[
-										4769,
-										4781
-									],
-									[
-										5198,
-										5210
-									],
-									[
-										5387,
-										5399
-									],
-									[
-										5494,
-										5506
-									],
-									[
-										5991,
-										6003
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								4088,
-								4088
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 3,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ \t].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1378.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "modded/src/minecraft/net/minecraft/src/RenderLiving.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8015,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1312,
-								1312
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 32.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
 					"type": "text"
 				}
 			]
@@ -1130,7 +832,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 28.0
+		"height": 26.0
 	},
 	"input":
 	{

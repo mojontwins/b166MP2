@@ -17,12 +17,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.pathfinder.PathEntity;
 
-public abstract class EntityMoCAnimal extends EntityAnimal {
+public abstract class EntityMocAnimal extends EntityAnimal {
 	protected int temper;
 	protected boolean isEntityJumping;
 	public EntityLiving roper;
 
-	public EntityMoCAnimal(World world) {
+	public EntityMocAnimal(World world) {
 		super(world);
 		this.setEdad(0);
 		this.setIsAdult(false);

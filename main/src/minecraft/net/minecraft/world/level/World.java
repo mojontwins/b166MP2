@@ -495,6 +495,15 @@ public class World implements IBlockAccess {
 		}
 	
 	}
+	
+	public boolean setBlockAndMetadata(int x, int y, int z, BlockState bs) {	
+		if(y < 0 || y >= 256) {
+			return false;
+		} else {
+			return this.getChunkFromChunkCoords(x >> 4, z >> 4).setBlockIDWithMetadata(x & 15, y, z & 15, bs.getBlockID(), bs.getMetadata());
+		}
+	
+	}
 
 	public boolean setBlock(int x, int y, int z, int blockID) {
 		if(y < 0 || y >= 256) {
@@ -2396,7 +2405,7 @@ public class World implements IBlockAccess {
 						t > .2 && Seasons.currentSeason != Seasons.WINTER ||
 						t > .1 && Seasons.currentSeason == Seasons.SUMMER;
 				
-			} else return t >= .2F;
+			} else return t >= .5F;
 		} else {
 			if(this.worldInfo.isEnableSeasons()) {
 				return

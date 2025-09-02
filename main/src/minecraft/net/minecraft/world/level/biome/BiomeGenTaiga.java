@@ -36,7 +36,7 @@ public class BiomeGenTaiga extends BiomeGenBaseBeta {
 		this.biomeDecorator.grassPerChunk = 1;
 	}
 
-	public WorldGenerator getRandomWorldGenForTrees(Random random1) {
-		return (WorldGenerator)(random1.nextInt(3) == 0 ? new WorldGenTaiga1() : new WorldGenTaiga2());
+	public WorldGenerator getRandomWorldGenForTrees(Random rand) {
+		return (WorldGenerator)(rand.nextInt(3) == 0 ? new WorldGenTaiga1() : new WorldGenTaiga2());
 	}
 }

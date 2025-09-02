@@ -39,6 +39,8 @@ import net.minecraft.world.entity.monster.EntitySkeleton;
 import net.minecraft.world.entity.monster.EntitySlime;
 import net.minecraft.world.entity.monster.EntitySnowman;
 import net.minecraft.world.entity.monster.EntitySpider;
+import net.minecraft.world.entity.monster.EntityWerewolf;
+import net.minecraft.world.entity.monster.EntityWraith;
 import net.minecraft.world.entity.monster.EntityZombie;
 import net.minecraft.world.entity.projectile.EntityArrow;
 import net.minecraft.world.entity.projectile.EntityEggInfo;
@@ -193,6 +195,8 @@ public class EntityList {
 		addMapping(EntityColdCow.class, "ColdCow", 122, 0xA46A43, 0x39241B);
 		addMapping(EntityChickenBlack.class, "ChickenBlack", 123, 0x1D1D1D, 0x393939);
 		addMapping(EntityGoat.class, "Goat", 124, 0xDDD6CE, 0x4B4B4B);
+		addMapping(EntityWerewolf.class, "Werewolf", 125, 0xD1B29D, 0x475245);
+		addMapping(EntityWraith.class, "Wraith", 125, 0xA3A3A3, 0x060606);
 		
 		addMapping(EntityClassicZombie.class, "ZombieClassic", 150);
 		addMapping(EntityClassicSkeleton.class, "SkeletonClassic", 151);

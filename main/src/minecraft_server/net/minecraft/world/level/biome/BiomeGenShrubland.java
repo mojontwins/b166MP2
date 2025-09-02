@@ -12,10 +12,10 @@ public class BiomeGenShrubland extends BiomeGenBaseBeta {
 
 	protected BiomeGenShrubland(int i1) {
 		super(i1);
-		this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityGoat.class, 4, 4, 4));
+		this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 4, 4, 4));
 	}
 
 	public WorldGenerator getRandomWorldGenForTrees(Random random1) {
-		return (WorldGenerator)(random1.nextInt(5) == 0 ? new WorldGenTrees(false) : new WorldGenShrub(1, 1));
+		return (WorldGenerator)(random1.nextInt(5) == 0 ? new WorldGenTrees(false) : new WorldGenShrub(2, 2));
 	}
 }

@@ -21,7 +21,10 @@ import net.minecraft.client.model.ModelSheep2;
 import net.minecraft.client.model.ModelSkeleton;
 import net.minecraft.client.model.ModelSlime;
 import net.minecraft.client.model.ModelSquid;
+import net.minecraft.client.model.ModelWereHuman;
+import net.minecraft.client.model.ModelWerewolf;
 import net.minecraft.client.model.ModelWolf;
+import net.minecraft.client.model.ModelWraith;
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.FontRenderer;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -60,6 +63,8 @@ import net.minecraft.world.entity.monster.EntitySkeleton;
 import net.minecraft.world.entity.monster.EntitySlime;
 import net.minecraft.world.entity.monster.EntitySnowman;
 import net.minecraft.world.entity.monster.EntitySpider;
+import net.minecraft.world.entity.monster.EntityWerewolf;
+import net.minecraft.world.entity.monster.EntityWraith;
 import net.minecraft.world.entity.monster.EntityZombie;
 import net.minecraft.world.entity.player.EntityPlayer;
 import net.minecraft.world.entity.projectile.EntityArrow;
@@ -133,6 +138,8 @@ public class RenderManager {
 		
 		this.entityRenderMap.put(EntityOgre.class, new RenderOgre(new ModelOgre2(), new ModelOgre1(), 1.5F));
 		this.entityRenderMap.put(EntityGoat.class, new RenderGoat(new ModelGoat(), 0.7F));
+		this.entityRenderMap.put(EntityWerewolf.class, new RenderWerewolf(new ModelWereHuman(), new ModelWerewolf(), 0.7F));
+		this.entityRenderMap.put(EntityWraith.class, new RenderWraith(new ModelWraith(), 0.5F));
 		
 		Iterator<Render> iterator1 = this.entityRenderMap.values().iterator();
 

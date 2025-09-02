@@ -1,5 +1,7 @@
 package net.minecraft.world.entity;
 
+import com.mojang.nbt.NBTTagCompound;
+
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.entity.item.EntityItem;
 import net.minecraft.world.level.World;
@@ -15,13 +17,19 @@ public abstract class EntityCreature extends EntityLiving {
 	public EntityCreature(World world1) {
 		super(world1);
 	}
+	
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataWatcher.addObject(DataWatchers.DW_NAME, "");
+	}
 
 	protected boolean isMovementCeased() {
 		return false;
 	}
 
+	@Override
 	protected void updateEntityActionState() {
-		//Profiler.startSection("ai");
 		if(this.fleeingTick > 0) {
 			--this.fleeingTick;
 		}
@@ -44,7 +52,6 @@ public abstract class EntityCreature extends EntityLiving {
 			}
 		}
 
-		//Profiler.endSection();
 		if(!this.hasAttacked && this.entityToAttack != null && (this.pathToEntity == null || this.rand.nextInt(20) == 0)) {
 			this.pathToEntity = this.worldObj.getPathEntityToEntity(this, this.entityToAttack, f1, true, false, false, true);
 		} else if(!this.hasAttacked && (this.pathToEntity == null && this.rand.nextInt(180) == 0 || this.rand.nextInt(120) == 0 || this.fleeingTick > 0) && this.entityAge < 100) {
@@ -56,7 +63,6 @@ public abstract class EntityCreature extends EntityLiving {
 		boolean z4 = this.handleLavaMovement();
 		this.rotationPitch = 0.0F;
 		if(this.pathToEntity != null && this.rand.nextInt(100) != 0) {
-			//Profiler.startSection("followpath");
 			Vec3D vec3D5 = this.pathToEntity.getCurrentNodeVec3d(this);
 			double d6 = (double)(this.width * 2.0F);
 
@@ -121,7 +127,6 @@ public abstract class EntityCreature extends EntityLiving {
 				this.isJumping = true;
 			}
 
-			//Profiler.endSection();
 		} else {
 			super.updateEntityActionState();
 			this.pathToEntity = null;
@@ -129,7 +134,6 @@ public abstract class EntityCreature extends EntityLiving {
 	}
 
 	protected void updateWanderPath() {
-		//Profiler.startSection("stroll");
 		boolean z1 = false;
 		int i2 = -1;
 		int i3 = -1;
@@ -154,7 +158,6 @@ public abstract class EntityCreature extends EntityLiving {
 			this.pathToEntity = this.worldObj.getEntityPathToXYZ(this, i2, i3, i4, 10.0F, true, false, false, true);
 		}
 
-		//Profiler.endSection();
 	}
 
 	protected void attackEntity(Entity entity1, float f2) {
@@ -171,6 +174,7 @@ public abstract class EntityCreature extends EntityLiving {
 		return null;
 	}
 
+	@Override
 	public boolean getCanSpawnHere() {
 		int i1 = MathHelper.floor_double(this.posX);
 		int i2 = MathHelper.floor_double(this.boundingBox.minY);
@@ -194,6 +198,7 @@ public abstract class EntityCreature extends EntityLiving {
 		this.entityToAttack = entity1;
 	}
 
+	@Override
 	protected float getSpeedModifier() {
 		if(this.isAIEnabled()) {
 			return 1.0F;
@@ -205,5 +210,34 @@ public abstract class EntityCreature extends EntityLiving {
 
 			return f1;
 		}
+	}
+	
+	public String getName() {
+		String name = this.dataWatcher.getWatchableObjectString(DataWatchers.DW_NAME);
+		if ("".equals(name)) return null;
+		return name;
+	}
+
+	public void setName(String name) {
+		if(name == null) name = "";
+		dataWatcher.updateObject(DataWatchers.DW_NAME, name);
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
+		super.writeEntityToNBT(nbttagcompound);
+		String name = this.getName();
+		if (name != null && !"".equals(name)) nbttagcompound.setString("Name", name);
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
+		super.readEntityFromNBT(nbttagcompound);
+		this.setName(nbttagcompound.getString("Name"));
+	}
+	
+	@Override
+	protected boolean canDespawn() {
+		return this.getName() == null;
 	}
 }

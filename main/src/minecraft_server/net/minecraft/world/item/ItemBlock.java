@@ -9,7 +9,7 @@ import net.minecraft.world.level.tile.Block;
 import net.minecraft.world.level.tile.IPlant;
 
 public class ItemBlock extends Item {
-	private int blockID;
+	protected int blockID;
 
 	public ItemBlock(int i1) {
 		super(i1);

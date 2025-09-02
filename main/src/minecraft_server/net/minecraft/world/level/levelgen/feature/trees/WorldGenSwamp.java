@@ -6,100 +6,113 @@ import net.minecraft.world.level.World;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.tile.Block;
+import net.minecraft.world.level.tile.BlockLeaves;
 
 public class WorldGenSwamp extends WorldGenerator {
-	public boolean generate(World world1, Random random2, int i3, int i4, int i5) {
-		int i6;
-		for(i6 = random2.nextInt(4) + 5; world1.getBlockMaterial(i3, i4 - 1, i5) == Material.water; --i4) {
+	EnumTreeType tree = EnumTreeType.SWAMP;
+	
+	private final int leavesID = tree.leaves.getBlock().blockID;
+	private final int leavesMeta = tree.leaves.getMetadata();
+	private final int trunkID = tree.wood.getBlock().blockID;
+	private final int trunkMeta = tree.wood.getMetadata();
+	
+	public boolean generate(World world, Random rand, int x, int y, int z) {
+		int height;
+		for(
+				height = rand.nextInt(4) + 5; 
+				Material.woa(world.getBlockMaterial(x, y - 1, z)); 
+				--y) {
 		}
 
-		boolean z7 = true;
-		if(i4 >= 1 && i4 + i6 + 1 <= 128) {
-			int i8;
-			int i10;
-			int i11;
-			int i12;
-			for(i8 = i4; i8 <= i4 + 1 + i6; ++i8) {
+		boolean validPlacement = true;
+		if(y >= 1 && y + height + 1 <= 128) {
+			int blockID;
+			int canopyH;
+			int canopyD;
+			int xx, yy, zz;
+			for(blockID = y; blockID <= y + 1 + height; ++blockID) {
 				byte b9 = 1;
-				if(i8 == i4) {
+				if(blockID == y) {
 					b9 = 0;
 				}
 
-				if(i8 >= i4 + 1 + i6 - 2) {
+				if(blockID >= y + 1 + height - 2) {
 					b9 = 3;
 				}
 
-				for(i10 = i3 - b9; i10 <= i3 + b9 && z7; ++i10) {
-					for(i11 = i5 - b9; i11 <= i5 + b9 && z7; ++i11) {
-						if(i8 >= 0 && i8 < 128) {
-							i12 = world1.getBlockId(i10, i8, i11);
-							if(i12 != 0 && i12 != Block.leaves.blockID) {
-								if(i12 != Block.waterStill.blockID && i12 != Block.waterMoving.blockID) {
-									z7 = false;
-								} else if(i8 > i4) {
-									z7 = false;
+				for(canopyH = x - b9; canopyH <= x + b9 && validPlacement; ++canopyH) {
+					for(canopyD = z - b9; canopyD <= z + b9 && validPlacement; ++canopyD) {
+						if(blockID >= 0 && blockID < 128) {
+							xx = world.getBlockId(canopyH, blockID, canopyD);
+							if(xx != 0 && xx != Block.leaves.blockID) {
+								if(xx != Block.waterStill.blockID && xx != Block.waterMoving.blockID) {
+									validPlacement = false;
+								} else if(blockID > y) {
+									validPlacement = false;
 								}
 							}
 						} else {
-							z7 = false;
+							validPlacement = false;
 						}
 					}
 				}
 			}
 
-			if(!z7) {
+			if(!validPlacement) {
 				return false;
 			} else {
-				i8 = world1.getBlockId(i3, i4 - 1, i5);
-				if((i8 == Block.grass.blockID || i8 == Block.dirt.blockID) && i4 < 128 - i6 - 1) {
-					this.setBlock(world1, i3, i4 - 1, i5, Block.dirt.blockID);
+				blockID = world.getBlockId(x, y - 1, z);
+				if((blockID == Block.grass.blockID || blockID == Block.dirt.blockID) && y < 128 - height - 1) {
+					this.setBlock(world, x, y - 1, z, Block.dirt.blockID);
 
-					int i13;
-					int i16;
-					for(i16 = i4 - 3 + i6; i16 <= i4 + i6; ++i16) {
-						i10 = i16 - (i4 + i6);
-						i11 = 2 - i10 / 2;
+					int dx;
+					for(yy = y - 3 + height; yy <= y + height; ++yy) {
+						canopyH = yy - (y + height);
+						canopyD = 2 - canopyH / 2;
 
-						for(i12 = i3 - i11; i12 <= i3 + i11; ++i12) {
-							i13 = i12 - i3;
+						for(xx = x - canopyD; xx <= x + canopyD; ++xx) {
+							dx = xx - x;
 
-							for(int i14 = i5 - i11; i14 <= i5 + i11; ++i14) {
-								int i15 = i14 - i5;
-								if((Math.abs(i13) != i11 || Math.abs(i15) != i11 || random2.nextInt(2) != 0 && i10 != 0) && !Block.opaqueCubeLookup[world1.getBlockId(i12, i16, i14)]) {
-									this.setBlock(world1, i12, i16, i14, Block.leaves.blockID);
+							for(zz = z - canopyD; zz <= z + canopyD; ++zz) {
+								int dz = zz - z;
+								if((Math.abs(dx) != canopyD || Math.abs(dz) != canopyD || rand.nextInt(2) != 0 && canopyH != 0) && !Block.opaqueCubeLookup[world.getBlockId(xx, yy, zz)]) {
+									this.setBlockAndMetadata(world, xx, yy, zz, this.leavesID, this.leavesMeta);
 								}
 							}
 						}
 					}
 
-					for(i16 = 0; i16 < i6; ++i16) {
-						i10 = world1.getBlockId(i3, i4 + i16, i5);
-						if(i10 == 0 || i10 == Block.leaves.blockID || i10 == Block.waterMoving.blockID || i10 == Block.waterStill.blockID) {
-							this.setBlock(world1, i3, i4 + i16, i5, Block.wood.blockID);
+					for(yy = 0; yy < height; ++yy) {
+						Material m = world.getBlockMaterial(x, y + yy, z);
+						if(
+								m == Material.air ||
+								m == Material.leaves ||
+								m == Material.water) {
+							this.setBlockAndMetadata(world, x, y + yy, z, this.trunkID, this.trunkMeta);
 						}
 					}
 
-					for(i16 = i4 - 3 + i6; i16 <= i4 + i6; ++i16) {
-						i10 = i16 - (i4 + i6);
-						i11 = 2 - i10 / 2;
+					for(yy = y - 3 + height; yy <= y + height; ++yy) {
+						canopyH = yy - (y + height);
+						canopyD = 2 - canopyH / 2;
 
-						for(i12 = i3 - i11; i12 <= i3 + i11; ++i12) {
-							for(i13 = i5 - i11; i13 <= i5 + i11; ++i13) {
-								if(world1.getBlockId(i12, i16, i13) == Block.leaves.blockID) {
-									if(random2.nextInt(4) == 0 && world1.getBlockId(i12 - 1, i16, i13) == 0) {
-										this.generateVines(world1, i12 - 1, i16, i13, 8);
+						for(xx = x - canopyD; xx <= x + canopyD; ++xx) {
+							for(zz = z - canopyD; zz <= z + canopyD; ++zz) {
+								if(world.getBlock(xx, yy, zz) instanceof BlockLeaves) {
+									if(rand.nextInt(4) == 0 && world.getBlockId(xx - 1, yy, zz) == 0) {
+										this.generateVines(world, xx - 1, yy, zz, 8);
 									}
 
-									if(random2.nextInt(4) == 0 && world1.getBlockId(i12 + 1, i16, i13) == 0) {
-										this.generateVines(world1, i12 + 1, i16, i13, 2);
+									if(rand.nextInt(4) == 0 && world.getBlockId(xx + 1, yy, zz) == 0) {
+										this.generateVines(world, xx + 1, yy, zz, 2);
 									}
 
-									if(random2.nextInt(4) == 0 && world1.getBlockId(i12, i16, i13 - 1) == 0) {
-										this.generateVines(world1, i12, i16, i13 - 1, 1);
+									if(rand.nextInt(4) == 0 && world.getBlockId(xx, yy, zz - 1) == 0) {
+										this.generateVines(world, xx, yy, zz - 1, 1);
 									}
 
-									if(random2.nextInt(4) == 0 && world1.getBlockId(i12, i16, i13 + 1) == 0) {
-										this.generateVines(world1, i12, i16, i13 + 1, 4);
+									if(rand.nextInt(4) == 0 && world.getBlockId(xx, yy, zz + 1) == 0) {
+										this.generateVines(world, xx, yy, zz + 1, 4);
 									}
 								}
 							}
@@ -116,18 +129,18 @@ public class WorldGenSwamp extends WorldGenerator {
 		}
 	}
 
-	private void generateVines(World world1, int i2, int i3, int i4, int i5) {
-		this.setBlockAndMetadata(world1, i2, i3, i4, Block.vine.blockID, i5);
-		int i6 = 4;
+	private void generateVines(World world, int x, int y, int z, int meta) {
+		this.setBlockAndMetadata(world, x, y, z, Block.vine.blockID, meta);
+		int vl = 4;
 
 		while(true) {
-			--i3;
-			if(world1.getBlockId(i2, i3, i4) != 0 || i6 <= 0) {
+			--y;
+			if(world.getBlockId(x, y, z) != 0 || vl <= 0) {
 				return;
 			}
 
-			this.setBlockAndMetadata(world1, i2, i3, i4, Block.vine.blockID, i5);
-			--i6;
+			this.setBlockAndMetadata(world, x, y, z, Block.vine.blockID, meta);
+			--vl;
 		}
 		
 	}

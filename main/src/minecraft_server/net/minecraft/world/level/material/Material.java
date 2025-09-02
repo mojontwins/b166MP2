@@ -35,6 +35,7 @@ public class Material {
 	public static final Material cake = (new Material(MapColor.airColor)).setNoPushMobility().setName("cake");
 	public static final Material web = (new MaterialWeb(MapColor.clothColor)).setNoHarvest().setNoPushMobility().setName("web");
 	public static final Material piston = (new Material(MapColor.stoneColor)).setImmovableMobility().setName("piston");
+	private static Material acid;
 	private boolean canBurn;
 	private boolean groundCover;
 	private boolean isTranslucent;
@@ -120,5 +121,9 @@ public class Material {
 	public Material setName(String name) {
 		this.name = name;
 		return this;
+	}
+
+	public static boolean woa(Material m) {
+		return m == Material.water || m == Material.acid; 
 	}
 }

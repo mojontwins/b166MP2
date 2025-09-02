@@ -1,5 +1,5 @@
 #Minecraft Game Rules
-#Tue Aug 12 18:52:51 CEST 2025
+#Tue Sep 02 12:49:38 CEST 2025
 edibleCows=false
 noiseTreeDensity=true
 enableSquids=true

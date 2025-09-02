@@ -47,15 +47,15 @@ public class EntityOgre extends EntityMob implements IMob {
 	}
 
 	protected String getLivingSound() {
-		return "mob.ogre.ogre";
+		return "mocreatures.ogre";
 	}
 
 	protected String getHurtSound() {
-		return "mov.ogre.hurt";
+		return "mocreatures.ogrehurt";
 	}
 
 	protected String getDeathSound() {
-		return "mov.ogre.death";
+		return "mocreatures.ogredeath";
 	}
 
 	protected int getDropItemId() {

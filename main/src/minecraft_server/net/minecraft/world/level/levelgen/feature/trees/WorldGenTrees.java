@@ -10,10 +10,17 @@ import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 import net.minecraft.world.level.tile.Block;
 
 public class WorldGenTrees extends WorldGenerator {
+	
+	EnumTreeType tree = EnumTreeType.OAK;
+	
+	private final int leavesID = tree.leaves.getBlock().blockID;
+	private int leavesMeta = tree.leaves.getMetadata();
+	private final int trunkID = tree.wood.getBlock().blockID;
+	private int trunkMeta = tree.wood.getMetadata();
+	
 	private final int addedHeight;
 	private final boolean hasVines;
-	private final int woodMeta;
-	private final int leavesMeta;
+
 	private BlockState fruitBlock = null;
 	private int fruitChance = 8;
 
@@ -24,7 +31,7 @@ public class WorldGenTrees extends WorldGenerator {
 	public WorldGenTrees(boolean notify, int addedHeight, int woodMeta, int leavesMeta, boolean withVines) {
 		super(notify);
 		this.addedHeight = addedHeight;
-		this.woodMeta = woodMeta;
+		this.trunkMeta = woodMeta;
 		this.leavesMeta = leavesMeta;
 		this.hasVines = withVines;
 	}
@@ -77,7 +84,7 @@ public class WorldGenTrees extends WorldGenerator {
 				for(int z = z0 - radius; z <= z0 + radius; ++z) {
 					int dz = Math.abs(z - z0);
 					if((dx != radius || Math.abs(dz) != radius || rand.nextInt(2) != 0 && yy != 0) && !Block.opaqueCubeLookup[world.getBlockId(x, y, z)]) {
-						this.setBlockAndMetadata(world, x, y, z, Block.leaves.blockID, this.leavesMeta);
+						this.setBlockAndMetadata(world, x, y, z, this.leavesID, this.leavesMeta);
 						if(
 								this.fruitBlock != null &&
 								rand.nextInt(this.fruitChance) == 0 &&
@@ -92,7 +99,7 @@ public class WorldGenTrees extends WorldGenerator {
 
 		for(int y = 0; y < height; ++y) {
 			if(BlockUtils.canBeReplacedByWood(world.getBlockId(x0, y0 + y, z0))) {
-				this.setBlockAndMetadata(world, x0, y0 + y, z0, Block.wood.blockID, this.woodMeta);
+				this.setBlockAndMetadata(world, x0, y0 + y, z0, this.trunkID, this.trunkMeta);
 				
 				if(this.hasVines && y > 0) {
 					if(rand.nextInt(3) > 0 && world.isAirBlock(x0 - 1, y0 + y, z0)) {

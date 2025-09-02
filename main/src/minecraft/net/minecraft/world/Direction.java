@@ -1,9 +1,9 @@
 package net.minecraft.world;
 
 public class Direction {
-	public static final int[] offsetX = new int[]{0, -1, 0, 1};
+	public static final int offsetX[] = {  0, -1,  0,  1,  0,  0,  0,   -1, -1,  1,  1 };
+	public static final int offsetZ[] = {  1,  0, -1,  0,  0,  0,  0,    1, -1, -1,  1 };
 	public static final int offsetY[] = {  0,  0,  0,  0,  1, -1,  0,    0,  0,  0,  0 };
-	public static final int[] offsetZ = new int[]{1, 0, -1, 0};
 	
 	public static final int[] headInvisibleFace = new int[]{3, 4, 2, 5};
 	public static final int[] vineGrowth = new int[]{-1, -1, 2, 0, 1, 3};

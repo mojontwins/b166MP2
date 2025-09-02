@@ -7,10 +7,15 @@ import com.mojontwins.utils.BlockUtils;
 import net.minecraft.world.level.World;
 import net.minecraft.world.level.levelgen.feature.WorldGenerator;
 import net.minecraft.world.level.tile.Block;
-import net.minecraft.world.level.tile.BlockLeaves;
-import net.minecraft.world.level.tile.BlockLog;
 
 public class WorldGenTaiga1 extends WorldGenerator {
+	EnumTreeType tree = EnumTreeType.TAIGA;
+	
+	private final int leavesID = tree.leaves.getBlock().blockID;
+	private final int leavesMeta = tree.leaves.getMetadata();
+	private final int trunkID = tree.wood.getBlock().blockID;
+	private final int trunkMeta = tree.wood.getMetadata();
+	
 	public boolean generate(World world, Random rand, int x0, int y0, int z0) {
 		int height = rand.nextInt(5) + 7;
 		int trunkHeight = height - rand.nextInt(2) - 3;
@@ -49,7 +54,7 @@ public class WorldGenTaiga1 extends WorldGenerator {
 				for(int z = z0 - radius; z <= z0 + radius; ++z) {
 					int dz = Math.abs(z - z0);
 					if((dx != radius || dz != radius || radius <= 0) && !Block.opaqueCubeLookup[world.getBlockId(x, y, z)]) {
-						this.setBlockAndMetadata(world, x, y, z, Block.leaves.blockID, BlockLeaves.SpruceMetadata);
+						this.setBlockAndMetadata(world, x, y, z, this.leavesID, this.leavesMeta);
 					}
 				}
 			}
@@ -63,7 +68,7 @@ public class WorldGenTaiga1 extends WorldGenerator {
 
 		for(int y = 0; y < height - 1; ++y) {
 			if(BlockUtils.canBeReplacedByWood(world.getBlockId(x0, y0 + y, z0))) {
-				this.setBlockAndMetadata(world, x0, y0 + y, z0, Block.wood.blockID, BlockLog.SpruceMetadata);
+				this.setBlockAndMetadata(world, x0, y0 + y, z0, this.trunkID, this.trunkMeta);
 			}
 		}
 

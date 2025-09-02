@@ -18,7 +18,10 @@ public class GameHints {
 		"Right click spawners with placer eggs",
 		"Shears can cut grass, vines and leaves",
 		"Break tall grass for seeds!",
-		"Some trees produce cocoa pods!"
+		"Some trees produce cocoa pods!",
+		"Thick trees need 4 saplings to grow",
+		"Right click with a name tag to give name",
+		"Named entities never despawn naturally"
 	};
 	
 	public static String getRandomHint() {

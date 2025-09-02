@@ -11,6 +11,7 @@ import net.minecraft.world.level.creative.CreativeTabs;
 import net.minecraft.world.level.tile.Block;
 import net.minecraft.world.level.tile.BlockCloth;
 import net.minecraft.world.level.tile.BlockCrops;
+import net.minecraft.world.level.tile.BlockGrass;
 import net.minecraft.world.level.tile.BlockMushroom;
 import net.minecraft.world.level.tile.BlockSapling;
 
@@ -47,8 +48,9 @@ public class ItemDye extends Item {
 			// Damage 15 is white dye or bone meal. Used to fertilize:
 			
 			if(itemStack.getItemDamage() == 15) {
-				int i8 = world.getBlockId(x, y, z);
-				if(i8 == Block.sapling.blockID) {
+				Block block = world.getBlock(x, y, z);
+				
+				if(block instanceof BlockSapling) {
 					if(!world.isRemote) {
 						((BlockSapling)Block.sapling).growTree(world, x, y, z, world.rand);
 						--itemStack.stackSize;
@@ -57,15 +59,15 @@ public class ItemDye extends Item {
 					return true;
 				}
 
-				if(i8 == Block.mushroomBrown.blockID || i8 == Block.mushroomRed.blockID) {
-					if(!world.isRemote && ((BlockMushroom)Block.blocksList[i8]).fertilizeMushroom(world, x, y, z, world.rand)) {
+				if(block instanceof BlockMushroom) {
+					if(!world.isRemote && ((BlockMushroom)block).fertilizeMushroom(world, x, y, z, world.rand)) {
 						--itemStack.stackSize;
 					}
 
 					return true;
 				}
 
-				if(i8 == Block.crops.blockID) {
+				if(block instanceof BlockCrops) {
 					if(!world.isRemote) {
 						((BlockCrops)Block.crops).fertilize(world, x, y, z);
 						--itemStack.stackSize;
@@ -74,7 +76,7 @@ public class ItemDye extends Item {
 					return true;
 				}
 
-				if(i8 == Block.grass.blockID) {
+				if(block instanceof BlockGrass) {
 					if(!world.isRemote) {
 						--itemStack.stackSize;
 

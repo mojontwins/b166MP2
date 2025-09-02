@@ -5,7 +5,7 @@ import com.mojang.nbt.NBTTagCompound;
 import net.minecraft.world.entity.DataWatchers;
 import net.minecraft.world.level.World;
 
-public abstract class EntityMocAnimalTameable extends EntityMoCAnimal {
+public abstract class EntityMocAnimalTameable extends EntityMocAnimal {
 	public EntityMocAnimalTameable(World world) {
 		super(world);
 		this.setIsTamed(false);

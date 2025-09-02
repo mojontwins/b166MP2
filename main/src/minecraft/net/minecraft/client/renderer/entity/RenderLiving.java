@@ -1,5 +1,8 @@
 package net.minecraft.client.renderer.entity;
 
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.FontRenderer;
@@ -7,10 +10,8 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.src.MathHelper;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityCreature;
 import net.minecraft.world.entity.EntityLiving;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 public class RenderLiving extends Render {
 	protected ModelBase mainModel;
@@ -244,7 +245,14 @@ public class RenderLiving extends Render {
 
 	protected void passSpecialRender(EntityLiving entityLiving1, double d2, double d4, double d6) {
 		if(Minecraft.isDebugInfoEnabled()) {
-			this.renderLivingLabel(entityLiving1, Integer.toString(entityLiving1.entityId)  + " " + Integer.toString(entityLiving1.health), d2, d4, d6, 64);
+			this.renderLivingLabel(entityLiving1, Integer.toString(entityLiving1.entityId), d2, d4, d6, 64);
+		} else {
+			if(entityLiving1 instanceof EntityCreature) {
+				EntityCreature entityCreature = (EntityCreature)entityLiving1;
+				if(entityCreature.getName() != null && !"".equals(entityCreature.getName())) {
+					this.renderLivingLabel(entityCreature, entityCreature.getName(), d2, d4, d6, 16);
+				}
+			}
 		}
 
 	}
