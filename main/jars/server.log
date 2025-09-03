@@ -1,0 +1,41 @@
+2025-09-03 10:13:54 [INFO] Starting minecraft server version Beta 1.6.6.6r1
+2025-09-03 10:13:54 [INFO] Loading properties
+2025-09-03 10:13:54 [WARNING] server.properties does not exist
+2025-09-03 10:13:54 [INFO] Generating new properties file
+2025-09-03 10:13:54 [INFO] Starting Minecraft server on *:25565
+2025-09-03 10:13:54 [WARNING] Failed to load ban list: java.io.FileNotFoundException: banned-players.txt (El sistema no puede encontrar el archivo especificado)
+2025-09-03 10:13:54 [WARNING] Failed to load ip ban list: java.io.FileNotFoundException: banned-ips.txt (El sistema no puede encontrar el archivo especificado)
+2025-09-03 10:13:54 [WARNING] Failed to load operators list: java.io.FileNotFoundException: ops.txt (El sistema no puede encontrar el archivo especificado)
+2025-09-03 10:13:54 [WARNING] Failed to load white-list: java.io.FileNotFoundException: white-list.txt (El sistema no puede encontrar el archivo especificado)
+2025-09-03 10:13:54 [INFO] Configured level type: DEFAULT
+2025-09-03 10:13:54 [INFO] Preparing level "world"
+2025-09-03 10:13:54 [INFO] Default game type: 0
+2025-09-03 10:13:54 [INFO] Preparing start region for level 0
+2025-09-03 10:13:55 [INFO] Preparing spawn area: 8%
+2025-09-03 10:13:56 [INFO] Preparing spawn area: 32%
+2025-09-03 10:13:57 [INFO] Preparing spawn area: 56%
+2025-09-03 10:13:58 [INFO] Preparing spawn area: 81%
+2025-09-03 10:13:59 [INFO] Preparing start region for level 1
+2025-09-03 10:13:59 [INFO] Preparing spawn area: 3%
+2025-09-03 10:14:01 [INFO] Preparing spawn area: 8%
+2025-09-03 10:14:02 [INFO] Preparing spawn area: 12%
+2025-09-03 10:14:03 [INFO] Preparing spawn area: 16%
+2025-09-03 10:14:04 [INFO] Preparing spawn area: 20%
+2025-09-03 10:14:05 [INFO] Preparing spawn area: 24%
+2025-09-03 10:14:06 [INFO] Preparing spawn area: 28%
+2025-09-03 10:14:07 [INFO] Preparing spawn area: 36%
+2025-09-03 10:14:08 [INFO] Preparing spawn area: 40%
+2025-09-03 10:14:09 [INFO] Preparing spawn area: 44%
+2025-09-03 10:14:10 [INFO] Preparing spawn area: 52%
+2025-09-03 10:14:11 [INFO] Preparing spawn area: 56%
+2025-09-03 10:14:12 [INFO] Preparing spawn area: 61%
+2025-09-03 10:14:13 [INFO] Preparing spawn area: 69%
+2025-09-03 10:14:14 [INFO] Preparing spawn area: 73%
+2025-09-03 10:14:15 [INFO] Preparing spawn area: 77%
+2025-09-03 10:14:16 [INFO] Preparing spawn area: 85%
+2025-09-03 10:14:17 [INFO] Preparing spawn area: 97%
+2025-09-03 10:14:18 [INFO] Done (23,762s)! For help, type "help" or "?"
+2025-09-03 10:14:31 [INFO] /127.0.0.1:65212 lost connection
+2025-09-03 10:14:46 [INFO] Stopping server
+2025-09-03 10:14:46 [INFO] Saving chunks
+2025-09-03 10:14:46 [INFO] Saving chunks

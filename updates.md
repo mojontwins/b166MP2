@@ -219,6 +219,7 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 
 * [X] BUGS
 	* [X] Make sure the "add snow" is consistent with the methods that remove it when it's hot. Also this seems to be generating ice BUT NOT SNOW.
+* [X] No need for minecraft.jar in the project, which means this is 100% standalone now.
 
 # b16.6.6 r2
 
