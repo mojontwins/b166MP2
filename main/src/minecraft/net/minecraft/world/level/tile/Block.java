@@ -197,6 +197,21 @@ public class Block implements ITextureProvider {
 	public static final BlockLeaves leavesEx2 = (BlockLeavesEx2)(new BlockLeavesEx2(517)).setHardness(0.2F).setLightOpacity(1).setStepSound(soundGrassFootstep).setRequiresSelfNotify();
 	public static final Block saplingEx2 = (new BlockSaplingEx2(518)).setHardness(0.0F).setStepSound(soundGrassFootstep).setRequiresSelfNotify();
 	
+	public static final Block fireplace = (new BlockFireplace(519, 355)).setHardness(1.0F).setResistance(1.0F).setBlockName("fireplace");
+	public static final Block MobGSpawner = (new BlockMobGSpawner(520, 356)).setHardness(4.0F).setResistance(1.0F).setBlockName("BlockMobGSpawner");
+	public static final Block MobGRSpawner = (new BlockMobGRSpawner(521, 356)).setHardness(4.0F).setResistance(1.0F).setBlockName("BlockMobGRSpawner");
+	public static final Block MobGMSpawner = (new BlockMobGMSpawner(522, 356)).setHardness(4.0F).setResistance(1.0F).setBlockName("BlockMobGMSpawner");
+	public static final Block VillageSpawn = (new BlockVillageSpawn(523, 271)).setHardness(0.1F).setResistance(1.0F).setBlockName("VillageSpawn").setLightValue(0.65F);
+	public static final Block ETNT = (new BlockETNT(524)).setHardness(0.0F).setBlockName("ETNT").setLightValue(0.65F);
+	public static final Block MTNT = (new BlockMTNT(525)).setHardness(0.0F).setBlockName("MTNT").setLightValue(0.8F);
+	public static final Block totemR = (new BlockTotem(526, 364)).setHardness(3.5F).setResistance(20.0F).setBlockName("totemR").setLightValue(0.65F);
+	public static final Block totemB = (new BlockTotem(527, 360)).setHardness(3.5F).setResistance(20.0F).setBlockName("totemB").setLightValue(0.5F);
+	public static final Block totemG = (new BlockTotem(528, 362)).setHardness(3.5F).setResistance(20.0F).setBlockName("totemG").setLightValue(0.5F);
+	public static final Block totemY = (new BlockTotem(529, 366)).setHardness(3.5F).setResistance(20.0F).setBlockName("totemY").setLightValue(0.65F);
+	public static final Block gobDrum = (new BlockGobDrum(530)).setHardness(0.8F).setBlockName("gobDrum").setRequiresSelfNotify();
+	public static final Block gobStone = (new BlockGobStone(531, 229)).setHardness(1.5F).setResistance(10.0F).setBlockName("gobStone");
+	public static final Block gobSlabWood = (new BlockGobSlabWood(532)).setHardness(2.0F).setResistance(10.0F).setBlockName("gobSlabWood");
+	
 	
 	public int blockIndexInTexture;
 	public final int blockID;

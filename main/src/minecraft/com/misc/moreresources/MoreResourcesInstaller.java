@@ -60,6 +60,22 @@ public class MoreResourcesInstaller {
 			this.mc.installResourceURL("sound/mocreatures/wraith2.ogg", this.getURLfromResource(this.resourceDirectory + "/wraith2.ogg"));
 			this.mc.installResourceURL("sound/mocreatures/wraith3.ogg", this.getURLfromResource(this.resourceDirectory + "/wraith3.ogg"));
 			
+			// Goblins
+			this.mc.installResourceURL("sound/goblins/goblin0.ogg", this.getURLfromResource(this.resourceDirectory + "/goblin1.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblin1.ogg", this.getURLfromResource(this.resourceDirectory + "/goblin2.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblin2.ogg", this.getURLfromResource(this.resourceDirectory + "/goblin3.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblindead0.ogg", this.getURLfromResource(this.resourceDirectory + "/goblindead1.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblindead1.ogg", this.getURLfromResource(this.resourceDirectory + "/goblindead2.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblinhurt0.ogg", this.getURLfromResource(this.resourceDirectory + "/goblinhurt1.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblinhurt1.ogg", this.getURLfromResource(this.resourceDirectory + "/goblinhurt2.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblinhurt2.ogg", this.getURLfromResource(this.resourceDirectory + "/goblinhurt3.ogg"));
+			
+			this.mc.installResourceURL("sound/goblins/goblinlord0.ogg", this.getURLfromResource(this.resourceDirectory + "/goblinlord1.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblinlord1.ogg", this.getURLfromResource(this.resourceDirectory + "/goblinlord2.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblinlordcharge0.ogg", this.getURLfromResource(this.resourceDirectory + "/goblinlordcharge1.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblinlorddead0.ogg", this.getURLfromResource(this.resourceDirectory + "/goblinlorddead1.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblinlordhurt0.ogg", this.getURLfromResource(this.resourceDirectory + "/goblinlordhurt1.ogg"));
+			this.mc.installResourceURL("sound/goblins/goblinlordhurt1.ogg", this.getURLfromResource(this.resourceDirectory + "/goblinlordhurt2.ogg"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

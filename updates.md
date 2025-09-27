@@ -269,11 +269,20 @@ Check if this was just a glitch or if it happens always. - There's defintely som
 * Added Cold Cow, Chicken Black. Made Boars extend classic pigs. Added Boars to all kinds of forests, cold cows to cold biomes and black chickens to deserts.
 * Added Goats to savannas and shrublads. Enabled shrubs in shrublands.
 
+#### XXX
+ 
+* Stuff
+
+#### 20250904
+
+* Added goblins mod sounds
+
 # Credits
 
 * Chocolate Mod (just the inspiration for now, sorry) by X8xScoutx8X
 * Pistons Mod by Hyppoplatimus.
 * Some animals by Dr.Zark.
+* Goblins Mod by Sartharis
 
 # To transfer to sister projects ...
 
