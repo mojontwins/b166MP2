@@ -913,7 +913,7 @@ public class BlockVillageSpawn extends Block {
 			world.setBlock(i + this.houseLoc1 + 3, j + boss, k + this.houseLoc2 + 5, Block.stairCompactCobblestone.blockID);
 			world.setBlock(i + this.houseLoc1 + 4, j + boss, k + this.houseLoc2 + 5, Block.gobStone.blockID);
 			world.setBlock(i + this.houseLoc1 + 5, j + boss, k + this.houseLoc2 + 2, Block.gobStone.blockID);
-			world.setBlock(i + this.houseLoc1 + 5, j + boss, k + this.houseLoc2 + 3, Block.cauldron.blockID);
+			world.setBlock(i + this.houseLoc1 + 5, j + boss, k + this.houseLoc2 + 3, Block.stoneOvenIdle.blockID);
 			world.setBlock(i + this.houseLoc1 + 5, j + boss, k + this.houseLoc2 + 4, Block.gobStone.blockID);
 		}
 
